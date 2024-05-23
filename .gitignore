@@ -1,5 +1,6 @@
 .vs
 obj
+.gitignore
 bin
 Solution Items
 Shopping.sln

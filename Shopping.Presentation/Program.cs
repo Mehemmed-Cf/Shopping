@@ -1,3 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Shopping.Application;
+using Shopping.DataAccessLayer.DataContexts;
+using Shopping.Infrastructure.Abstracts;
+using Shopping.Presentation.AppCode.DI;
+using Shopping.Application.Services;
+
 namespace Shopping.Presentation
 {
     public class Program
@@ -5,9 +12,34 @@ namespace Shopping.Presentation
         private static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseServiceProviderFactory(new ShoppingServiceProviderFactory());
+
+            builder.Services.AddDbContext<DbContext, DataContext>(cfg =>
+            {
+
+                cfg.UseSqlServer(builder.Configuration.GetConnectionString("cString"), opt =>
+                {
+
+                    opt.MigrationsHistoryTable("MigrationHistory");
+                });
+            });
+
+            builder.Services.AddScoped<IIdentityService, FakeIdentityService>();
+
+            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddRouting(cfg => cfg.LowercaseUrls = true);
+
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IApplicationReferance>()); // Butun repositoriler
+
             var app = builder.Build();
 
-            app.MapGet("/", () => "Hello World!");
+            app.UseStaticFiles();
+
+            app.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(name: "default", pattern: "{controller=home}/{action=index}/{id?}");
 
             app.Run();
         }

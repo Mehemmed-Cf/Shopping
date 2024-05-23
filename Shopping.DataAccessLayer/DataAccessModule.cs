@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Autofac;
+using Microsoft.EntityFrameworkCore;
+using Shopping.DataAccessLayer.DataContexts;
 
 namespace Shopping.DataAccessLayer
 {
-    internal class DataAccessModule
+    public class DataAccessModule : Module
     {
+        protected override void Load(ContainerBuilder builder)
+        {
+            base.Load(builder);
+
+            builder.RegisterType<DataContext>()
+                .As<DbContext>()
+                .InstancePerLifetimeScope();
+        }
     }
 }

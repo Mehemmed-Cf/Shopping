@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Shopping.Application.Services.File
 {
-    class FileService : IFileService
+    public class FileService : IFileService
     {
         private readonly IHostEnvironment env;
 

@@ -1,2 +1,2 @@
-﻿namespace Resume.Repository;
+﻿namespace Shopping.Repository;
 public interface IRepositoryReference { }

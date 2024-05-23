@@ -1,4 +1,4 @@
-﻿namespace Resume.Infrastructure.Exceptions
+﻿namespace Shopping.Infrastructure.Exceptions
 {
     public class NotFoundException : Exception
     {

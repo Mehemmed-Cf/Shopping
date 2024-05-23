@@ -1,4 +1,6 @@
-﻿namespace Resume.Infrastructure.Exceptions
+﻿using Shopping.Infrastructure.Exceptions;
+
+namespace Shopping.Infrastructure.Exceptions
 {
     public class UserNotFoundException : NotFoundException
     {
