@@ -12,7 +12,9 @@ namespace Shopping.Domain.Models.Entities
         public int Id { get; set; }
 
         public string Title { get; set; }
+
         public short Price { get; set; }
+
         public int StockCount { get; set; }
 
         public int CategoryId { get; set; }
@@ -22,6 +24,7 @@ namespace Shopping.Domain.Models.Entities
         public int SizeId { get; set; }
 
         public int ColorId { get; set; }
+
         public int BrandId { get; set; }
 
         public string ImagePath { get; set; }

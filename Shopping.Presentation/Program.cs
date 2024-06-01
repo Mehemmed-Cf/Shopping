@@ -18,10 +18,10 @@ namespace Shopping.Presentation
 
             builder.Services.AddDbContext<DbContext, DataContext>(cfg =>
             {
+                string cs = builder.Configuration.GetConnectionString("cString");
 
-                cfg.UseSqlServer(builder.Configuration.GetConnectionString("cString"), opt =>
+                cfg.UseSqlServer(cs, opt =>
                 {
-
                     opt.MigrationsHistoryTable("MigrationHistory");
                 });
             });

@@ -16,6 +16,7 @@ namespace Shopping.DataAccessLayer.Configurations
             builder.Property(m => m.Id).HasColumnType("int").UseIdentityColumn(1, 1);
             builder.Property(m => m.Title).HasColumnType("nvarchar").HasMaxLength(400).IsRequired();
             builder.Property(m => m.Body).HasColumnType("nvarchar(max)").IsRequired();
+            builder.Property(m => m.Slug).HasColumnType("varchar").HasMaxLength(400).IsRequired();
             builder.Property(m => m.ImagePath).HasColumnType("varchar").HasMaxLength(100).IsRequired();
             builder.Property(m => m.CategoryId).HasColumnType("int").IsRequired();
             builder.Property(m => m.PublishedBy).HasColumnType("int");

@@ -9,5 +9,9 @@ namespace Shopping.Application.Modules.CategoriesModule.Commands.CategoryAddComm
 {
     class CategoryAddRequestHandler : IRequestHandler<CategoryAddRequest>
     {
+        public Task Handle(CategoryAddRequest request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
