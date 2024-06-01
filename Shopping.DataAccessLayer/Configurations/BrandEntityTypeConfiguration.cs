@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Shopping.Domain.Modules.Entities;
+using Shopping.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

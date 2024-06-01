@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shopping.Application.Repositories;
-using Shopping.Domain.Modules.Entities;
+using Shopping.Domain.Models.Entities;
 using Shopping.Infrastructure.Concrates;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Shopping.Repository
 {
-    public class MaterialRepository : AsyncRepository<Material>, IMaterialRepository
+    class MaterialRepository : AsyncRepository<Material>, IMaterialRepository
     {
         public MaterialRepository(DbContext db) : base(db)
         {

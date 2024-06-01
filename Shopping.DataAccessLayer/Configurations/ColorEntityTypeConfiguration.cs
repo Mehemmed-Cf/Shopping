@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Shopping.Domain.Modules.Entities;
+using Shopping.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Shopping.DataAccessLayer.Configurations

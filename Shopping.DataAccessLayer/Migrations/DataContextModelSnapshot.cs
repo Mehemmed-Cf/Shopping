@@ -22,7 +22,7 @@ namespace Shopping.DataAccessLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Shopping.Domain.Modules.Entities.BlogPost", b =>
+            modelBuilder.Entity("Shopping.Domain.Models.Entities.BlogPost", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace Shopping.DataAccessLayer.Migrations
                     b.ToTable("BlogPosts", (string)null);
                 });
 
-            modelBuilder.Entity("Shopping.Domain.Modules.Entities.Brand", b =>
+            modelBuilder.Entity("Shopping.Domain.Models.Entities.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +111,7 @@ namespace Shopping.DataAccessLayer.Migrations
                     b.ToTable("Brands", (string)null);
                 });
 
-            modelBuilder.Entity("Shopping.Domain.Modules.Entities.Color", b =>
+            modelBuilder.Entity("Shopping.Domain.Models.Entities.Color", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +153,7 @@ namespace Shopping.DataAccessLayer.Migrations
                     b.ToTable("Colors", (string)null);
                 });
 
-            modelBuilder.Entity("Shopping.Domain.Modules.Entities.Material", b =>
+            modelBuilder.Entity("Shopping.Domain.Models.Entities.Material", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -190,7 +190,7 @@ namespace Shopping.DataAccessLayer.Migrations
                     b.ToTable("Materials", (string)null);
                 });
 
-            modelBuilder.Entity("Shopping.Domain.Modules.Entities.Size", b =>
+            modelBuilder.Entity("Shopping.Domain.Models.Entities.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -11,7 +11,7 @@ namespace Shopping.Presentation.AppCode.DI
         {
             base.Load(builder);
 
-            //builder.RegisterModule<DataAccessModule>();
+            builder.RegisterModule<DataAccessModule>();
 
             builder.RegisterAssemblyModules(typeof(DataAccessModule).Assembly);
             builder.RegisterAssemblyModules(typeof(ApplicationModule).Assembly);

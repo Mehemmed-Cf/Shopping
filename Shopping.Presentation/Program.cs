@@ -4,6 +4,7 @@ using Shopping.DataAccessLayer.DataContexts;
 using Shopping.Infrastructure.Abstracts;
 using Shopping.Presentation.AppCode.DI;
 using Shopping.Application.Services;
+using FluentValidation.AspNetCore;
 
 namespace Shopping.Presentation
 {
@@ -30,6 +31,8 @@ namespace Shopping.Presentation
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRouting(cfg => cfg.LowercaseUrls = true);
+
+            /*builder.Services.AddFluentValidationAutoValidation(cfg => cfg.DisableDataAnnotationsValidation = false);*/
 
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IApplicationReferance>()); // Butun repositoriler
 

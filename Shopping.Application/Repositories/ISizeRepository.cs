@@ -1,4 +1,4 @@
-﻿using Shopping.Domain.Modules.Entities;
+﻿using Shopping.Domain.Models.Entities;
 using Shopping.Infrastructure.Abstracts;
 using System;
 using System.Collections.Generic;
