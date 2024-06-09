@@ -52,7 +52,6 @@ namespace Shopping.DataAccessLayer.Configurations
             .HasPrincipalKey(m => m.Id)
             .HasForeignKey(m => m.BrandId)
             .OnDelete(DeleteBehavior.NoAction);
-
         }
     }
 }

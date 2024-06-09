@@ -5,6 +5,8 @@ using Shopping.Infrastructure.Abstracts;
 using Shopping.Presentation.AppCode.DI;
 using Shopping.Application.Services;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Shopping.Application.Services.File;
 
 namespace Shopping.Presentation
 {
@@ -27,6 +29,10 @@ namespace Shopping.Presentation
             });
 
             builder.Services.AddScoped<IIdentityService, FakeIdentityService>();
+
+            builder.Services.AddSingleton<IFileService, FileService>();
+
+            builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             builder.Services.AddControllersWithViews();
 

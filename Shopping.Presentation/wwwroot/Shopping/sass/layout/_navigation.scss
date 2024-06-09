@@ -1,0 +1,349 @@
+
+.Navigation {
+    @include Item-Placer(flex, end , end);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    padding: 0px 180px;
+    gap: 30px;
+    color: var(--Font-Color);
+
+    .SupportAndSettings {
+        @include Item-Placer(flex, end, center);
+        height: 45px;
+        width: 1500px;
+        padding-right: 150px;
+        transform: translateX(-200px);
+        text-align: center;
+        color: var(--White);
+        background-color: #f9f9f9;
+
+        @include for-size(laptop) {
+            width: 1500px !important;
+            transform: translateX(-200px) !important;
+        }
+
+        // @include for-size(tablet) {
+        //     width: 1000px;
+        //     transform: translateX(600px);
+        // }
+
+        // @include for-size(phone) {
+        //     width: 300px;
+        // }
+
+
+        #Support {
+            @include text-formatter(sans-serif, 14px, 400, 24px);
+            width: 160px;
+            margin: 2px 10px 0px 0px;
+            padding: 0px 10px 0px 0px;
+            color: var(--Font-Color);
+            white-space: nowrap;
+        }
+
+        #Settings {
+            @include text-formatter(sans-serif, 14px, 400, 24px);
+            width: 80px;
+            padding: 0px 0px;
+            color: var(--Font-Color);
+            cursor: pointer;
+            text-decoration: none;
+            transition: 1.5s;
+            will-change: transform;
+            position: relative;
+            white-space: nowrap;
+
+            #AncleDownIcon {
+                width: 10px;
+                transition: 0.3s;
+                will-change: transform;
+    
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+
+            &:hover {
+                transform: scale(1.01);
+                filter: none;
+            }
+                
+        }
+
+        #Settings-Bar {
+            @include Item-Placer(flex, justify-content, center);
+
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            will-change: opacity;
+
+            z-index: 90;
+
+            flex-direction: column;
+            width: 120px;
+            height: 100px;
+
+            float: left;
+            top: 100%;
+            position: absolute;
+            background-color: rgb(255, 255, 255) !important;
+
+            box-shadow: 0 0 6px #0003;
+
+            p {
+                transition: 0.3s;
+                will-change: transform;
+
+
+                &:hover {
+                    color: var(--Main-Blue);
+                    transform: scale(1.02);
+                }
+            }
+
+            #MyAccount-Bar {
+                width: auto;
+                height: 40px;
+                margin: auto;
+                align-items: center;
+
+                p {
+                    @include text-formatter(sans-serif, 13px, 500, 120%);
+                    margin: 10px;
+                }
+
+            }
+
+            #MyWishlist-Bar {
+                width: auto;
+                height: 40px;
+                margin: auto;
+                align-items: center;
+
+                p {
+                    @include text-formatter(sans-serif, 13px, 500, 120%);
+                    margin: 10px;
+                }
+            }
+
+            #SignIn-Bar {
+                width: auto;
+                height: 40px;
+
+                p {
+                    @include text-formatter(sans-serif, 13px, 500, 120%);
+                    margin: 10px;
+                }
+            }
+        }
+    }
+
+    .Page-LinksAndLogo {
+        @include Item-Placer(flex, start, center);
+        justify-content: space-between;
+        width: 1130px;
+        padding-bottom: 20px;
+        position: relative;
+        z-index: 5;
+
+        // @include for-size(laptop) {
+        //     width: 1130px !important;
+        // }
+
+        // @include for-size(tablet) {
+        //     width: 700px;
+        // }
+
+        > img {
+            width: 180px;
+            cursor: pointer;
+            transition: 0.3s;
+            will-change: transform;
+
+            &:hover {
+                transform: scale(1.02)
+            }
+        }
+
+        > a {
+            @include for-size(laptop) {
+                display: none !important;
+            }
+
+            // @include for-size(tablet) {
+            //     display: flex;
+            // }
+
+            img {
+                width: 22px;
+                transition: all 0.5s ease-in-out;
+                will-change: transform;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+        }
+
+        #Links-Bar {
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            will-change: opacity;
+            z-index: 95;
+            flex-direction: column;
+            right: 0;
+            top: 47px;
+            position: absolute;
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: 0 0 6px #0003;
+
+            @include for-size(laptop) {
+                display: none !important;
+            }
+
+            // @include for-size(tablet) {
+            //     @include Item-Placer(flex, center,center);
+
+            // }
+
+            p {
+                transition: 0.3s;
+                will-change: transform;
+
+
+                &:hover {
+                    color: var(--Main-Blue);
+                    transform: scale(1.02);
+                }
+            }
+
+            .Link-Bar {
+                width: auto;
+                height: 40px;
+                margin: auto;
+                align-items: center;
+
+                p {
+                    @include text-formatter(sans-serif, 13px, 500, 120%);
+                    margin: 10px;
+                }
+            }
+        }
+
+        .Page-Links {
+            @include Item-Placer(flex, end, end);
+            flex-direction: row;
+            gap: 10px;
+
+            // @include for-size(laptop) {
+            //     display: flex !important;
+            // }
+
+            // @include for-size(tablet) {
+            //     display: none;
+            // }
+
+            a {
+                @include Item-Placer(flex,center,center);
+                @include text-formatter(sans-serif, 13px, 700, 120%);
+                padding: 30px 0px 30px 30px;
+                text-transform: uppercase;
+                color: var(--Background);
+                cursor: pointer;
+                transition: 0.3s;
+                will-change: transform;
+                text-decoration: none;
+
+                &:hover {
+                    transform: scale(1.05);
+                    font-weight: 700; 
+                }
+            }
+        
+        }
+    }
+
+    .SearchAndBasket {
+        @include Item-Placer(flex, center, center);
+        background-color: var(--Background);
+        position: relative;
+        padding: 20px;
+        transform: translateX(200px);
+        gap: 20px;
+        width: 1500px !important;
+
+        // @include for-size(laptop) {
+        //     justify-content: center !important;
+        // }
+
+        // @include for-size(tablet) {
+        //     width: 1200px;
+        //     justify-content: space-between;
+        // }
+
+        #LikeAndBasket {
+            display: flex;
+            margin-left: 150px !important;
+            gap: 20px;
+
+            // @include for-size(tablet) {
+            //     margin-right: 90px;
+            // }
+
+            #Liked {
+
+                img {
+                    width: 30px !important;
+                    cursor: pointer;
+                    will-change: transform;
+                    transition: 0.5s;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+    
+            #Basket {
+                position: relative;
+                
+                img {
+                    width: 32px !important;
+                    cursor: pointer;
+                    will-change: transform;
+                    transition: 0.5s;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+
+                #ItemCount {
+                    background-color: red;
+                    color: white;
+
+                    height: 18px;
+                    width: 18px;
+
+                    border-radius: 100%;
+
+                    position: absolute;
+                    right: -3px;
+                    top: -1px;
+
+                    text-align: center;
+                    text-transform: capitalize;
+
+                    p {
+                        @include text-formatter(sans-serif, 12px, 600, 19px)
+                    }
+
+                }
+            }
+        }
+    }
+}

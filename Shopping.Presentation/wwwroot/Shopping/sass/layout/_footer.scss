@@ -1,0 +1,137 @@
+.Footer {
+    width: 100%;
+    background-color: var(--Background-Dark);
+    margin-top: 0px;
+    color: white;
+
+    .FooterRow {
+        display: flex !important;
+        margin-right: -15px;
+        margin-left: -15px;
+        flex-direction: row;
+        gap: 10px;
+
+        // @include for-size(tablet) {
+        //     display: grid;
+        //     grid-template-columns: repeat(2, 1fr);
+        // }
+
+        .Footer-ContactUs {
+            height: 250px;
+            width: 33%;
+            padding: 40px;
+            
+
+            h3 {
+                margin-bottom: 28px;
+                text-transform: uppercase;
+                @include text-formatter(sans-serif, 14px, 600, 120%)
+            }
+
+            #Contact-Content {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                p {
+                    width: 360px;
+                    @include text-formatter(sans-serif, 12px 300, 120%)
+                }
+
+                #Payment-Methods {
+                    display: inline-block;
+                    gap: 20px;
+
+
+                    h4 {
+                        margin-bottom: 20px;
+                        @include text-formatter(sans-serif, 14px, 600, 120%)
+                    }
+                }
+            }
+
+        }
+
+        .Footer-Contents {
+            height: 270px;
+            width: 33%;
+            padding: 40px;
+
+            h3 {
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                text-wrap: nowrap;
+                @include text-formatter(sans-serif, 14px, 700, 120%)
+            }
+
+            #Content-Links {
+                display: flex;
+                flex-direction: column;
+                will-change: transform;
+                gap: 10px;
+
+                a {
+                    transition: 0.3s;
+                    text-wrap: nowrap;
+                    @include text-formatter(sans-serif, 13px 400, 120%);
+
+                    &:hover {
+                        color: var(--Main-Blue);
+                        transform: scale(1.02);
+                    }
+                }
+
+            }
+        }
+    }
+
+    .Footer-Line {
+        height: 1px;
+        background-color: #263645;
+    }
+
+    .Footer-Bottom {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        .Footer-Bottom-Row {
+            display: flex;
+            flex-direction: row;
+
+            #Footer-Copyright {
+                width: 50%;
+
+                p {
+                    @include text-formatter(sans-serif, 13px, 400, 120% );
+                    margin-top: 10px;
+                    text-align: left !important;
+                }
+            }
+
+            #Footer-SocialLinks {
+                width: 50%;
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                padding-left: 300px;
+
+                a {
+                    display: block;
+                    height: 40px;
+                    width: 40px;
+                    line-height: 43px;
+                    margin-left: 5px;
+                    text-align: center;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    background-color: var(--Background-Logo);
+
+                    img {
+                        width: 10px;
+                    }
+                }
+
+            }
+        }
+    }
+}

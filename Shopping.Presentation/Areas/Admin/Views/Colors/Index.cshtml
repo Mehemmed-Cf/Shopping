@@ -82,10 +82,18 @@
 </div>
 
 
-@section addjs{
+@section addcss {
+    <link href="~/libs/jquery-treegrid/css/jquery.treegrid.min.css" rel="stylesheet" />
+}
+@section addjs {
+    <script src="~/libs/jquery-treegrid/js/jquery.treegrid.min.js"></script>
     <script>
-        function removeEntity(e)
-        {
+        $(document).ready(function () {
+            $('.tree').treegrid()
+                .treegrid('collapseAll');
+        });
+
+        function removeEntity(e) {
             e.preventDefault();
             let element = e.currentTarget;
 
@@ -94,17 +102,47 @@
             const link = $(element).attr('href');
             const name = $(element).data('entity-name');
 
-            $.ajax({
-                url: link,
-                type: 'POST',
-                success: function (response) {
-                    alert(`${name} silindi`);
+
+            const bigonSwal = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
                 },
-                error: function (errResponse) {
-                    console.log(errResponse);
+                buttonsStyling: false
+            });
+
+            bigonSwal.fire({
+                title: `Diqqət`,
+                text: `${name} - adli melumatin silmek istediyinizden eminsinizmi??`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Bəli",
+                cancelButtonText: "Xeyr",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: link,
+                        type: 'POST',
+                        success: function (response) {
+                            alert(`${name} silindi`);
+
+                            window.location.reload();
+                        },
+                        error: function (errResponse) {
+                            console.log(errResponse);
+                        }
+                    }).always(function () {
+                        $(element).removeAttr('disabled').trigger('blur');
+                    });
+
+
                 }
-            }).always(function () {
-                $(element).removeAttr('disabled').trigger('blur');
+                else {
+                    $(element).removeAttr('disabled').trigger('blur');
+                    $(document).trigger('click');
+                }
             });
         }
     </script>

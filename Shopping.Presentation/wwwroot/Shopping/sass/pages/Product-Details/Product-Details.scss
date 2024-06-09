@@ -1,0 +1,175 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include text-formatter(sans-serif, 14px, 400, 24px);
+    color: #444;
+}
+
+.Row {
+    display: flex;
+    flex-direction: row;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap: 30px;
+}
+
+.Col {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    list-style: none;
+}
+
+
+
+main {
+    display: block;
+
+    .Product_Tab {
+
+        .Product_Thumbnail {
+            padding-top: 0px;
+            padding-bottom: 50px;
+
+            .container {
+
+                .Row {
+
+                    .Col-Pic {
+                        width: 41.66666667%;
+    
+                        #ProductPhoto {
+    
+                            img {
+                                width: 100%;
+                                border: 1px solid #ebebeb;
+                            }
+                        }
+                    }
+    
+                    .Col-Details {
+                        width: 58.33333333%;
+    
+                        form {
+                            margin-bottom: 0;
+    
+                            input {
+                                background: transparent;
+                                transition: all .5s ease-out 0s;
+                                padding: 8px 10px;
+                                border-radius: 3px;
+                                border: 2px solid #eceff8;
+                                height: auto;
+                                box-shadow: none;
+                                padding-left: 10px;
+                                font-size: 14px;
+                                color: #626262;
+                            }
+    
+                            .Thumbnail-Desc {
+                                overflow: hidden;
+    
+                                #brand {
+                                    overflow: hidden;
+                                    margin: 0 0 8px;
+    
+                                    //span
+                                }
+    
+                                h3 {
+                                    @include text-formatter(sans-serif, 20px, 600, 120%);
+                                    display: block;
+                                    margin-bottom: 10px;
+                                    text-transform: capitalize;
+                                    color: var(--Background);
+                                }
+
+                                #price {
+                                    margin-bottom: 10px;
+
+                                    .Pro-Price {
+                                        margin-bottom: 0;
+
+                                        p {
+                                            line-height: 20px;
+                                            font-size: 14px;
+
+                                            span {
+                                                @include text-formatter(sans-serif, 22px, 600, 120%);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                #inventory {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-bottom: 10px;
+                                }
+
+                                #Option {
+
+                                    #size {
+                                        margin-bottom: 25px;
+
+                                        .Size-Title {
+                                            @include text-formatter(sans-serif, 20px, 500, 120%);
+                                            display: block;
+                                            float: none;
+                                            margin-bottom: 5px;
+                                            margin-right: 0;
+                                            padding-bottom: 0;
+                                            position: relative;
+                                            margin-top: 0;
+                                        }
+
+                                        #Size-xl {
+                                            float: left;
+
+                                            input {
+                                                display: none;
+                                            }
+                                        }
+
+                                        
+                                        #Size-ml {
+                                            float: left;
+
+                                            input {
+                                                display: none;
+                                            }
+                                        }
+
+                                        
+                                        #Size-xs {
+                                            float: left;
+
+                                            input {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

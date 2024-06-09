@@ -47,8 +47,6 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddComma
                 ImageUrl = entity.ImagePath
             };
 
-        #warning must be complate
-
             return dto;
         }
     }

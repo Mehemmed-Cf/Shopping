@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Shopping.Infrastructure\Shopping.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modules\BlogPostsModule\Queries\" />
-  </ItemGroup>
-
 </Project>

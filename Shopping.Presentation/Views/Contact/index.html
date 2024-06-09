@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../../sass/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+  />
+    <script defer src="./index.js"></script>
+    <script defer src="../../common/functions/navigation.js"></script>
+</head>
+<body>
+
+    <nav class="Navigation">
+        <div class="container">
+          <div class="SupportAndSettings">
+            <span id="Support">
+                <p>
+                  <img src="../../assets/icons/SupportIcone.svg" style="width: 10px;"/>
+                  Support: 123 456 789
+                </p>
+            </span>
+            <div id="Settings" href="#" >
+                <p>
+                  <img src="../../assets/icons/SettingsIcone.svg" style="width: 10px;"/>
+                  Settings
+                </p>
+                <div id="Settings-Bar">
+                  <div id="MyAccount-Bar">
+                     <p>My Account</p>
+                  </div>
+                  <div id="MyWishlist-Bar">
+                   <p>My Wishlist</p>
+                  </div>
+                 <div id="SignIn-Bar">
+                   <p>Sign In</p>
+                </div>
+               </div>
+            </div>
+        </div>
+    
+        <div class="Page-LinksAndLogo">
+          <img src="../../assets/icons/BigBasketLogo.svg" />
+    
+          <div class="Page-Links">
+            <a href="../../pages/Home/index.html">Home</a>
+            <a href="../../pages/About/index.html">About Us</a>
+            <a>Contact Us</a>
+            <a>Blog</a>
+            <a>Shop</a>
+          </div>
+        </div>
+    
+        <div class="SearchAndBasket">
+          <button class="AllCategories">
+            <p>ALL CATEGORIES</p>
+            <img src="../../assets/icons/BarsIcon.svg" />
+          </button>
+    
+          <div class="Search">
+            <input class="Search-Input" type="search"
+            placeholder="Search Your Likings"
+          />
+          <button class="Submit-Search" >
+            <img src="../../assets/icons/SearchIcon.svg" />
+          </button>
+          </div>
+    
+          <div id="LikeAndBasket">
+            <a id="Liked">
+              <img src="../../assets/icons/LoveIcon.svg" />
+            </a>
+    
+            <a id="Basket">
+              <img src="../../assets/icons/BasketIcon.svg" />
+              <span id="ItemCount">
+                <p>0</p>
+              </span>
+            </a>
+          </div>
+    
+        </div>
+        </div>
+    
+      </nav>
+
+    <main role="main">
+        <div class="Contact-Section">
+            <div class="Contact-Area">
+                <div class="container">
+                    <div class="Row">
+                        <div class="Column">
+                            <h3>Contact Us</h3>
+                            <p>we will probably not care but contact us</p>
+                            <form id="contact_form" method="post" accept-charset="UTF-8" form-type="contact">
+                                <div class="Address-Wrapper">
+
+                                    <div id= class="Col">
+                                        <div class="address-frame" id="contact-name">
+                                            <input id="contact-Input-Name" type="text" placeholder="Name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="Col">
+                                        <div class="address-frame" id="contact-email">
+                                            <input id="contact-Input-Name" type="text" placeholder="example@gmail.com"  />
+                                        </div>
+                                    </div>
+
+                                    <div class="Col-2">
+                                        <div class="address-frame-subject" id="contact-subject">
+                                            <input type="text" placeholder="Subject:"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="Col-2">
+                                        <div class="address-frame-textarea" id="contact-textarea">
+                                            <input type="text" placeholder="Your Text here:" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="Send-Email">
+                                    <button class="Send-Email-Btn" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </main>
+
+    <footer class="Footer">
+        <div class="container">
+          <div class="FooterRow">
+            <div class="Footer-ContactUs">
+              <h3>CONTACT US</h3>
+              <div id="Contact-Content">
+                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+                <div id="Payment-Methods">
+                  <h4>Payment Methods:</h4>
+                  <img src="../../assets/images/PaymentMethods.avif" />
+                </div>
+              </div>
+            </div>
+  
+            <!-- Information -->
+  
+            <div class="Footer-Contents">
+              <h3>INFORMATION</h3>
+              <div id="Content-Links">
+                <a>Site Map</a>
+                <a>Specials</a>
+                <a>Jobs</a>
+                <a>Delivery Information</a>
+                <a>Privacy Policy</a>
+                <a>Order History</a>
+              </div>
+            </div>
+  
+            <!-- My Account -->
+  
+            <div class="Footer-Contents">
+              <h3>MY ACCOUNT</h3>
+              <div id="Content-Links">
+                <a>My Account</a>
+                <a>Checkout</a>
+                <a>Login</a>
+                <a>Order Status</a>
+                <a>Site Map</a>
+                <a>Address</a>
+              </div>
+            </div>
+  
+            <!-- Customer Service -->
+  
+            <div class="Footer-Contents">
+              <h3>CUSTOMER SERVICE</h3>
+              <div id="Content-Links">
+                <a>My Account</a>
+                <a>New</a>
+                <a>GiftCards</a>
+                <a>Return Policy</a>
+                <a>Your Orders</a>
+                <a>Subway</a>
+              </div>
+            </div>
+  
+            <!-- Let Us Help You -->
+  
+            <div class="Footer-Contents">
+              <h3>LET US HELP YOU</h3>
+              <div id="Content-Links">
+                <a>Your Account</a>
+                <a>Your Orders</a>
+                <a>Shipping</a>
+                <a>Amazon Prime</a>
+                <a>Replacements</a>
+                <a>Manage</a>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
+        <div class="container">
+            <div class="Footer-Line">
+            </div>
+        </div>
+
+        <div class="Footer-Bottom">
+            <div class="container">
+                <div class="Footer-Bottom-Row">
+                    <div id="Footer-Copyright">
+                        <p>Copyright © 2021 HasThemes | Built with BigOn by HasThemes | rebuild by CF-Mehemmed
+                        </p>
+                    </div>
+                    <div id="Footer-SocialLinks">
+                        <a href="#">
+                            <img src="../../assets/icons/FacebookLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="../../assets/icons/TwitterLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="../../assets/icons/LinkedinLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="../../assets/icons/InstagramLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="../../assets/icons/Pinterestlogo.svg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
