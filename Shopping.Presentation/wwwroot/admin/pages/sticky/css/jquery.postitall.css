@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-@import url("../../../css/font-awesome.min.css");
+@import url("~/Shopping/../css/font-awesome.min.css");
 
 .center { text-align: center; }
 .float-left { float: left; }

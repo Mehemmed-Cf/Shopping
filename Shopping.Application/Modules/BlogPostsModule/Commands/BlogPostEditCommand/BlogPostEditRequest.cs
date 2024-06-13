@@ -15,5 +15,7 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostEditComm
         public string Body { get; set; }
         public IFormFile Image { get; set; }
         public int CategoryId { get; set; }
+        public DateTime? PublishedAt { get; set; }
+        public int? PublishedBy { get; set; }
     }
 }

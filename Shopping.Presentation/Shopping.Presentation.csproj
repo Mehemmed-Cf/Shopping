@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="AppCode\Pipeline\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>

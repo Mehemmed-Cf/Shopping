@@ -16,5 +16,7 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQu
         public string CategoryName { get; set; }
         public string Body { get; set; }
         public DateTime? PublishedAt { get; set; }
+        public int? PublishedBy { get; set; }
+
     }
 }

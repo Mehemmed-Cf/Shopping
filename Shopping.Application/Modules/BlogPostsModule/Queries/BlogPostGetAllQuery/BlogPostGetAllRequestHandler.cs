@@ -36,6 +36,9 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetAllQue
             {
                 Id = m.Id,
                 Title = m.Title,
+                Body = m.Body,
+                PublishedAt = m.PublishedAt,
+                PublishedBy = m.PublishedBy,
                 Slug = m.Slug,
                 ImageUrl = $"{host}/uploads/images/{m.ImagePath}",
                 CategoryName = "Demo"

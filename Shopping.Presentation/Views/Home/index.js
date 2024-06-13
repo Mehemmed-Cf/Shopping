@@ -383,9 +383,9 @@ item.addEventListener("mouseout", () => {
 //#region Swipper
 
 // import Swiper JS
-// import Swiper from '../../../node_modules/swiper/swiper-bundle.min.mjs';
+// import Swiper from '~/Shopping/../node_modules/swiper/swiper-bundle.min.mjs';
 // // import Swiper styles
-// import '../../../node_modules/swiper/swiper-bundle.min.mjs';
+// import '~/Shopping/../node_modules/swiper/swiper-bundle.min.mjs';
 
 // const swiper = new Swiper('.swiper', {
 //   // Optional parameters

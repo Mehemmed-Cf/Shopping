@@ -7242,7 +7242,7 @@ Y.Loader.prototype = {
     *        var Y = YUI();
     *        var loader = new Y.Loader({
     *            filter: 'debug',
-    *            base: '../../',
+    *            base: '~/Shopping/',
     *            root: 'build/',
     *            combine: true,
     *            require: ['node', 'dd', 'console']
@@ -7288,7 +7288,7 @@ Y.Loader.prototype = {
     *        var Y = YUI();
     *        var loader = new Y.Loader({
     *            filter: 'debug',
-    *            base: '../../',
+    *            base: '~/Shopping/',
     *            root: 'build/',
     *            combine: true,
     *            require: ['node', 'dd', 'console']

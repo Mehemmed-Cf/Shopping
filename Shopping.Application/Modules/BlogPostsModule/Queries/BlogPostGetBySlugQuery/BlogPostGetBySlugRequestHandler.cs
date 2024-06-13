@@ -36,6 +36,7 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetBySlug
                                          Body = bp.Body,
                                          ImagePath = bp.ImagePath,
                                          PublishedAt = bp.PublishedAt,
+                                         PublishedBy = bp.PublishedBy,
                                          CategoryId = bp.CategoryId,
                                          CategoryName = c.Name
                                          /* Author = "Jhon Doe", */

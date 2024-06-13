@@ -10,8 +10,11 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetAllQue
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Body { get; set; }
         public string ImageUrl { get; set; }
         public string CategoryName { get; set; }
+        public DateTime? PublishedAt { get; set; }
+        public int? PublishedBy { get; set; }
         public string Slug { get; set; }
     }
 }

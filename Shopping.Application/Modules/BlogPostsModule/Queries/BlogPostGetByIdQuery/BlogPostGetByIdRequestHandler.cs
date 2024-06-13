@@ -1,11 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Shopping.Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQuery
 {
@@ -35,7 +30,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQu
                 CategoryId = entity.CategoryId,
                 CategoryName = "Demo",
                 Body = entity.Body,
-                PublishedAt = entity.PublishedAt
+                PublishedAt = entity.PublishedAt,
+                PublishedBy = entity.PublishedBy,
             };
         }
     }

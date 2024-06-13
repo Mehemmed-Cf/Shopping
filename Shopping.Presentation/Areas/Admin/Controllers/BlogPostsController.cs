@@ -14,10 +14,6 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IBrandRepository _brandRepository;
-        private readonly IColorRepository _colorRepository;
-        private readonly ISizeRepository _sizeRepository;
-        private readonly IMaterialRepository _materialRepository;
         private readonly IMediator mediator;
 
         public BlogPostsController(
@@ -42,6 +38,12 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> Details([FromRoute] BlogPostGetByIdRequest request)
+        {
+            var response = await mediator.Send(request);
+            return View(response);
+        }
+
+        public async Task<IActionResult> Publish([FromRoute] BlogPostGetByIdRequest request)
         {
             var response = await mediator.Send(request);
             return View(response);

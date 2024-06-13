@@ -34,6 +34,7 @@
         </div>
     </div>
 </div>
+
 <div class="page-body">
     <div class="card">
         <div class="card-header">
@@ -48,6 +49,8 @@
                         <tr>
                             <th></th>
                             <th>Title</th>
+                            <th>Body</th>
+                            <th>PublishedAt</th>
                             <th>Category</th>
                             <th class="operation">
                                 <a class="btn btn-sm btn-success" asp-action="create">
@@ -63,27 +66,52 @@
                                 <td class="image-cell">
                                     <img src="@item.ImageUrl"/>
                                 </td>
+
                                 <td>
                                     <a target="_blank" asp-area="" asp-controller="blogs" asp-action="details" asp-route-slug="@item.Slug">
                                         @item.Title
                                     </a>                                    
                                 </td>
+
+                                <td>
+                                    <a target="_blank" asp-area="" asp-controller="blogs" asp-action="details" asp-route-slug="@item.Slug">
+                                        @item.Body
+                                    </a>
+                                </td>
+
+                                <td>
+                                    @item.PublishedAt
+                                </td>
+
+                                <td>
+                                    @item.PublishedBy
+                                </td>
+
                                 <td>
                                     @item.CategoryName
                                 </td>
+
                                 <td class="operation">
                                     <a class="btn btn-sm btn-primary" asp-action="details" asp-route-id="@item.Id">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@item.Id">
-                                        <i class="fa fa-pencil"></i>
+
+                                    <a class="btn btn-sm btn-primary" asp-action="publish" asp-route-id="@item.Id">
+                                        <i class="bi bi-book"></i>
                                     </a>
+
+                                    <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@item.Id">
+                                        <i 
+                                            ="fa fa-pencil"></i>
+                                    </a>
+
                                     <a class="btn btn-sm btn-danger"
                                        asp-action="Remove"
                                        asp-route-id="@item.Id"
                                        data-entity-title="@item.Title" onclick="removeEntity(event)">
                                         <i class="fa fa-trash"></i>
                                     </a>
+
                                 </td>
                             </tr>
                         }

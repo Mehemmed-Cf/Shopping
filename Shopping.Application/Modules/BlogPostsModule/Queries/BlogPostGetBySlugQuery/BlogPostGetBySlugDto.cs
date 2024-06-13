@@ -16,8 +16,6 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetBySlug
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public DateTime? PublishedAt { get; set; }
-
-/*        public int Views { get; set; }
-        public string Author { get; set; }*/
+        public int? PublishedBy { get; set; }
     }
 }

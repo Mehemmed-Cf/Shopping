@@ -44,7 +44,9 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddComma
                 Title = entity.Title,
                 Slug = entity.Slug,
                 Body = entity.Body,
-                ImageUrl = entity.ImagePath
+                ImageUrl = entity.ImagePath,
+                PublishedAt = DateTime.UtcNow,
+                PublishedBy = 1,
             };
 
             return dto;

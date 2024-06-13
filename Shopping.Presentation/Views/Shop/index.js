@@ -77,7 +77,7 @@ Input_Elements.forEach(input => {
                 const Filter_Item = document.createElement("a");
     
                 Cancel_Icon = document.createElement("img");
-                Cancel_Icon.src = "../../assets/icons/CancelIcon.svg";
+                Cancel_Icon.src = "~/Shopping/assets/icons/CancelIcon.svg";
                 Cancel_Icon.addEventListener("click", () => {
                     input.checked = false;
                     Filter_List_Item.remove();

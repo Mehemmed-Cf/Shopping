@@ -58,15 +58,30 @@
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="col-7">
+
                                 <div class="form-group">
                                     <label class="control-label" asp-for="Title"></label>
                                     <input type="text" class="form-control" asp-for="Title">
                                 </div>
+
                                 <div class="form-group">
                                     <label class="control-label" asp-for="CategoryId"></label>
                                     <input type="text" class="form-control" asp-for="CategoryId" />
                                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" asp-for="PublishedAt"></label>
+                                    <input type="datetime-local" class="form-control" asp-for="PublishedAt" />
+                                    <span asp-validation-for="PublishedAt" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" asp-for="PublishedBy"></label>
+                                    <input type="number" min="1" class="form-control" asp-for="PublishedBy" />
+                                    <span asp-validation-for="PublishedBy" class="text-danger"></span>
+                                </div>
+
                             </div>
                             <div class="col-5">
                                 <div class="form-group d-flex justify-content-end">

@@ -27,6 +27,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostEditComm
             entity.Title = request.Title;
             entity.Body = request.Body;
             entity.CategoryId = request.CategoryId;
+            entity.PublishedAt = request.PublishedAt;
+            entity.PublishedBy = request.PublishedBy;
 
             if(request.Image is not null)
                 entity.ImagePath = await fileService.ChangeFileAsync(entity.ImagePath, request.Image);

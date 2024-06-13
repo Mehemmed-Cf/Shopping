@@ -12,6 +12,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddComma
         public string Title { get; set; }
         public string Slug { get; set; }
         public string ImageUrl { get; set; }
+        public DateTime? PublishedAt { get; set; }
+        public int? PublishedBy { get; set; }
         public string Body { get; set; }
     }
 }
