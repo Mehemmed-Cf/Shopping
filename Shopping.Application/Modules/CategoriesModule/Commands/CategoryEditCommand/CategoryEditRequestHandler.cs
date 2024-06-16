@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*namespace Shopping.Application.Modules.CategoriesModule.Commands.CategoryEditCommand
+namespace Shopping.Application.Modules.CategoriesModule.Commands.CategoryEditCommand
 {
     class CategoryEditRequestHandler : IRequestHandler<CategoryEditRequest>
     {
@@ -32,9 +32,9 @@ using System.Threading.Tasks;
 
                 if (relatedIds.Contains(request.ParentId.Value))
                     throw new BadRequestException("Circle Reference Exception");
-
+/*
                 if (relatedIds.Any(m => m.Id == request.ParentId.Value))
-                    throw new CircleReferenceException("ParentId");
+                    throw new CircleReferenceException("ParentId");*/
             }
 
             entity.Name = request.Name;
@@ -44,4 +44,4 @@ using System.Threading.Tasks;
             await categoryRepository.SaveAsync();
         }
     }
-}*/
+}

@@ -15,15 +15,14 @@ main {
         padding-top: 30px;
         padding-bottom: 1400px;
         margin-left: 100px;
-        width: 1170px;
         margin: auto;
+        position: relative;
 
         .Blog-Area {
             padding-top: 0px;
             padding-bottom: 50px;
 
             .container {
-                width: 1170px;
 
                 .Row {
                     display: flex;
@@ -31,6 +30,7 @@ main {
                     margin-left: -15px;
                     flex-direction: column;
                     gap: 30px;
+                    justify-content: center;
 
                     .Col-Header {
                         width: 100%;
@@ -54,7 +54,6 @@ main {
 
                     .Col-Content {
                         width: 100%;
-                        position: relative;
                         min-height: 1px;
                         float: left;
 
@@ -66,6 +65,7 @@ main {
                             grid-template-columns: repeat(3, 1fr);
                             margin-right: -15px;
                             margin-left: -15px;
+                            height: auto;
 
                             .Col-Blog {
                                 float: left;
@@ -76,7 +76,7 @@ main {
                                 height: 500px;
 
                                 .Single-Blog {
-                                    width: 300px;
+                                    width: 410px; //300px
                                     height: 497px;
 
                                     .Blog-Img {
@@ -119,6 +119,7 @@ main {
 
                                             p {
                                                 width: 348px;
+                                                height: 110px !important;
                                                 letter-spacing: .025em;
                                                 line-height: 24px;
                                                 border-top: 1px solid #eaeaea;
@@ -128,7 +129,7 @@ main {
                                         }
 
                                         #blog-content-lower {
-                                            display: flex;
+                                            @include Item-Placer(flex, space-between, center);
                                             border-top: 1px solid #eaeaea;
                                             padding: 30px;
                                             padding-left: 30px;
@@ -140,6 +141,7 @@ main {
                                                 text-decoration: none;
                                                 will-change: color;
                                                 white-space: nowrap;
+                                                cursor: pointer;
                                                 transition: all 0.3s ease-in-out;
 
                                                 &:hover {
@@ -168,8 +170,10 @@ main {
                             border: 1px solid #ebebeb;
                             border-radius: 3px;
                             margin-top: 30px;
-                            transform: translateY(900px);
                             overflow: hidden;
+                            position: absolute;
+                            bottom: 0;
+                            left: 45%;
 
                             .Change-Item {
 
@@ -195,7 +199,7 @@ main {
                                                 border-radius: 5px;
                                                 transition: 0.3s;
                                                 will-change: color;
-                    
+
                                                 img {
                                                     width: 9px !important;
                                                 }
@@ -220,7 +224,7 @@ main {
                                                 border-radius: 5px;
                                                 transition: 0.3s;
                                                 will-change: color;
-                    
+
                                                 img {
                                                     width: 9px;
                                                 }

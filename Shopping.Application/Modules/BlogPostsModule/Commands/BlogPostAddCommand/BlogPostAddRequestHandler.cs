@@ -31,6 +31,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddComma
                 Slug = request.Title.ToSlug(),
                 CategoryId = request.CategoryId,
                 Body = request.Body,
+                PublishedAt = DateTime.Now,
+                PublishedBy = 1,
             };
 
             entity.ImagePath = await fileService.UploadAsync(request.Image);
@@ -45,8 +47,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddComma
                 Slug = entity.Slug,
                 Body = entity.Body,
                 ImageUrl = entity.ImagePath,
-                PublishedAt = DateTime.UtcNow,
-                PublishedBy = 1,
+                PublishedAt = entity.PublishedAt,
+                PublishedBy = entity.PublishedBy,
             };
 
             return dto;

@@ -25,7 +25,7 @@ namespace Shopping.Application.Modules.CategoriesModule.Queries.CategoryGetAllQu
 
             if (request.OnlyAvailable)
             {
-                query = query.Where(c => c.DeletedBy == null);
+                query = query.Where(c => c.DeletedAt == null);
             }
 
             var response = await query.Select(c => new CategoryRequestDto

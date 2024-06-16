@@ -51,6 +51,7 @@
                             <th>Title</th>
                             <th>Body</th>
                             <th>PublishedAt</th>
+                            <th>Published By</th>
                             <th>Category</th>
                             <th class="operation">
                                 <a class="btn btn-sm btn-success" asp-action="create">
@@ -64,18 +65,18 @@
                         {
                             <tr>
                                 <td class="image-cell">
-                                    <img src="@item.ImageUrl"/>
+                                    <img src="@item.ImageUrl" />
                                 </td>
 
                                 <td>
                                     <a target="_blank" asp-area="" asp-controller="blogs" asp-action="details" asp-route-slug="@item.Slug">
                                         @item.Title
-                                    </a>                                    
+                                    </a>
                                 </td>
 
                                 <td>
                                     <a target="_blank" asp-area="" asp-controller="blogs" asp-action="details" asp-route-slug="@item.Slug">
-                                        @item.Body
+                                        @Html.Raw(@item.Body)
                                     </a>
                                 </td>
 
@@ -96,13 +97,12 @@
                                         <i class="fa fa-eye"></i>
                                     </a>
 
-                                    <a class="btn btn-sm btn-primary" asp-action="publish" asp-route-id="@item.Id">
-                                        <i class="bi bi-book"></i>
+                                    <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@item.Id">
+                                        <i class="fa fa-pencil"></i>
                                     </a>
 
-                                    <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@item.Id">
-                                        <i 
-                                            ="fa fa-pencil"></i>
+                                    <a class="btn btn-sm btn-success" asp-action="publish" asp-route-id="@item.Id">
+                                        <i class="fa fa-book"></i>
                                     </a>
 
                                     <a class="btn btn-sm btn-danger"

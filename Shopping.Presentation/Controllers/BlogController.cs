@@ -7,11 +7,6 @@ namespace Shopping.Presentation.Controllers
 {
     public class BlogController : Controller
     {
-        /*        public IActionResult Index()
-                {
-                    return View();
-                }*/
-
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMediator mediator;
