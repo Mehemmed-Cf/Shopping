@@ -39,12 +39,12 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuer
 
             string host = $"{ctx.ActionContext.HttpContext.Request.Scheme}://{ctx.ActionContext.HttpContext.Request.Host}";
 
-            var productSet = productRepository.GetAll();
-            var categorySet = categoryRepository.GetAll();
-            var materialSet = materialRepository.GetAll();
-            var brandSet = brandRepository.GetAll();
-            var colorSet = colorRepository.GetAll();
-            var sizeSet = sizeRepository.GetAll();
+            var productSet = productRepository.GetAll(m => m.DeletedAt == null);
+            var categorySet = categoryRepository.GetAll(m => m.DeletedAt == null);
+            var materialSet = materialRepository.GetAll(m => m.DeletedAt == null);
+            var brandSet = brandRepository.GetAll(m => m.DeletedAt == null);
+            var colorSet = colorRepository.GetAll(m => m.DeletedAt == null);
+            var sizeSet = sizeRepository.GetAll(m => m.DeletedAt == null);
 
             var joinedQuery = await (from p in productSet
                                      join ct in categorySet on p.CategoryId equals ct.Id

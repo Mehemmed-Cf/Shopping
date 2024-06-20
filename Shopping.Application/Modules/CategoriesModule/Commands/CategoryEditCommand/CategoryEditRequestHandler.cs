@@ -28,19 +28,20 @@ namespace Shopping.Application.Modules.CategoriesModule.Commands.CategoryEditCom
             }
             else if (request.ParentId is not null)
             {
-                var relatedIds = (await categoryRepository.GetRelatedIds(entity.Id)).Select(m => m.Id);
+/*                var relatedIds = (await categoryRepository.GetRelatedIds(entity.Id)).Select(m => m.Id);
 
                 if (relatedIds.Contains(request.ParentId.Value))
-                    throw new BadRequestException("Circle Reference Exception");
-/*
+                    throw new BadRequestException("Circle Reference Exception");*/
+
+                var relatedIds = await categoryRepository.GetRelatedIds(entity.Id);
+
                 if (relatedIds.Any(m => m.Id == request.ParentId.Value))
-                    throw new CircleReferenceException("ParentId");*/
+                    throw new CircleReferenceException("ParentId");
             }
 
             entity.Name = request.Name;
             entity.Type = request.Type;
             entity.ParentId = request.ParentId;
-
             await categoryRepository.SaveAsync();
         }
     }
