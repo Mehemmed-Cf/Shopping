@@ -26,9 +26,9 @@
     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- internal -->
-    <script defer src="../Views/Home/index.js"></script>
-    <script defer src="~/Shopping/common/functions/navigation.js"></script>
-    <script defer src="~/Shopping/common/functions/index.js"></script>
+    @* <script defer src="~/Shopping/common/functions/navigation.js"></script> *@
+    <script defer src="~/Shopping/common/functions/index.js"></script> 
+    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
 
 </head>
 <body>
@@ -161,7 +161,7 @@
                         <div id="has_prev_price" class="Multi-Product">
                             <div class="Single-Product">
                                 <div class="pro-img">
-                                    <img src="~/Shopping/assets/images/Computer.avif" />
+                                    <img src="~/Shopping/assets/images/Computer.jpg" />
                                 </div>
                                 <div class="pro-content">
                                     <h4>Demo Product Title</h4>
@@ -205,19 +205,19 @@
                 <div class="Row">
                     <div class="First-Col">
                         <a>
-                            <img src="~/Shopping/assets/images/phone-3.avif" />
+                            <img src="~/Shopping/assets/images/phone-3.jpg" />
                         </a>
                     </div>
 
                     <div class="Second-Col">
                         <a>
-                            <img src="~/Shopping/assets/images/FuturePhone.avif" />
+                            <img src="~/Shopping/assets/images/FuturePhone.jpg" />
                         </a>
                     </div>
 
                     <div class="Third-Col">
                         <a>
-                            <img src="~/Shopping/assets/images/WirelyHeadphones.avif" />
+                            <img src="~/Shopping/assets/images/WirelyHeadphones.jpg" />
                         </a>
                     </div>
 
@@ -285,8 +285,6 @@
 
                                     <div class="Owl_Stage Active-Stage">
 
-                                        <!-- 1 -->
-
                                         @foreach(var product in Model)
                                         {
 
@@ -308,7 +306,12 @@
                                                         </p>
                                                         <div id="product-actions">
                                                             <div class="Primary-Actions">
-                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price">
+                                                                    Add To Cart
+                                                                </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
                                                                 <a id="add-to-wishlist">
@@ -3647,7 +3650,7 @@
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
-                                            <img src="~/Shopping/assets/images/Laptops.avif" />
+                                            <img src="~/Shopping/assets/images/Laptops.jpg" />
                                         </a>
                                     </div>
                                     <div class="Category-Content">
@@ -3669,7 +3672,7 @@
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
-                                            <img src="~/Shopping/assets/images/Monitors.avif" />
+                                            <img src="~/Shopping/assets/images/Monitors.jpg" />
                                         </a>
                                     </div>
                                     <div class="Category-Content">
@@ -3691,7 +3694,7 @@
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
-                                            <img src="~/Shopping/assets/images/Ram&Memory.avif" />
+                                            <img src="~/Shopping/assets/images/Ram&Memory.jpg" />
                                         </a>
                                     </div>
                                     <div class="Category-Content">
@@ -3713,7 +3716,7 @@
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
-                                            <img src="~/Shopping/assets/images/DigitalCameras.avif" />
+                                            <img src="~/Shopping/assets/images/DigitalCameras.jpg" />
                                         </a>
                                     </div>
                                     <div class="Category-Content">
@@ -3742,7 +3745,7 @@
                                         <div id="Owl-Item">
                                             <div class="Single-Brand">
                                                 <a>
-                                                    <img src="~/Shopping/assets/images/graphicriver.avif" />
+                                                    <img src="~/Shopping/assets/images/graphicriver.jpg" />
                                                 </a>
                                             </div>
                                         </div>
@@ -3772,7 +3775,7 @@
                                         <div id="Owl-Item">
                                             <div class="Single-Brand">
                                                 <a>
-                                                    <img src="~/Shopping/assets/images/audiojungle.avif" />
+                                                    <img src="~/Shopping/assets/images/audiojungle.jpg" />
                                                 </a>
                                             </div>
                                         </div>
@@ -3796,7 +3799,7 @@
             </div>
         </section>
 
-        <section class="Section_8">
+        <section class="Section_8" style="display: none;">
             <div class="Blog">
                 <div class="container">
                     <div class="Row">
@@ -4240,7 +4243,7 @@
                         <div class="Column-1">
                             <div class="Main-News-Desc">
                                 <div class="Desc-Content">
-                                    <img src="~/Shopping/assets/icons/Newsletter.avif" />
+                                    <img src="~/Shopping/assets/icons/Newsletter.jpg" />
                                     <h3>
                                         Sign Up For
                                         <span>Newsletters</span>
@@ -4274,29 +4277,140 @@
 
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <script>
-        const swiper = new Swiper('.swiper', {
+        const Single_Products = document.querySelectorAll(".Single-Product");
 
-            loop: true,
+        Single_Products.forEach(item => {
+            const AddToCart_Btn = item.querySelector(".Add-To-Cart");
+            const add_to_wishlist = item.querySelector("#add-to-wishlist");
+            const quickview = item.querySelector("#quickview");
+            const Product_Content = item.querySelector(".Product-Content");
+            const Price = item.querySelector("p");
+            let IsClicked = false;
 
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
+            if (screen.width > 1000) {
 
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+                item.addEventListener("mouseover", () => {
+                    Product_Content.style.transform = "translateY(-20px)";
 
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
+                    Price.style.opacity = 0;
+
+                    AddToCart_Btn.classList.add("Appear");
+                    add_to_wishlist.classList.add("Appear");
+                    quickview.classList.add("Appear");
+                });
+
+                item.addEventListener("mouseout", () => {
+                    Product_Content.style.transform = "translateY(0px)"
+                    Price.style.opacity = 1;
+
+                    AddToCart_Btn.classList.remove("Appear");
+                    add_to_wishlist.classList.remove("Appear");
+                    quickview.classList.remove("Appear");
+                });
+
+            } else if (screen.width <= 991) {
+
+                item.addEventListener("click", () => {
+                    IsClicked = !IsClicked;
+
+                    AddToCart_Btn.classList.add("Appear");
+                    add_to_wishlist.classList.add("Appear");
+                    quickview.classList.add("Appear");
+                });
+
+                item.addEventListener("mouseout", () => {
+                    AddToCart_Btn.classList.remove("Appear");
+                    add_to_wishlist.classList.remove("Appear");
+                    quickview.classList.remove("Appear");
+                });
+
+            } else if (screen.width <= 762)
+
+                item.addEventListener("mouseover", () => {
+                    AddToCart_Btn.classList.add("Appear");
+                    add_to_wishlist.classList.add("Appear");
+                    quickview.classList.add("Appear");
+
+                    Price.style.opacity = 1;
+                });
+
+            item.addEventListener("mouseout", () => {
+                AddToCart_Btn.classList.remove("Appear");
+                add_to_wishlist.classList.remove("Appear");
+                quickview.classList.remove("Appear");
+            });
+
         });
     </script>
 
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fetch products from API
+            fetch('https://localhost:7297/Admin/products')
+                .then(response => response.json())
+                .then(products => {
+                    // Process products after fetching them
+                    const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
+
+                    AddToCart_Btns.forEach(AddToCart_Btn => {
+                        AddToCart_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation(); // Prevents the click event from bubbling up the DOM tree
+
+                            // Get product information from data attributes
+                            const product = {
+                                id: AddToCart_Btn.getAttribute('data-product-id'),
+                                name: AddToCart_Btn.getAttribute('data-product-name'),
+                                price: AddToCart_Btn.getAttribute('data-product-price')
+                            };
+
+                            // Call the addToCart function
+                            addToCart(product);
+                        });
+                    });
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        });
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (!cart.find(item => item.id === product.id)) {
+                Toastify({
+                    text: `Product ${product.name} added to your Cart`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+
+                // Include the image URL in the product object
+                product.imageUrl = getProductImageUrl(product.id); // Replace getProductImageUrl with the function to retrieve the image URL
+                cart.push(product);
+            } else {
+                Toastify({
+                    text: `Product ${product.name} is already in Cart`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "yellow",
+                    stopOnFocus: true,
+                }).showToast();
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            updateItemCount(cart.length);
+        }
+
+        function updateItemCount(count) {
+            const itemCountElement = document.getElementById('ItemCount');
+            itemCountElement.innerHTML = `<p>${count}</p>`;
+        }
+
+    </script>
 
 </body>
 </html>

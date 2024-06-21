@@ -55,7 +55,8 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             var response = await mediator.Send(request);
 
 
-            var categories = await mediator.Send(new CategoryGetAllSafeRequest { Id = response.Id, Type = response.Type });
+            var categories = await mediator.Send(new CategoryGetAllRequest { });
+            //var categories = await mediator.Send(new CategoryGetAllSafeRequest { Id = response.Id, Type = response.Type });
 
             SelectList categoryItems = new SelectList(categories, "Id", "Name");
 

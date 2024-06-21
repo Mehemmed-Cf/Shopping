@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="../../sass/main.css" />
+
+    <!-- Google -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- internal -->
+    <script defer src="../../common/functions/navigation.js"></script>
+    <script defer src="../../common/functions/index.js"></script>
+
+</head>
+<body>
+
+    <main role="main">
+        <div class="Cart_Section">
+            <div class="Cart_Main_Area">
+                <div class="container">
+                    <form>
+                        <h2>Cart</h2>
+                        <div class="Row">
+                            <div class="Col">
+
+                                <div class="Table-Content">
+                                    <table>
+
+                                        <thead>
+                                            <tr>
+                                                <th class="Image" id="pro-header">Image</th>
+                                                <th class="Product" id="pro-header">Product</th>
+                                                <th class="Price" id="pro-header">Price</th>
+                                                <th class="Quantity" id="pro-header">Quantity</th>
+                                                <th class="Total" id="pro-header">Total</th>
+                                                <th class="Remove" id="pro-header">Remove</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+@*                                                 <td class="Pro-Image">
+                                                    <a>
+                                                        <img src="../../assets/images/HD_TV.webp" />
+                                                    </a>
+                                                </td>
+                                                <td class="Pro-Title">
+                                                    <a>dolore magnam aliquam - xl</a>
+                                                </td>
+                                                <td class="Pro-Price">
+                                                    <span>
+                                                        <span id="amount">
+                                                            <span id="money">$100.00</span>
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td class="Pro-Quantity">
+                                                    <div id="quantity">
+                                                        <input type="text" value="1" />
+                                                        <span class="dec qtybtn"> - </span>
+                                                        <span class="inc qtybtn"> + </span>
+                                                    </div>
+                                                </td>
+                                                <td class="Pro-Total">
+                                                    <span id="money">$100.00</span>
+                                                </td>
+                                                <td class="Pro-Remove">
+                                                    <a>
+                                                        <img src="../../assets/icons/Remove.svg" />
+                                                    </a>
+                                                </td> *@
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                                <div class="Row"></div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Retrieve cart items from localStorage
+            const cartItems = JSON.parse(localStorage.getItem('cart'));
+
+            // Display cart items in the table
+            const tbody = document.querySelector('tbody');
+
+            if (cartItems) {
+                cartItems.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    const imageCell = document.createElement('td');
+                    const productCell = document.createElement('td');
+                    const priceCell = document.createElement('td');
+                    const quantityCell = document.createElement('td');
+                    const totalCell = document.createElement('td');
+                    const removeCell = document.createElement('td');
+
+                    // Add content to cells (you need to adjust this according to your cart item structure)
+                    imageCell.innerHTML = `<img src="~/Shopping/assets/images/${item.imageUrl}" />`;
+                    productCell.textContent = item.name;
+                    priceCell.textContent = `$${item.price}`;
+
+                    quantityCell.innerHTML = `
+                    <td class="Pro-Quantity">
+                        <div id="quantity">
+                            <input type="text" value="1" />
+                            <span class="dec qtybtn">-</span>
+                            <span class="inc qtybtn">+</span>
+                        </div>
+                    </td>
+                    `;
+
+                    totalCell.textContent = `$${item.total}`;
+                    removeCell.innerHTML = `<a href="#" class="remove-item">Remove</a>`;
+
+                    // Append cells to the row
+                    row.appendChild(imageCell);
+                    row.appendChild(productCell);
+                    row.appendChild(priceCell);
+                    row.appendChild(quantityCell);
+                    row.appendChild(totalCell);
+                    row.appendChild(removeCell);
+
+                    // Append the row to the table body
+                    tbody.appendChild(row);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

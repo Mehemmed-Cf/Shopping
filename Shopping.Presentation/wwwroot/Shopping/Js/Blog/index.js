@@ -62,24 +62,5 @@ List_Prev.addEventListener("click", () => {
 
 //#region  Fill Blogs
 
-const Row = document.querySelector(".Row.Active-Row");
-
-
-getDataForBlogs();
-
-async function getDataForBlogs() {
-
-    const response = blogPostRepository.GetAll();
-
-    data = await response.json();
-
-    FillBlogs(data);
-}
-
-function FillBlogs(data) {
-    data.blogs.forEach((blog) => {
-        const 
-    })
-}
 
 //#endregion

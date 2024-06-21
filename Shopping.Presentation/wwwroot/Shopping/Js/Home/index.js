@@ -1,4 +1,7 @@
 
+
+
+
 //#region Nivo Poinst
 
 const Nivo_Points = document.querySelectorAll("#Nivo_Point");
@@ -374,11 +377,39 @@ item.addEventListener("mouseout", () => {
   AddToCart_Btn.classList.remove("Appear");
   add_to_wishlist.classList.remove("Appear");
   quickview.classList.remove("Appear");
- });
 });
 
-//#endregion
+    AddToCart_Btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents the click event from bubbling up the DOM tree
 
+        // Get product information from data attributes
+        const product = {
+            id: AddToCart_Btn.getAttribute('data-product-id'),
+            name: AddToCart_Btn.getAttribute('data-product-name'),
+            price: AddToCart_Btn.getAttribute('data-product-price')
+        };
+
+        // Call the addToCart function
+        addToCart(product);
+    });
+});
+
+function addToCart(product) {
+    Toastify({
+        text: `Product ${product.name} added to your Cart`,
+        duration: 3000,
+        gravity: "bottom",
+        position: "right",
+        backgroundColor: "green",
+        stopOnFocus: true,
+    }).showToast();
+
+     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+     cart.push(product);
+     localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+//#endregion
 
 //#region Swipper
 

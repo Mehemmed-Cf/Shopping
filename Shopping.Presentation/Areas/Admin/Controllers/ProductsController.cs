@@ -50,7 +50,7 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index(ProductGetAllRequest request)
         {
             var response = await mediator.Send(request);
-            return View(response);
+            return Json(response);
         }
 
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)

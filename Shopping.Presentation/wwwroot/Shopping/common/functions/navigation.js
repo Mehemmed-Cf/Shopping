@@ -9,6 +9,11 @@ const SignIn_Link = document.querySelector("#SignIn-Bar");
 const Bars_Link = document.querySelector(".Bars_Link");
 const Links_Bar = document.querySelector("#Links-Bar");
 const SearchAndBasket = document.querySelector(".SearchAndBasket");
+const BasketIcon = SearchAndBasket.querySelector("#Basket");
+
+/*BasketIcon.addEventListener("click", () => {
+    window.open("../Cart/index.html");
+});*/
 
 //#region SignIn
 
@@ -44,7 +49,7 @@ settings_bar.addEventListener("mouseout", () => {
     Page_LinksAndLogo.style.zIndex = "5"; 
 });
 
-//#endregion
+//#endregion    
 
 //#region Links Bar
 
@@ -66,26 +71,26 @@ Bars_Link.addEventListener("click", () => {
     }
 });
 
-// Bars_Link.addEventListener("mouseout", () => {
-//     Links_Bar.style.opacity = "0";
-//     Links_Bar.style.visibility = "hidden";
-//     Page_LinksAndLogo.style.zIndex = "5"; 
-//     SearchAndBasket.style.zIndex = "5";
-// });
+ Bars_Link.addEventListener("mouseout", () => {
+     Links_Bar.style.opacity = "0";
+     Links_Bar.style.visibility = "hidden";
+     Page_LinksAndLogo.style.zIndex = "5"; 
+     SearchAndBasket.style.zIndex = "5";
+ });
 
-// Links_Bar.addEventListener("mouseove", () => {
-//     Links_Bar.style.opacity = "1";
-//     Links_Bar.style.visibility = "visible";
-//     Page_LinksAndLogo.style.zIndex = "-5";
-//     SearchAndBasket.style.zIndex = "-5";
-// });
+ Links_Bar.addEventListener("mouseove", () => {
+     Links_Bar.style.opacity = "1";
+     Links_Bar.style.visibility = "visible";
+     Page_LinksAndLogo.style.zIndex = "-5";
+     SearchAndBasket.style.zIndex = "-5";
+ });
 
-// Links_Bar.addEventListener("mouseout", () => {
-//     Links_Bar.style.opacity = "0";
-//     Links_Bar.style.visibility = "hidden";
-//     Page_LinksAndLogo.style.zIndex = "5"; 
-//     SearchAndBasket.style.zIndex = "5";
-// });
+ Links_Bar.addEventListener("mouseout", () => {
+     Links_Bar.style.opacity = "0";
+     Links_Bar.style.visibility = "hidden";
+     Page_LinksAndLogo.style.zIndex = "5"; 
+     SearchAndBasket.style.zIndex = "5";
+ });
 
 //#endregion
 
