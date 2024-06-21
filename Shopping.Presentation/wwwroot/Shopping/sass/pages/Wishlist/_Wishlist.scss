@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include text-formatter(sans-serif, 14px, 400, 24px);
+    color: #444;
+}
+
+.Row {
+    display: flex;
+    flex-direction: row;
+    margin-right: -15px;
+    margin-left: -15px;
+    gap: 30px;
+}
+
+.Col {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    list-style: none;
+}
+
+main {
+    display: block;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .Wishlist-Section {
+
+        .Wishlist-Area {
+            padding-bottom: 50px;
+            overflow: hidden;
+
+            .container {
+
+                .Wishlist-Exists {
+
+                    .Row {
+
+                        .Single-Product {
+                            position: relative;
+                            background: #fff;
+                            transition: all .5s ease-in-out;
+                            margin-bottom: 30px;
+                            float: left;
+                            min-height: 1px;
+                            padding-right: 15px;
+                            padding-left: 15px;
+                            width: 25%;
+
+                            .Pro-Img {
+                                position: relative;
+
+                                a {
+                                    text-decoration: none;
+
+                                    img {
+                                        width: 100%;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+
+                            .Pro-Content {
+                                transition: all .3s ease 0s;
+                                position: relative;
+                                z-index: 66;
+
+                                h4 {
+                                    color: #363f4d;
+                                    display: block;
+                                    font-size: 22px;
+                                    font-weight: 500;
+                                    margin-bottom: 15px;
+                                    text-transform: capitalize;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

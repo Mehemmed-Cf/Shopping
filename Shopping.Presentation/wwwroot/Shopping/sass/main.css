@@ -6417,14 +6417,17 @@ li {
 main {
   display: block;
   margin-top: 100px;
-  margin-bottom: 100px;
+  margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 main .Cart_Section {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 main .Cart_Section .Cart_Main_Area {
   padding-top: 0px;
@@ -6458,6 +6461,7 @@ main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content tabl
   border-width: 1px 0 0 1px;
   text-align: center;
   width: 100%;
+  height: auto;
   border-collapse: collapse;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table thead tr th {
@@ -6470,6 +6474,9 @@ main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content tabl
   white-space: nowrap;
   font-weight: 500;
   margin-top: 15px;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody {
+  height: auto;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr td {
   text-align: center;
@@ -6534,11 +6541,13 @@ main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content tabl
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr .Pro-Quantity #quantity .inc {
   right: 13%;
+  cursor: pointer;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr .Pro-Quantity #quantity .dec {
   left: 38%;
   bottom: 5px;
   transform: scale(2.5);
+  cursor: pointer;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr .Pro-Total {
   font-size: 14px;
@@ -6619,6 +6628,7 @@ main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-P
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  width: 25%;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img {
   position: relative;

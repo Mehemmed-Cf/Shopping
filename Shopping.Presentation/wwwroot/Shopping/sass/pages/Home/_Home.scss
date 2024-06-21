@@ -1,0 +1,2980 @@
+* {
+    box-sizing: border-box;
+}
+
+.Main {
+    display: block;
+    box-sizing: border-box;
+    justify-content: center;
+
+    .Home-Section {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+
+        @include for-size(tablet) {
+            padding-bottom: 200px;
+            margin-top: -550px;
+        }
+        
+        @include for-size(phone) {
+            padding-bottom: 300px;
+        }
+
+        .container {
+            display: flex;
+
+            .Row {
+                margin-right: -15px;
+                margin-left: -15px;
+                width: 1170px;
+                height: 620px;
+                display: flex;
+                flex-direction: row;
+
+                @include for-size(tablet) {
+                    width: 750px;
+                    height: 1350px;
+
+                    display: grid;
+                    grid-template-rows: 2fr auto ;
+                    gap: 900px;
+                }
+
+                @include for-size(phone) {
+                    width: 450px;
+                    height: 1200px;
+
+                    display: grid;
+                    grid-template-rows: 2fr auto ;
+                    gap: 550px;
+                }
+
+                .Row-Slider {
+                    display: flex;
+                    align-items: end;
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    overflow: hidden;
+
+                    @include for-size(tablet) {
+                        height: fit-content;
+                    }
+
+                    a {
+                        will-change: transform;
+                        cursor: pointer;
+                        transition: 1.0s;
+                    }
+                    
+                    .Bigon_Monitor {
+                        opacity: 1;
+                        will-change: opacity;
+
+                        @include for-size(tablet) {
+                            width: 100%;
+                        }
+
+                        img {
+                            @include for-size(tablet) {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .Bigon_SmartWatch {
+                        position: absolute;
+                        opacity: 0;
+                        will-change: opacity;
+
+                        @include for-size(tablet) {
+                            width: 100%;
+                        }
+
+                        img {
+                            @include for-size(tablet) {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .Nivo_Control {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        padding: 0;
+                        position: absolute;
+                        z-index: 12;
+                        bottom: 15px;
+                        margin-left: 270px;
+                        width: 100%;
+
+                        @include for-size(tablet) {
+                            bottom: 5%;
+                            left: 48%;
+                            margin: 0;
+                        }
+
+                        #Nivo_Point {
+                            width: 12px;
+                            height: 12px;
+                            cursor: pointer;
+                            z-index: 99;
+                            border-radius: 100%;
+                            border-color: #c6dad3;
+                            background: #c6dad3;
+
+                            @include for-size(tablet) {
+
+                            }
+                        }
+                    }
+                    
+                    .Active {
+                        border-color: #869791 !important;
+                        background: #869791 !important;
+                    }
+                }
+                
+                .Slider-Left-Content {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(8, 1fr);
+                    
+                    @include for-size(tablet) {
+                        grid-row-start: 2; /* Start on the second row */
+                        grid-row-end: 3;
+                        height: 610px;
+                    }
+
+                    @include for-size(phone) {
+                        grid-template-columns: repeat(1, 1fr);
+                        grid-template-rows: repeat(8, 1fr);
+                        height: 1220px;
+                    }
+
+                    .Multi-Product {
+                        border: 1px solid #eee;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+                        .Single-Product {
+                            overflow: hidden;
+                            padding: 20px 15px;
+                            width: 275px;
+                            height: 150px;
+
+                            cursor: pointer;
+                        position: relative;
+
+                            .pro-img {
+                                float: left;
+                                width: 109px;
+
+                                img {
+                                    width: 100%;
+                                }
+                            }
+
+                            .pro-content {
+                                overflow: hidden;
+
+                                h4 {
+                                    color: var(--Background);
+                                    text-wrap: nowrap;
+                                    @include text-formatter(sans-serif, 14px, 500, 120%);
+
+                                    @include for-size(phone) {
+                                        @include text-formatter(sans-serif, 16px, 500, 120%)
+                                    }
+                                }
+
+                                #product_rating {
+                                    display: flex;
+                                }
+
+                                p {
+                                    display: flex;
+                                    flex-direction: column;
+                                    padding-top: 40px;
+                                    gap: 5px;
+                                    color: var(--Font-Color);
+
+                                    #price {
+                                        @include text-formatter(sans-serif, 21px, 700, 120%);
+
+                                        @include for-size(phone) {
+                                            @include text-formatter(sans-serif, 24px, 700, 120%)
+                                        }
+                                    }
+
+                                    #prev_price {
+                                        color: #a4a4a4;
+                                        @include text-formatter(sans-serif, 14px, 400, 120%);
+
+                                        @include for-size(phone) {
+                                            @include text-formatter(sans-serif, 16px, 400, 120%)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_2 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            margin-bottom: 300px;
+        }
+
+        @include for-size(phone) {
+            margin-top: 300px;
+        }
+
+        .container {
+
+            .Row {
+                margin-right: -15px;
+                margin-left: -15px;
+                width: 1170px;
+                height: 230px;
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+
+                @include for-size(tablet) {
+                    width: 750px;
+                    height: 690px;
+                    flex-direction: column;
+                }
+
+                @include for-size(phone) {
+                    width: 450px;
+                    height: 690px;
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                .First-Col {
+                    width: 33%;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+
+                    @include for-size(tablet) {
+                        width: 100%;
+                        overflow: visible;
+                    }
+
+                    a {
+                        img {
+                            transition: all 0.3s ease-in-out;
+                            will-change: transform;
+                            cursor: pointer;
+
+                            @include for-size(tablet) {
+                                width: 70%;
+                                margin-left: 100px;
+                            }
+
+                            @include for-size(phone) {
+                                width: 80%;
+                                margin-left: 12%;
+                            }
+        
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+                        }
+                    }
+                }
+
+                .Second-Col {
+                    width: 33%;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+
+                    @include for-size(tablet) {
+                        width: 100%;
+                        overflow: visible;
+                    }
+
+                    a {
+                        img {
+                            transition: all 0.3s ease-in-out;
+                            will-change: transform;
+                            cursor: pointer;
+
+                            @include for-size(tablet) {
+                                width: 70%;
+                                margin-left: 100px;
+                            }
+
+                            @include for-size(phone) {
+                                width: 80%;
+                                margin-left: 12%;
+                            }
+        
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+                        }
+                    }
+                }
+
+                .Third-Col {
+                    width: 33%;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+
+                    @include for-size(tablet) {
+                        width: 100%;
+                        overflow: visible;
+                    }
+
+                    a {
+                        img {
+                            transition: all 0.5s ease-in-out;
+                            will-change: transform;
+                            cursor: pointer;
+        
+                            @include for-size(tablet) {
+                                width: 70%;
+                                margin-left: 100px;
+                            }
+
+                            @include for-size(phone) {
+                                width: 80%;
+                                margin-left: 12%;
+                            }
+
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_3 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            padding-top: 80px;
+            transform: scale(1.2) 
+        }
+
+        @include for-size(tablet) {
+            padding-top: 0px;
+            margin-top: -180px;
+            padding-bottom: 200px;
+        }
+
+        .container {
+
+            .Pro-Content {
+                @include Item-Placer(flex, center, center, column);
+                border-radius: 3px;
+                padding-bottom: 30px; 
+                overflow: hidden;
+                border: 1px solid #ebebeb;
+                width: 100%;
+
+                .Header-Row {
+                    margin-right: -15px;
+                    margin-left: -15px;
+                    width: 100%;
+                    position: relative;
+
+                    .Product-List {
+                        display: flex;
+                        border-bottom: 1px solid #ebebeb;
+                        margin-left: 15px;
+                        margin-right: 15px;
+                        margin-bottom: 40px;
+                        padding: 25px 0 20px;
+                        list-style: none;
+                        flex-direction: column;
+
+                        li {
+                            cursor: pointer;
+                            display: inline-block;
+                            @include text-formatter(sans-serif, 14px, 600, 120%);
+                            padding-right: 40px;
+                            position: relative;
+                            text-transform: uppercase;
+                            will-change: color;
+                            white-space: nowrap;
+                            transition: 0.5s;
+
+                            a {
+                                color: #aaa;
+                            }
+                        }
+
+                        .Active-List {
+                            transition: color 0.5s ease-in-out;
+                            
+                            a {
+
+                                color: #363f4d !important;
+                            }
+                        }
+                    }
+
+                    .Owl-Nav {
+                        @include Item-Placer(flex, center, center);
+                        flex-direction: row;
+                        gap: 10px;
+                        transform: translate(500px, -80px);
+
+                        @include for-size(tablet) {
+                            position: absolute;
+                            left: 20%;
+                            bottom: -15%;
+                        } 
+
+                        @include for-size(phone) {
+                            position: absolute;
+                            left: -40%;
+                            bottom: 20%;
+                        } 
+
+                        .Owl-Prev {
+                            background: #f1f1f1;
+                            border: 1px solid #ebebeb;
+                            color: #c2c4c3;
+                            cursor: pointer;
+                            width: 25px;
+                            height: 25px;
+                            padding-left: 7px;
+                            padding-top: 3px;
+                            border-radius: 5px;
+                            transition: 0.3s;
+                            will-change: color;
+
+                            img {
+                                width: 9px;
+                            }
+
+                            &:hover {
+                                background-color: var(--Main-Blue);
+                            }
+                        }
+
+                        .Owl-Next {
+                            background: #f1f1f1;
+                            border: 1px solid #ebebeb;
+                            color: #c2c4c3;
+                            cursor: pointer;
+                            width: 25px;
+                            height: 25px;
+                            padding-left: 7px;
+                            padding-top: 3px;
+                            border-radius: 5px;
+                            transition: 0.3s;
+                            will-change: color;
+
+                            img {
+                                width: 9px;
+                            }
+
+                            &:hover {
+                                background-color: var(--Main-Blue);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .Tab-Content {
+                .Section-Content {
+                    display: block;
+                    height: auto;
+                    visibility: visible;
+
+                    @include for-size(tablet) {
+                        width: 750px;
+                    }
+
+                    @include for-size(phone) {
+                        width: 250px;
+                    }
+
+                    .Owl_Carousel {
+                        width: 100%;
+                        z-index: 9;
+                        visibility: visible;
+
+                        .Owl_Stage_Outer_1 {
+                            position: relative;
+                            overflow: hidden;
+
+                            .Owl_Stage {
+                                display: none;
+                                justify-content: center;
+                                align-items: center;
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: all 0.5s ease-in-out;
+                                will-change: transform;
+
+                                #Owl_Item {
+                                    visibility: hidden;
+                                    display: none;
+                                    width: 227.6px; //227.6px
+                                    border-right: 1px solid hsl(0, 0%, 93%);
+                                    padding: 16px 15px;
+                                    float: left;
+
+                                    .Single-Product {
+                                        @include Item-Placer(flex,center,center);
+                                        height: 289px;
+                                        position: relative;
+                                        background: #fff;
+                                        transition: all 0.5s ease-in-out;
+                                        flex-direction: column;
+                                        cursor: pointer;
+                                        will-change: transform;
+
+                                        .Product-Img {
+                                            img {
+                                                width: 200px;
+                                            }
+                                        }
+
+                                        .Product-Content {
+                                            transition: all 0.3s ease-in-out;
+                                            z-index: 19;
+
+                                            .ComeFromBottomAnimation {
+                                                animation-name: ComeFromBottom;
+                                                animation-duration: 2s;
+                                                animation-timing-function: ease-in-out;
+                                                animation-fill-mode: forwards;
+                                            }
+
+                                            #popup_cart_title {
+                                                @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                color: var(--Background-Dark);
+                                            }
+
+                                            #product-rating {
+                                                display: flex;
+                                            }
+                                            
+                                            p {
+                                                display: flex;
+                                                flex-direction: column;
+                                                padding-top: 40px;
+                                                padding-left: 30px;
+                                                gap: 5px;
+                                                color: var(--Font-Color);
+            
+                                                #price {
+                                                    @include text-formatter(sans-serif, 21px, 700, 120%);
+                                                }
+            
+                                                #prev_price {
+                                                    color: #a4a4a4;
+                                                    @include text-formatter(sans-serif, 14px, 400, 120%);
+                                                }
+                                            }
+
+                                            #product-actions {
+                                                display: flex;
+                                                flex-wrap: nowrap;
+                                                transition: 0.3s ease-in-out;
+                                                position: absolute;
+                                                width: 100%;
+                                                z-index: 25;
+
+                                                .Primary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    bottom: 1px;
+                                                    z-index: 30;
+                                                    left: -10px;
+                                                    position: absolute;
+                                                }
+
+                                                .Appear {
+                                                    opacity: 1 !important;
+                                                    visibility: visible !important;
+                                                    transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+                                                }
+
+                                                .Secondary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    visibility: hidden;
+                                                    bottom: 1px;
+                                                    right: -20px;
+                                                    position: absolute;
+                                                    z-index: 30;
+                                                    gap: 7px;
+
+                                                    #add-to-wishlist {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+
+                                                    #quickview {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .Owl_Active {
+                                    display: flex !important;
+                                    visibility: visible !important;
+                                }
+                            }
+
+                            .Active-Stage {
+                                display: flex !important;
+                                opacity: 1 !important;
+                                visibility: visible !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .Section_4 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            padding-top: 110px;
+        }
+
+        @include for-size(phone) {
+            padding-top: 0px;
+            margin-top: -100px;
+        }
+
+        .container {
+
+            .Row {
+                margin-right: -15px;
+                margin-left: -15px;
+                width: 1170px;
+                height: 230px;
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+
+                @include for-size(tablet) {
+                    flex-direction: column;
+                    width: 750px;
+                    height: 460px;
+                }
+
+                @include for-size(phone) {
+                    flex-direction: column;
+                    width: 450px;
+                    height: 460px;
+                }
+
+                .First-Col {
+                    width: 50%;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+
+                    @include for-size(tablet) {
+                        width: 100%;
+                        overflow: visible;
+                    }
+
+                    @include for-size(phone) {
+                        margin-bottom: 0px;
+                    }
+
+                    a {
+                        img {
+                            transition: all 0.5s ease-in-out;
+                            will-change: transform;
+                            cursor: pointer;
+
+                            @include for-size(tablet) {
+                                width: 100%;
+                            }
+        
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+                        }
+                    }
+                }
+
+                .Second-Col {
+                    width: 50%;
+                    position: relative;
+                    overflow: hidden;
+                    margin-bottom: 30px;
+
+                    @include for-size(tablet) {
+                        width: 100%;
+                        overflow: visible;
+                    }
+
+                    @include for-size(phone) {
+                        margin-bottom: 0px;
+                    }
+
+                    a {
+                        img {
+                            transition: all 0.5s ease-in-out;
+                            will-change: transform;
+                            cursor: pointer;
+
+                            @include for-size(tablet) {
+                                width: 100%;
+                            }
+        
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_5 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            padding-top: 200px;
+            margin-bottom: 0px;
+        }
+
+        @include for-size(phone) {
+            padding-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .Best-Selling {
+            padding-top: 0px;
+            padding-bottom: 50px;
+
+            .container {
+
+                .Row {
+                    display: flex;
+                    margin-right: -15px;
+                    margin-left: -15px;
+                    flex-direction: row;
+                    gap: 30px;
+                    height: auto;
+
+                    @include for-size(tablet) {
+                        flex-direction: column;
+                    }
+
+                    @include for-size(phone) {
+                        width: auto;
+                    }
+
+                    .DealOfThe-Days {
+                        width: 33.33% ;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+
+                        @include for-size(tablet) {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        .Deal {
+                            border-radius: 3px;
+                            padding-bottom: 30px;
+                            padding-left: 15px;
+                            border: 1px solid #ebebeb;
+                            padding-right: 15px;
+                            width: 360px;
+
+                            @include for-size(tablet) {
+                                width: 700px;
+                            }
+
+                            @include for-size(phone) {
+                                width: 400px;
+                            }
+                            
+                            .Group-Title {
+                                @include Item-Placer(flex, center, center);
+                                border-bottom: 1px solid #ebebeb;
+                                color: var(--Backround);
+                                margin-bottom: 20px;
+                                padding-bottom: 25px;
+                                padding-top: 25px;
+                                position: relative;
+                                text-align: left !important;
+                                white-space: nowrap;
+
+                                @include for-size(tablet) {
+                                    justify-content: start;
+                                    padding: 25px 50px;
+                                    width: auto
+                                }
+
+                                h2 {
+                                    @include text-formatter(sans-serif, 14px, 600, 120%);
+                                    text-transform: uppercase;
+                                    color: var(--Background-Dark);
+
+                                    @include for-size(tablet) {
+                                        @include text-formatter(sans-serif, 18px, 600, 120%);
+                                    }
+                                }
+
+                                .Owl-Nav {
+                                    @include Item-Placer(flex, center, center);
+                                    gap: 10px;
+                                    margin-left: 100px;
+
+                                    @include for-size(tablet) {
+                                        position: absolute;
+                                        right: 0;
+                                        transform: scale(1.2);
+                                    }
+
+                                    @include for-size(phone) {
+                                        position: absolute;
+                                        right: 10px;
+                                        transform: scale(1.2);
+                                    }
+            
+                                    .Owl-Prev_2 {
+                                        background: #f1f1f1;
+                                        border: 1px solid #ebebeb;
+                                        color: #c2c4c3;
+                                        cursor: pointer;
+                                        width: 25px;
+                                        height: 25px;
+                                        padding-left: 7px;
+                                        padding-top: 3px;
+                                        border-radius: 5px;
+                                        transition: 0.3s;
+                                        will-change: color;
+            
+                                        img {
+                                            width: 9px;
+                                        }
+            
+                                        &:hover {
+                                            background-color: var(--Main-Blue);
+                                        }
+                                    }
+            
+                                    .Owl-Next_2 {
+                                        background: #f1f1f1;
+                                        border: 1px solid #ebebeb;
+                                        color: #c2c4c3;
+                                        cursor: pointer;
+                                        width: 25px;
+                                        height: 25px;
+                                        padding-left: 7px;
+                                        padding-top: 3px;
+                                        border-radius: 5px;
+                                        transition: 0.3s;
+                                        will-change: color;
+            
+                                        img {
+                                            width: 9px;
+                                        }
+            
+                                        &:hover {
+                                            background-color: var(--Main-Blue);
+                                        }
+                                    }
+                                }
+                            }
+
+                            .Deal-Product {
+                                display: block;
+                                position: relative;
+                                width: 100%;
+                                z-index: 1;
+                                box-sizing: border-box;
+
+                                .Owl_Stage_Outer {
+                                    position: relative;
+                                    overflow: hidden;
+        
+                                    .Owl_Stage_2 {
+                                        @include Item-Placer(flex,center,center);
+                                        flex-direction: row;
+                                        transition: all 0s ease;
+                                        width: 100%;
+
+                                        @include for-size(tablet) {
+                                            flex-direction: column;
+                                        }
+
+                                        #Owl_Item:nth-child(1) {
+                                            border-right: none;
+                                        }
+        
+                                        #Owl_Item_2 {
+                                            visibility: hidden;
+                                            min-height: 1px;
+                                            float: left;
+                                            display: none;
+                                            width: 328px;
+                                            border-right: 1px solid hsl(0, 0%, 93%);
+                                            padding: 16px 15px;
+                                            float: left;
+                                            margin-right: 1px;
+
+                                            
+                                            @include for-size(tablet) {
+                                                width: 688px;
+                                            }
+
+                                            @include for-size(phone) {
+                                                width: 388px;
+                                            }
+
+                                            .Single-Product {
+                                                position: relative;
+                                                background: #fff;
+                                                transition: all 0.5s ease-in-out;
+                                                height: 584px;
+
+                                                @include for-size(tablet) {
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    height: 314px;
+                                                }
+
+                                                @include for-size(phone) {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    width: 388px;
+                                                    height: 593px;
+                                                }
+
+                                                .Pro-Img {
+                                                    position: relative;
+                                                    padding: 30px 75px 40px;
+                                                    width: 328px;
+
+                                                    @include for-size(tablet) {
+                                                        width: 344px;
+                                                        padding: 0px 40px 20px;
+                                                    }
+                                                    
+                                                    @include for-size(phone) {
+                                                        width: 100%; //238px
+                                                        padding: 0px 40px 20px;
+                                                    }
+
+                                                    a {
+                                                        img {
+                                                            display: block;
+                                                            width: 100%;
+                                                        }
+                                                    }
+
+                                                    #product-actions {
+                                                        display: flex;
+                                                        flex-wrap: nowrap;
+                                                        transition: 0.3s ease-in-out;
+                                                        position: absolute;
+                                                        width: 100%;
+                                                        z-index: 25;
+                                                        bottom: -60px;
+                                                        left: 10px;
+
+                                                        @include for-size(laptop) {
+                                                            width: 300px !important;
+                                                        }
+
+                                                        @include for-size(tablet) {
+                                                            width: 344px;
+                                                            height: 38px;
+                                                            bottom: 0;
+                                                        }
+
+                                                        @include for-size(phone) {
+                                                            width: 344px;
+                                                            height: 32px;
+                                                            bottom: 0;
+                                                        }
+        
+                                                        .Primary-Actions {
+                                                            @include Item-Placer(flex, center, center);
+                                                            bottom: 1px;
+                                                            z-index: 30;
+                                                            left: -10px;
+                                                            position: absolute;
+                                                        }
+        
+                                                        .Appear {
+                                                            opacity: 1 !important;
+                                                            visibility: visible !important;
+                                                            transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+                                                        }
+        
+                                                        .Secondary-Actions {
+                                                            @include Item-Placer(flex, center, center);
+                                                            visibility: hidden;
+                                                            bottom: 1px;
+                                                            left: 120px;
+                                                            position: absolute;
+                                                            z-index: 30;
+                                                            gap: 7px;
+
+                                                            @include for-size(tablet) {
+                                                                visibility: visible;
+                                                            }
+        
+                                                            #add-to-wishlist {
+                                                                @include Item-Placer(flex,center,center);
+                                                                background-color: var(--Background-Dark);
+                                                                height: 32px;
+                                                                width: 30px;
+                                                                border-radius: 5px;
+                                                                will-change: color;
+                                                                transition: opacity 0.3s ease;
+                                                                opacity: 0;
+        
+                                                                &:hover {
+                                                                    background-color: var(--Main-Blue);
+                                                                }
+        
+                                                                img {
+                                                                    width: 15px;
+                                                                }
+                                                            }
+        
+                                                            #quickview {
+                                                                @include Item-Placer(flex,center,center);
+                                                                background-color: var(--Background-Dark);
+                                                                height: 32px;
+                                                                width: 30px;
+                                                                border-radius: 5px;
+                                                                will-change: color;
+                                                                transition: opacity 0.3s ease;
+                                                                opacity: 0;
+        
+                                                                &:hover {
+                                                                    background-color: var(--Main-Blue);
+                                                                }
+        
+                                                                img {
+                                                                    width: 15px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                .Product-Content {
+                                                    transition: all .3s ease;
+                                                    position: relative;
+                                                    z-index: 66;
+
+                                                    @include for-size(tablet) {
+                                                        overflow-wrap: hidden;
+                                                        width: 344px;
+                                                    }
+
+                                                    .Cart-Title {
+                                                        @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                        color: var(--Background);
+                                                    }
+
+                                                    .Pro-Rating {
+                                                        height: 25px;
+                                                        margin-bottom: 12px;
+                                                    }
+
+                                                    > p {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        padding-top: 40px;
+                                                        gap: 10px;
+                                                        color: var(--Font-Color);
+                    
+                                                        #price {
+                                                            display: inline-block;
+                                                            @include text-formatter(sans-serif, 18px, 600, 22px);
+
+                                                            @include for-size(tablet) {
+                                                                @include text-formatter(sans-serif, 26px, 600, 22px);
+                                                            }
+                                                        }
+                    
+                                                        #prev_price {
+                                                            color: #a4a4a4;
+                                                            @include text-formatter(sans-serif, 14px, 500, 120%);
+
+                                                            @include for-size(tablet) {
+                                                                @include text-formatter(sans-serif, 20px, 600, 22px);
+                                                            }
+                                                        }
+                                                    }
+
+                                                    p {
+                                                        @include text-formatter(sans-serif, 14px, 400, 22px);
+                                                        color: #282828;
+                                                        margin: 15px 10px 20px;
+
+                                                        @include for-size(tablet) {
+                                                            @include text-formatter(sans-serif, 16px, 400, 22px);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+        
+                                        .Owl_Active {
+                                            display: flex !important;
+                                            visibility: visible !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .BestSelling-Items {
+                        width: 66.67% ;
+                        position: relative;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+
+                        @include for-size(tablet) {
+                            width: 100%;
+                            margin-top: 80px;
+                            transform: scale(1.25);
+                        }
+
+                        @include for-size(phone) {
+                            width: 100%;
+                            margin-top: 80px;
+                            transform: scale(1);
+                        }
+
+                        .SellingItems {
+                            border: 1px solid #ebebeb;
+                            border-radius: 3px;
+                            padding-bottom: 30px;
+                            padding-left: 15px;
+                            padding-right: 15px;
+
+                            @include for-size(phone) {
+                                width: 60%;
+                                margin: auto;
+                            }
+
+                            .BestSelling-Categories {
+                                overflow: hidden;
+
+                                .Row {
+                                    height: 80px;
+                                    margin-right: -15px;
+                                    margin-left: -15px;
+                                    position: relative;
+
+                                    @include for-size(phone) {
+                                        height: 120px;
+                                    }
+
+                                    .Row-Group {
+
+                                        .Group-Title {
+                                            display: flex;
+                                            flex-direction: row;
+                                            color: #363f4d;
+                                            margin-bottom: 20px;
+                                            margin-left: 20px;
+                                            padding-bottom: 25px;
+                                            padding-top: 25px;
+                                            position: relative;
+                                            width: 120%;
+                                            border-bottom: 1px solid #ebebeb;
+
+                                            @include for-size(tablet) {
+                                                width: auto;
+                                            }
+
+                                            @include for-size(phone) {
+                                                width: auto;
+                                                flex-direction: column;
+                                            }
+
+                                            h2 {
+                                                @include text-formatter(sans-serif, 14px, 600, 120%);
+                                                color: #363f4d;
+                                                width: auto;
+                                                text-transform: uppercase;
+                                                white-space: nowrap;
+
+                                                @include for-size(phone) {
+                                                    @include text-formatter(sans-serif, 18px, 700, 120%);
+                                                }
+                                            }
+
+                                            .Product-List {
+                                                display: flex;
+                                                margin-left: 270px;
+                                                list-style: none;
+
+                                                @include for-size(phone) {
+                                                    width: auto;
+                                                    margin: 0;
+                                                    margin-top: 20px;
+                                                    flex-direction: column;
+                                                }
+
+                                                li {
+                                                    @include text-formatter(sans-serif, 14px, 550, 120%);
+                                                    text-transform: capitalize;
+                                                    padding-right: 20px;
+                                                    position: relative;
+                                                    text-transform: uppercase;
+                                                    will-change: color;
+                                                    white-space: nowrap;
+                                                    transition: 0.5s;
+                                                    cursor: pointer;
+                                                    color: #aaaaaa;
+                                                }
+
+                                                .Owl-Nav {
+                                                    @include Item-Placer(flex, center, center);
+                                                    flex-direction: row;
+                                                    gap: 10px;
+                                                    position: absolute;
+                                                    right: 50px;
+                                                    bottom: 25px;
+
+                                                    @include for-size(tablet) {
+                                                        width: 60px;
+                                                        right: 8%;
+                                                    }
+
+                                                    @include for-size(phone) {
+                                                        width: 60px;
+                                                        top: -30%;
+                                                        right: 8%;
+                                                        transform: scale(1.2);
+                                                    }
+                            
+                                                    .Owl-Prev_3 {
+                                                        background: #f1f1f1;
+                                                        border: 1px solid #ebebeb;
+                                                        color: #c2c4c3;
+                                                        cursor: pointer;
+                                                        width: 25px;
+                                                        height: 25px;
+                                                        padding-left: 7px;
+                                                        padding-top: 3px;
+                                                        border-radius: 5px;
+                                                        transition: 0.3s;
+                                                        will-change: color;
+                            
+                                                        img {
+                                                            width: 9px !important;
+                                                        }
+                            
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+                                                    }
+                            
+                                                    .Owl-Next_3 {
+                                                        background: #f1f1f1;
+                                                        border: 1px solid #ebebeb;
+                                                        color: #c2c4c3;
+                                                        cursor: pointer;
+                                                        width: 25px;
+                                                        height: 25px;
+                                                        padding-left: 7px;
+                                                        padding-top: 3px;
+                                                        border-radius: 5px;
+                                                        transition: 0.3s;
+                                                        will-change: color;
+                            
+                                                        img {
+                                                            width: 9px;
+                                                        }
+                            
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+                                                    }
+                                                }
+
+                                                .Active-List {
+                                                    color: #232f3e;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .Tab-Content {
+
+                                    .Tab-Owl {
+                                        display: block;
+                                        height: auto;
+                                        visibility: visible;
+
+                                        .Best-Selling-Pro {
+                                            display: block;
+                                            width: 100%;
+                                            z-index: 1;
+                                            position: relative;
+
+                                            .Owl_Carousel {
+                                                width: 100%;
+                                                z-index: 9;
+                                                visibility: visible;
+                        
+                                                .Owl_Stage_Outer_2 {
+                                                    position: relative;
+                                                    overflow: hidden;
+                        
+                                                    .Owl_Stage_3 {
+                                                        display: none;
+                                                        visibility: hidden;
+                                                        opacity: 0;
+                        
+                                                        #Owl_Item_3 {
+                                                            visibility: hidden;
+                                                            display: none;
+                                                            width: 227.6px; //227.6px
+                                                            border-right: 1px solid hsl(0, 0%, 93%);
+                                                            padding: 16px 15px;
+                                                            float: left;
+                        
+                                                            .Single-Product {
+                                                                @include Item-Placer(flex,center,center);
+                                                                height: 289px;
+                                                                position: relative;
+                                                                background: #fff;
+                                                                transition: all 0.5s ease-in-out;
+                                                                flex-direction: column;
+                                                                cursor: pointer;
+                                                                will-change: transform;
+                        
+                                                                .Product-Img {
+                                                                    img {
+                                                                        width: 200px;
+                                                                    }
+                                                                }
+                        
+                                                                .Product-Content {
+                                                                    transition: all 0.3s ease-in-out;
+                                                                    z-index: 19;
+                        
+                                                                    .ComeFromBottomAnimation {
+                                                                        animation-name: ComeFromBottom;
+                                                                        animation-duration: 2s;
+                                                                        animation-timing-function: ease-in-out;
+                                                                        animation-fill-mode: forwards;
+                                                                    }
+                        
+                                                                    #popup_cart_title {
+                                                                        @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                                        color: var(--Background-Dark);
+                                                                    }
+                        
+                                                                    #product-rating {
+                                                                        display: flex;
+                                                                    }
+                                                                    
+                                                                    p {
+                                                                        display: flex;
+                                                                        flex-direction: column;
+                                                                        padding-top: 40px;
+                                                                        padding-left: 30px;
+                                                                        gap: 5px;
+                                                                        color: var(--Font-Color);
+                                    
+                                                                        #price {
+                                                                            @include text-formatter(sans-serif, 21px, 700, 120%);
+                                                                        }
+                                    
+                                                                        #prev_price {
+                                                                            color: #a4a4a4;
+                                                                            @include text-formatter(sans-serif, 14px, 400, 120%);
+                                                                        }
+                                                                    }
+                        
+                                                                    #product-actions {
+                                                                        display: flex;
+                                                                        flex-wrap: nowrap;
+                                                                        transition: 0.3s ease-in-out;
+                                                                        position: absolute;
+                                                                        width: 100%;
+                                                                        z-index: 25;
+                        
+                                                                        .Primary-Actions {
+                                                                            @include Item-Placer(flex, center, center);
+                                                                            bottom: 1px;
+                                                                            z-index: 30;
+                                                                            left: -10px;
+                                                                            position: absolute;
+                                                                        }
+                        
+                                                                        .Appear {
+                                                                            opacity: 1 !important;
+                                                                            visibility: visible !important;
+                                                                            transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+                                                                        }
+                        
+                                                                        .Secondary-Actions {
+                                                                            @include Item-Placer(flex, center, center);
+                                                                            visibility: hidden;
+                                                                            bottom: 1px;
+                                                                            right: -20px;
+                                                                            position: absolute;
+                                                                            z-index: 30;
+                                                                            gap: 7px;
+                        
+                                                                            #add-to-wishlist {
+                                                                                @include Item-Placer(flex,center,center);
+                                                                                background-color: var(--Background-Dark);
+                                                                                height: 32px;
+                                                                                width: 30px;
+                                                                                border-radius: 5px;
+                                                                                will-change: color;
+                                                                                transition: opacity 0.3s ease;
+                                                                                opacity: 0;
+                        
+                                                                                &:hover {
+                                                                                    background-color: var(--Main-Blue);
+                                                                                }
+                        
+                                                                                img {
+                                                                                    width: 15px;
+                                                                                }
+                                                                            }
+                        
+                                                                            #quickview {
+                                                                                @include Item-Placer(flex,center,center);
+                                                                                background-color: var(--Background-Dark);
+                                                                                height: 32px;
+                                                                                width: 30px;
+                                                                                border-radius: 5px;
+                                                                                will-change: color;
+                                                                                transition: opacity 0.3s ease;
+                                                                                opacity: 0;
+                        
+                                                                                &:hover {
+                                                                                    background-color: var(--Main-Blue);
+                                                                                }
+                        
+                                                                                img {
+                                                                                    width: 15px;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                        
+                                                        .Owl_Active {
+                                                            display: flex !important;
+                                                            visibility: visible !important;
+                                                        }
+                                                    }
+                                                    
+                                                    .Active-Stage {
+                                                        display: flex !important;
+                                                        visibility: visible !important;
+                                                        opacity: 1 !important;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .Row {
+                            margin-right: -15px;
+                            margin-left: -15px;
+
+                            @include for-size(tablet) {
+                                height: auto;
+                            }
+
+                            @include for-size(phone) {
+                                margin-left: 0px;
+                            }
+
+                            .Carved-Products {
+                                float: left;
+                                position: relative;
+                                min-height: 1px;
+                                padding-right: 15px;
+                                padding-left: 15px;
+
+                                .Single-Banner {
+                                    position: relative;
+                                    overflow: hidden;
+                                    margin-top: 30px;
+
+                                    a {
+                                        text-decoration: none;
+                                        background-color: transparent;
+
+                                        img {
+                                            width: 100%;
+                                            will-change: transform;
+                                            transition: all 0.5s ease-in-out;
+
+                                            &:hover {
+                                                transform: scale(1.02) 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_6 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            padding-top: 120px;
+            transform: scale(1.2) 
+        }
+
+        @include for-size(phone) {
+            padding: 0;
+            transform: scale(1) 
+        }
+
+        .container {
+
+            .Pro-Content {
+                @include Item-Placer(flex, center, center);
+                border-radius: 3px;
+                padding-bottom: 30px; 
+                overflow: hidden;
+                border: 1px solid #ebebeb;
+                width: 100%;
+                flex-direction: column;
+
+                @include for-size(phone) {
+                    width: 60%;
+                    margin: auto;
+                }
+
+                .Header-Row {
+                    margin-right: -15px;
+                    margin-left: -15px;
+                    width: 100%;
+                    position: relative;
+
+                    @include for-size(phone) {
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .Product-List {
+                        @include Item-Placer(flex, center, center);
+                        border-bottom: 1px solid #ebebeb;
+                        margin-left: 15px;
+                        margin-right: 15px;
+                        margin-bottom: 40px;
+                        padding: 25px 0 20px;
+                        list-style: none;
+                        position: relative;
+
+                        @include for-size(tablet) {
+                            padding-left: 150px;
+                        }
+
+                        @include for-size(phone) {
+                            width: auto;
+                            margin: 0;
+                            flex-direction: column;
+                        }
+
+                        h2 {
+                            @include text-formatter(sans-serif, 14px, 600, 120%);
+                            color: var(--Background-Dark);
+                            position: absolute;
+                            left: 30px;
+
+                            @include for-size(tablet) {
+                                @include text-formatter(sans-serif, 13px, 600, 120%);
+                            }
+
+                            @include for-size(phone) {
+                                position: initial;
+                                @include text-formatter(sans-serif, 16px, 600, 120%);
+                                margin-bottom: 20px;
+                                margin-right: 270px;
+                            }
+                        }
+
+                        li {
+                            cursor: pointer;
+                            display: inline-block;
+                            @include text-formatter(sans-serif, 14px, 600, 120%);
+                            padding-right: 40px;
+                            position: relative;
+                            text-transform: uppercase;
+                            will-change: color;
+                            white-space: nowrap;
+                            transition: 0.5s;
+
+                            @include for-size(tablet) {
+                                @include text-formatter(sans-serif, 13px, 600, 120%);
+                            }
+                            
+                            @include for-size(phone) {
+                                @include text-formatter(sans-serif, 15px, 600, 120%);
+                                margin-right: 220px;
+                            }
+
+                            a {
+                                color: #aaa;
+                            }
+                        }
+
+                        .Active-List {
+                            transition: color 0.5s ease-in-out;
+                            
+                            a {
+
+                                color: #363f4d !important;
+                            }
+                        }
+                    }
+
+                    .Owl-Nav {
+                        @include Item-Placer(flex, center, center);
+                        flex-direction: row;
+                        gap: 10px;
+                        position: absolute;
+                        right: 50px;
+                        top: 20px;
+
+                        @include for-size(tablet) {
+                            right: 20px;
+                        }
+
+                        .Owl-Prev_4 {
+                            background: #f1f1f1;
+                            border: 1px solid #ebebeb;
+                            color: #c2c4c3;
+                            cursor: pointer;
+                            width: 25px;
+                            height: 25px;
+                            padding-left: 7px;
+                            padding-top: 3px;
+                            border-radius: 5px;
+                            transition: 0.3s;
+                            will-change: color;
+
+                            img {
+                                width: 9px !important;
+                            }
+
+                            &:hover {
+                                background-color: var(--Main-Blue);
+                            }
+                        }
+
+                        .Owl-Next_4 {
+                            background: #f1f1f1;
+                            border: 1px solid #ebebeb;
+                            color: #c2c4c3;
+                            cursor: pointer;
+                            width: 25px;
+                            height: 25px;
+                            padding-left: 7px;
+                            padding-top: 3px;
+                            border-radius: 5px;
+                            transition: 0.3s;
+                            will-change: color;
+
+                            img {
+                                width: 9px;
+                            }
+
+                            &:hover {
+                                background-color: var(--Main-Blue);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .Tab-Content {
+                .Section-Content {
+                    display: block;
+                    height: auto;
+                    visibility: visible;
+
+                    .Owl_Carousel {
+                        width: 100%;
+                        z-index: 9;
+                        visibility: visible;
+
+                        .Owl_Stage_Outer_3 {
+                            position: relative;
+                            overflow: hidden;
+
+                            .Owl_Stage_4 {
+                                display: none;
+                                opacity: 0;
+                                visibility: hidden;
+
+                                #Owl_Item_4 {
+                                    visibility: hidden;
+                                    display: none;
+                                    width: 227.6px; //245.45px
+                                    border-right: 1px solid hsl(0, 0%, 93%);
+                                    padding: 16px 15px;
+                                    float: left;
+
+                                    .Single-Product {
+                                        @include Item-Placer(flex,center,center);
+                                        height: 289px;
+                                        position: relative;
+                                        background: #fff;
+                                        transition: all 0.5s ease-in-out;
+                                        flex-direction: column;
+                                        cursor: pointer;
+                                        will-change: transform;
+
+                                        .Product-Img {
+                                            img {
+                                                width: 200px;
+                                            }
+                                        }
+
+                                        .Product-Content {
+                                            transition: all 0.3s ease-in-out;
+                                            z-index: 19;
+
+                                            .ComeFromBottomAnimation {
+                                                animation-name: ComeFromBottom;
+                                                animation-duration: 2s;
+                                                animation-timing-function: ease-in-out;
+                                                animation-fill-mode: forwards;
+                                            }
+
+                                            #popup_cart_title {
+                                                @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                color: var(--Background-Dark);
+                                            }
+
+                                            #product-rating {
+                                                display: flex;
+                                            }
+                                            
+                                            p {
+                                                display: flex;
+                                                flex-direction: column;
+                                                padding-top: 40px;
+                                                padding-left: 30px;
+                                                gap: 5px;
+                                                color: var(--Font-Color);
+            
+                                                #price {
+                                                    @include text-formatter(sans-serif, 21px, 700, 120%);
+                                                }
+            
+                                                #prev_price {
+                                                    color: #a4a4a4;
+                                                    @include text-formatter(sans-serif, 14px, 400, 120%);
+                                                }
+                                            }
+
+                                            #product-actions {
+                                                display: flex;
+                                                flex-wrap: nowrap;
+                                                transition: 0.3s ease-in-out;
+                                                position: absolute;
+                                                width: 100%;
+                                                z-index: 25;
+
+                                                .Primary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    bottom: 1px;
+                                                    z-index: 30;
+                                                    left: -10px;
+                                                    position: absolute;
+                                                }
+
+                                                .Appear {
+                                                    opacity: 1 !important;
+                                                    visibility: visible !important;
+                                                    transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+                                                }
+
+                                                .Secondary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    visibility: hidden;
+                                                    bottom: 1px;
+                                                    right: -20px;
+                                                    position: absolute;
+                                                    z-index: 30;
+                                                    gap: 7px;
+
+                                                    #add-to-wishlist {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+
+                                                    #quickview {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .Owl_Active {
+                                    display: flex !important;
+                                    visibility: visible !important;
+                                }
+                            }
+
+                            .Active-Stage {
+                                display: flex !important;
+                                opacity: 1 !important;
+                                visibility: visible !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .Section_7 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        @include for-size(tablet) {
+            padding-top: 150px;
+            transform: scale(1.1); 
+        }
+
+        @include for-size(tablet) {
+            padding-top: 50px;
+            transform: scale(1); 
+        }
+
+        .Popular-Categories {
+            padding-top: 0px;
+            border: 1px solid #ebebeb;
+
+            .container {
+
+                .Border {
+                    border-radius: 3px;
+                    padding-bottom: 30px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    width: 1170px;
+
+                    @include for-size(tablet) {
+                        width: 700px;
+                    }
+
+                    @include for-size(phone) {
+                        width: 400px;
+                    }
+
+                    .Group-Title {
+                        @include Item-Placer(flex,space-between,center);
+                        border-bottom: 1px solid #ebebeb;
+                        text-align: left !important;
+                        color: #363f4d;
+                        margin-bottom: 20px;
+                        padding-bottom: 25px;
+                        padding-top: 25px;
+
+                        h2 {
+                            @include text-formatter(sans-serif, 14px, 600, 120%);
+                            color: var(--Background);
+                            width: 100%;
+                            text-transform: uppercase;
+                        }
+                    }
+
+                    .Row {
+                        margin-right: -15px;
+                        margin-left: -15px;
+                        height: auto;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 30px;
+                        // height: 230px;
+
+                        @include for-size(tablet) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            grid-template-rows: repeat(2, auto);
+                        }
+
+                        @include for-size(phone) {
+                            grid-template-columns: repeat(1, 1fr);
+                            grid-template-rows: repeat(4 auto);
+                            width: auto;
+                        }
+
+                        .Column {
+                            width: 25%;
+                            float: left;
+                            position: relative;
+                            min-height: 1px;
+                            padding-right: 15px;
+                            padding-left: 15px;
+
+                            @include for-size(tablet) {
+                                width: 100%;
+                                transform: scale(0.9);
+                            }
+
+                            @include for-size(phone) {
+                                width: 100%;
+                                transform: scale(1);
+                            }
+
+                            .Single-Category {
+
+                                .Category-Img {
+                                    
+                                    a {
+
+                                        img {
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+
+                                .Category-Content {
+                                    padding-bottom: 30px;
+
+                                    h3 {
+                                        @include text-formatter(sans-serif, 16px, 600, 120%);
+                                        color: var(--Background);
+                                        margin: 20px 0;
+
+                                        @include for-size(tablet) {
+                                            @include text-formatter(sans-serif, 18px, 600, 120%);
+                                        }
+                                    }
+
+                                    .Cat-Content-List {
+                                        text-transform: capitalize;
+
+                                        ul {
+                                            margin-bottom: 10px;
+                                            white-space: wrap;
+
+                                            @include for-size(tablet) {
+                                                width: 388px;
+                                                height: 100px !important;
+                                                flex-direction: column;
+                                            }
+                                            
+                                            li {
+                                                @include text-formatter(sans-serif, 14px, 500, 25px);
+                                                list-style: none;
+                                                color: #7a7a7a;
+                                                transition: all 0.3s ease-in-out;
+                                                background-color: transparent;
+                                                cursor: pointer;
+                                                will-change: color;
+
+                                                @include for-size(tablet) {
+                                                    width: 330px;
+                                                    @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                }
+
+                                                &:hover {
+                                                    color: var(--Main-Blue);
+                                                }
+                                            }
+                                        }
+                                    }   
+                                }
+                            }
+                        }
+                    }
+
+                    .Row-Slider {
+                        margin-right: -15px;
+                        margin-left: -15px;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 30px;
+                        margin-top: -150px;
+                            
+                        .Brand-Banner {
+                            padding-bottom: 0px;
+                            margin-top: 150px;
+                            border-top: 1px solid #ebebeb;
+                            overflow: hidden;
+
+                            .Owl-Stage-Outer {
+                                position: relative;
+                                overflow: hidden;
+                                margin-top: 30px;
+                                margin-left: 30px;
+
+                                .Owl-Stage {
+                                    transform: translate3d(-284px, 0px, 0px);
+                                    transition: all 1.2s ease 0s;
+                                    width: 1424px;
+
+                                    @include for-size(tablet) {
+                                        width: 899px;
+                                    }
+
+                                    @include for-size(phone) {
+                                        width: 1090px;
+                                    }
+
+                                    #Owl-Item {
+                                        width: 283.75px;
+                                        margin-right: 1px;
+                                        float: left;
+                                        position: relative;
+
+                                        @include for-size(tablet) {
+                                            width: 178.75px;
+                                        }
+
+                                        @include for-size(phone) {
+                                            width: 260px;
+                                        }
+
+                                        .Single-Brand {
+                                            text-align: center;
+
+                                            a {
+
+                                                img {
+                                                    display: block;
+                                                    width: auto;
+                                                    transition: all 0.3s ease-in-out;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .Active-Item {
+                                        display: flex;
+                                        visibility: visible;
+                                    }
+                                }
+                            }
+                        }
+
+                        .Owl-Loaded {
+                            display: block;
+                            width: 100%;
+                            z-index: 5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_8 {
+        display: none !important;
+
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 100px;
+        margin: auto;
+        
+        .Blog {
+            padding-top: 0px;
+            padding-bottom: 50px;
+
+            .container {
+                
+                .Row {
+                    margin-right: -15px;
+                    margin-left: -15px;
+                    width: 1170px;
+                    height: 230px;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 30px;
+
+                    .Column {
+                        width: 50%;
+                        float: left;
+                        position: relative;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+
+                            .Border {
+                                border-radius: 3px;
+                                padding-bottom: 30px;
+                                border: 1px solid #ebebeb;
+                                padding-left: 15px;
+                                padding-right: 15px;
+
+                                .Group-Title {
+                                    border-bottom: 1px solid #ebebeb;
+                                    margin-bottom: 20px;
+                                    padding-bottom: 25px;
+                                    padding-top: 25px;
+                                    position: relative;
+
+                                    h2 {
+                                        @include text-formatter(sans-serif, 14px, 600, 120%);
+                                        color: var(--Background-Dark);
+                                        width: 100%;
+                                        text-transform: uppercase;
+                                    }
+
+                                    .Owl-Nav {
+                                        @include Item-Placer(flex, center, center);
+                                        flex-direction: row;
+                                        gap: 10px;
+                                        position: absolute;
+                                        right: 10px;
+                                        top: 20px;
+                
+                                        .Owl-Prev_5 {
+                                            background: #f1f1f1;
+                                            border: 1px solid #ebebeb;
+                                            color: #c2c4c3;
+                                            cursor: pointer;
+                                            width: 25px;
+                                            height: 25px;
+                                            padding-left: 7px;
+                                            padding-top: 3px;
+                                            border-radius: 5px;
+                                            transition: 0.3s;
+                                            will-change: color;
+                
+                                            img {
+                                                width: 9px !important;
+                                            }
+                
+                                            &:hover {
+                                                background-color: var(--Main-Blue);
+                                            }
+                                        }
+                
+                                        .Owl-Next_5 {
+                                            background: #f1f1f1;
+                                            border: 1px solid #ebebeb;
+                                            color: #c2c4c3;
+                                            cursor: pointer;
+                                            width: 25px;
+                                            height: 25px;
+                                            padding-left: 7px;
+                                            padding-top: 3px;
+                                            border-radius: 5px;
+                                            transition: 0.3s;
+                                            will-change: color;
+                
+                                            img {
+                                                width: 9px;
+                                            }
+                
+                                            &:hover {
+                                                background-color: var(--Main-Blue);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .Row {
+                                    margin-right: -15px;
+                                    margin-left: -15px;
+                                    width: 1170px;
+                                    height: 230px;
+                                    display: flex;
+                                    flex-direction: row;
+                                    gap: 30px;
+
+                                    .Popular-Cat {
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        .Dual-Pop {
+
+                                            .Main-Pop {
+                                                width: 100%;
+                                                float: left;
+                                                position: relative;
+                                                min-height: 1px;
+                                                padding-right: 15px;
+                                                padding-left: 15px;
+                                                margin-bottom: 30px; 
+                                                
+                                                .Pop-Img {
+                                                    float: left;
+                                                    
+                                                    a {
+                                                        display: block;
+                                                        text-decoration: none;
+
+
+                                                        img {
+                                                            width: 200px;
+                                                            transition: all .3s ease-in-out;
+                                                        }
+                                                    }
+                                                }
+
+                                                .Pop-Content {
+                                                    display: flex;
+                                                    gap: 10px;
+                                                    padding-left: 20px;
+                                                    overflow: hidden;
+                                                    flex-direction: column;
+
+                                                    h4 {
+                                                        @include text-formatter(sans-serif, 16px, 600, 18px);
+                                                        color: var(--Background-Dark);
+
+                                                        will-change: color;
+                                                        transition: all 0.3s ease-in-out;
+
+                                                        &:hover {
+                                                            color: var(--Main-Blue);
+                                                        }
+                                                    }
+
+                                                    span {
+                                                        @include text-formatter(sans-serif, 15px, 500, 18px);
+                                                        color: #444;
+                                                    }
+
+                                                    .Pop-Link {
+                                                        @include text-formatter(sans-serif, 15px, 500, 120%);
+                                                        display: inline-block;
+                                                        color: #333333;
+                                                        text-decoration: none;
+                                                        will-change: color;
+                                                        transition: all 0.3s ease-in-out;
+
+                                                        &:hover {
+                                                            color: var(--Main-Blue);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // .Active-Cat {
+
+                                    // }
+                                }
+
+                                .Testimonial-container {
+                                    display: flex;
+                                    flex-direction: column;
+                                    text-align: center !important;
+
+                                    .Text-Slide {
+                                        display: flex;
+                                        position: relative;
+
+                                        .Slick-List {
+                                            display: block;
+                                            position: relative;
+                                            overflow: hidden;
+                                            margin: 0;
+                                            padding: 0;
+
+                                            .Slick-Track {
+                                                display: block;
+                                                opacity: 1;
+                                                width: 4707px;
+                                                transform: translate3d(-523px, 0px, 0px);
+                                                position: relative;
+                                                top: 0;
+                                                left: 0;
+                                                margin-left: auto;
+                                                margin-right: auto;
+
+                                                .Single-Comments {
+                                                    display: block;
+                                                    width: 523px;
+                                                    height: 100%;
+                                                    float: left;
+                                                    min-height: 1px;
+                                                    text-align: center !important;
+
+                                                    p {
+                                                        @include text-formatter(sans-serif, 14px, 500, 22px);
+
+                                                        #name {
+                                                            @include text-formatter(sans-serif, 15px, 500, 22px);
+                                                            margin-bottom: 12px;
+                                                            color: #333333;
+                                                        }
+
+                                                        span {
+                                                            color: #444;
+                                                        }
+                                                    }
+
+                                                    #desc {
+                                                        font-style: italic;
+                                                        line-height: 25px;
+                                                        margin-top: 15px;
+                                                    }
+
+                                                    #email {
+                                                        margin: 10px 0;
+                                                        text-transform: capitalize;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .Slide-Thumb {
+                                            position: relative;
+                                            display: block;
+
+                                            .Slick-List {
+                                                position: relative;
+                                                display: block;
+                                                overflow: hidden;
+                                                margin: 0;
+                                                padding: 0px;
+
+                                                .Slick-Track {
+                                                    opacity: 1;
+                                                    width: 1284px;
+                                                    transform: translate3d(-321px, 0px, 0px);
+                                                    position: relative;
+                                                    top: 0;
+                                                    left: 0;
+                                                    display: block;
+                                                    margin-left: auto;
+                                                    margin-right: auto;
+
+                                                    #testimonial_img {
+                                                        visibility: visible;
+                                                        opacity: 0.5;
+                                                        width: 107px;
+                                                        height: 100%;
+                                                        float: left;
+
+                                                        span {
+                                                            border: 3px solid #fff;
+                                                            width: 84px;
+                                                            height: 84px;
+                                                            margin: 5px;
+                                                            display: inline-block;
+                                                            position: relative;
+                                                            border-radius: 100%;
+                                                            transition: all .3s ease-in-out;
+
+                                                            img {
+                                                                width: 80px;
+                                                            }
+
+                                                            &:hover {
+                                                                border-color: var(--Main-Blue);
+                                                                transform: scale(1.10);
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .Active-Testimonial {
+                                                        opacity: 1 !important;
+                                                        visibility: visible !important;
+                                                        transform: scale(1.10);
+
+                                                        span {
+                                                            transform: none;
+                                                            border-color: var(--Main-Blue) !important;
+
+                                                            &:hover {
+                                                                transform: none !important;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .Active-Thumb {
+                                            margin: 30px auto 10px;
+                                            width: 320px;
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_9 {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            margin-top: 50px;
+        }
+
+        @include for-size(phone) {
+            margin-bottom: 220px;
+        }
+
+        .Company-Policy {
+            padding-top: 0px;
+            padding-bottom: 50px;
+
+            .container {
+
+                .Main-Policy {
+                    display: flex;
+                    padding-bottom: 40px;
+                    padding-top: 40px;
+                    background: #eff5f5;
+                    border: 1px solid #ebebeb;
+                    border-radius: 5px;
+                    padding: 40px 0;
+
+                    @include for-size(tablet) {
+                        height: 210px !important;
+                        padding: 50px;
+                        transform: scale(1.2);
+                    }
+
+                    @include for-size(phone) {
+                        height: 420px !important;
+                    }
+
+                    .Row {
+                        height: 50px;
+                        display: flex;
+                        flex-direction: row;
+                        margin-left: 20px;
+
+                        @include for-size(tablet) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            grid-template-rows: repeat(2, auto);
+                            width: auto;
+                            height: auto;
+                        }
+
+                        @include for-size(phone) {
+                            grid-template-columns: repeat(1, 1fr);
+                            grid-template-rows: repeat(4, auto);
+                        }
+
+                        .Column {
+                            width: 292.1px;
+                            height: 47.4px;
+                            float: left;
+                            padding-right: 15px;
+                            padding-left: 15px;
+                            
+                            @include for-size(tablet) {
+                                width: 50%;
+                            }
+
+                            .Policy-Conditions {
+                                position: relative;
+
+                                .Single-Policy {
+
+                                    @include for-size(tablet) {
+                                        padding-bottom: 30px;
+                                    }
+
+                                    img {
+                                        left: -30px;
+                                        position: absolute;
+                                        top: -3px;
+                                        width: 38px;
+                                        height: 45px;
+                                    }
+
+                                    .Policy-Desc {
+                                        width: 230px;
+                                        padding-left: 35px;
+
+                                        @include for-size(phone) {
+                                            border: none !important;
+                                        }
+
+                                        h3 {
+                                            @include text-formatter(sans-serif, 14px, 600, 120%);
+                                            color: var(--Background);
+                                            display: block;
+                                            margin: 5px 0;
+                                            text-transform: capitalize;
+                                        }
+
+                                        p {
+                                            @include text-formatter(sans-serif, 13px, 500, 22px);
+                                            color: #959595;
+                                            white-space: nowrap;
+                                            margin-bottom: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_10 {
+        @include Item-Placer(flex, center, center);
+        width: 100vw !important;
+        margin: auto;
+        background-color: #37475a;
+        margin-top: 30px;
+
+        @include for-size(tablet) {
+            height: 250px;
+            margin-bottom: 0;
+        }
+
+        .Newsletter {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            margin-bottom: 30px;
+            padding: 44px 0;
+
+            .container {
+
+                .Row {
+                    height: 50px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-left: 20px;
+
+                    @include for-size(tablet) {
+                        flex-direction: column;
+                    }
+
+                    .Column-1 {
+                        width: 58.33%;
+
+                        .Main-News-Desc {
+
+                            @include for-size(tablet) {
+                                margin-top: -50px;
+                            }
+
+                            .Desc-Content {
+                                position: relative;
+                                padding-left: 160px;
+                                text-align: left !important;
+
+                                @include for-size(phone) {
+                                    padding: 0;
+                                    margin-left: -20px;
+                                }
+
+                                img {
+                                    display: block;
+                                    height: 186px;
+                                    left: -110px;
+                                    position: absolute;
+                                    top: -100px;
+                                    width: 259px;
+                                    transform: scale(0.7);
+
+                                    @include for-size(tablet) {
+                                        top: -60px;
+                                    }
+
+                                    @include for-size(phone) {
+                                        display: none;
+                                    }
+                                }
+
+                                h3 {
+                                    @include text-formatter(sans-serif, 30px, 600, 120%);
+                                    color: #fff;
+                                    white-space: nowrap;
+
+                                    span {
+                                        color: var(--Main-Blue);
+                                    }
+                                }
+
+                                p {
+                                    @include text-formatter(sans-serif, 13px, 400, 22px);
+                                    color: #fff;
+
+                                    @include for-size(tablet) {
+                                        @include text-formatter(sans-serif, 16px, 400, 22px);
+                                    }
+
+                                    @include for-size(phone) {
+                                        @include text-formatter(sans-serif, 16px, 400, 22px);
+                                        text-wrap: nowrap;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .Column-2 {
+                        width: 41.67%;
+                        position: relative;
+                        min-height: 1px;
+                        float: left;
+                        padding-right: 15px;
+                        padding-left: 15px;
+
+                        .Newsletter-Box {
+                            margin-top: 4px;
+                            position: relative;
+
+                            .Subscribe-Form { 
+                                margin-bottom: 0;
+                                @include Flex-ItemsAndPosition(flex, center, row);
+                                display: flex;
+                                margin: auto;
+                                width: 400px;
+                                position: relative;
+
+                                @include for-size(tablet) {
+                                    width: 720px;
+                                    margin-left: 30px;
+                                }
+
+                                @include for-size(phone) {
+                                    width: 420px;
+                                    margin-left: -20px;
+                                }
+
+                                .Mc-Form {
+                                    position: relative;
+
+                                    p {
+                                       @include text-formatter(sans-serif, 16px 500, 120%);
+                                       position: absolute;
+                                       bottom: -25px;
+                                       text-transform: none;
+                                       left: 0px;
+                                       white-space: nowrap;
+                                    }
+
+                                    .True {
+                                        color: rgb(0, 174, 6) !important;
+                                      }
+                                      
+                                      .False {
+                                        color: rgb(255, 0, 0) !important;
+                                    }
+                                }
+                            }   
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .Section_Swip {
+        display: none !important;
+
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 0px;
+        width: 1170px;
+        margin: auto;
+        margin-top: 100px;
+    
+        .container {
+            width: 1170px;
+            display: flex;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+    
+            .Tab-Content {
+                .Section-Content {
+                    display: block;
+                    height: auto;
+            
+                    .swiper {
+                        width: 100%;
+                        height: 500px;
+                        z-index: 9;
+            
+                        .swiper-wrapper {
+                            position: relative;
+                            overflow: hidden;
+            
+                            .swiper-slide {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                will-change: transform;
+                                transition: all 0.5s ease-in-out;
+                                font-size: 60px;
+            
+                                #Owl_Item {
+                                    display: flex;
+                                    width: 227.6px; //227.6px
+                                    border-right: 1px solid hsl(0, 0%, 93%);
+                                    padding: 16px 15px;
+                                    float: left;
+                    
+                                    .Single-Product {
+                                        @include Item-Placer(flex,center,center);
+                                        height: 289px;
+                                        position: relative;
+                                        background: #fff;
+                                        transition: all 0.5s ease-in-out;
+                                        flex-direction: column;
+                                        cursor: pointer;
+                                        will-change: transform;
+                    
+                                        .Product-Img {
+                                            img {
+                                                width: 200px;
+                                            }
+                                        }
+                    
+                                        .Product-Content {
+                                            transition: all 0.3s ease-in-out;
+                                            z-index: 19;
+                    
+                                            .ComeFromBottomAnimation {
+                                                animation-name: ComeFromBottom;
+                                                animation-duration: 2s;
+                                                animation-timing-function: ease-in-out;
+                                                animation-fill-mode: forwards;
+                                            }
+                    
+                                            #popup_cart_title {
+                                                @include text-formatter(sans-serif, 16px, 500, 120%);
+                                                color: var(--Background-Dark);
+                                            }
+                    
+                                            #product-rating {
+                                                display: flex;
+                                            }
+                                            
+                                            p {
+                                                display: flex;
+                                                flex-direction: column;
+                                                padding-top: 40px;
+                                                padding-left: 30px;
+                                                gap: 5px;
+                                                color: var(--Font-Color);
+                    
+                                                #price {
+                                                    @include text-formatter(sans-serif, 21px, 700, 120%);
+                                                }
+                    
+                                                #prev_price {
+                                                    color: #a4a4a4;
+                                                    @include text-formatter(sans-serif, 14px, 400, 120%);
+                                                }
+                                            }
+                    
+                                            #product-actions {
+                                                display: flex;
+                                                flex-wrap: nowrap;
+                                                transition: 0.3s ease-in-out;
+                                                position: absolute;
+                                                width: 100%;
+                                                z-index: 25;
+                    
+                                                .Primary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    bottom: 1px;
+                                                    z-index: 30;
+                                                    left: -10px;
+                                                    position: absolute;
+                                                }
+                    
+                                                .Appear {
+                                                    opacity: 1 !important;
+                                                    visibility: visible !important;
+                                                    transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+                                                }
+                    
+                                                .Secondary-Actions {
+                                                    @include Item-Placer(flex, center, center);
+                                                    visibility: hidden;
+                                                    bottom: 1px;
+                                                    right: -20px;
+                                                    position: absolute;
+                                                    z-index: 30;
+                                                    gap: 7px;
+                    
+                                                    #add-to-wishlist {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+                    
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+                    
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+                    
+                                                    #quickview {
+                                                        @include Item-Placer(flex,center,center);
+                                                        background-color: var(--Background-Dark);
+                                                        height: 32px;
+                                                        width: 30px;
+                                                        border-radius: 5px;
+                                                        will-change: color;
+                                                        transition: opacity 0.3s ease;
+                                                        opacity: 0;
+                    
+                                                        &:hover {
+                                                            background-color: var(--Main-Blue);
+                                                        }
+                    
+                                                        img {
+                                                            width: 15px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

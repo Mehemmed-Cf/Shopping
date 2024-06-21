@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include text-formatter(sans-serif, 14px, 400, 24px);
+    color: #444;
+}
+
+.Row {
+    width: 1170px;
+    margin-right: -15px;
+    margin-left: -15px;
+    height: 230px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    @include for-size(tablet) {
+        width: 750px;
+        height: 615px;
+    }
+}
+
+main {
+    display: block;
+
+    @include for-size(tablet) {
+        transform: scale(0.85);
+    }
+
+    .Contact-Section {
+        @include Item-Placer(flex, center, center);
+        padding-top: 30px;
+        padding-bottom: 100px;
+        margin: auto;
+
+        @include for-size(tablet) {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .Contact-Area {
+            padding-top: 0px;
+            padding-bottom: 250px;
+            
+            
+            @include for-size(tablet) {
+                padding-bottom: 0px;
+            }
+
+            .container {
+
+                // width: 1170px;
+
+                .Row {
+
+                    .Column {
+                        width: 50%;
+                        float: left;
+                        position: relative;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+
+                        @include for-size(tablet) {
+                            width: 100%;
+                        }
+
+                        h3 {
+                            @include text-formatter(sans-serif, 28px, 600, 120%);
+                            margin-bottom: 5px;
+                            margin: 0;
+                            color: #363f4d;
+                        }
+
+                        p {
+                            @include text-formatter(sans-serif, 14px, 500, 22px);
+                            margin-bottom: 40px;
+                            text-transform: capitalize;
+                        }
+
+                        #contact_form {
+                            width: 1140px;
+                            margin-bottom: 0;
+                            position: relative;
+
+                            @include for-size(tablet) {
+                                width: 750px;
+                            }
+
+                            .Address-Wrapper {
+                                display: flex;
+                                flex-wrap: wrap;
+                                width: 1170px;
+                                // width: 1170px;
+                                margin-right: -15px;
+                                margin-left: -15px;
+
+                                @include for-size(tablet) {
+                                    width: 750px;
+                                    flex-direction: column;
+                                }
+
+                                .Col {
+                                    width: 50%;
+                                    float: left;
+                                    position: relative;
+                                    min-height: 1px;
+                                    padding-right: 15px;
+                                    // margin-left: 15px;
+                                    padding-left: 15px;
+
+                                    @include for-size(tablet) {
+                                        width: 100%;
+                                    }
+                                }
+
+                                .Col:nth-child(1) {
+                                    transform: translateX(-15px);
+                                }
+
+                                .Col:nth-child(2) {
+                                    @include for-size(tablet) {
+                                        transform: translateX(-15px);
+                                    }
+                                }
+
+                                .Col-2 {
+                                    width: 100%;
+                                    float: left;
+                                    position: relative;
+                                    min-height: 1px;
+                                    padding-right: 15px;
+                                    padding-left: 15px;
+                                }
+                            }
+
+                            .Send-Email {
+                                width: 100%;
+                                float: right !important;
+                                position: relative;
+                                min-height: 1px;
+                                padding-right: 15px;
+                                padding-left: 15px;
+
+                                @include for-size(tablet) {
+                                    float: left !important;
+                                    width: 720px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

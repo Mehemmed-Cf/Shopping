@@ -95,6 +95,8 @@
             // Retrieve cart items from localStorage
             const cartItems = JSON.parse(localStorage.getItem('cart'));
 
+            console.log(cartItems)
+
             // Display cart items in the table
             const tbody = document.querySelector('tbody');
 
@@ -114,18 +116,63 @@
                     productCell.textContent = item.name;
                     priceCell.textContent = `$${item.price}`;
 
-                    quantityCell.innerHTML = `
-                    <td class="Pro-Quantity">
-                        <div id="quantity">
-                            <input type="text" value="1" />
-                            <span class="dec qtybtn">-</span>
-                            <span class="inc qtybtn">+</span>
-                        </div>
-                    </td>
-                    `;
+                    // Create the input field for quantity
+                    const quantityInput = document.createElement('input');
+                    quantityInput.type = 'number';
+                    quantityInput.value = item.quantity; // Set the initial value to the quantity of the product
+                    quantityInput.min = 1;
+                    quantityInput.classList.add('quantity-input');
 
-                    totalCell.textContent = `$${item.total}`;
+                    // Create the buttons for increasing and decreasing quantity
+                    const decBtn = document.createElement('span');
+                    decBtn.textContent = '-';
+                    decBtn.classList.add('dec', 'qtybtn');
+                    decBtn.style.cursor = "pointer";
+                    decBtn.style.fontSize = "24px"; // Adjust the font size as needed
+
+                    const incBtn = document.createElement('span');
+                    incBtn.textContent = '+';
+                    incBtn.classList.add('inc', 'qtybtn');
+                    incBtn.style.cursor = "pointer";
+                    incBtn.style.fontSize = "24px"; // Adjust the font size as needed
+
+                    // quantityCell.innerHTML = `
+                    //         <td class="Pro-Quantity">
+                    //             <div id="quantity">
+                    //                 <input type="text" value="1" />
+                    //                 <span style="transform: scale(3); cursor:pointer;" class="dec qtybtn"> - </span>
+                    //                  <span style="transform: scale(3); cursor:pointer;" class="inc qtybtn"> + </span>
+                    //             </div>
+                    //         </td>
+                    // `;
+
+                    const quantityWrapper = document.createElement('div');
+                    quantityWrapper.id = 'quantity';
+                    quantityWrapper.appendChild(decBtn);
+                    quantityWrapper.appendChild(quantityInput);
+                    quantityWrapper.appendChild(incBtn);
+
+                    quantityCell.appendChild(quantityWrapper);
+
+                    totalCell.textContent = `$${item.price * item.quantity}`;
                     removeCell.innerHTML = `<a href="#" class="remove-item">Remove</a>`;
+
+                    removeCell.querySelector('.remove-item').addEventListener('click', () => {
+                        const index = cartItems.findIndex(cartItem => cartItem.id === item.id);
+
+                        if (index !== -1) {
+                            cartItems.splice(index, 1);
+
+                            // Update the cart in localStorage
+                            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+                            // Remove the row from the table
+                            row.remove();
+
+                            // Update the total count and any other relevant UI
+                            updateTotalCount();
+                        }
+                    });
 
                     // Append cells to the row
                     row.appendChild(imageCell);
@@ -135,11 +182,67 @@
                     row.appendChild(totalCell);
                     row.appendChild(removeCell);
 
+                    // Event listeners for quantity buttons
+                    // const incBtn = quantityCell.querySelector('.inc');
+                    // const decBtn = quantityCell.querySelector('.dec');
+                    // const quantityInput = quantityCell.querySelector('input');
+
+                    // Event listener for increment button
+                    incBtn.addEventListener('click', () => {
+                        // Increase the quantity value
+                        quantityInput.value = parseInt(quantityInput.value) + 1;
+                        updateTotal();
+
+                        // Update the quantity in localStorage
+                        updateQuantity(item.id, parseInt(quantityInput.value));
+                    });
+
+                    // Event listener for decrement button
+                    decBtn.addEventListener('click', () => {
+                        // Decrease the quantity value, ensuring it doesn't go below 1
+                        const newValue = Math.max(parseInt(quantityInput.value) - 1, 1);
+                        quantityInput.value = newValue;
+                        updateTotal();
+
+                        // Update the quantity in localStorage
+                        updateQuantity(item.id, newValue);
+                    });
+
+                    quantityInput.addEventListener('input', () => {
+                        updateTotal();
+                    });
+
+                    function updateTotal() {
+                        const quantity = parseInt(quantityInput.value) || 0;
+                        totalCell.textContent = `$${item.price * quantity}`;
+                    }
+
+
                     // Append the row to the table body
                     tbody.appendChild(row);
                 });
             }
+
+            // if (cartItems && cartItems.length > 0) { 
+            //     const h1 = document.createElement('h1');
+
+            //     h1.textContent = "Your Cart Is Currently Empty";
+
+            //     tbody.append(h1);
+            // }
         });
+
+        function updateQuantity(productId, newQuantity) {
+            const cartItems = JSON.parse(localStorage.getItem('cart'));
+            const updatedItems = cartItems.map(item => {
+                if (item.id === productId) {
+                    item.quantity = newQuantity;
+                    item.total = item.price * newQuantity; // Recalculate total
+                }
+                return item;
+            });
+            localStorage.setItem('cart', JSON.stringify(updatedItems));
+        }
     </script>
 
 </body>

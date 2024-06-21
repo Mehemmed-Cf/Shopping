@@ -1,0 +1,223 @@
+button {
+  cursor: pointer;
+  position: relative;
+  will-change: transform;
+}
+
+
+.BackToHome {
+  @include Item-Placer(flex, center, center);
+  @include Button(40px, 0px 30px, 0px);
+  background-color: var(--Main-Blue);
+  color: white;
+
+
+  p {
+    color: var(--White);
+    text-align: center;
+    @include text-formatter(sans-serif, 16px, 700, 120%);
+  }
+
+  &:hover {
+    transform: scale(0.95);
+  }
+}
+
+.AllCategories {
+  @include Item-Placer(flex, center, center);
+  @include Button(265px, 48px, 12px 30px, 0px);
+  width: 265px;
+  background-color: var(--Main-Blue);
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  gap: 20px;
+  will-change: transform;
+
+  @include for-size(tablet) {
+    display: none;
+  }
+
+
+  p {
+    color: var(--White);
+    text-align: center;
+    text-wrap: nowrap;
+    @include text-formatter(sans-serif, 16px, 600, 120%);
+  }
+
+  img {
+    width: 15px;
+  }
+
+  &:hover {
+    transform: scale(0.95);
+  }
+}
+
+.Submit-Search {
+  @include Item-Placer(flex, center, center);
+  @include Button(49px,48px, 0px, 0px);
+  background-color: var(--Main-Blue);
+  border-radius: 5px;
+  color: white;
+  transition: 0.5s ease-in-out;
+  will-change: transform;
+  position: absolute;
+  right: -5px;
+
+  img {
+    padding-left: 20px;
+    height: 16px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: red;
+  }
+}
+
+.Sign-In {
+  @include Item-Placer(flex, center, center);
+  @include Button(100px, 40px, 0px, 0px);
+  background-color: var(--Main-Blue);
+  border-radius: 0px;
+  color: white;
+  will-change: transform;
+
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.Add-To-Cart {
+  display: inline-block;
+  @include text-formatter(sans-serif, 13px, 500 ,32px);
+  @include Button(115px, 32px, 0px, 0px);
+  background-color: var(--Background-Dark);
+  border-radius: 5px;
+  color: white;
+  will-change: color;
+  text-align: center;
+  position: relative;
+  transition: 0.3s ease;
+  opacity: 0;
+  
+  &:hover {
+    background-color: var(--Main-Blue);
+  }
+}
+
+.Cat-Btn {
+  @include text-formatter(sans-serif, 13px, 500 ,32px);
+  @include Button(120px, 34px, 0px, 0px);
+  display: inline-block;
+  color: #fff;
+  background-color: var(--Background-Dark);
+  border-radius: 5px;
+  will-change: color;
+  text-align: center;
+  position: relative;
+  transition: 0.3s ease;
+
+  @include for-size(tablet) {
+    margin-top: 10px;
+    transform: scale(1.2);
+  }
+
+  &:hover {
+    background-color: var(--Main-Blue);
+  }
+}
+
+.Submit-Btn {
+  @include text-formatter(sans-serif, 13px, 500 ,32px);
+  @include Button(120px,50px, 0px, 0px);
+  display: inline-block;
+  color: #fff;
+  background-color: var(--Main-Blue);
+  border-radius: 5px;
+  will-change: color;
+  text-align: center;
+  position: absolute;
+  right: 0px;
+  transition: all 0.3s ease;
+
+  @include for-size(tablet) {
+    margin-right: 100px;
+    height: 52px;
+  }
+
+  @include for-size(phone) {
+    margin-right: 0;
+    height: 52px;
+  }
+
+  &:hover {
+    background-color: red;
+  }
+}
+
+.Send-Email-Btn {
+  @include text-formatter(sans-serif, 16px, 900 ,32px);
+  @include Button(120px,50px, 0px, 0px);
+  display: inline-block;
+  color: #fff;
+  background-color: var(--Main-Blue);
+  border-radius: 5px;
+  will-change: color;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: var(--Background-Dark);
+  }
+}
+
+#Filter_Btn {
+  @include text-formatter(sans-serif, 16px, 900 ,32px);
+  @include Button(120px, 50px, 0px, 0px);
+  display: inline-block;
+  color: #fff;
+  background-color: var(--Background-Dark);
+  border-radius: 5px;
+  will-change: color;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  margin-top: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--Main-Blue);
+  }
+}
+
+.Payment_Button {
+  @include text-formatter(sans-serif, 13px, 500 ,32px);
+  @include Button(313px, 44px, 14px, 20px);
+  margin-right: 10px;
+  display: inline-block;
+  background-color: var(--Background-Dark);
+  border-radius: 5px;
+  color: white;
+  will-change: color;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  transition: 0.3s ease;
+  opacity: 0;
+  width: 48%;
+
+  @include for-size(tablet) {
+      @include text-formatter(sans-serif, 20px, 800, 120%);
+  }
+  
+  
+  &:hover {
+    background-color: var(--Main-Blue);
+  }
+}
