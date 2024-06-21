@@ -282,7 +282,7 @@
 
                                     <!-- 1 - New Products -->
 
-                                    <div class="Owl_Stage Active-Stage">
+                                    <div style="width: 1170px;" class="Owl_Stage Active-Stage">
 
                                         @foreach(var product in Model)
                                         {
@@ -308,7 +308,8 @@
                                                                 <button class="Add-To-Cart"
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
-                                                                        data-product-price="@product.Price">
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
                                                             </div>
@@ -4355,16 +4356,18 @@
 
                     AddToCart_Btns.forEach(AddToCart_Btn => {
                         AddToCart_Btn.addEventListener("click", (e) => {
-                            e.stopPropagation(); // Prevents the click event from bubbling up the DOM tree
+                            e.stopPropagation(); 
 
-                            // Get product information from data attributes
                             const product = {
                                 id: AddToCart_Btn.getAttribute('data-product-id'),
                                 name: AddToCart_Btn.getAttribute('data-product-name'),
-                                price: AddToCart_Btn.getAttribute('data-product-price')
+                                price: AddToCart_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToCart_Btn.getAttribute('data-product-image')
                             };
 
-                            // Call the addToCart function
+
+                            console.log(product); // Log product to check imageUrl
+
                             addToCart(product);
                         });
                     });
@@ -4385,9 +4388,8 @@
                     stopOnFocus: true,
                 }).showToast();
 
-                // Include the image URL in the product object
-                //product.imageUrl = getProductImageUrl(product.id); // Replace getProductImageUrl with the function to retrieve the image URL
                 cart.push(product);
+
             } else {
                 Toastify({
                     text: `Product ${product.name} is already in Cart`,
@@ -4399,14 +4401,24 @@
                 }).showToast();
             }
 
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                product.quantity = 1;
+                cart.push(product);
+            }
+
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            updateItemCount(cart.length);
+            updateItemCount(cart.reduce((total, item) => total + item.quantity, 0));
         }
 
         function updateItemCount(count) {
             const itemCountElement = document.getElementById('ItemCount');
             itemCountElement.innerHTML = `<p>${count}</p>`;
+            localStorage.setItem('itemCount', count);
         }
 
     </script>
