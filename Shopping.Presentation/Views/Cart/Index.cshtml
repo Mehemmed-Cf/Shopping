@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!-- internal -->
-    <script defer src="../../common/functions/navigation.js"></script>
-    <script defer src="../../common/functions/index.js"></script>
+@*     <script defer src="../../common/functions/navigation.js"></script>
+    <script defer src="../../common/functions/index.js"></script> *@
 
 </head>
 <body>
@@ -80,7 +80,29 @@
                                     </table>
                                 </div>
 
-                                <div class="Row"></div>
+                                <div class="Row">
+                                    <div class="Col">
+                                        <div class="Cart-Totals">
+                                            <h2>Cart Totals</h2>
+                                            <br />
+                                            <table>
+                                                <tbody>
+                                                    <tr id="total">
+                                                        <th>Total</th>
+                                                        <td>
+                                                            <span id="amount">
+                                                                <span id="money"></span>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="Proceed-To-Checkout">
+                                                <button class="Checkout-Btn"> Proceed To Checkout </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -96,9 +118,12 @@
 
             const tbody = document.querySelector('tbody');
 
+            updateTotalAmount(cartItems);
+
             if (cartItems.length > 0) {
                 cartItems.forEach(item => {
                     const row = document.createElement('tr');
+                    row.style.height = "auto";
 
                     const imageCell = document.createElement('td');
                     const productCell = document.createElement('td');
@@ -108,9 +133,10 @@
                     const removeCell = document.createElement('td');
 
                     imageCell.innerHTML = `<img style="width: 100px;" src="${item.imageUrl}" />`;
-                    //imageCell.innerHTML = '<img src="https://localhost:7297/uploads/images/625028ef-587c-46ab-bc0b-7910d8c60aff.webp" />'
                     productCell.textContent = item.name;
                     priceCell.textContent = `$${item.price}`;
+
+                    //#region Quantity html
 
                     const quantityInput = document.createElement('input');
                     quantityInput.type = 'number';
@@ -137,12 +163,15 @@
                     quantityWrapper.appendChild(quantityInput);
                     quantityWrapper.appendChild(incBtn);
 
-                    quantityCell.appendChild(quantityWrapper);  
+                    quantityCell.appendChild(quantityWrapper);
+
+                    //#endregion
 
                     totalCell.textContent = `$${item.price * item.quantity}`;
                     removeCell.innerHTML = `<a href="#" class="remove-item">Remove</a>`;
 
-                    removeCell.querySelector('.remove-item').addEventListener('click', () => {
+                    removeCell.querySelector('.remove-item').addEventListener('click', (e) => {
+                        e.preventDefault();
                         const index = cartItems.findIndex(cartItem => cartItem.id === item.id);
 
                         if (index !== -1) {
@@ -152,7 +181,9 @@
 
                             row.remove();
 
-                            updateTotalCount();
+                            updateItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
+                            updateTotalAmount(cartItems);
+                            //updateTotalCount();
                         }
                     });
 
@@ -163,8 +194,11 @@
                     row.appendChild(totalCell);
                     row.appendChild(removeCell);
 
+                    //#region Quantity script
+
                     incBtn.addEventListener('click', () => {
                         quantityInput.value = parseInt(quantityInput.value) + 1;
+
                         updateTotal();
                         updateQuantity(item.id, parseInt(quantityInput.value));
                     });
@@ -172,23 +206,39 @@
                     decBtn.addEventListener('click', () => {
                         const newValue = Math.max(parseInt(quantityInput.value) - 1, 1);
                         quantityInput.value = newValue;
-                        updateTotal();
 
+                        updateTotal();
                         updateQuantity(item.id, newValue);
                     });
 
-                    quantityInput.addEventListener('input', () => {
+                    // quantityInput.addEventListener('input', () => {
+                    //     updateTotal();
+                    //     updateQuantity(item.id, parseInt(quantityInput.value));
+                    //     updateTotalAmount(cartItems);
+                    // });
+
+                    quantityInput.addEventListener('input', updateQuantityHandler);
+                    quantityInput.addEventListener('change', updateTotalAmountHandler);
+
+                    function updateQuantityHandler() {
                         updateTotal();
-                    });
+                        updateQuantity(item.id, parseInt(quantityInput.value));
+                    }
+
+                    function updateTotalAmountHandler() {
+                        updateTotalAmount(cartItems);
+                    }
+
+                    //#endregion
 
                     function updateTotal() {
                         const quantity = parseInt(quantityInput.value) || 0;
                         totalCell.textContent = `$${item.price * quantity}`;
-                        updateQuantity(item.id, quantity);
                     }
 
                     tbody.appendChild(row);
                 });
+
             } else {
                 const emptyMessage = document.createElement('h1');
                 emptyMessage.textContent = "Your Cart Is Currently Empty";
@@ -198,20 +248,8 @@
             updateItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
         });
 
-        // function updateQuantity(productId, quantity) {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const product = cart.find(item => item.id === productId);
-
-        //     if (product) {
-        //         product.quantity = quantity;
-        //     }
-
-        //     localStorage.setItem('cart', JSON.stringify(cart));
-        //     updateItemCount(cart.reduce((total, item) => total + item.quantity, 0));
-        // }
-
         function updateQuantity(productId, newQuantity) {
-            const cartItems = JSON.parse(localStorage.getItem('cart'));
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
             const updatedItems = cartItems.map(item => {
                 if (item.id === productId) {
@@ -222,14 +260,41 @@
             });
 
             localStorage.setItem('cart', JSON.stringify(updatedItems));
-            updateItemCount(cart.reduce((total, item) => total + item.quantity, 0));
+            updateItemCount(updatedItems.reduce((total, item) => total + item.quantity, 0)); // Use updatedItems instead of cart
+            updateTotalAmount(updatedItems); // Call updateTotalAmount with updatedItems
+
         }
 
         function updateItemCount(count) {
             const itemCountElement = document.getElementById('ItemCount');
-            itemCountElement.innerHTML = `<p>${count}</p>`;
+            if (itemCountElement) {
+                itemCountElement.textContent = count;
+            }
+
             localStorage.setItem('itemCount', count);
         }
+
+        function getCartItemCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            return cart.reduce((total, item) => total + item.quantity, 0);
+        }
+
+        function updateTotalAmount(cartItems) {
+            console.log("Updating total amount...");
+            let totalAmount = 0;
+
+            if (cartItems.length > 0) {
+                cartItems.forEach(item => {
+                    totalAmount += item.price * item.quantity;
+                });
+            }
+
+            const totalAmountElement = document.getElementById('money');
+            if (totalAmountElement) {
+                totalAmountElement.textContent = `$${totalAmount.toFixed(2)}`; //to .00 's
+            }
+        }
+
     </script>
 
 </body>

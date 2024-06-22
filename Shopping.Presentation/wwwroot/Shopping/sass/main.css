@@ -633,7 +633,7 @@ body {
     width: 100vw;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 762px) {
   .Footer .FooterRow {
     grid-template-columns: repeat(4, 1fr);
     width: auto;
@@ -1183,6 +1183,36 @@ button {
 }
 .Payment_Button:hover {
   background-color: var(--Main-Blue);
+}
+
+.Checkout-Btn {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 50px;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  width: 230px;
+  height: 50px;
+  padding: 14px;
+  background-color: 20px;
+  gap: normal;
+  border-radius: 20px;
+  border: none;
+  transition: 0.3s;
+  margin-top: 20px;
+  padding: 0 30px;
+  text-transform: none;
+  display: inline-block;
+  color: white;
+  transform: all 0.5s ease-in-out;
+  background-color: var(--Main-Blue);
+  border-radius: 0px;
+}
+.Checkout-Btn:hover {
+  background-color: var(--Background-Dark);
+  color: var(--Main-Blue);
 }
 
 .Search {
@@ -6433,6 +6463,9 @@ main .Cart_Section .Cart_Main_Area {
   padding-top: 0px;
   padding-bottom: 50px;
 }
+main .Cart_Section .Cart_Main_Area .container {
+  width: 100%;
+}
 main .Cart_Section .Cart_Main_Area .container form {
   margin-bottom: 0;
 }
@@ -6448,9 +6481,12 @@ main .Cart_Section .Cart_Main_Area .container form h2 {
   padding-bottom: 0;
   text-transform: capitalize;
 }
+main .Cart_Section .Cart_Main_Area .container form .Row {
+  height: auto;
+}
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content {
   margin-bottom: 50px;
-  min-height: 0.01%;
+  min-height: 150px;
   overflow-x: auto;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table {
@@ -6477,6 +6513,9 @@ main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content tabl
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody {
   height: auto;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr {
+  display: table-row;
 }
 main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content table tbody tr td {
   text-align: center;
@@ -6564,6 +6603,74 @@ main .Cart_Section .Cart_Main_Area .container form .Row .Col .Table-Content tabl
   width: 40px;
   height: 40px;
 }
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) {
+  width: 100%;
+  float: left;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals {
+  float: left;
+  text-align: right;
+  width: 100%;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals h2 {
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 120%;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  border-bottom: 2px solid #222;
+  display: inline-block;
+  margin: 0 0 35px;
+  text-transform: uppercase;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals table {
+  width: 100%;
+  border: medium none;
+  float: right;
+  text-align: right;
+  margin: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: transparent;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals table tbody tr th {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 120%;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  padding: 0 20px 12px 0;
+  text-align: right;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals table tbody tr td {
+  border: medium none;
+  padding: 0 0 12px;
+  vertical-align: top;
+  text-align: right;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals table tbody tr td #amount {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 120%;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  color: var(--Main-Blue);
+  padding: 5px 0;
+  margin-top: 8px;
+  margin-left: 5px;
+  text-align: right;
+}
+main .Cart_Section .Cart_Main_Area .container form .Row .Col:nth-child(2) .Cart-Totals .Proceed-To-Checkout {
+  display: block;
+}
 
 * {
   box-sizing: border-box;
@@ -6618,6 +6725,9 @@ main {
 main .Wishlist-Section .Wishlist-Area {
   padding-bottom: 50px;
   overflow: hidden;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row {
+  width: 25%;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product {
   position: relative;

@@ -7,29 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\base\_reset.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\components\_buttons.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\components\_inputs.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\layout\_footer.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\layout\_navigation.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\About\_About.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Blog\_Blog.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Cart\_Cart.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Contact\_Contact.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Home\_Home.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Login\_Login.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Not-Found\_Not-Found.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Product-Details\Product-Details.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Shop\_Shop.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Swipper\swipper.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\pages\Wishlist\_Wishlist.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\utils\_animations.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\utils\_container.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\utils\_mixins.scss" />
-    <_ContentIncludedByDefault Remove="wwwroot\Shopping\sass\utils\_variable.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="AppCode\Pipeline\" />
     <Folder Include="wwwroot\Shopping\Js\Not-Found\" />
   </ItemGroup>

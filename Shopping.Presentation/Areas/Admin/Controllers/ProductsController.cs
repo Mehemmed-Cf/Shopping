@@ -47,9 +47,15 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
-        public async Task<IActionResult> Index(ProductGetAllRequest request)
+        public async Task<IActionResult> Index(ProductGetAllRequest request) //, bool IsJson = false
         {
             var response = await mediator.Send(request);
+/*
+            if (IsJson == true)
+            {
+                return Json(response);
+            }*/
+
             return Json(response);
         }
 
