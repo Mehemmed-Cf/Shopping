@@ -14,6 +14,7 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery
         public int StockCount { get; set; }
         public string ImageUrl { get; set; }
         public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
         public string MaterialName { get; set; }
         public string SizeName { get; set; }
         public string SizeSmallName { get; set; }

@@ -60,6 +60,7 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery
                 Price = m.Price,
                 StockCount = m.StockCount,
                 CategoryName = categorySet.ContainsKey(m.CategoryId) ? categorySet[m.CategoryId].Name : null,
+                CategoryId = m.CategoryId,
                 BrandName = brandSet.ContainsKey(m.BrandId) ? brandSet[m.BrandId].Name : null,
                 ColorName = colorSet.ContainsKey(m.ColorId) ? colorSet[m.ColorId].Name : null,
                 HexCode = colorSet.ContainsKey(m.ColorId) ? colorSet[m.ColorId].HexCode : null,

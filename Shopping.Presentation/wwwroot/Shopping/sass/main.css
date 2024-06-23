@@ -605,7 +605,6 @@ body {
 .Footer {
   width: 100vw;
   background-color: var(--Background-Dark);
-  margin-top: 0px;
   color: white;
   margin: auto;
 }
@@ -635,7 +634,7 @@ body {
 }
 @media (max-width: 762px) {
   .Footer .FooterRow {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     width: auto;
   }
 }
@@ -1708,7 +1707,7 @@ button {
 }
 @media (max-width: 991px) {
   .Main .Section_2 {
-    margin-bottom: 300px;
+    margin-bottom: 350px;
   }
 }
 @media (max-width: 762px) {
@@ -1836,6 +1835,77 @@ button {
 .Main .Section_2 .container .Row .Third-Col a img:hover {
   transform: scale(1.02);
 }
+.Main .Section_Swip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: normal;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  margin: auto;
+}
+@media (max-width: 991px) {
+  .Main .Section_Swip {
+    padding-top: 80px;
+    transform: scale(1);
+    margin-left: 100px;
+  }
+}
+@media (max-width: 762px) {
+  .Main .Section_Swip {
+    padding-top: 0px;
+    margin-top: -30px;
+    transform: scale(0.9);
+    margin-left: -50px;
+  }
+}
+.Main .Section_Swip .container .Header-Row {
+  margin-right: -15px;
+  margin-left: -15px;
+  width: 100%;
+  position: relative;
+}
+.Main .Section_Swip .container .Header-Row .Product-List {
+  display: flex;
+  border-bottom: 1px solid #ebebeb;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 40px;
+  padding: 25px 0 20px;
+  list-style: none;
+  flex-direction: row;
+}
+@media (max-width: 762px) {
+  .Main .Section_Swip .container .Header-Row .Product-List {
+    flex-direction: column;
+  }
+}
+.Main .Section_Swip .container .Header-Row .Product-List li {
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 120%;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  padding-right: 40px;
+  position: relative;
+  text-transform: uppercase;
+  will-change: color;
+  white-space: nowrap;
+  transition: 0.5s;
+}
+.Main .Section_Swip .container .Header-Row .Product-List li a {
+  color: #aaa;
+}
+.Main .Section_Swip .container .Header-Row .Product-List .Active-List {
+  transition: color 0.5s ease-in-out;
+}
+.Main .Section_Swip .container .Header-Row .Product-List .Active-List a {
+  color: #363f4d !important;
+}
 .Main .Section_3 {
   display: flex;
   justify-content: center;
@@ -1883,7 +1953,12 @@ button {
   margin-bottom: 40px;
   padding: 25px 0 20px;
   list-style: none;
-  flex-direction: column;
+  flex-direction: row;
+}
+@media (max-width: 762px) {
+  .Main .Section_3 .container .Pro-Content .Header-Row .Product-List {
+    flex-direction: column;
+  }
 }
 .Main .Section_3 .container .Pro-Content .Header-Row .Product-List li {
   cursor: pointer;
@@ -4399,193 +4474,6 @@ button {
 .Main .Section_10 .Newsletter .container .Row .Column-2 .Newsletter-Box .Subscribe-Form .Mc-Form .False {
   color: rgb(255, 0, 0) !important;
 }
-.Main .Section_Swip {
-  display: none !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  padding-top: 30px;
-  padding-bottom: 0px;
-  width: 1170px;
-  margin: auto;
-  margin-top: 100px;
-}
-.Main .Section_Swip .container {
-  width: 1170px;
-  display: flex;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content {
-  display: block;
-  height: auto;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper {
-  width: 100%;
-  height: 500px;
-  z-index: 9;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  will-change: transform;
-  transition: all 0.5s ease-in-out;
-  font-size: 60px;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item {
-  display: flex;
-  width: 227.6px;
-  border-right: 1px solid hsl(0, 0%, 93%);
-  padding: 16px 15px;
-  float: left;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  height: 289px;
-  position: relative;
-  background: #fff;
-  transition: all 0.5s ease-in-out;
-  flex-direction: column;
-  cursor: pointer;
-  will-change: transform;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Img img {
-  width: 200px;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content {
-  transition: all 0.3s ease-in-out;
-  z-index: 19;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content .ComeFromBottomAnimation {
-  animation-name: ComeFromBottom;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #popup_cart_title {
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-  color: var(--Background-Dark);
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-rating {
-  display: flex;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p {
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-  padding-left: 30px;
-  gap: 5px;
-  color: var(--Font-Color);
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p #price {
-  font-family: sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p #prev_price {
-  color: #a4a4a4;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions {
-  display: flex;
-  flex-wrap: nowrap;
-  transition: 0.3s ease-in-out;
-  position: absolute;
-  width: 100%;
-  z-index: 25;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Primary-Actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  bottom: 1px;
-  z-index: 30;
-  left: -10px;
-  position: absolute;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Appear {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  visibility: hidden;
-  bottom: 1px;
-  right: -20px;
-  position: absolute;
-  z-index: 30;
-  gap: 7px;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  background-color: var(--Background-Dark);
-  height: 32px;
-  width: 30px;
-  border-radius: 5px;
-  will-change: color;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist:hover {
-  background-color: var(--Main-Blue);
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist img {
-  width: 15px;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  background-color: var(--Background-Dark);
-  height: 32px;
-  width: 30px;
-  border-radius: 5px;
-  will-change: color;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview:hover {
-  background-color: var(--Main-Blue);
-}
-.Main .Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview img {
-  width: 15px;
-}
 
 .Login-Section {
   display: block;
@@ -6726,9 +6614,6 @@ main .Wishlist-Section .Wishlist-Area {
   padding-bottom: 50px;
   overflow: hidden;
 }
-main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row {
-  width: 25%;
-}
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product {
   position: relative;
   background: #fff;
@@ -6747,7 +6632,7 @@ main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-P
   text-decoration: none;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img a img {
-  width: 100%;
+  width: 25%;
   vertical-align: middle;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Content {
