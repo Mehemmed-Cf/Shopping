@@ -1,77 +1,74 @@
 
 
-EmailValidation();
 
-function EmailValidation() {
-  const EMAIL_REGEX =
-    /[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/i;
 
-    const emailInput = document.querySelector("#Email-Subscribe");
-    const errorMessage = document.querySelector("#subscribe-error-message");
-    const Submit_Btn = document.querySelector("#submit-subscription");
-    // const Submit_Form = document.querySelector(".Subscribe-Form");
+//#region Single-Products
 
-    emailInput.addEventListener("keyup", () => {
-      const email = emailInput.value.trim();
+const Single_Products = document.querySelectorAll(".Single-Product");
 
-      if (email === "") {
-        errorMessage.classList.remove("True");
-        errorMessage.classList.add("False");
-        errorMessage.textContent = `You have an invisible email? That's cool`;
-        return;
-      }
+Single_Products.forEach(item => {
+    const AddToCart_Btn = item.querySelector(".Add-To-Cart");
+    const add_to_wishlist = item.querySelector("#add-to-wishlist");
+    const quickview = item.querySelector("#quickview");
+    const Product_Content = item.querySelector(".Product-Content");
+    const Price = item.querySelector("p");
+    let IsClicked = false;
 
-      if (!EMAIL_REGEX.test(email)) {
-        errorMessage.classList.remove("True");
-        errorMessage.classList.add("False");
+    if (screen.width > 1000) {
 
-        if (!/@/.test(email)) {
-          errorMessage.textContent = "Email should contain an @ symbol.";
-        } else if (email.includes(" ")) {
-          errorMessage.textContent = "Email cannot contain spaces.";
-        } else if (!/[a-zA-Z]/.test(email)) {
-          errorMessage.textContent = "Email should contain letters.";
-        }
+        item.addEventListener("mouseover", () => {
+            Product_Content.style.transform = "translateY(-20px)";
 
-        errorMessage.textContent = "Please enter a valid email address.";
-      } else {
-        errorMessage.classList.remove("False");
-        errorMessage.classList.add("True");
-        errorMessage.textContent = "Email perfection! You must have a black belt in typing (unless you are a robot) ;)";
-      }
+            Price.style.opacity = 0;
+
+            AddToCart_Btn.classList.add("Appear");
+            add_to_wishlist.classList.add("Appear");
+            quickview.classList.add("Appear");
+        });
+
+        item.addEventListener("mouseout", () => {
+            Product_Content.style.transform = "translateY(0px)"
+            Price.style.opacity = 1;
+
+            AddToCart_Btn.classList.remove("Appear");
+            add_to_wishlist.classList.remove("Appear");
+            quickview.classList.remove("Appear");
+        });
+
+    } else if (screen.width <= 991) {
+
+        item.addEventListener("click", () => {
+            IsClicked = !IsClicked;
+
+            AddToCart_Btn.classList.add("Appear");
+            add_to_wishlist.classList.add("Appear");
+            quickview.classList.add("Appear");
+        });
+
+        item.addEventListener("mouseout", () => {
+            AddToCart_Btn.classList.remove("Appear");
+            add_to_wishlist.classList.remove("Appear");
+            quickview.classList.remove("Appear");
+        });
+
+    } else if (screen.width <= 762)
+
+        item.addEventListener("mouseover", () => {
+            AddToCart_Btn.classList.add("Appear");
+            add_to_wishlist.classList.add("Appear");
+            quickview.classList.add("Appear");
+
+            Price.style.opacity = 1;
+        });
+
+    item.addEventListener("mouseout", () => {
+        AddToCart_Btn.classList.remove("Appear");
+        add_to_wishlist.classList.remove("Appear");
+        quickview.classList.remove("Appear");
     });
 
-    Submit_Btn.addEventListener("click", () => {
-      if (errorMessage.classList.contains("True")) {
-        Toastify({
-          text: "We will sell your info to China ;)",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          style: {
-            background: "green",
-          },
-        }).showToast();
-      } else {
-        Toastify({
-          text: "Wrong Email Format ;(",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          style: {
-            background: "red",
-          },
-        }).showToast();
-      }
-    });
+});
 
-    document.addEventListener("click", (e) => {
-      e.stopPropagation();
+//#endregion
 
-      errorMessage.textContent = "";
-    });
-}
+

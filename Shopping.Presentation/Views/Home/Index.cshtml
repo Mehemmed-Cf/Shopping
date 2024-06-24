@@ -17,24 +17,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
-    <!-- Google -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- toaster -->
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- internal -->
-    @* <script defer src="~/Shopping/common/functions/navigation.js"></script> *@
-    <script defer src="~/Shopping/common/functions/index.js"></script> 
-    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
+    <script defer src="~/Shopping/Js/Home/index.js"></script>
+    <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
+
 
     <style>
         html,
@@ -48,6 +38,7 @@
             overflow: hidden;
             height: 110%;
             margin-bottom: 150px;
+            width: 1170px;
         }
 
         @@media (max-width: 991px) {
@@ -55,6 +46,12 @@
                 width: 750px;
             }
         }
+
+/*         @@media (max-width: 762px) {
+            .Owl_Outer {
+                width: 550px;
+            }
+        } */
 
         .Owl_Stage {
             display: none;
@@ -65,6 +62,7 @@
             transition: all 0.5s ease-in-out;
             will-change: transform;
             height: 70%;
+            width: 100%;
         }
 
         .Active-Stage {
@@ -599,7 +597,7 @@
                                                                 <span id="money">$@product.Price</span>
                                                             </span>
                                                         </p>
-                                                        <div id="product-actions">
+                                                        <div style="witdh: 85%;" id="product-actions">
                                                             <div class="Primary-Actions">
                                                                 <button class="Add-To-Cart"
                                                                         data-product-id="@product.Id"
@@ -610,7 +608,12 @@
                                                                 </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
-                                                                <a id="add-to-wishlist">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl"
+                                                                    >
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview">
@@ -2764,70 +2767,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             //#region Single-Products
 
-            const Single_Products = document.querySelectorAll(".Single-Product");
 
-            Single_Products.forEach(item => {
-                const AddToCart_Btn = item.querySelector(".Add-To-Cart");
-                const add_to_wishlist = item.querySelector("#add-to-wishlist");
-                const quickview = item.querySelector("#quickview");
-                const Product_Content = item.querySelector(".Product-Content");
-                const Price = item.querySelector("p");
-                let IsClicked = false;
-
-                if (screen.width > 1000) {
-
-                    item.addEventListener("mouseover", () => {
-                        Product_Content.style.transform = "translateY(-20px)";
-
-                        Price.style.opacity = 0;
-
-                        AddToCart_Btn.classList.add("Appear");
-                        add_to_wishlist.classList.add("Appear");
-                        quickview.classList.add("Appear");
-                    });
-
-                    item.addEventListener("mouseout", () => {
-                        Product_Content.style.transform = "translateY(0px)"
-                        Price.style.opacity = 1;
-
-                        AddToCart_Btn.classList.remove("Appear");
-                        add_to_wishlist.classList.remove("Appear");
-                        quickview.classList.remove("Appear");
-                    });
-
-                } else if (screen.width <= 991) {
-
-                    item.addEventListener("click", () => {
-                        IsClicked = !IsClicked;
-
-                        AddToCart_Btn.classList.add("Appear");
-                        add_to_wishlist.classList.add("Appear");
-                        quickview.classList.add("Appear");
-                    });
-
-                    item.addEventListener("mouseout", () => {
-                        AddToCart_Btn.classList.remove("Appear");
-                        add_to_wishlist.classList.remove("Appear");
-                        quickview.classList.remove("Appear");
-                    });
-
-                } else if (screen.width <= 762)
-
-                    item.addEventListener("mouseover", () => {
-                        AddToCart_Btn.classList.add("Appear");
-                        add_to_wishlist.classList.add("Appear");
-                        quickview.classList.add("Appear");
-
-                        Price.style.opacity = 1;
-                    });
-
-                item.addEventListener("mouseout", () => {
-                    AddToCart_Btn.classList.remove("Appear");
-                    add_to_wishlist.classList.remove("Appear");
-                    quickview.classList.remove("Appear");
-                });
-
-            });
 
             //#endregion
 
@@ -2941,6 +2881,7 @@
                 .then(response => response.json())
                 .then(products => {
                     const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
+                    const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
 
                     AddToCart_Btns.forEach(AddToCart_Btn => {
                         AddToCart_Btn.addEventListener("click", (e) => {
@@ -2956,7 +2897,6 @@
                             };
 
                             if (!product || product.id === null) {
-                                // Notify the user or handle the case of invalid product ID
                                 Toastify({
                                     text: 'Invalid product or missing ID. Please try again.',
                                     duration: 3000,
@@ -2965,10 +2905,52 @@
                                     backgroundColor: 'red',
                                     stopOnFocus: true,
                                 }).showToast();
-                                return; // Exit the function early
+                                return;
                             }
 
                             addToCart(product);
+                        });
+                    });
+
+                    AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+                        AddToWishlist_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+
+                            const wishIcon = AddToWishlist_Btn.querySelector('img');
+                            const currentSrc = wishIcon.getAttribute('src');
+
+                            const baseUrl = window.location.origin;
+
+                            const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                            const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+
+                            const originalFullUrl = baseUrl + originalImagePath;
+                            const newFullUrl = baseUrl + newImagePath;
+
+                            const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
+
+                            wishIcon.setAttribute('src', newSrc);
+
+                            const product = {
+                                id: AddToWishlist_Btn.getAttribute('data-product-id'),
+                                name: AddToWishlist_Btn.getAttribute('data-product-name'),
+                                price: AddToWishlist_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
+                            };
+
+                            if (!product || product.id === null) {
+                                Toastify({
+                                    text: 'Invalid product or missing ID. Please try again.',
+                                    duration: 3000,
+                                    gravity: 'top',
+                                    position: 'right',
+                                    backgroundColor: 'red',
+                                    stopOnFocus: true,
+                                }).showToast();
+                                return; 
+                            }
+
+                            addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
                         });
                     });
 
@@ -3007,6 +2989,40 @@
             localStorage.setItem('cart', JSON.stringify(cart));
 
             updateItemCount(getCartItemCount());
+        }
+
+        function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                Toastify({
+                    text: `Product ${product.name} removed from your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "orange",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist = wishlist.filter(item => item.id !== product.id);
+                wishIcon.setAttribute('src', originalFullUrl);
+            } else {
+                Toastify({
+                    text: `Product ${product.name} added to your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist.push(product);
+                wishIcon.setAttribute('src', newFullUrl);
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
         }
 
         function updateItemCount(count) {

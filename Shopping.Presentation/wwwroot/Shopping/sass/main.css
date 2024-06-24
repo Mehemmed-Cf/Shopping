@@ -845,31 +845,32 @@ button {
 }
 
 .BackToHome {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  width: 40px;
-  height: 0px 30px;
-  padding: 0px;
-  background-color: var(--Main-Blue);
-  gap: normal;
-  border-radius: 20px;
-  border: none;
-  transition: 0.3s;
-  background-color: var(--Main-Blue);
-  color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    width: 185px;
+    height: 40px;
+    padding: 0px 30px;
+    background-color: var(--Main-Blue);
+    gap: normal;
+    border-radius: 35px;
+    border: none;
+    transition: 0.3s;
+    background-color: var(--Main-Blue);
+    color: white;
 }
 .BackToHome p {
-  color: var(--White);
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
+    color: var(--White);
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 120%;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
 }
 .BackToHome:hover {
   transform: scale(0.95);
@@ -1928,7 +1929,7 @@ button {
     padding-bottom: 200px;
   }
 }
-.Main .Section_3 .container .Pro-Content {
+.Main .Section_3 .container .Product-Content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1939,13 +1940,13 @@ button {
   border: 1px solid #ebebeb;
   width: 100%;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row {
+.Main .Section_3 .container .Product-Content .Header-Row {
   margin-right: -15px;
   margin-left: -15px;
   width: 100%;
   position: relative;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Product-List {
+.Main .Section_3 .container .Product-Content .Header-Row .Product-List {
   display: flex;
   border-bottom: 1px solid #ebebeb;
   margin-left: 15px;
@@ -1956,11 +1957,11 @@ button {
   flex-direction: row;
 }
 @media (max-width: 762px) {
-  .Main .Section_3 .container .Pro-Content .Header-Row .Product-List {
+  .Main .Section_3 .container .Product-Content .Header-Row .Product-List {
     flex-direction: column;
   }
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Product-List li {
+.Main .Section_3 .container .Product-Content .Header-Row .Product-List li {
   cursor: pointer;
   display: inline-block;
   font-family: sans-serif;
@@ -1977,16 +1978,16 @@ button {
   white-space: nowrap;
   transition: 0.5s;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Product-List li a {
+.Main .Section_3 .container .Product-Content .Header-Row .Product-List li a {
   color: #aaa;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Product-List .Active-List {
+.Main .Section_3 .container .Product-Content .Header-Row .Product-List .Active-List {
   transition: color 0.5s ease-in-out;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Product-List .Active-List a {
+.Main .Section_3 .container .Product-Content .Header-Row .Product-List .Active-List a {
   color: #363f4d !important;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1996,20 +1997,20 @@ button {
   transform: translate(500px, -80px);
 }
 @media (max-width: 991px) {
-  .Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav {
+  .Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav {
     position: absolute;
     left: 20%;
     bottom: -15%;
   }
 }
 @media (max-width: 762px) {
-  .Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav {
+  .Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav {
     position: absolute;
     left: -40%;
     bottom: 20%;
   }
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev {
   background: #f1f1f1;
   border: 1px solid #ebebeb;
   color: #c2c4c3;
@@ -2022,13 +2023,13 @@ button {
   transition: 0.3s;
   will-change: color;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev img {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev img {
   width: 9px;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev:hover {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev:hover {
   background-color: var(--Main-Blue);
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next {
   background: #f1f1f1;
   border: 1px solid #ebebeb;
   color: #c2c4c3;
@@ -2041,10 +2042,10 @@ button {
   transition: 0.3s;
   will-change: color;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next img {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next img {
   width: 9px;
 }
-.Main .Section_3 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next:hover {
+.Main .Section_3 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next:hover {
   background-color: var(--Main-Blue);
 }
 .Main .Section_3 .container .Tab-Content .Section-Content {
@@ -3238,7 +3239,7 @@ button {
     transform: scale(1);
   }
 }
-.Main .Section_6 .container .Pro-Content {
+.Main .Section_6 .container .Product-Content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3251,25 +3252,25 @@ button {
   flex-direction: column;
 }
 @media (max-width: 762px) {
-  .Main .Section_6 .container .Pro-Content {
+  .Main .Section_6 .container .Product-Content {
     width: 60%;
     margin: auto;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row {
+.Main .Section_6 .container .Product-Content .Header-Row {
   margin-right: -15px;
   margin-left: -15px;
   width: 100%;
   position: relative;
 }
 @media (max-width: 762px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row {
+  .Main .Section_6 .container .Product-Content .Header-Row {
     height: auto;
     display: flex;
     flex-direction: column;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3283,18 +3284,18 @@ button {
   position: relative;
 }
 @media (max-width: 991px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List {
     padding-left: 150px;
   }
 }
 @media (max-width: 762px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List {
     width: auto;
     margin: 0;
     flex-direction: column;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List h2 {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List h2 {
   font-family: sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -3307,7 +3308,7 @@ button {
   left: 30px;
 }
 @media (max-width: 991px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List h2 {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List h2 {
     font-family: sans-serif;
     font-size: 13px;
     font-weight: 600;
@@ -3318,7 +3319,7 @@ button {
   }
 }
 @media (max-width: 762px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List h2 {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List h2 {
     position: initial;
     font-family: sans-serif;
     font-size: 16px;
@@ -3331,7 +3332,7 @@ button {
     margin-right: 270px;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List li {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List li {
   cursor: pointer;
   display: inline-block;
   font-family: sans-serif;
@@ -3349,7 +3350,7 @@ button {
   transition: 0.5s;
 }
 @media (max-width: 991px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List li {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List li {
     font-family: sans-serif;
     font-size: 13px;
     font-weight: 600;
@@ -3360,7 +3361,7 @@ button {
   }
 }
 @media (max-width: 762px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Product-List li {
+  .Main .Section_6 .container .Product-Content .Header-Row .Product-List li {
     font-family: sans-serif;
     font-size: 15px;
     font-weight: 600;
@@ -3371,16 +3372,16 @@ button {
     margin-right: 220px;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List li a {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List li a {
   color: #aaa;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List .Active-List {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List .Active-List {
   transition: color 0.5s ease-in-out;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Product-List .Active-List a {
+.Main .Section_6 .container .Product-Content .Header-Row .Product-List .Active-List a {
   color: #363f4d !important;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3392,11 +3393,11 @@ button {
   top: 20px;
 }
 @media (max-width: 991px) {
-  .Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav {
+  .Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav {
     right: 20px;
   }
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev_4 {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev_4 {
   background: #f1f1f1;
   border: 1px solid #ebebeb;
   color: #c2c4c3;
@@ -3409,13 +3410,13 @@ button {
   transition: 0.3s;
   will-change: color;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev_4 img {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev_4 img {
   width: 9px !important;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Prev_4:hover {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Prev_4:hover {
   background-color: var(--Main-Blue);
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next_4 {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next_4 {
   background: #f1f1f1;
   border: 1px solid #ebebeb;
   color: #c2c4c3;
@@ -3428,10 +3429,10 @@ button {
   transition: 0.3s;
   will-change: color;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next_4 img {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next_4 img {
   width: 9px;
 }
-.Main .Section_6 .container .Pro-Content .Header-Row .Owl-Nav .Owl-Next_4:hover {
+.Main .Section_6 .container .Product-Content .Header-Row .Owl-Nav .Owl-Next_4:hover {
   background-color: var(--Main-Blue);
 }
 .Main .Section_6 .container .Tab-Content .Section-Content {
@@ -4584,6 +4585,7 @@ button {
   display: grid;
   place-items: center;
   gap: 15px;
+  margin: 100px;
 }
 .Not-Found .Not-Found-Title {
   display: grid;
@@ -5456,12 +5458,12 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
 main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Img a img {
   max-width: 100%;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content {
   transition: all 0.3s ease 0s;
   position: relative;
   z-index: 66;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content h4 {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content h4 {
   color: var(--Background);
   text-wrap: nowrap;
   font-family: sans-serif;
@@ -5472,17 +5474,17 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   letter-spacing: normal;
   text-transform: capitalize;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product_rating {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product_rating {
   display: flex;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content p {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content p {
   display: flex;
   flex-direction: column;
   padding-top: 40px;
   gap: 5px;
   color: var(--Font-Color);
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content p #price {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content p #price {
   font-family: sans-serif;
   font-size: 21px;
   font-weight: 700;
@@ -5491,7 +5493,7 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   letter-spacing: normal;
   text-transform: capitalize;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content p #prev_price {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content p #prev_price {
   color: #a4a4a4;
   font-family: sans-serif;
   font-size: 14px;
@@ -5501,7 +5503,7 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   letter-spacing: normal;
   text-transform: capitalize;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions {
   display: flex;
   flex-wrap: nowrap;
   transition: 0.3s ease-in-out;
@@ -5509,7 +5511,7 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   width: 100%;
   z-index: 25;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Primary-Actions {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Primary-Actions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5519,12 +5521,12 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   left: -5px;
   position: absolute;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Appear {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Appear {
   opacity: 1 !important;
   visibility: visible !important;
   transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5536,7 +5538,7 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   z-index: 30;
   gap: 7px;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #add-to-wishlist {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5549,13 +5551,13 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   transition: opacity 0.3s ease;
   opacity: 0;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #add-to-wishlist:hover {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist:hover {
   background-color: var(--Main-Blue);
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #add-to-wishlist img {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist img {
   width: 15px;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #quickview {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5568,10 +5570,10 @@ main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Cate
   transition: opacity 0.3s ease;
   opacity: 0;
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #quickview:hover {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview:hover {
   background-color: var(--Main-Blue);
 }
-main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Pro-Content #product-actions .Secondary-Actions #quickview img {
+main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Tab-Content .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview img {
   width: 15px;
 }
 main .Section-Availability .Main-Shop-Page .container .Row .Col-Right .Main-Categories .Deactive-Tab {
@@ -5876,193 +5878,6 @@ main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Change-Page .Change-
 }
 main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Change-Page .Change-Item .Shop-Pagination #pagination #list-inline .Disable-Ancle {
   visibility: hidden !important;
-}
-
-.Section_Swip {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  padding-top: 30px;
-  padding-bottom: 0px;
-  width: 1170px;
-  margin: auto;
-  margin-top: 100px;
-}
-.Section_Swip .container {
-  width: 1170px;
-  display: flex;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.Section_Swip .container .Tab-Content .Section-Content {
-  display: block;
-  height: auto;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper {
-  width: 100%;
-  height: 500px;
-  z-index: 9;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  will-change: transform;
-  transition: all 0.5s ease-in-out;
-  font-size: 60px;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item {
-  display: flex;
-  width: 227.6px;
-  border-right: 1px solid hsl(0, 0%, 93%);
-  padding: 16px 15px;
-  float: left;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  height: 289px;
-  position: relative;
-  background: #fff;
-  transition: all 0.5s ease-in-out;
-  flex-direction: column;
-  cursor: pointer;
-  will-change: transform;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Img img {
-  width: 200px;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content {
-  transition: all 0.3s ease-in-out;
-  z-index: 19;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content .ComeFromBottomAnimation {
-  animation-name: ComeFromBottom;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #popup_cart_title {
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-  color: var(--Background-Dark);
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-rating {
-  display: flex;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p {
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-  padding-left: 30px;
-  gap: 5px;
-  color: var(--Font-Color);
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p #price {
-  font-family: sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content p #prev_price {
-  color: #a4a4a4;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 120%;
-  font-style: normal;
-  letter-spacing: normal;
-  text-transform: capitalize;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions {
-  display: flex;
-  flex-wrap: nowrap;
-  transition: 0.3s ease-in-out;
-  position: absolute;
-  width: 100%;
-  z-index: 25;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Primary-Actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  bottom: 1px;
-  z-index: 30;
-  left: -10px;
-  position: absolute;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Appear {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  visibility: hidden;
-  bottom: 1px;
-  right: -20px;
-  position: absolute;
-  z-index: 30;
-  gap: 7px;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  background-color: var(--Background-Dark);
-  height: 32px;
-  width: 30px;
-  border-radius: 5px;
-  will-change: color;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist:hover {
-  background-color: var(--Main-Blue);
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist img {
-  width: 15px;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: normal;
-  background-color: var(--Background-Dark);
-  height: 32px;
-  width: 30px;
-  border-radius: 5px;
-  will-change: color;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview:hover {
-  background-color: var(--Main-Blue);
-}
-.Section_Swip .container .Tab-Content .Section-Content .swiper .swiper-wrapper .swiper-slide #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview img {
-  width: 15px;
 }
 
 * {
@@ -6614,6 +6429,23 @@ main .Wishlist-Section .Wishlist-Area {
   padding-bottom: 50px;
   overflow: hidden;
 }
+main .Wishlist-Section .Wishlist-Area .container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 30px;
+  height: auto;
+}
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product {
   position: relative;
   background: #fff;
@@ -6623,7 +6455,9 @@ main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-P
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  width: 25%;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img {
   position: relative;
@@ -6632,19 +6466,169 @@ main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-P
   text-decoration: none;
 }
 main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img a img {
-  width: 25%;
+  width: 100%;
   vertical-align: middle;
 }
-main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Content {
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: 0.3s ease-in-out;
+  position: absolute;
+  width: 100%;
+  z-index: 25;
+  bottom: -80px;
+  left: 10px;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Primary-Actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: normal;
+  bottom: 1px;
+  z-index: 30;
+  left: -10px;
+  position: absolute;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: normal;
+  visibility: hidden;
+  bottom: 1px;
+  left: 120px;
+  position: absolute;
+  z-index: 30;
+  gap: 7px;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: normal;
+  background-color: var(--Background-Dark);
+  height: 32px;
+  width: 30px;
+  border-radius: 5px;
+  will-change: color;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist:hover {
+  background-color: var(--Main-Blue);
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist img {
+  width: 15px;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: normal;
+  background-color: var(--Background-Dark);
+  height: 32px;
+  width: 30px;
+  border-radius: 5px;
+  will-change: color;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview:hover {
+  background-color: var(--Main-Blue);
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview img {
+  width: 15px;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Img .product-actions .Appear {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.5s ease !important;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content {
   transition: all 0.3s ease 0s;
   position: relative;
   z-index: 66;
 }
-main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Pro-Content h4 {
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content h4 {
   color: #363f4d;
   display: block;
-  font-size: 22px;
+  font-size: 14px !important;
   font-weight: 500;
   margin-bottom: 15px;
   text-transform: capitalize;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content .Pro-Rating {
+  height: 25px;
+  margin-bottom: 12px;
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content > p {
+  display: flex;
+  flex-direction: row;
+  padding-top: 40px;
+  gap: 10px;
+  color: var(--Font-Color);
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content > p #price {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+}
+@media (max-width: 991px) {
+  main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content > p #price {
+    font-family: sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 22px;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: capitalize;
+  }
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content > p #prev_price {
+  color: #a4a4a4;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 120%;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+}
+@media (max-width: 991px) {
+  main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content > p #prev_price {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: capitalize;
+  }
+}
+main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content p {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: capitalize;
+  color: #282828;
+  margin: 15px 10px 20px;
+}
+@media (max-width: 991px) {
+  main .Wishlist-Section .Wishlist-Area .container .Wishlist-Exists .Row .Single-Product .Product-Content p {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: capitalize;
+  }
 }/*# sourceMappingURL=main.css.map */

@@ -1,15 +1,10 @@
 
 
 
-
-
-
-
 //#region sidebar
 
 const Widget_List = document.querySelector(".Widget-List");
 const Widget_Ul = Widget_List.querySelector("ul");
-
 
 const Input_Elements = document.querySelectorAll("input[type='checkbox']");
 
@@ -186,38 +181,5 @@ List_Prev.addEventListener("click", () => {
     Tab_Contents[1].classList.add("Deactive-Tab");
     Tab_Contents[0].classList.remove("Deactive-Tab");
 })
-
-//#endregion
-
-
-//#region Single-Products
-
-const Single_Products = document.querySelectorAll(".Single-Product");
-
-Single_Products.forEach(item => {
-const AddToCart_Btn = item.querySelector(".Add-To-Cart");
-const add_to_wishlist = item.querySelector("#add-to-wishlist");
-const quickview = item.querySelector("#quickview");
-const Pro_Content = item.querySelector(".Pro-Content");
-const Price = item.querySelector("p");
-
-item.addEventListener("mouseover", () => {
-  Pro_Content.style.transform = "translateY(-20px)";
-  Price.style.opacity = 0;
-
-  AddToCart_Btn.classList.add("Appear");
-  add_to_wishlist.classList.add("Appear");
-  quickview.classList.add("Appear");
-});
-
-item.addEventListener("mouseout", () => {
-  Pro_Content.style.transform = "translateY(0px)"
-  Price.style.opacity = 1;
-  
-  AddToCart_Btn.classList.remove("Appear");
-  add_to_wishlist.classList.remove("Appear");
-  quickview.classList.remove("Appear");
- });
-});
 
 //#endregion
