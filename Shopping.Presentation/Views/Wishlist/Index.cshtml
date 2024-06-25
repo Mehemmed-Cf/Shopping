@@ -17,7 +17,7 @@
                     <div class="Wishlist-Exists">
                         <div class="Row">
 
-@*                             <div class="Single-Product Col">
+                         @*    <div class="Single-Product Col">
                                 <div class="Pro-Img">
                                     <a>
                                         <img src="~/Shopping/assets/images/Camera.webp" />
@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="Secondary-Actions">
                                             <a id="add-to-wishlist">
-                                                <img src="~/Shopping/assets/icons/WishIcon.svg" /> 
+                                                <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                             </a>
                                             <a id="quickview">
                                                 <img src="~/Shopping/assets/icons/Quickview.svg" />
@@ -58,12 +58,13 @@
 
     <script>
         const wishIconPath = '@Url.Content("~/Shopping/assets/icons/WishIcon.svg")';
+        const whiteWishIconPath = '@Url.Content("~/Shopping/assets/icons/WhiteWish.svg")';
         const quickviewIconPath = '@Url.Content("~/Shopping/assets/icons/Quickview.svg")';
     </script>
 
     @* fill UI *@
 
-    <script>
+     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -97,6 +98,10 @@
                     const addToCartButton = document.createElement("button");
                     addToCartButton.classList.add("Add-To-Cart");
                     addToCartButton.textContent = "Add To Cart";
+                    addToCartButton.setAttribute('data-product-id', item.id);
+                    addToCartButton.setAttribute('data-product-name', item.name);
+                    addToCartButton.setAttribute('data-product-price', item.price);
+                    addToCartButton.setAttribute('data-product-image', item.imageUrl);
 
                     primaryActions.appendChild(addToCartButton);
 
@@ -112,7 +117,8 @@
                     addToWishlistLink.setAttribute('data-product-image', item.imageUrl);
 
                     const wishlistIcon = document.createElement("img");
-                    wishlistIcon.src = wishIconPath;
+                    //wishlistIcon.src = wishIconPath;
+                    wishlistIcon.src = whiteWishIconPath
 
                     addToWishlistLink.appendChild(wishlistIcon);
 
@@ -139,6 +145,7 @@
                     Product_Content.classList.add("Product-Content");
                     Product_Content.style.height = "150px";
                     Product_Content.style.position = "relative";
+                    Product_Content.style.zIndex = "auto";
 
                     const productTitle = document.createElement("h4");
                     productTitle.textContent = item.name;
@@ -172,106 +179,7 @@
 
         });
 
-        document.addEventListener('mouseover', function (event) {
-            if (event.target.classList.contains('Add-To-Cart')) {
-                event.target.style.backgroundColor = 'var(--Main-Blue)';
-            }
-        });
-
-        document.addEventListener('mouseout', function (event) {
-            if (event.target.classList.contains('Add-To-Cart')) {
-                event.target.style.backgroundColor = '';
-            }
-        });
-
-    </script>
-
-    @* AddtoWish *@
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-
-            const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
-
-            AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
-                AddToWishlist_Btn.addEventListener("click", (e) => {
-                    e.stopPropagation();
-
-                    const wishIcon = AddToWishlist_Btn.querySelector('img');
-                    const currentSrc = wishIcon.getAttribute('src');
-
-                    const baseUrl = window.location.origin;
-
-                    const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
-                    const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
-
-                    const originalFullUrl = baseUrl + originalImagePath;
-                    const newFullUrl = baseUrl + newImagePath;
-
-                    const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
-
-                    wishIcon.setAttribute('src', newSrc);
-
-                    const product = {
-                        id: AddToWishlist_Btn.getAttribute('data-product-id'),
-                        name: AddToWishlist_Btn.getAttribute('data-product-name'),
-                        price: AddToWishlist_Btn.getAttribute('data-product-price'),
-                        imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
-                    };
-
-                    if (!product || product.id === null) {
-                        Toastify({
-                            text: 'Invalid product or missing ID. Please try again.',
-                            duration: 3000,
-                            gravity: 'top',
-                            position: 'right',
-                            backgroundColor: 'red',
-                            stopOnFocus: true,
-                        }).showToast();
-                        return;
-                    }
-
-                    addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
-                });
-            });
-
-            function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
-                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-                const existingProduct = wishlist.find(item => item.id === product.id);
-
-                if (existingProduct) {
-                    Toastify({
-                        text: `Product ${product.name} removed from your WishList`,
-                        duration: 3000,
-                        gravity: "top",
-                        position: "right",
-                        backgroundColor: "orange",
-                        stopOnFocus: true,
-                    }).showToast();
-
-                    wishlist = wishlist.filter(item => item.id !== product.id);
-                    wishIcon.setAttribute('src', originalFullUrl);
-                } else {
-                    Toastify({
-                        text: `Product ${product.name} added to your WishList`,
-                        duration: 3000,
-                        gravity: "top",
-                        position: "right",
-                        backgroundColor: "green",
-                        stopOnFocus: true,
-                    }).showToast();
-
-                    wishlist.push(product);
-                    wishIcon.setAttribute('src', newFullUrl);
-                }
-
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            }
-
-        });
-
-    </script>
+    </script> 
 
     @* SingleProducts *@
 

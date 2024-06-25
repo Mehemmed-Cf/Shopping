@@ -1,12 +1,7 @@
 ﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 @model IEnumerable<ProductGetAllRequestDto>
 
-@* @{
-    var productsWithParentId41 = Model.Where(product => product.CategoryId.ParentId == 41);
-} *@
-
 @{
-    // Reverse the order of the IEnumerable
     var reversedModel = Model.Reverse();
 }
 
@@ -22,7 +17,7 @@
 
 
     <!-- internal -->
-    <script defer src="~/Shopping/Js/Home/index.js"></script>
+    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
     <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
 
 
@@ -2765,11 +2760,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            //#region Single-Products
-
-
-
-            //#endregion
 
             //#region List-Elements-1 for swipper
 
@@ -2874,9 +2864,9 @@
         });
     </script>
 
-    <script>
+   <script>
 
-        document.addEventListener("DOMContentLoaded", () => {
+/*    document.addEventListener("DOMContentLoaded", () => {
             fetch('https://localhost:7297/Admin/products')
                 .then(response => response.json())
                 .then(products => {
@@ -2959,7 +2949,7 @@
                 .catch(error => console.error('Error fetching products:', error));
         });
 
-        function addToCart(product) {
+         function addToCart(product) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             const existingProduct = cart.find(item => item.id === product.id);
@@ -3026,17 +3016,21 @@
         }
 
         function updateItemCount(count) {
+            console.log(`Updating item count to: ${count}`);
             const itemCountElement = document.getElementById('ItemCount');
+
             if (itemCountElement) {
                 itemCountElement.textContent = count;
             }
+
             localStorage.setItem('itemCount', count);
         }
 
         function getCartItemCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            console.log(`Cart item count: ${itemCount}`);
             return cart.reduce((total, item) => total + item.quantity, 0);
-        }
+        } */
 
     </script>
 

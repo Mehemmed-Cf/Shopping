@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
+@model IEnumerable<ProductGetAllRequestDto>
+
+@{
+    var reversedModel = Model.Reverse();
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -387,534 +395,57 @@
 
                   <div class="Tab-Content">
 
-                    <!-- 1 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$130.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                    @foreach (var product in Model)
+                    {
+                      <div class="Single-Product">
+                        <div class="Pro-Img">
+                            <a>
+                                <img src="@(product.ImageUrl)" />
                             </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-
-                    <!-- 2 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
+                        <div class="Product-Content">
+                             <h4>@product.Title</h4>
+                            <div id="product_rating"></div>
+                            <p>
+                                <span id="price">
+                                    <span id="money">$@product.Price</span>
+                                </span>
+                                <del style="display: none;" id="prev_price">
+                                    <span id="money">$150.00</span>
+                                </del>
+                            </p>
+                            <div id="product-actions">
+                                <div class="Primary-Actions">
+                                    <button class="Add-To-Cart"
+                                            data-product-id="@product.Id"
+                                            data-product-name="@product.Title"
+                                            data-product-price="@product.Price"
+                                            data-product-image="@product.ImageUrl">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                                <div class="Secondary-Actions">
+                                    <a id="add-to-wishlist"
+                                        data-product-id="@product.Id"
+                                        data-product-name="@product.Title"
+                                        data-product-price="@product.Price"
+                                        data-product-image="@product.ImageUrl">
+                                        <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                    </a>
+                                    <a id="quickview">
+                                        <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
+                     </div>
 
-                    <!-- 3 -->
+                    }
 
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 4 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 5 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$130.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 6 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 7 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 8 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 9 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$130.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 10 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 11 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 12 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 13 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$130.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 14 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- 15 -->
-
-                    <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
                     <!-- 16 -->
 
-                    <div class="Single-Product">
+                    @* <div class="Single-Product">
                       <div class="Pro-Img">
                         <a>
                           <img src="~/Shopping/assets/images/HD_TV.webp" />
@@ -945,7 +476,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> *@
 
                   </div>
 
@@ -1546,4 +1077,3 @@
 
 </body>
 </html>
-

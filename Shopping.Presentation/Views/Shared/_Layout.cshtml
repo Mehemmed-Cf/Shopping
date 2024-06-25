@@ -121,11 +121,11 @@
             </div>
 
             <div id="LikeAndBasket">
-                <a href="/WishList" id="Liked">
+                <a href="https://localhost:7297/WishList" id="Liked">
                     <img src="~/Shopping/assets/icons/LoveIcon.svg" />
                 </a>
 
-                <a id="Basket" href="/Cart">
+                <a id="Basket" href="https://localhost:7297/Cart">
                     <img src="~/Shopping/assets/icons/BasketIcon.svg" />
                     <span style="text-align: center; vertical-align: middle;" id="ItemCount">
                         <p>0</p>
@@ -251,23 +251,387 @@
     @* basket count *@
 
     <script>
+
         document.addEventListener("DOMContentLoaded", () => {
+            fetch('https://localhost:7297/Admin/products')
+                .then(response => response.json())
+                .then(products => {
+                    const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
+                    const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
+
+                    AddToCart_Btns.forEach(AddToCart_Btn => {
+                        AddToCart_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+
+                            const product = {
+                                id: AddToCart_Btn.getAttribute('data-product-id'),
+                                name: AddToCart_Btn.getAttribute('data-product-name'),
+                                price: AddToCart_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToCart_Btn.getAttribute('data-product-image'),
+                                quantity: 1,
+
+                            };
+
+                            if (!product || product.id === null) {
+                                Toastify({
+                                    text: 'Invalid product or missing ID. Please try again.',
+                                    duration: 3000,
+                                    gravity: 'top',
+                                    position: 'right',
+                                    backgroundColor: 'red',
+                                    stopOnFocus: true,
+                                }).showToast();
+                                return;
+                            }
+
+                            addToCart(product);
+                        });
+                    });
+
+                    AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+                        AddToWishlist_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+
+                            const wishIcon = AddToWishlist_Btn.querySelector('img');
+                            const currentSrc = wishIcon.getAttribute('src');
+
+                            const baseUrl = window.location.origin;
+
+                            const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                            const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+
+                            const originalFullUrl = baseUrl + originalImagePath;
+                            const newFullUrl = baseUrl + newImagePath;
+
+                            const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
+
+                            wishIcon.setAttribute('src', newSrc);
+
+                            const product = {
+                                id: AddToWishlist_Btn.getAttribute('data-product-id'),
+                                name: AddToWishlist_Btn.getAttribute('data-product-name'),
+                                price: AddToWishlist_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
+                            };
+
+                            if (!product || product.id === null) {
+                                Toastify({
+                                    text: 'Invalid product or missing ID. Please try again.',
+                                    duration: 3000,
+                                    gravity: 'top',
+                                    position: 'right',
+                                    backgroundColor: 'red',
+                                    stopOnFocus: true,
+                                }).showToast();
+                                return;
+                            }
+
+                            addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
+
+                            updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl);
+                        });
+
+                        const wishIcon = AddToWishlist_Btn.querySelector('img');
+                        const currentSrc = wishIcon.getAttribute('src');
+                        const baseUrl = window.location.origin;
+                        const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                        const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+                        const originalFullUrl = baseUrl + originalImagePath;
+                        const newFullUrl = baseUrl + newImagePath;
+                        updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl);
+                    });
+                    
+                    updateItemCount(getCartItemCount());
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        });
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+                Toastify({
+                    text: `Product ${product.name} quantity increased`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+            } else {
+                cart.push(product);
+                Toastify({
+                    text: `Product ${product.name} added to your Cart`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            updateItemCount(getCartItemCount());
+        }
+
+        function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                Toastify({
+                    text: `Product ${product.name} removed from your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "orange",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist = wishlist.filter(item => item.id !== product.id);
+                wishIcon.setAttribute('src', originalFullUrl);
+                console.log("Original Full URL:", originalFullUrl);
+            } else {
+                Toastify({
+                    text: `Product ${product.name} added to your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+
+                product.iconUrl = newFullUrl;
+                wishlist.push(product);
+                wishIcon.setAttribute('src', newFullUrl);
+                console.log("New Full URL:", newFullUrl);
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        function updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                wishIcon.setAttribute('src', newFullUrl);
+            } else {
+                wishIcon.setAttribute('src', originalFullUrl);
+            }
+        }
+
+        function initializeWishlistIcons() {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+                const wishIcon = AddToWishlist_Btn.querySelector('img');
+                const baseUrl = window.location.origin;
+                const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+                const originalFullUrl = baseUrl + originalImagePath;
+                const newFullUrl = baseUrl + newImagePath;
+
+                const existingProductIndex = wishlistItems.findIndex(item => item.id === productID);
+                const newSrc = existingProductIndex !== -1 ? newFullUrl : originalFullUrl;
+                wishIcon.setAttribute('src', newSrc);
+            });
+        }
+
+        function updateItemCount(count) {
+            const itemCountElement = document.getElementById('ItemCount');
+
+            if (itemCountElement) {
+                itemCountElement.textContent = count;
+            }
+
+            localStorage.setItem('itemCount', count);
+        }
+
+        function getCartItemCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0); // Define count here
+            return count;
+        }
+
+    </script>
+
+    @* <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Update cart item count on page load
             updateCartItemCount();
+
+            // Add event listeners to Add-To-Cart buttons
+            addAddToCartEventListeners();
+            addAddToCartEventListeners();
         });
 
         function updateCartItemCount() {
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartItemCount = getCartItemCount(cartItems);
-            const itemCountElement = document.getElementById('ItemCount');
-            if (itemCountElement) {
-                itemCountElement.textContent = cartItemCount.toString();
+            try {
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartItemCount = getCartItemCount(cartItems);
+                const itemCountElement = document.getElementById('ItemCount');
+                if (itemCountElement) {
+                    itemCountElement.textContent = cartItemCount.toString();
+                }
+            } catch (e) {
+                console.error('Error updating cart item count:', e);
             }
         }
 
         function getCartItemCount(cartItems) {
             return cartItems.reduce((total, item) => total + item.quantity, 0);
         }
-    </script>
+
+        function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                Toastify({
+                    text: `Product ${product.name} removed from your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "orange",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist = wishlist.filter(item => item.id !== product.id);
+                wishIcon.setAttribute('src', originalFullUrl);
+            } else {
+                Toastify({
+                    text: `Product ${product.name} added to your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist.push(product);
+                wishIcon.setAttribute('src', newFullUrl);
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+
+        function addToCart(product) {
+            try {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                    Toastify({
+                        text: `Product ${product.name} quantity increased`,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "green",
+                        stopOnFocus: true,
+                    }).showToast();
+                } else {
+                    cart.push(product);
+                    Toastify({
+                        text: `Product ${product.name} added to your Cart`,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "green",
+                        stopOnFocus: true,
+                    }).showToast();
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartItemCount();
+            } catch (e) {
+                console.error('Error adding to cart:', e);
+            }
+        }
+
+        function addAddToCartEventListeners() {
+            const AddToCart_Btns = document.querySelectorAll('.Add-To-Cart');
+            AddToCart_Btns.forEach(AddToCart_Btn => {
+                AddToCart_Btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+
+                    const product = {
+                        id: AddToCart_Btn.getAttribute('data-product-id'),
+                        name: AddToCart_Btn.getAttribute('data-product-name'),
+                        price: AddToCart_Btn.getAttribute('data-product-price'),
+                        imageUrl: AddToCart_Btn.getAttribute('data-product-image'),
+                        quantity: 1,
+                    };
+
+                    if (!product || product.id === null) {
+                        Toastify({
+                            text: 'Invalid product or missing ID. Please try again.',
+                            duration: 3000,
+                            gravity: 'top',
+                            position: 'right',
+                            backgroundColor: 'red',
+                            stopOnFocus: true,
+                        }).showToast();
+                        return;
+                    }
+
+                    addToCart(product);
+                });
+            });
+        }
+
+        AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+            AddToWishlist_Btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+
+                const wishIcon = AddToWishlist_Btn.querySelector('img');
+                const currentSrc = wishIcon.getAttribute('src');
+
+                const baseUrl = window.location.origin;
+
+                const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+
+                const originalFullUrl = baseUrl + originalImagePath;
+                const newFullUrl = baseUrl + newImagePath;
+
+                const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
+
+                wishIcon.setAttribute('src', newSrc);
+
+                const product = {
+                    id: AddToWishlist_Btn.getAttribute('data-product-id'),
+                    name: AddToWishlist_Btn.getAttribute('data-product-name'),
+                    price: AddToWishlist_Btn.getAttribute('data-product-price'),
+                    imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
+                };
+
+                if (!product || product.id === null) {
+                    Toastify({
+                        text: 'Invalid product or missing ID. Please try again.',
+                        duration: 3000,
+                        gravity: 'top',
+                        position: 'right',
+                        backgroundColor: 'red',
+                        stopOnFocus: true,
+                    }).showToast();
+                    return;
+                }
+
+                addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
+            });
+        });
+
+    </script> *@
 
     @* sign in *@
 

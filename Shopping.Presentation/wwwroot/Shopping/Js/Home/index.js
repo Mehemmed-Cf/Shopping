@@ -246,7 +246,7 @@ AnclePrev_2.addEventListener("click", () => {
 
 //#region Ancle-3
 
-const Owl_Items_3 = document.querySelectorAll("#Owl_Item_3");
+/*const Owl_Items_3 = document.querySelectorAll("#Owl_Item_3");
 const AnclePrev_3 = document.querySelector(".Owl-Prev_3");
 const AncleNext_3 = document.querySelector(".Owl-Next_3");
 const Owl_Stage_3 = document.querySelector(".Owl_Stage_3.Active-Stage");
@@ -276,7 +276,7 @@ AnclePrev_3.addEventListener("click", () => {
     Owl_Stage_3.style.animation = "slideOutToLeft 1s";
     Owl_Items_3[activeIndex_3].classList.add("Owl_Active");
   }
-});
+});*/
 
 //#endregion
 

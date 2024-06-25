@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <Folder Include="AppCode\Pipeline\" />
-    <Folder Include="wwwroot\Shopping\Js\Not-Found\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\Shopping\Js\Blog\index.js" />
     <None Include="wwwroot\Shopping\Js\Home\index.js" />
     <None Include="wwwroot\Shopping\Js\Login\index.js" />
+    <None Include="wwwroot\Shopping\Js\Not-Found\index.js" />
     <None Include="wwwroot\Shopping\Js\Shop\index.js" />
   </ItemGroup>
 
