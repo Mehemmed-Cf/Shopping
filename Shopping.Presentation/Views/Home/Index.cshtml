@@ -667,7 +667,11 @@
                                                                 </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
-                                                                <a id="add-to-wishlist">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview">

@@ -303,10 +303,6 @@
                             const originalFullUrl = baseUrl + originalImagePath;
                             const newFullUrl = baseUrl + newImagePath;
 
-                            const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
-
-                            wishIcon.setAttribute('src', newSrc);
-
                             const product = {
                                 id: AddToWishlist_Btn.getAttribute('data-product-id'),
                                 name: AddToWishlist_Btn.getAttribute('data-product-name'),
@@ -331,14 +327,7 @@
                             updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl);
                         });
 
-                        const wishIcon = AddToWishlist_Btn.querySelector('img');
-                        const currentSrc = wishIcon.getAttribute('src');
-                        const baseUrl = window.location.origin;
-                        const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
-                        const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
-                        const originalFullUrl = baseUrl + originalImagePath;
-                        const newFullUrl = baseUrl + newImagePath;
-                        updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl);
+                        initializeWishlistIcons();
                     });
                     
                     updateItemCount(getCartItemCount());
@@ -395,7 +384,6 @@
 
                 wishlist = wishlist.filter(item => item.id !== product.id);
                 wishIcon.setAttribute('src', originalFullUrl);
-                console.log("Original Full URL:", originalFullUrl);
             } else {
                 Toastify({
                     text: `Product ${product.name} added to your WishList`,
@@ -409,7 +397,6 @@
                 product.iconUrl = newFullUrl;
                 wishlist.push(product);
                 wishIcon.setAttribute('src', newFullUrl);
-                console.log("New Full URL:", newFullUrl);
             }
 
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
@@ -427,18 +414,32 @@
         }
 
         function initializeWishlistIcons() {
+            const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
             const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
 
             AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
                 const wishIcon = AddToWishlist_Btn.querySelector('img');
+                const productID = AddToWishlist_Btn.getAttribute('data-product-id');
                 const baseUrl = window.location.origin;
                 const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
                 const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
                 const originalFullUrl = baseUrl + originalImagePath;
                 const newFullUrl = baseUrl + newImagePath;
 
-                const existingProductIndex = wishlistItems.findIndex(item => item.id === productID);
-                const newSrc = existingProductIndex !== -1 ? newFullUrl : originalFullUrl;
+                console.log(wishIcon);
+                console.log(productID);
+                console.log(baseUrl);
+                console.log(originalImagePath);
+                console.log(newImagePath);
+                console.log(originalFullUrl);
+                console.log(newFullUrl);
+
+
+                const existingProduct = wishlistItems.find(item => item.id === productID);
+                const newSrc = existingProduct ? newFullUrl : originalFullUrl;
+
+                console.log(newSrc)
+
                 wishIcon.setAttribute('src', newSrc);
             });
         }
