@@ -64,6 +64,9 @@ List_Element_4.addEventListener("click" , () => {
 const Owl_Outer_3 = document.querySelector(".Owl_Stage_Outer_3"); 
 const Owl_Stages_List_3 = Owl_Outer_3.querySelectorAll(".Owl_Stage_4")
 
+console.log(Owl_Outer_3);
+console.log(Owl_Stages_List_3);
+
 const List_Element_6 = document.querySelector("#List_element_6");
 const List_Element_7 = document.querySelector("#List_element_7");
 const List_Element_8 = document.querySelector("#List_element_8");
@@ -246,7 +249,7 @@ AnclePrev_2.addEventListener("click", () => {
 
 //#region Ancle-3
 
-/*const Owl_Items_3 = document.querySelectorAll("#Owl_Item_3");
+const Owl_Items_3 = document.querySelectorAll("#Owl_Item_3");
 const AnclePrev_3 = document.querySelector(".Owl-Prev_3");
 const AncleNext_3 = document.querySelector(".Owl-Next_3");
 const Owl_Stage_3 = document.querySelector(".Owl_Stage_3.Active-Stage");
@@ -276,7 +279,7 @@ AnclePrev_3.addEventListener("click", () => {
     Owl_Stage_3.style.animation = "slideOutToLeft 1s";
     Owl_Items_3[activeIndex_3].classList.add("Owl_Active");
   }
-});*/
+});
 
 //#endregion
 

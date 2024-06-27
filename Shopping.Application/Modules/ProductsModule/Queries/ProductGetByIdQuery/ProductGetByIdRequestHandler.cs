@@ -81,24 +81,6 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuer
 
             return joinedQuery;
 
-            /*            return new ProductGetByIdRequestDto
-                        {
-                            Id = entity.Id,
-                            Title = entity.Title,
-                            Price = entity.Price,
-                            StockCount = entity.StockCount,
-                            ImageUrl = $"{host}/uploads/images/{entity.ImagePath}",
-                            CategoryId = entity.CategoryId,
-                            CategoryName = "Demo Category",
-                            BrandId = entity.BrandId,
-                            BrandName = "Demo Brand",
-                            ColorId = entity.ColorId,
-                            ColorName = "Demo Color",
-                            SizeId = entity.SizeId,
-                            SizeName = "Demo Size",
-                            MaterialId = entity.MaterialId,
-                            MaterialName = "Demo Material",
-                        };*/
         }
     }
 }

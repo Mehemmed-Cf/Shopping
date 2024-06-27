@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
+using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
 using Shopping.Application.Repositories;
 
 namespace Shopping.Presentation.Controllers
 {
-    public class ShopController : Controller
+    public class ProductDetailsController : Controller
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -15,7 +15,7 @@ namespace Shopping.Presentation.Controllers
         private readonly IMaterialRepository _materialRepository;
         private readonly IMediator mediator;
 
-        public ShopController(
+        public ProductDetailsController(
         IProductRepository productRepository,
         ICategoryRepository categoryRepository,
         IBrandRepository brandRepository,
@@ -42,10 +42,24 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
-        public async Task<IActionResult> Index(ProductGetAllRequest request)
+        public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
         {
             var response = await mediator.Send(request);
             return View(response);
         }
+
+/*        public async Task<IActionResult> Index([FromRoute] int id)
+        {
+            var request = new ProductGetByIdRequest { Id = id };
+            var response = await mediator.Send(request);
+            return View(response);
+        }*/
+
+        //[HttpGet("{id}")]
+/*        public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
+        {
+            var response = await mediator.Send(request);
+            return View(response);
+        }*/
     }
 }

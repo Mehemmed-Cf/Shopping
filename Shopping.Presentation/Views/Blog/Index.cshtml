@@ -1,5 +1,9 @@
 ﻿@using Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetAllQuery
 @model IEnumerable<BlogPostGetAllRequestDto>
+@{
+    var reversedModel = Model.Reverse();
+}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +37,7 @@
                         <div class="Col-Content" style="display: flex; justify-content: center;">
 
 
-                            <div class="Row Active-Row" style="display: flex; justify-content: center;">
+                            <div onload="showLoader(true)" class="Row Active-Row" style="display: flex; justify-content: center;">
 
                                   @foreach(var blog in Model) {
 
@@ -50,9 +54,6 @@
 
                                                 <div id="blog-content-upper">
                                                     <h6>@blog.Title</h6>
-@*                                                     <p>
-                                                        @Html.Raw(blog.Body?.Trim());
-                                                    </p> *@
                                                     <div style="height: 110px;">
                                                         @Html.Raw(blog.Body?.Trim())
                                                     </div>  
@@ -76,494 +77,46 @@
 
                               </div>
 
-@*                             <div class="Row Active-Row">
-
-                                <!-- 1 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 2 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 3 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 4 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 5 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 6 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 7 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 8 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div> *@
-
                             <div class="Row">
 
-                                <!-- 1 -->
+                                @foreach (var blog in reversedModel)
+                                {
 
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
+                                    <div class="Col-Blog" style="width: 410px; height: 500px;">
+                                        <div class="Single-Blog">
 
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
+                                            <div class="Blog-Img">
+                                                <a>
+                                                    <img style="width: 410px;" src="@(blog.ImageUrl)" />
+                                                </a>
                                             </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
 
+                                            <div class="Blog-Content">
+
+                                                <div id="blog-content-upper">
+                                                    <h6>@blog.Title</h6>
+                                                    <div style="height: 110px;">
+                                                        @Html.Raw(blog.Body?.Trim())
+                                                    </div>
+                                                </div>
+
+                                                <div id="blog-content-lower">
+                                                    <a>Read more</a>
+                                                    <span>
+                                                        @if (blog.PublishedAt != null)
+                                                        {
+                                                            @blog.PublishedAt?.ToShortDateString()
+                                                            ;
+                                                        }
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!-- 2 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 3 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 4 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 5 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 6 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 7 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 8 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- 9 -->
-
-                                <div class="Col-Blog">
-                                    <div class="Single-Blog">
-
-                                        <div class="Blog-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Blog-Img-2.webp" />
-                                            </a>
-                                        </div>
-
-                                        <div class="Blog-Content">
-                                            <div id="blog-content-upper">
-                                                <h6>Temporibus autem quibusdam</h6>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...
-                                                </p>
-                                            </div>
-                                            <div id="blog-content-lower">
-                                                <a>Read more</a>
-                                                <span> 15/Apr/ 18</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                }
 
                             </div>
 
@@ -587,6 +140,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

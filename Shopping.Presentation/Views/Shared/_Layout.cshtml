@@ -104,6 +104,8 @@
                 </div>
 
             </div>
+
+
         </div>
 
         <div class="SearchAndBasket">
@@ -137,6 +139,10 @@
         </div>
 
     </nav>
+
+        @*     <section class="Search-Section">
+                @Html.Partial("_Search")
+            </section> *@
 
     @RenderBody()
 
@@ -248,6 +254,18 @@
         </div>
     </footer>
 
+    @* loader *@
+
+    <script>
+
+        const loaderElement = document.querySelector(".Loader");
+
+        function showLoader(show) {
+            loaderElement.style.display = show ? "grid" : "none";
+        }
+
+    </script>
+
     @* basket count *@
 
     <script>
@@ -258,6 +276,14 @@
                 .then(products => {
                     const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
                     const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
+                    const quickviewButtons = document.querySelectorAll("#quickview");
+
+                    quickviewButtons.forEach(button => {
+                        button.addEventListener("click", function () {
+                            const productId = this.getAttribute("data-product-id");
+                            window.location.href = `/productDetails.cshtml?id=${productId}`;
+                        });
+                    });
 
                     AddToCart_Btns.forEach(AddToCart_Btn => {
                         AddToCart_Btn.addEventListener("click", (e) => {
@@ -426,19 +452,9 @@
                 const originalFullUrl = baseUrl + originalImagePath;
                 const newFullUrl = baseUrl + newImagePath;
 
-                console.log(wishIcon);
-                console.log(productID);
-                console.log(baseUrl);
-                console.log(originalImagePath);
-                console.log(newImagePath);
-                console.log(originalFullUrl);
-                console.log(newFullUrl);
-
 
                 const existingProduct = wishlistItems.find(item => item.id === productID);
                 const newSrc = existingProduct ? newFullUrl : originalFullUrl;
-
-                console.log(newSrc)
 
                 wishIcon.setAttribute('src', newSrc);
             });

@@ -56,7 +56,7 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
                 return Json(response);
             }*/
 
-            return Json(response);
+            return View(response);
         }
 
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)
@@ -111,6 +111,5 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             await mediator.Send(request);
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

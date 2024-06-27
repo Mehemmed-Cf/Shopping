@@ -17,7 +17,7 @@
 
 
     <!-- internal -->
-    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
+    <script defer src="~/Shopping/Js/Home/index.js"></script>
     <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
 
 
@@ -58,6 +58,7 @@
             will-change: transform;
             height: 70%;
             width: 100%;
+            position: relative;
         }
 
         .Active-Stage {
@@ -568,7 +569,13 @@
 
                     <div class="Owl_Outer Outer_Owl_1">
 
-                        <div class="Owl_Stage Active-Stage">
+                        <div onload="showLoader(true)" class="Owl_Stage Active-Stage">
+
+                            <div class="Loader" style=" top: -50%;">
+                                <div class="lds-facebook"><div></div><div></div><div></div></div>
+                                <p id="Loading-Info">Loading Products</p>
+                            </div>
+
                             <!-- Swiper -->
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
@@ -611,7 +618,7 @@
                                                                     >
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview" data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2868,6 +2875,10 @@
         });
     </script>
 
+    /* loader */
+
+
+
    <script>
 
 /*    document.addEventListener("DOMContentLoaded", () => {
@@ -3020,7 +3031,6 @@
         }
 
         function updateItemCount(count) {
-            console.log(`Updating item count to: ${count}`);
             const itemCountElement = document.getElementById('ItemCount');
 
             if (itemCountElement) {
@@ -3032,7 +3042,6 @@
 
         function getCartItemCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            console.log(`Cart item count: ${itemCount}`);
             return cart.reduce((total, item) => total + item.quantity, 0);
         } */
 

@@ -5,13 +5,78 @@
     var reversedModel = Model.Reverse();
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
+
+    <script defer src="~/Shopping/Js/Shop/index.js"></script>
+
+    <style>
+        #product-actions {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: 0.3s ease-in-out;
+            position: absolute;
+            width: 100%;
+            z-index: 25;
+        }
+
+        .Primary-Actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 1px;
+            z-index: 30;
+            left: -5px;
+            position: absolute;
+        }
+
+        .Appear {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: 0.5s ease-in-out;
+            transition: opacity 0.6s ease !important; /* Transition opacity over 0.3 seconds with ease timing function */
+        }
+
+        .Secondary-Actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            bottom: 1px;
+            right: 0px;
+            position: absolute;
+            z-index: 30;
+            gap: 7px;
+        }
+
+        #add-to-wishlist,
+        #quickview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--Background-Dark);
+            height: 32px;
+            width: 30px;
+            border-radius: 5px;
+            will-change: color;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            &:hover
+
+        {
+            background-color: var(--Main-Blue);
+        }
+
+        img {
+            width: 15px;
+        }
+
+        }
+    </style>
 
 </head>
 <body>
@@ -22,7 +87,7 @@
 
         <div class="Main-Shop-Page">
           <div class="container">
-            <div class="Row">
+            <div style="height: auto;" class="Row">
 
               <div class="Col-Sidebar Col">
                 <div id="sidebar">
@@ -403,18 +468,18 @@
                                 <img src="@(product.ImageUrl)" />
                             </a>
                         </div>
-                        <div class="Product-Content">
+                        <div style="transition: 0.3s ease-in-out" class="Product-Content">
                              <h4>@product.Title</h4>
                             <div id="product_rating"></div>
                             <p>
-                                <span id="price">
+                               <span style="transition: 0.5s ease-in-out" id="price">
                                     <span id="money">$@product.Price</span>
                                 </span>
                                 <del style="display: none;" id="prev_price">
                                     <span id="money">$150.00</span>
                                 </del>
                             </p>
-                            <div id="product-actions">
+                            <div style="transform: translateY(20px)" id="product-actions">
                                 <div class="Primary-Actions">
                                     <button class="Add-To-Cart"
                                             data-product-id="@product.Id"

@@ -1,0 +1,442 @@
+﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
+@model ProductGetByIdRequestDto
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed View</title>
+    <link rel="stylesheet" href="../../sass/main.css" />
+
+    <!-- Google -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- internal -->
+    <!-- <script defer src="./index.js"></script> -->
+    <!-- <script defer src="../../common/functions/index.js"></script> -->
+
+    <style>
+        button,
+        a {
+            cursor: pointer;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: 0.5 ease-in-out;
+        }
+
+        .Add-To-Cart:hover {
+            background-color: var(--Background-Dark) !important;
+        }
+
+        #Liked:hover {
+            background-color: var(--Background-Dark) !important;
+        }
+
+        #Option {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            gap: 40px !important;
+        }
+
+            #Option .Option-Title {
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 120%;
+                display: block;
+                float: none;
+                margin-bottom: 5px;
+                margin-right: 0;
+                padding-bottom: 0;
+                position: relative;
+                margin-top: 0;
+            }
+
+            #Option .Swatch-Element {
+                float: left;
+            }
+
+                #Option .Swatch-Element input {
+                    display: none;
+                }
+
+                #Option .Swatch-Element label {
+                    background-color: white !important;
+                    color: #444444;
+                    text-transform: none;
+                    border: 1px solid transparent;
+                    position: relative;
+                    border-radius: 0;
+                    display: block;
+                    float: left;
+                    width: 22px;
+                    height: 22px;
+                    transition: all 0.3s ease 0s;
+                    margin: 0 10px 0 0;
+                    cursor: pointer;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+
+            #Option #swatch {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+            #Option #size .Size-Title {
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 120%;
+                display: block;
+                float: none;
+                margin-bottom: 5px;
+                margin-right: 0;
+                padding-bottom: 0;
+                position: relative;
+                margin-top: 0;
+            }
+
+            #Option #color {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+            #Option #material {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+        .Active-Label {
+            color: var(--Main-Blue) !important;
+        }
+
+        .Product-Cart .box-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .Product-Cart .box-quantity .Quantity-Button {
+                border: 1px solid #dddddd;
+                overflow: hidden;
+                padding: 4px 0 4px 5px;
+                width: 80px;
+                height: 35px;
+                margin-right: 5px;
+                border-radius: 5px;
+            }
+
+                .Product-Cart .box-quantity .Quantity-Button #qtybtn {
+                    color: #666;
+                    cursor: pointer;
+                    float: left;
+                    font-size: 16px;
+                    font-weight: 600;
+                    height: 20px;
+                    line-height: 20px;
+                    position: relative;
+                    text-align: center;
+                    width: 20px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button #dec {
+                    margin-top: 2px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button #inc {
+                    margin-top: 2px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button input {
+                    background: transparent none repeat scroll 0 0;
+                    border: none;
+                    float: left;
+                    font-size: 16px;
+                    height: 25px;
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                    width: 25px;
+                    transition: all 0.5s ease-out 0s;
+                    box-shadow: none;
+                    border-radius: 3px;
+                }
+
+    </style>
+
+</head>
+<body>
+
+    <main role="main" style="">
+        <div class="Product_Tab">
+            <div style="padding-top: 0px; padding-bottom: 300px;" class="Product_Thumbnail">
+                <div class="container">
+                    <div class="Row">
+
+                        <div class="Col Col-Pic">
+                            <div id="ProductPhoto">
+                                <img src="@Model.ImageUrl" alt="@Model.Title" />
+                                @* <img src="~/Shopping/assets/images/Telescope.webp" /> *@
+                            </div>
+                        </div>
+
+                        <div class="Col Col-Details">
+                            <form method="post" id="AddToCartForm">
+
+                                <input type="hidden" name="form_type" value="product" />
+                                <input type="hidden" name="utf8" value="✓" />
+
+                                <div class="Thumbnail-Desc">
+
+                                    <div id="brand">
+                                        <span>@Model.BrandName</span>
+                                    </div>
+
+                                    <h3 id="title">@Model.Title</h3>
+
+                                    <div id="price">
+                                        <div class="Pro-Price">
+                                            <p>
+                                                <span id="ProductPrice">$@Model.Price</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div id="inventory">
+                                        <div class="Inventory-Title">Availability:</div>
+                                        <div class="Variant-Inventory">@Model.StockCount</div>
+                                    </div>
+
+                                    <div id="Option">
+
+                                        <div id="swatch size">
+                                            <div class="Option-Title">Size :</div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-xl" type="radio" name="option-0" value="xl" checked>
+                                                <label class="Active-Label" for="Swatch-xl">xl</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-ml" type="radio" name="option-1" value="ml" checked>
+                                                <label for="Swatch-ml">ml</label>
+                                            </div>
+
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-xs" type="radio" name="option-2" value="xs" checked>
+                                                <label for="Swatch-xs">xs</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="swatch color">
+                                            <div class="Option-Title">Color :</div>
+
+                                            <div class="Swatch-Element" data-value="gray">
+                                                <input id="swatch-1-gray" type="radio" name="option-1" value="gray" checked />
+                                                <label for="swatch-1-gray" style="background-color: gray !important;"> </label>
+                                            </div>
+
+                                            <div class="Swatch-Element" data-value="magenta">
+                                                <input id="swatch-1-magenta" type="radio" name="option-2" value="magenta" checked />
+                                                <label for="swatch-1-magenta" style="background-color: magenta !important;"> </label>
+                                            </div>
+
+                                            <div class="Swatch-Element" data-value="orange">
+                                                <input id="swatch-1-orange" type="radio" name="option-3" value="orange" checked />
+                                                <label for="swatch-1-orange" style="background-color: orange !important;"> </label>
+                                            </div>
+
+                                            <div class="Swatch-Element" data-value="purple">
+                                                <input id="swatch-1-purple" type="radio" name="option-4" value="purple" checked />
+                                                <label for="swatch-1-purple" style="background-color: purple !important;"> </label>
+                                            </div>
+
+                                            <div class="Swatch-Element" data-value="pink">
+                                                <input id="swatch-1-pink" type="radio" name="option-5" value="pink" checked />
+                                                <label for="swatch-1-pink" style="background-color: pink !important;"> </label>
+                                            </div>
+
+                                            <div class="Swatch-Element" data-value="violet">
+                                                <input id="swatch-1-violet" type="radio" name="option-6" value="violet" checked />
+                                                <label for="swatch-1-violet" style="background-color: violet !important;"> </label>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="swatch material">
+                                            <div class="Option-Title">Material :</div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-partex" type="radio" name="option-0" value="partex" checked>
+                                                <label class="Active-Label" style="width: auto;" for="Swatch-partex">partex</label>
+
+                                                <div class="Swatch-Element">
+                                                    <input id="Swatch-wood" type="radio" name="option-1" value="wood" checked>
+                                                    <label style="width: auto;" for="Swatch-wood">wood</label>
+                                                </div>
+
+                                                <div class="Swatch-Element">
+                                                    <input id="Swatch-glass" type="radio" name="option-2" value="glass" checked>
+                                                    <label style="width: auto;" for="Swatch-glass">glass</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="Product-Cart">
+                                        <div class="box-quantity">
+                                            <div class="Quantity-Button">
+                                                <div style="position:absolute;
+                        left: 10px;
+                        font-size: 24px;
+                        bottom: 7px;
+                        cursor: pointer;
+                        transform: scale(1.1);
+                        "
+                                                     id="dec qtybtn">
+                                                    -
+                                                </div>
+
+                                                <input style="position:absolute;
+                        left: 30%;
+                        font-size: 20px;
+                        "
+                                                       class="cart-dec-inc-box" type="text" value="1" name="quantity" />
+
+                                                <div style="position:absolute;
+                         right: 10px;
+                         font-size: 20px;
+                         cursor: pointer;
+                         "
+                                                     id="inc qtybtn">
+                                                    +
+                                                </div>
+                                            </div>
+                                            <button style="
+                      background-color: var(--Main-Blue);
+                      border-radius: 0;
+
+                      " class="Add-To-Cart">
+                                                Add To Cart
+                                            </button>
+
+                                            <a style="
+                      background-color: var(--Main-Blue);
+                      height: 32px;
+                      width: 35px;
+                      position: relative;
+                      "
+                                               id="Liked">
+                                                <img style="width: 18px;
+                        position: absolute;
+                        right: 25%;
+                        top: 20%;
+                        "
+                                                     src="~/Shopping/assets/icons/WishIcon.svg" />
+                                            </a>
+
+                                        </div>
+
+                                        <button class="Payment_Button">Buy it now</button>
+                                    </div>
+
+                                    <div id="product-detail">
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden" name="product-id" value="" />
+                                <input type="hidden" name="section-id" value="Product_Tab" />
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Function to get query parameters from the URL
+                function getQueryParam(param) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get(param);
+                }
+
+                // Fetch product data by ID
+                function fetchProductDetails(productId) {
+                    // This function should be implemented to fetch product data from your backend
+                    // For now, let's mock the product data fetching
+                    const productData = {
+                        id: productId,
+                        brandName: "Brand Name",
+                        title: "Product Title",
+                        price: "$99.99",
+                        imageUrl: "~/Shopping/assets/images/Telescope.webp",
+                        description: "Product description goes here."
+                    };
+
+                    // Update the page with product data
+                    document.getElementById("BrandName").innerText = productData.brandName;
+                    document.getElementById("title").innerText = productData.title;
+                    document.getElementById("ProductPrice").innerText = productData.price;
+                    document.getElementById("ProductImage").src = productData.imageUrl;
+                    document.getElementById("ProductDescription").innerText = productData.description;
+                }
+
+                // Get the product ID from the URL
+                const productId = getQueryParam("id");
+
+                if (productId) {
+                    // Fetch and display the product details
+                    fetchProductDetails(productId);
+                }
+            });
+    </script>
+
+    <script>
+
+        // let searchParams = new URLSearchParams(window.location.search);
+        // let paramsCreatorId = searchParams.get("id");
+
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     //showLoader(true);
+        //     const response = await fetch(
+        //         `https://localhost:7297/Admin/products/${paramsCreatorId}`,
+        //         {
+        //             method: "GET",
+        //         }
+        //     )
+        //         .then((res) => res.json())
+        //         .then((product) => {
+        //             // showLoader(false);
+
+        //             if (product.error) {
+        //                 window.open("../NotFound/Index.cshtml", "_self");
+        //             }
+
+        //             console.log(product)
+        //         })
+
+    </script>
+
+</body>
+</html>

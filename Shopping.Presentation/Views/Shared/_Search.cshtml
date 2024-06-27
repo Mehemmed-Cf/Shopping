@@ -1,0 +1,284 @@
+﻿
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #444;
+    }
+
+    .Row {
+        display: flex;
+        flex-direction: row;
+        margin-right: -15px;
+        margin-left: -15px;
+        gap: 30px;
+    }
+
+    .Col {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        list-style: none;
+    }
+
+    main {
+        display: block;
+    }
+
+    .Search_Section .Search_Page {
+        padding-bottom: 50px;
+    }
+
+        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product {
+            position: relative;
+            background: #fff;
+            transition: all .5s ease-in-out;
+            margin-bottom: 30px;
+            float: left;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+        }
+
+            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img {
+                position: relative;
+            }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img a {
+                    text-decoration: none;
+                }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img a img {
+                        width: 100%;
+                        vertical-align: middle;
+                    }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    transition: 0.3s ease-in-out;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 25;
+                    bottom: -80px;
+                    left: 10px;
+                }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Primary-Actions {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        bottom: 1px;
+                        z-index: 30;
+                        left: -10px;
+                        position: absolute;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        visibility: hidden;
+                        bottom: 1px;
+                        left: 120px;
+                        position: absolute;
+                        z-index: 30;
+                        gap: 7px;
+                    }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: var(--Background-Dark);
+                            height: 32px;
+                            width: 30px;
+                            border-radius: 5px;
+                            will-change: color;
+                            transition: opacity 0.3s ease;
+                            opacity: 0;
+                        }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist:hover {
+                                background-color: var(--Main-Blue);
+                            }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist img {
+                                width: 15px;
+                            }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: var(--Background-Dark);
+                            height: 32px;
+                            width: 30px;
+                            border-radius: 5px;
+                            will-change: color;
+                            transition: opacity 0.3s ease;
+                            opacity: 0;
+                            cursor: pointer;
+                        }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview:hover {
+                                background-color: var(--Main-Blue);
+                            }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview img {
+                                width: 15px;
+                            }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Appear {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        transition: opacity 0.5s ease !important;
+                    }
+
+            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content {
+                transition: all .3s ease 0s;
+                position: relative;
+                z-index: 66;
+            }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content h4 {
+                    color: #363f4d;
+                    display: block;
+                    font-size: 14px !important;
+                    font-weight: 500;
+                    margin-bottom: 15px;
+                    text-transform: capitalize;
+                }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content .Pro-Rating {
+                    height: 25px;
+                    margin-bottom: 12px;
+                }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p {
+                    display: flex;
+                    flex-direction: row;
+                    padding-top: 40px;
+                    gap: 10px;
+                    color: var(--Font-Color);
+                }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #price {
+                        display: inline-block;
+                        font-family: sans-serif;
+                        font-size: 18px;
+                        font-size: 600;
+                        line-height: 22px;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #price {
+                        font-family: sans-serif;
+                        font-size: 26px;
+                        font-size: 600;
+                        line-height: 22px;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #prev_price {
+                        color: #a4a4a4;
+                        font-family: sans-serif;
+                        font-size: 14px;
+                        font-size: 500;
+                        line-height: 120%;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #prev_price {
+                        font-family: sans-serif;
+                        font-size: 20px;
+                        font-size: 600;
+                        line-height: 22px;
+                    }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content p {
+                    font-family: sans-serif;
+                    font-size: 14px;
+                    font-size: 400;
+                    line-height: 22px;
+                    color: #282828;
+                    margin: 15px 10px 20px;
+                }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content p {
+                    font-family: sans-serif;
+                    font-size: 16px;
+                    font-size: 400;
+                    line-height: 22px;
+                }
+
+</style>
+
+<main role="main">
+    <div class="Search_Section">
+        <div class="Search_page">
+            <div class="container">
+                <div class="Row">
+                    <div class="Col">
+                        <div class="Search_Item">
+                            <div id="last-view">
+
+                                <div class="Single-Product Col">
+                                    <div class="Pro-Img">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/Camera.webp" />
+                                        </a>
+                                        <!-- Move .product-actions here -->
+                                        <div class="product-actions">
+                                            <div class="Primary-Actions">
+                                                <button class="Add-To-Cart">Add To Cart</button>
+                                            </div>
+                                            <div class="Secondary-Actions">
+                                                <a id="add-to-wishlist">
+                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                </a>
+                                                <a id="quickview">
+                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Product-Content">
+                                        <h4>Demo Product Title</h4>
+                                        <div id="product-rating"></div>
+                                        <p>
+                                            <span id="price">
+                                                <span id="money">$100.00</span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
