@@ -17,7 +17,7 @@
 
 
     <!-- internal -->
-    <script defer src="~/Shopping/Js/Home/index.js"></script>
+    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
     <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
 
 
@@ -599,7 +599,7 @@
                                                                 <span id="money">$@product.Price</span>
                                                             </span>
                                                         </p>
-                                                        <div style="witdh: 85%;" id="product-actions">
+                                                        <div id="product-actions" style="width: 155px !important; margin-left: 20px">
                                                             <div class="Primary-Actions">
                                                                 <button class="Add-To-Cart"
                                                                         data-product-id="@product.Id"
@@ -618,7 +618,12 @@
                                                                     >
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview" data-product-id="@product.Id">
+                                                                <a id="quickview" 
+                                                                data-product-id="@product.Id"
+                                                                data-product-size-sm-name="@product.SizeSmallName"
+                                                                data-product-material="@product.MaterialName"
+                                                                data-product-color="@product.HexCode">
+
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -681,7 +686,12 @@
                                                                    data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-size-sm-name="@product.SizeSmallName"
+                                                                   data-product-material="@product.MaterialName"
+                                                                   data-product-color="@product.HexCode">
+                                                                    
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -738,8 +748,16 @@
                                                             <div class="Secondary-Actions">
                                                                 <a id="add-to-wishlist">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                    data-product-id="@product.Id"
+                                                                    data-product-name="@product.Title"
+                                                                    data-product-price="@product.Price"
+                                                                    data-product-image="@product.ImageUrl">
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-size-sm-name="@product.SizeSmallName"
+                                                                   data-product-material="@product.MaterialName"
+                                                                   data-product-color="@product.HexCode">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -1984,10 +2002,18 @@
                                                                 </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
-                                                                <a id="add-to-wishlist">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-size-sm-name="@product.SizeSmallName"
+                                                                   data-product-material="@product.MaterialName"
+                                                                   data-product-color="@product.HexCode">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2043,10 +2069,18 @@
                                                                 </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
-                                                                <a id="add-to-wishlist">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-size-sm-name="@product.SizeSmallName"
+                                                                   data-product-material="@product.MaterialName"
+                                                                   data-product-color="@product.HexCode">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2101,10 +2135,18 @@
                                                                 </button>
                                                             </div>
                                                             <div class="Secondary-Actions">
-                                                                <a id="add-to-wishlist">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
-                                                                <a id="quickview">
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-size-sm-name="@product.SizeSmallName"
+                                                                   data-product-material="@product.MaterialName"
+                                                                   data-product-color="@product.HexCode">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2875,177 +2917,332 @@
         });
     </script>
 
-    /* loader */
+    /* Index */
 
+/*     <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
+            //#region Nivo Poinst
 
-   <script>
+            const Nivo_Points = document.querySelectorAll("#Nivo_Point");
+            const Nivo_Point_First = document.querySelector(".First_Nivo_Point");
+            const Nivo_Point_Second = document.querySelector(".Second_Nivo_Point");
+            const Bigon_Monitor = document.querySelector(".Bigon_Monitor");
+            const Bigon_SmartWatch = document.querySelector(".Bigon_SmartWatch");
 
-/*    document.addEventListener("DOMContentLoaded", () => {
-            fetch('https://localhost:7297/Admin/products')
-                .then(response => response.json())
-                .then(products => {
-                    const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
-                    const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
+            Nivo_Point_First.classList.add("Active");
 
-                    AddToCart_Btns.forEach(AddToCart_Btn => {
-                        AddToCart_Btn.addEventListener("click", (e) => {
-                            e.stopPropagation(); 
+            Nivo_Point_Second.addEventListener("click", (e) => {
+                e.stopPropagation();
 
-                            const product = {
-                                id: AddToCart_Btn.getAttribute('data-product-id'),
-                                name: AddToCart_Btn.getAttribute('data-product-name'),
-                                price: AddToCart_Btn.getAttribute('data-product-price'),
-                                imageUrl: AddToCart_Btn.getAttribute('data-product-image'),
-                                quantity: 1,
+                Nivo_Point_First.classList.remove("Active");
+                Nivo_Point_Second.classList.add("Active");
 
-                            };
+                Bigon_SmartWatch.style.opacity = "1";
+                Bigon_Monitor.style.opacity = "0";
+            })
 
-                            if (!product || product.id === null) {
-                                Toastify({
-                                    text: 'Invalid product or missing ID. Please try again.',
-                                    duration: 3000,
-                                    gravity: 'top',
-                                    position: 'right',
-                                    backgroundColor: 'red',
-                                    stopOnFocus: true,
-                                }).showToast();
-                                return;
-                            }
+            Nivo_Point_First.addEventListener("click", (e) => {
+                e.stopPropagation();
 
-                            addToCart(product);
-                        });
-                    });
+                Nivo_Point_Second.classList.remove("Active");
+                Nivo_Point_First.classList.add("Active");
 
-                    AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
-                        AddToWishlist_Btn.addEventListener("click", (e) => {
-                            e.stopPropagation();
+                Bigon_Monitor.style.opacity = "1";
+                Bigon_SmartWatch.style.opacity = "0";
+            })
 
-                            const wishIcon = AddToWishlist_Btn.querySelector('img');
-                            const currentSrc = wishIcon.getAttribute('src');
+            //#endregion
 
-                            const baseUrl = window.location.origin;
+            //#region List-Elements-2
 
-                            const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
-                            const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+            const Owl_Outer_2 = document.querySelector(".Owl_Stage_Outer_2");
+            const Owl_Stages_List_2 = Owl_Outer_2.querySelectorAll(".Owl_Stage_3")
 
-                            const originalFullUrl = baseUrl + originalImagePath;
-                            const newFullUrl = baseUrl + newImagePath;
+            const List_Element_4 = document.querySelector("#List_element_4");
+            const List_Element_5 = document.querySelector("#List_element_5");
 
-                            const newSrc = currentSrc === originalFullUrl ? newFullUrl : originalFullUrl;
+            List_Element_5.addEventListener("click", () => {
+                List_Element_4.classList.remove("Active-List");
+                List_Element_5.classList.add("Active-List");
 
-                            wishIcon.setAttribute('src', newSrc);
+                Owl_Stages_List_2[0].classList.remove("Active-Stage");
+                Owl_Stages_List_2[1].classList.add("Active-Stage");
+            });
 
-                            const product = {
-                                id: AddToWishlist_Btn.getAttribute('data-product-id'),
-                                name: AddToWishlist_Btn.getAttribute('data-product-name'),
-                                price: AddToWishlist_Btn.getAttribute('data-product-price'),
-                                imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
-                            };
+            List_Element_4.addEventListener("click", () => {
+                List_Element_5.classList.remove("Active-List");
+                List_Element_4.classList.add("Active-List");
 
-                            if (!product || product.id === null) {
-                                Toastify({
-                                    text: 'Invalid product or missing ID. Please try again.',
-                                    duration: 3000,
-                                    gravity: 'top',
-                                    position: 'right',
-                                    backgroundColor: 'red',
-                                    stopOnFocus: true,
-                                }).showToast();
-                                return; 
-                            }
+                Owl_Stages_List_2[1].classList.remove("Active-Stage");
 
-                            addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
-                        });
-                    });
+                Owl_Stages_List_2[0].classList.add("Active-Stage");
+            });
 
-                    updateItemCount(getCartItemCount());
-                })
-                .catch(error => console.error('Error fetching products:', error));
+            //#endregion
+
+            //#region List-Elemnents-3
+
+            const Owl_Outer_3 = document.querySelector(".Owl_Stage_Outer_3");
+            const Owl_Stages_List_3 = Owl_Outer_3.querySelectorAll(".Owl_Stage_4")
+
+            console.log(Owl_Outer_3);
+            console.log(Owl_Stages_List_3);
+
+            const List_Element_6 = document.querySelector("#List_element_6");
+            const List_Element_7 = document.querySelector("#List_element_7");
+            const List_Element_8 = document.querySelector("#List_element_8");
+
+            List_Element_7.addEventListener("click", () => {
+
+                List_Element_6.classList.remove("Active-List");
+                List_Element_8.classList.remove("Active-List");
+
+                List_Element_7.classList.add("Active-List");
+
+                Owl_Stages_List_3[0].classList.remove("Active-Stage");
+                Owl_Stages_List_3[2].classList.remove("Active-Stage");
+
+                Owl_Stages_List_3[1].classList.add("Active-Stage");
+            });
+
+            List_Element_8.addEventListener("click", () => {
+
+                List_Element_6.classList.remove("Active-List");
+                List_Element_7.classList.remove("Active-List");
+
+                List_Element_8.classList.add("Active-List");
+
+                Owl_Stages_List_3[0].classList.remove("Active-Stage");
+                Owl_Stages_List_3[1].classList.remove("Active-Stage");
+
+                Owl_Stages_List_3[2].classList.add("Active-Stage");
+            });
+
+            List_Element_6.addEventListener("click", () => {
+
+                List_Element_7.classList.remove("Active-List");
+                List_Element_8.classList.remove("Active-List");
+
+                List_Element_6.classList.add("Active-List");
+
+                Owl_Stages_List_3[0].classList.add("Active-Stage");
+
+                Owl_Stages_List_3[1].classList.remove("Active-Stage");
+                Owl_Stages_List_3[2].classList.remove("Active-Stage");
+            });
+
+            //#endregion
+
+            //#region  Ancle-1
+
+            const Owl_Items = document.querySelectorAll("#Owl_Item");
+            const OnSale_Items = document.querySelectorAll("#OnSale_Item");
+            const AnclePrev = document.querySelector(".Owl-Prev");
+            const AncleNext = document.querySelector(".Owl-Next");
+            const Owl_Stage = document.querySelector(".Owl_Stage");
+            const OnSale_Stage = document.getElementById("OnSale-Stage");
+            let activeIndex = 0;
+
+            AncleNext.addEventListener("click", () => {
+                if (Owl_Stage.classList.contains("Active-Stage") && activeIndex < Owl_Items.length - 5) {
+                    Owl_Stage.style.animation = "slideInFromRight 1s";
+                    Owl_Stage.addEventListener("animationend", () => {
+                        Owl_Stage.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items[activeIndex].classList.remove("Owl_Active");
+                    activeIndex++;
+                    Owl_Items[activeIndex + 4].classList.add("Owl_Active");
+                    Owl_Stage.style.animation = "slideInFromRight 1s";
+                }
+
+                if (OnSale_Stage.classList.contains("Active-Stage")) {
+                    OnSale_Stage.style.animation = "slideInFromRight 1s";
+                    OnSale_Stage.addEventListener("animationend", () => {
+                        OnSale_Stage.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    OnSale_Items[activeIndex].classList.remove("Owl_Active");
+                    activeIndex++;
+                    OnSale_Items[activeIndex + 4].classList.add("Owl_Active");
+                    OnSale_Stage.style.animation = "slideInFromRight 1s";
+                }
+            })
+
+            AnclePrev.addEventListener("click", () => {
+                if (activeIndex > 0) {
+                    Owl_Stage.style.animation = "slideInFromRight 1s";
+                    Owl_Stage.addEventListener("animationend", () => {
+                        Owl_Stage.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items[activeIndex + 4].classList.remove("Owl_Active");
+                    activeIndex--;
+                    Owl_Stage.style.animation = "slideOutToLeft 1s";
+                    Owl_Items[activeIndex].classList.add("Owl_Active");
+                }
+            });
+
+            //#endregion
+
+            //#region List-Elements-1
+
+            const Owl_Outer_1 = document.querySelector(".Owl_Stage_Outer_1");
+            const Owl_Stages_List = Owl_Outer_1.querySelectorAll(".Owl_Stage");
+
+            const List_Element_1 = document.querySelector("#List_element_1");
+            const List_Element_2 = document.querySelector("#List_element_2");
+            const List_Element_3 = document.querySelector("#List_element_3");
+
+            List_Element_2.addEventListener("click", () => {
+
+                List_Element_3.classList.remove("Active-List");
+                List_Element_1.classList.remove("Active-List");
+
+                List_Element_2.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.remove("Active-Stage");
+                Owl_Stages_List[2].classList.remove("Active-Stage");
+
+                Owl_Stages_List[1].classList.add("Active-Stage");
+            });
+
+            List_Element_3.addEventListener("click", () => {
+
+                List_Element_1.classList.remove("Active-List");
+                List_Element_2.classList.remove("Active-List");
+
+                List_Element_3.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.remove("Active-Stage");
+                Owl_Stages_List[1].classList.remove("Active-Stage");
+
+                Owl_Stages_List[2].classList.add("Active-Stage");
+            });
+
+            List_Element_1.addEventListener("click", () => {
+
+                List_Element_2.classList.remove("Active-List");
+                List_Element_3.classList.remove("Active-List");
+
+                List_Element_1.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.add("Active-Stage");
+
+                Owl_Stages_List[1].classList.remove("Active-Stage");
+                Owl_Stages_List[2].classList.remove("Active-Stage");
+            });
+
+            //#endregion
+
+            //#region Ancle-2
+
+            const Owl_Items_2 = document.querySelectorAll("#Owl_Item_2");
+            const AnclePrev_2 = document.querySelector(".Owl-Prev_2");
+            const AncleNext_2 = document.querySelector(".Owl-Next_2");
+            const Owl_Stage_2 = document.querySelector(".Owl_Stage_2");
+            let activeIndex_2 = 0;
+
+            AncleNext_2.addEventListener("click", () => {
+                if (activeIndex_2 < Owl_Items_2.length) {
+                    Owl_Stage_2.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_2.addEventListener("animationend", () => {
+                        Owl_Stage_2.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_2[activeIndex_2].classList.remove("Owl_Active");
+                    activeIndex_2++;
+                    Owl_Items_2[activeIndex_2].classList.add("Owl_Active");
+                    Owl_Stage_2.style.animation = "slideInFromRight 1s";
+                }
+            });
+
+            AnclePrev_2.addEventListener("click", () => {
+                if (activeIndex_2 > 0) {
+                    Owl_Stage_2.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_2.addEventListener("animationend", () => {
+                        Owl_Stage_2.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_2[activeIndex_2].classList.remove("Owl_Active");
+                    activeIndex_2--;
+                    Owl_Stage_2.style.animation = "slideOutToLeft 1s";
+                    Owl_Items_2[activeIndex_2].classList.add("Owl_Active");
+                }
+            });
+
+            //#endregion
+
+            //#region Ancle-3
+
+            const Owl_Items_3 = document.querySelectorAll("#Owl_Item_3");
+            const AnclePrev_3 = document.querySelector(".Owl-Prev_3");
+            const AncleNext_3 = document.querySelector(".Owl-Next_3");
+            const Owl_Stage_3 = document.querySelector(".Owl_Stage_3.Active-Stage");
+            let activeIndex_3 = 0;
+
+            AncleNext_3.addEventListener("click", () => {
+                if (activeIndex_3 < Owl_Items_3.length) {
+                    Owl_Stage_3.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_3.addEventListener("animationend", () => {
+                        Owl_Stage_3.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_3[activeIndex_3].classList.remove("Owl_Active");
+                    activeIndex_3++;
+                    Owl_Items_3[activeIndex_3 + 2].classList.add("Owl_Active");
+                    Owl_Stage_3.style.animation = "slideInFromRight 1s";
+                }
+            });
+
+            AnclePrev_3.addEventListener("click", () => {
+                if (activeIndex_3 > 0) {
+                    Owl_Stage_3.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_3.addEventListener("animationend", () => {
+                        Owl_Stage_3.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_3[activeIndex_3 + 2].classList.remove("Owl_Active");
+                    activeIndex_3--;
+                    Owl_Stage_3.style.animation = "slideOutToLeft 1s";
+                    Owl_Items_3[activeIndex_3].classList.add("Owl_Active");
+                }
+            });
+
+            //#endregion
+
+            //#region Ancle-4
+
+            const Owl_Items_4 = document.querySelectorAll("#Owl_Item_4");
+            const AnclePrev_4 = document.querySelector(".Owl-Prev_4");
+            const AncleNext_4 = document.querySelector(".Owl-Next_4");
+            const Owl_Stage_4 = document.querySelector(".Owl_Stage_4.Active-Stage");
+            let activeIndex_4 = 0;
+
+            AncleNext_4.addEventListener("click", () => {
+                if (activeIndex_4 < Owl_Items_4.length - 5) {
+                    Owl_Stage_4.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_4.addEventListener("animationend", () => {
+                        Owl_Stage_4.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_4[activeIndex_4].classList.remove("Owl_Active");
+                    activeIndex_4++;
+                    Owl_Items_4[activeIndex_4 + 4].classList.add("Owl_Active");
+                    Owl_Stage_4.style.animation = "slideInFromRight 1s";
+                }
+            });
+
+            AnclePrev_4.addEventListener("click", () => {
+                if (activeIndex_4 > 0) {
+                    Owl_Stage_4.style.animation = "slideInFromRight 1s";
+                    Owl_Stage_4.addEventListener("animationend", () => {
+                        Owl_Stage_4.style.animation = ""; // Reset animation
+                    }, { once: true });
+                    Owl_Items_4[activeIndex_4 + 4].classList.remove("Owl_Active");
+                    activeIndex_4--;
+                    Owl_Stage_4.style.animation = "slideOutToLeft 1s";
+                    Owl_Items_4[activeIndex_4].classList.add("Owl_Active");
+                }
+            });
+
+            //#endregion
+
         });
-
-         function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            const existingProduct = cart.find(item => item.id === product.id);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-                Toastify({
-                    text: `Product ${product.name} quantity increased`,
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "green",
-                    stopOnFocus: true,
-                }).showToast();
-            } else {
-                cart.push(product);
-                Toastify({
-                    text: `Product ${product.name} added to your Cart`,
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "green",
-                    stopOnFocus: true,
-                }).showToast();
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            updateItemCount(getCartItemCount());
-        }
-
-        function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-            const existingProduct = wishlist.find(item => item.id === product.id);
-
-            if (existingProduct) {
-                Toastify({
-                    text: `Product ${product.name} removed from your WishList`,
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "orange",
-                    stopOnFocus: true,
-                }).showToast();
-
-                wishlist = wishlist.filter(item => item.id !== product.id);
-                wishIcon.setAttribute('src', originalFullUrl);
-            } else {
-                Toastify({
-                    text: `Product ${product.name} added to your WishList`,
-                    duration: 3000,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "green",
-                    stopOnFocus: true,
-                }).showToast();
-
-                wishlist.push(product);
-                wishIcon.setAttribute('src', newFullUrl);
-            }
-
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        }
-
-        function updateItemCount(count) {
-            const itemCountElement = document.getElementById('ItemCount');
-
-            if (itemCountElement) {
-                itemCountElement.textContent = count;
-            }
-
-            localStorage.setItem('itemCount', count);
-        }
-
-        function getCartItemCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            return cart.reduce((total, item) => total + item.quantity, 0);
-        } */
-
-    </script>
+    </script> */
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

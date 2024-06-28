@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shopping.Domain.Models.Entities
 {
-    public class Contact
+    public class ContactPost
     {
         public int Id { get; set; }
         public string FullName { get; set; }

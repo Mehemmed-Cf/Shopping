@@ -47,5 +47,10 @@ namespace Shopping.Presentation.Controllers
             var response = await mediator.Send(request);
             return View(response);
         }
+
+/*        public async Task<IActionResult> FilterByTitle(string title)
+        {
+            
+        }*/
     }
 }

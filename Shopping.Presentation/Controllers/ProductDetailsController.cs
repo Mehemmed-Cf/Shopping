@@ -42,6 +42,7 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
+        [Route("ProductDetails/{id}")]
         public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
         {
             var response = await mediator.Send(request);

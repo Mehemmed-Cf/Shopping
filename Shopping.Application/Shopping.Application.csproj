@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Shopping.Infrastructure\Shopping.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\ProductsModule\Queries\FilterProductByTitle\" />
+  </ItemGroup>
+
 </Project>

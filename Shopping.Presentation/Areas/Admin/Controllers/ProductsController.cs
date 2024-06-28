@@ -56,7 +56,7 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
                 return Json(response);
             }*/
 
-            return View(response);
+            return Json(response);
         }
 
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)
