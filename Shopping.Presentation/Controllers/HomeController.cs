@@ -48,9 +48,10 @@ namespace Shopping.Presentation.Controllers
             return View(response);
         }
 
-/*        public async Task<IActionResult> FilterByTitle(string title)
+        public async Task<IActionResult> Subscribe(ProductGetAllRequest request)
         {
-            
-        }*/
+            var response = await mediator.Send(request);
+            return View(response);
+        }
     }
 }
