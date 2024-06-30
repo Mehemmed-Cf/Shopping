@@ -266,7 +266,7 @@
 
     </script>
 
-    @* basket count *@
+    @* Layout Script *@
 
     <script>
 
@@ -281,15 +281,18 @@
                     quickviewButtons.forEach(button => {
                         button.addEventListener("click", (event) => {
                             const productId = event.currentTarget.getAttribute("data-product-id");
-                            const productSize = event.currentTarget.getAttribute('data-product-size-sm-name');
-                            const productMaterial = event.currentTarget.getAttribute('data-product-material');
-                            const productColor = event.currentTarget.getAttribute('data-product-color');
 
-                            const encodedSize = encodeURIComponent(productSize);
-                            const encodedMaterial = encodeURIComponent(productMaterial);
-                            const encodedColor = encodeURIComponent(productColor);
+                            window.location.href = `/ProductDetails/${productId}`;
 
-                            window.location.href = `/ProductDetails/${productId}?size=${encodedSize}&material=${encodedMaterial}&color=${encodedColor}`;
+                            // const productSize = event.currentTarget.getAttribute('data-product-size-sm-name');
+                            // const productMaterial = event.currentTarget.getAttribute('data-product-material');
+                            // const productColor = event.currentTarget.getAttribute('data-product-color');
+
+                            // const encodedSize = encodeURIComponent(productSize);
+                            // const encodedMaterial = encodeURIComponent(productMaterial);
+                            // const encodedColor = encodeURIComponent(productColor);
+
+                            //window.location.href = `/ProductDetails/${productId}?size=${encodedSize}&material=${encodedMaterial}&color=${encodedColor}`;
                         });
                     });
 

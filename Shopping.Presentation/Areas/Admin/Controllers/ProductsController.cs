@@ -62,7 +62,7 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)
         {
             var response = await mediator.Send(request);
-            return View(response);
+            return Json(response);
         }
 
         public IActionResult Create()

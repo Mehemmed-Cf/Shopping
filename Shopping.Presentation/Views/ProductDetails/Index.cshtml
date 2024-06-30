@@ -9,9 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detailed View</title>
 
-    <!-- <script defer src="./index.js"></script> -->
-    <!-- <script defer src="../../common/functions/index.js"></script> -->
-
     <style>
         button,
         a {
@@ -166,7 +163,7 @@
 
     <style>
         .Active-Label-Color {
-            transform: scale(1.1);
+            transform: scale(1.15;
             box-shadow: 1px 1px 3px #000 !important;
         }
 
@@ -185,7 +182,7 @@
 </head>
 <body>
 
-    <main role="main" style="">
+     <main role="main" style="">
         <div class="Product_Tab">
             <div style="padding-top: 0px; padding-bottom: 300px;" class="Product_Thumbnail">
                 <div class="container">
@@ -218,7 +215,7 @@
 
                                     <div id="inventory">
                                         <div class="Inventory-Title">Availability:</div>
-                                        <div class="Variant-Inventory">@Model.StockCount left in stock</div>
+                                        <div class="Variant-Inventory"><span style="color: var(--Main-Blue);">@Model.StockCount</span> left in stock</div>
                                     </div>
 
                                     <div id="Option">
@@ -568,6 +565,7 @@
         </div>
     </main>
 
+
     @* Box Quantity and AddToCart *@
 
     <script>
@@ -619,46 +617,63 @@
     @* Params *@
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sizeParam = urlParams.get('size');
-            const materialParam = urlParams.get('material');
-            const colorParam = urlParams.get('color');
-            
-            const sizeLabels = document.querySelectorAll('#swatch\\ size label'); //  ' \\ ' escapes the space character
-            const materialLabels = document.querySelectorAll('#swatch\\ material label');
-            const colorLabels = document.querySelectorAll('#swatch\\ color label');
 
-            let isSizeValid = false;
-            let isMaterialValid = false;
-            let isColorValid = false;
+        document.addEventListener('DOMContentLoaded', async function () {
 
-            sizeLabels.forEach(label => {
-                if (label.textContent.trim() === sizeParam) {
-                    label.classList.add('Active-Label');
-                    isSizeValid = true;
+            const pathParts = window.location.pathname.split('/');
+            const productId = pathParts[pathParts.length - 1];
+
+            try {
+                const response = await fetch(`https://localhost:7297/Admin/products/details/${productId}`);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch product details (status ${response.status})`);
                 }
-            });
 
-            materialLabels.forEach(label => {
-                if (label.textContent.trim() === materialParam) {
-                    label.classList.add('Active-Label');
-                    isMaterialValid = true;
+                const product = await response.json();
+
+                if (!product || Object.keys(product).length === 0) {
+                    throw new Error(`Product with ID ${productId} not found`);
                 }
-            });
 
-            colorLabels.forEach(label => {
-                const dataValue = label.getAttribute('data-value');
-                if (dataValue === colorParam) {
-                    label.classList.add('Active-Label-Color');
-                    isColorValid = true;
+                if (product && product.sizeSmallName && product.materialName && product.hexCode) {
+                    const sizeParam = product.sizeSmallName;
+                    const materialParam = product.materialName;
+                    const colorParam = product.hexCode;
+
+                    const sizeLabels = document.querySelectorAll('#swatch\\ size .Swatch-Element label');
+                    const materialLabels = document.querySelectorAll('#swatch\\ material .Swatch-Element label');
+                    const colorLabels = document.querySelectorAll('#swatch\\ color .Swatch-Element label');
+
+                    sizeLabels.forEach(label => {
+                        if (label.textContent.trim() === sizeParam) {
+                            label.classList.add('Active-Label');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
+
+                    materialLabels.forEach(label => {
+                        if (label.textContent.trim() === materialParam) {
+                            label.classList.add('Active-Label');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
+
+                    colorLabels.forEach(label => {
+                        const dataValue = label.getAttribute('data-value');
+                        if (dataValue === colorParam) {
+                            label.classList.add('Active-Label-Color');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
                 }
-            });
-
-            function redirectToNotFound() {
+            } catch (error) {
+                console.error('Error fetching product details:', error);
                 window.location.href = "https://localhost:7297/NotFound";
+
             }
         });
+
     </script>
 
 </body>
