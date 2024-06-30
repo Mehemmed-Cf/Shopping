@@ -10,5 +10,10 @@ namespace Shopping.Repository
         public SubscriberRepository(DbContext db) : base(db)
         {
         }
+
+        public async Task<Subscriber> GetByEmailAsync(string email)
+        {
+            return await db.Set<Subscriber>().FirstOrDefaultAsync(s => s.Email == email);
+        }
     }
 }

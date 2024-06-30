@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ContactPostsModule.Commands.ContactPostApplyCommand;
+using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
 
 namespace Shopping.Presentation.Controllers
@@ -15,8 +16,22 @@ namespace Shopping.Presentation.Controllers
             this.mediator = mediator;
         }
 
+        public IActionResult Index()
+        {
+            if (Request.Headers["Accept"].ToString().Contains("application/json"))
+            {
+                // Return JSON response
+                return Ok(new { message = "JSON response" });
+            }
+            else
+            {
+                // Return View response
+                return View();
+            }
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Index(ContactPostApplyRequest request)
+        public async Task<IActionResult> Contact(ContactPostApplyRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.FullName))
             {

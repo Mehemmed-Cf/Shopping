@@ -5,5 +5,6 @@ namespace Shopping.Application.Repositories
 {
     public interface ISubscriberRepository : IAsyncRepository<Subscriber>
     {
+        Task<Subscriber> GetByEmailAsync(string email);
     }
 }

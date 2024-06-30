@@ -18,14 +18,35 @@ namespace Shopping.Presentation.Controllers
         [Route("ProductDetails/{id}")]
         public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
         {
-            var response = await mediator.Send(request);
-
-            if (response == null)
+            try
             {
-                return NotFound(); // Redirect to NotFound page if product is not found
-            }
+                var response = await mediator.Send(request);
 
-            return View(response);
+                if (response == null)
+                {
+                    return View("~/Views/NotFound/Index.cshtml");
+                }
+
+                return View(response);
+            }
+            catch (Exception ex)
+            {
+
+                return View("~/Views/NotFound/Index.cshtml");
+            }
         }
+
+        //[Route("ProductDetails/{id}")]
+        //public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
+        //{
+        //    var response = await mediator.Send(request);
+
+        //    if (response == null)
+        //    {
+        //        return NotFound(); // Redirect to NotFound page if product is not found
+        //    }
+
+        //    return View(response);
+        //}
     }
 }

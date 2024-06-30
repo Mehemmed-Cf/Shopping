@@ -1,5 +1,3 @@
-IBlogPostRepository blogPostRepository;
-
 //#region Change Page
 
 const List_Prev = document.querySelector(".List-Prev");

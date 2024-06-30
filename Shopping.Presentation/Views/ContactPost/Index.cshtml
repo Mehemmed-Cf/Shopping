@@ -16,30 +16,30 @@
                         <div class="Column">
                             <h3>Contact Us</h3>
                             <p>we will probably not care but contact us</p>
-                            <form id="contact_form" method="post" accept-charset="UTF-8" form-type="contact">
+                            <form id="contact_form" method="post" action="/ContactPostController/Contact" accept-charset="UTF-8" form-type="contact">
                                 <div class="Address-Wrapper">
 
                                     <div id= class="Col">
                                         <div class="address-frame" id="contact-name">
-                                            <input id="contact-Input-Name" type="text" placeholder="FullName" />
+                                            <input id="contact-Input-Name" name="FullName" type="text" placeholder="FullName" />
                                         </div>
                                     </div>
 
                                     <div class="Col">
                                         <div class="address-frame" id="contact-email">
-                                            <input id="contact-Input-Name" type="text" placeholder="example@gmail.com" />
+                                            <input style="text-transform: none" id="contact-Input-Name" name="Email" type="email" placeholder="example@gmail.com" />
                                         </div>
                                     </div>
 
                                     <div class="Col-2">
                                         <div class="address-frame-subject" id="contact-subject">
-                                            <input type="text" placeholder="Subject:" />
+                                            <input type="text" name="Subject" placeholder="Subject:" />
                                         </div>
                                     </div>
 
                                     <div class="Col-2">
                                         <div class="address-frame-textarea" id="contact-textarea">
-                                            <input type="text" placeholder="Your Text here:" />
+                                            <input type="text" name="Content" placeholder="Your Text here:" />
                                         </div>
                                     </div>
 
@@ -58,6 +58,40 @@
     </main>
 
     <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contact_form');
+            const errorMessage = document.getElementById('subscribe-error-message');
+
+            contactForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(contactForm);
+                const requestData = Object.fromEntries(formData.entries());
+                console.log('Form Data:', requestData); // Log form data to verify
+
+                const response = await fetch('/ContactPost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit form.');
+                }
+
+                const jsonResponse = await response.json();
+                if (jsonResponse.error) {
+                    console.error('Form submission error:', jsonResponse.message);
+                    // Handle error if needed
+                } else {
+                    alert('Form submitted successfully!');
+                    // Handle success if needed
+                }
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", function () {
             const form = document.getElementById("contact_form");
