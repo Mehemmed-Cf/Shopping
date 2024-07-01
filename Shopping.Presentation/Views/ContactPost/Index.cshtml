@@ -60,61 +60,27 @@
             </div>
         </div>
     </main>
-@* 
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const contactForm = document.getElementById('contact_form');
-            const errorMessage = document.getElementById('subscribe-error-message');
-
-            contactForm.addEventListener('submit', async function (event) {
-                event.preventDefault();
-
-                const formData = new FormData(contactForm);
-                const requestData = Object.fromEntries(formData.entries());
-                console.log('Form Data:', requestData);
-
-                const response = await fetch('/ContactPost', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestData)
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to submit form.');
-                }
-
-                const jsonResponse = await response.json();
-                if (jsonResponse.error) {
-                    console.error('Form submission error:', jsonResponse.message);
-                    // Handle error if needed
-                } else {
-                    alert('Form submitted successfully!');
-                    // Handle success if needed
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("contact_form");
-
-            form.addEventListener("submit", function (event) {
-                event.preventDefault();
-
+        // Check if there's a success message in TempData
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
                 Toastify({
-                    text: "Form submitted successfully!",
+                    text: '@TempData["SuccessMessage"]',
                     duration: 3000,
                     close: true,
-                    gravity: "top",
-                    position: "right",
-                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
                 }).showToast();
-            });
-        });
+            </text>
 
+            TempData.Remove("SuccessMessage");
+        }
     </script>
- *@
+
 </body>
 </html>

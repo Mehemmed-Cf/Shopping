@@ -1,13 +1,7 @@
-﻿using Shopping.Infrastructure.Concrates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shopping.Domain.Models.Entities
+﻿
+namespace Shopping.Application.Modules.ContactPostsModule.Queries
 {
-    public class ContactPost : AuditableEntity
+    public class ContactPostRequestDto
     {
         public int Id { get; set; }
         public string FullName { get; set; }

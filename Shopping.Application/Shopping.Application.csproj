@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\ContactPostsModule\" />
     <Folder Include="Modules\ProductsModule\Queries\FilterProductByTitle\" />
   </ItemGroup>
 

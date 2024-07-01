@@ -1,13 +1,9 @@
-﻿using Shopping.Infrastructure.Concrates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Shopping.Domain.Models.Entities;
 
-namespace Shopping.Domain.Models.Entities
+namespace Shopping.Application.Modules.ContactPostsModule.Commands.ContactPostEditCommand
 {
-    public class ContactPost : AuditableEntity
+    public class ContactPostEditRequest : IRequest<ContactPost>
     {
         public int Id { get; set; }
         public string FullName { get; set; }

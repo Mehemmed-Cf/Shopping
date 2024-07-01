@@ -17,7 +17,7 @@ namespace Shopping.DataAccessLayer.Configurations
             builder.Property(m => m.AnsweredAt).HasColumnType("datetime");
             builder.Property(m => m.AnsweredBy).HasColumnType("int");
 
-
+            builder.ConfigureAuditable();
             builder.HasKey(m => m.Id);
             builder.ToTable("ContactPosts");
         }

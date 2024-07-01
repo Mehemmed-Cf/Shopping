@@ -56,6 +56,9 @@ namespace Shopping.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await mediator.Send(request);
+
+                TempData["SuccessMessage"] = "Submission successful. Approved with a 'Dexter Morgan' level of precision!";
+
                 return RedirectToAction(nameof(Index));
 
                 //return Json(new
