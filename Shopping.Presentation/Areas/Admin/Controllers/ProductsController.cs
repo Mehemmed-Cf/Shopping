@@ -6,6 +6,7 @@ using Shopping.Application.Modules.ProductsModule.Commands.ProductRemoveCommand;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
 using Shopping.Application.Repositories;
+using Shopping.Presentation.Helpers;
 
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
@@ -47,22 +48,30 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
-        public async Task<IActionResult> Index(ProductGetAllRequest request) //, bool IsJson = false
+        public async Task<IActionResult> Index(ProductGetAllRequest request)
         {
             var response = await mediator.Send(request);
-/*
-            if (IsJson == true)
+
+            if (RouteHelper.IsJsonRequest(HttpContext))
             {
                 return Json(response);
-            }*/
 
-            return Json(response);
+            }
+
+            return View(response);
+
         }
 
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)
         {
             var response = await mediator.Send(request);
-            return Json(response);
+
+            if (RouteHelper.IsJsonRequest(HttpContext))
+            {
+                return Json(response);
+            }
+
+            return View(response);
         }
 
         public IActionResult Create()

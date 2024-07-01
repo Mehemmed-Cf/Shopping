@@ -271,30 +271,44 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", () => {
-            fetch('https://localhost:7297/Admin/products')
+            fetch('https://localhost:7297/Admin/products', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
                 .then(response => response.json())
                 .then(products => {
                     const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
                     const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
                     const quickviewButtons = document.querySelectorAll("#quickview");
+                    const Single_Products = document.querySelectorAll(".Single-Product");
 
                     quickviewButtons.forEach(button => {
                         button.addEventListener("click", (event) => {
-                            const productId = event.currentTarget.getAttribute("data-product-id");
+                            event.preventDefault();
+                            let productId = button.getAttribute("data-product-id");
+
+                            // if (productId == null || productId == undefined || isNaN(productId)) {
+                            //     window.location.href = "https://localhost:7297/NotFound";
+                            // }
 
                             window.location.href = `/ProductDetails/${productId}`;
-
-                            // const productSize = event.currentTarget.getAttribute('data-product-size-sm-name');
-                            // const productMaterial = event.currentTarget.getAttribute('data-product-material');
-                            // const productColor = event.currentTarget.getAttribute('data-product-color');
-
-                            // const encodedSize = encodeURIComponent(productSize);
-                            // const encodedMaterial = encodeURIComponent(productMaterial);
-                            // const encodedColor = encodeURIComponent(productColor);
-
-                            //window.location.href = `/ProductDetails/${productId}?size=${encodedSize}&material=${encodedMaterial}&color=${encodedColor}`;
                         });
                     });
+
+                    // Single_Products.forEach(SingleProduct => {
+                    //     SingleProduct.addEventListener("click", (event) => {
+                    //         event.preventDefault();
+                    //         let productId = SingleProduct.getAttribute("data-product-id");
+
+                    //         if (productId == null || productId == undefined || productId == NaN) {
+                    //             window.location.href = "https://localhost:7297/NotFound";
+                    //         }
+
+                    //         window.location.href = `/ProductDetails/${productId}`;
+                    //     });
+                    // });
 
                     AddToCart_Btns.forEach(AddToCart_Btn => {
                         AddToCart_Btn.addEventListener("click", (e) => {
@@ -413,38 +427,6 @@
 
             updateItemCount(getCartItemCount());
         }
-
-        // function addToCart(product) {
-        //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        //     const existingProduct = cart.find(item => item.id === product.id);
-
-        //     if (existingProduct) {
-        //         existingProduct.quantity += 1;
-        //         Toastify({
-        //             text: `Product ${product.name} quantity increased`,
-        //             duration: 3000,
-        //             gravity: "top",
-        //             position: "right",
-        //             backgroundColor: "green",
-        //             stopOnFocus: true,
-        //         }).showToast();
-        //     } else {
-        //         cart.push(product);
-        //         Toastify({
-        //             text: `Product ${product.name} added to your Cart`,
-        //             duration: 3000,
-        //             gravity: "top",
-        //             position: "right",
-        //             backgroundColor: "green",
-        //             stopOnFocus: true,
-        //         }).showToast();
-        //     }
-
-        //     localStorage.setItem('cart', JSON.stringify(cart));
-
-        //     updateItemCount(getCartItemCount());
-        // }
 
         function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];

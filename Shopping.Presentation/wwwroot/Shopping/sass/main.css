@@ -5845,7 +5845,8 @@ main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Row .Col-Blog .Singl
 }
 main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Row .Col-Blog .Single-Blog .Blog-Content #blog-content-upper p {
   width: 348px;
-  height: 110px;
+  /*height: 110px;*/
+  height: auto !important;
   letter-spacing: 0.025em;
   line-height: 24px;
   border-top: 1px solid #eaeaea;

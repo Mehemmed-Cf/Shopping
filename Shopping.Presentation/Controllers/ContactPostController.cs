@@ -56,12 +56,14 @@ namespace Shopping.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await mediator.Send(request);
-                return Json(new
-                {
-                    error = false,
-                    message = "",
-                    errors = new Dictionary<string, IEnumerable<string>>()
-                });
+                return RedirectToAction(nameof(Index));
+
+                //return Json(new
+                //{
+                //    error = false,
+                //    message = "",
+                //    errors = new Dictionary<string, IEnumerable<string>>()
+                //});
             }
 
             //List< KeyValuePair<string,ModelStateEntry> > 

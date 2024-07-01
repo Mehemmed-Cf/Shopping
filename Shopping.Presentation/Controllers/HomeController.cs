@@ -53,7 +53,7 @@ namespace Shopping.Presentation.Controllers
             return View(response);
         }
 
-        [HttpGet("/Admin/Subscribers/{email}")]
+        //[HttpGet("/Admin/Subscribers/{email}")]
         public async Task<IActionResult> CheckEmailExists(string email)
         {
             try

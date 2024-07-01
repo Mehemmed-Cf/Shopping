@@ -99,6 +99,7 @@
                         <div class="form-group text-right m-0">
                             <input type="hidden" class="form-control" asp-for="Id">
                             <a class="btn btn-sm btn-warning" asp-action="edit" asp-route-id="@Model.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-action="publish" asp-route-id="@Model.Id">Publish</a>
                             <a class="btn btn-sm btn-primary" asp-action="index">Cancel</a>
                         </div>
                     </form>

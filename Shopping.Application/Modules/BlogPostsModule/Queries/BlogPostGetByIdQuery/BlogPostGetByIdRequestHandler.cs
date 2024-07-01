@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Shopping.Application.Repositories;
 
 namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQuery
@@ -8,11 +9,13 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQu
     {
         private readonly IBlogPostRepository blogPostRepository;
         private readonly IActionContextAccessor ctx;
+        private readonly ICategoryRepository categoryRepository;
 
-        public BlogPostGetByIdRequestHandler(IBlogPostRepository blogPostRepository, IActionContextAccessor ctx)
+        public BlogPostGetByIdRequestHandler(IBlogPostRepository blogPostRepository, IActionContextAccessor ctx, ICategoryRepository categoryRepository)
         {
             this.blogPostRepository = blogPostRepository;
             this.ctx = ctx;
+            this.categoryRepository = categoryRepository;
         }
 
         public async Task<BlogPostGetByIdRequestDto> Handle(BlogPostGetByIdRequest request, CancellationToken cancellationToken)
@@ -21,6 +24,8 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQu
 
             string host = $"{ctx.ActionContext.HttpContext.Request.Scheme}://{ctx.ActionContext.HttpContext.Request.Host}";
 
+            var categorySet = await categoryRepository.GetAll(m => m.DeletedAt == null).ToDictionaryAsync(c => c.Id, cancellationToken);
+
             return new BlogPostGetByIdRequestDto
             {
                 Id = entity.Id,
@@ -28,7 +33,7 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetByIdQu
                 Slug = entity.Slug,
                 ImageUrl = $"{host}/uploads/images/{entity.ImagePath}",
                 CategoryId = entity.CategoryId,
-                CategoryName = "Demo",
+                CategoryName = categorySet.ContainsKey(entity.CategoryId) ? categorySet[entity.CategoryId].Name : null,
                 Body = entity.Body,
                 PublishedAt = entity.PublishedAt,
                 PublishedBy = entity.PublishedBy,

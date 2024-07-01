@@ -11,15 +11,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
-    <link rel="stylesheet" href="~/Shopping/sass/main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-          type="text/css"
-          href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
     <script defer src="~/Shopping/Js/Blog/index.js"></script>
-    <script defer src="~/Shopping/common/functions/navigation.js"></script>
+
+    <style>
+
+        main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Row .Col-Blog .Single-Blog .Blog-Content #blog-content-upper p {
+            height: auto !important;
+        }
+
+        main .Latest-Blogs .Blog-Area {
+            height: fit-content;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -34,19 +39,19 @@
                                 <h3>ALL LATEST BLOGS</h3>
                             </div>
                         </div>
-                        <div class="Col-Content" style="display: flex; justify-content: center;">
+                        <div class="Col-Content" style="display: flex; justify-content: center; height: max-content">
 
 
                             <div onload="showLoader(true)" class="Row Active-Row" style="display: flex; justify-content: center;">
 
                                   @foreach(var blog in Model) {
 
-                                    <div class="Col-Blog" style="width: 410px; height: 500px;">
+                                    <div class="Col-Blog" style="width: 410px; height: 600px;">
                                         <div class="Single-Blog">
 
                                             <div class="Blog-Img">
                                                 <a>
-                                                    <img style="width: 410px;" src="@(blog.ImageUrl)" />
+                                                    <img style="width: 410px; height: 200px;" src="@(blog.ImageUrl)" />
                                                 </a>
                                             </div>
 
@@ -54,7 +59,7 @@
 
                                                 <div id="blog-content-upper">
                                                     <h6>@blog.Title</h6>
-                                                    <div style="height: 110px;">
+                                                    <div>
                                                         @Html.Raw(blog.Body?.Trim())
                                                     </div>  
                                                 </div>
@@ -95,7 +100,7 @@
 
                                                 <div id="blog-content-upper">
                                                     <h6>@blog.Title</h6>
-                                                    <div style="height: 110px;">
+                                                    <div style="height: auto !important;">
                                                         @Html.Raw(blog.Body?.Trim())
                                                     </div>
                                                 </div>
@@ -120,7 +125,7 @@
 
                             </div>
 
-                            <div class="Change-Page">
+                  @*           <div class="Change-Page">
                                 <div class="Change-Item">
                                     <div class="Shop-Pagination">
                                         <div id="pagination">
@@ -140,7 +145,7 @@
                                     </div>
                                 </div>
                             </div>
-
+ *@
                         </div>
                     </div>
                 </div>

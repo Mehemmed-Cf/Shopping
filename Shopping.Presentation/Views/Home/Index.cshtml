@@ -585,9 +585,9 @@
                                         <div class="swiper-slide"> 
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
-                                                    <div class="Product-Img">
+                                                    <div class="Product-Img" data-product-id="@product.Id">
                                                         <img src="@(product.ImageUrl)" />
                                                     </div>
 
@@ -619,11 +619,7 @@
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview" 
-                                                                data-product-id="@product.Id"
-                                                                data-product-size-sm-name="@product.SizeSmallName"
-                                                                data-product-material="@product.MaterialName"
-                                                                data-product-color="@product.HexCode">
-
+                                                                data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -654,7 +650,7 @@
                                         <div class="swiper-slide">
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
                                                     <div class="Product-Img">
                                                         <img src="@(product.ImageUrl)" />
@@ -687,11 +683,7 @@
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview"
-                                                                   data-product-id="@product.Id"
-                                                                   data-product-size-sm-name="@product.SizeSmallName"
-                                                                   data-product-material="@product.MaterialName"
-                                                                   data-product-color="@product.HexCode">
-                                                                    
+                                                                   data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -721,7 +713,7 @@
                                         <div class="swiper-slide">
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
                                                     <div class="Product-Img">
                                                         <img src="@(product.ImageUrl)" />
@@ -754,10 +746,7 @@
                                                                     data-product-image="@product.ImageUrl">
                                                                 </a>
                                                                 <a id="quickview"
-                                                                   data-product-id="@product.Id"
-                                                                   data-product-size-sm-name="@product.SizeSmallName"
-                                                                   data-product-material="@product.MaterialName"
-                                                                   data-product-color="@product.HexCode">
+                                                                   data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -1977,7 +1966,7 @@
                                         <div class="swiper-slide">
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
                                                     <div class="Product-Img">
                                                         <img src="@(product.ImageUrl)" />
@@ -2010,10 +1999,7 @@
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview"
-                                                                   data-product-id="@product.Id"
-                                                                   data-product-size-sm-name="@product.SizeSmallName"
-                                                                   data-product-material="@product.MaterialName"
-                                                                   data-product-color="@product.HexCode">
+                                                                   data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2044,7 +2030,7 @@
                                         <div class="swiper-slide">
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
                                                     <div class="Product-Img">
                                                         <img src="@(product.ImageUrl)" />
@@ -2077,10 +2063,7 @@
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview"
-                                                                   data-product-id="@product.Id"
-                                                                   data-product-size-sm-name="@product.SizeSmallName"
-                                                                   data-product-material="@product.MaterialName"
-                                                                   data-product-color="@product.HexCode">
+                                                                   data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2110,7 +2093,7 @@
                                         <div class="swiper-slide">
                                             <div id="Owl_Item" class="Owl_Active">
 
-                                                <div class="Single-Product">
+                                                <div class="Single-Product" data-product-id="@product.Id">
 
                                                     <div class="Product-Img">
                                                         <img src="@(product.ImageUrl)" />
@@ -2143,10 +2126,7 @@
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
                                                                 <a id="quickview"
-                                                                   data-product-id="@product.Id"
-                                                                   data-product-size-sm-name="@product.SizeSmallName"
-                                                                   data-product-material="@product.MaterialName"
-                                                                   data-product-color="@product.HexCode">
+                                                                   data-product-id="@product.Id">
                                                                     <img src="~/Shopping/assets/icons/Quickview.svg" />
                                                                 </a>
                                                             </div>
@@ -2981,35 +2961,43 @@
                 });
             });
 
-        async function checkEmailExists(email) {
-            try {
-                const response = await fetch(`/Admin/Subscribers/${email}`);
-                if (!response.ok) {
-                    throw new Error('Server responded with error: ' + response.status);
-                }
-                const data = await response.json();
-                return data.exists; // Assuming your backend returns { exists: true/false }
-            } catch (error) {
-                console.error('Error checking email:', error.message);
-                return false; // Return false in case of any error
-            }
-        }
-
-            async function addSubscriber(email) {
+            async function checkEmailExists(email) {
                 try {
-                    const emailExists = await checkEmailExists(email);
+
+                const response = await fetch(`/Admin/Subscribers/${email}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                    if (!response.ok) {
+                        throw new Error('Server responded with error: ' + response.status);
+                    }
+                    const data = await response.json();
+                    return data.exists; // Assuming your backend returns { exists: true/false }
+                } catch (error) {
+                    console.error('Error checking email:', error.message);
+                    return false; // Return false in case of any error
+                }
+            }
+
+        async function addSubscriber(email) {
+                try {
+                const emailExists = await checkEmailExists(email);
 
                     if (emailExists) {
                         console.log('Email already exists.');
                         return { message: 'Email already subscribed' };
                     }
 
-                    const response = await fetch('/Admin/Subscribers', {
+                const response = await fetch(`/Admin/Subscribers/Create`, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
                         },
-                        body: JSON.stringify({ email })
+                    body: JSON.stringify({ email })
                     });
 
                     if (!response.ok) {

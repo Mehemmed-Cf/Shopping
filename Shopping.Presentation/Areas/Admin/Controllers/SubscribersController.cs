@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Azure.Core;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.SubscribersModule.Commands.SubscriberAddCommand;
 using Shopping.Application.Modules.SubscribersModule.Commands.SubscriberEditCommand;
@@ -6,6 +7,7 @@ using Shopping.Application.Modules.SubscribersModule.Commands.SubscriberRemoveCo
 using Shopping.Application.Modules.SubscribersModule.Queries.SubscriberGetAllQuery;
 using Shopping.Application.Modules.SubscribersModule.Queries.SubscriberGetByEmailQuery;
 using Shopping.Application.Modules.SubscribersModule.Queries.SubscriberGetByIdQuery;
+using Shopping.Presentation.Helpers;
 
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
@@ -22,7 +24,13 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index(SubscriberGetAllRequest request)
         {
             var response = await mediator.Send(request);
-            return Json(response);
+
+            if (RouteHelper.IsJsonRequest(HttpContext))
+            {
+                return Json(response);
+            }
+
+            return View(response);
         }
 
         public async Task<IActionResult> Details([FromRoute] SubscriberGetByIdRequest request)
@@ -34,15 +42,25 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
         [HttpGet("/Admin/subscribers/{email}")]
         public async Task<IActionResult> Email(string email)
         {
-            var request = new SubscriberGetByEmailRequest { Email = email };
-            var response = await mediator.Send(request);
+            //var request = new SubscriberGetByEmailRequest { Email = email };
+            //var response = await mediator.Send(request);
 
-            if (response == null)
+            //if (response == null)
+            //{
+            //    return NotFound();
+            //}
+
+            if(RouteHelper.IsJsonRequest(HttpContext))
             {
-                return NotFound(); // Handle case where subscriber with given email is not found
+                //return Json(response);
+
+                return Ok(new
+                {
+                    exist = false
+                });
             }
 
-            return Ok(response); // Return JSON response
+            return View(null);
         }
 
         public IActionResult Create()
@@ -50,10 +68,13 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(SubscriberAddRequest request)
+        [HttpPost()]
+        public async Task<IActionResult> Create(string email)
         {
-            await mediator.Send(request);
+            await mediator.Send(new SubscriberAddRequest
+            {
+                Email = email
+            });
             return RedirectToAction(nameof(Index));
         }
 

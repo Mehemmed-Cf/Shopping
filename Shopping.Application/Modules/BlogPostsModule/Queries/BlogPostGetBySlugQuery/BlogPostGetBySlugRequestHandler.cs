@@ -39,7 +39,6 @@ namespace Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetBySlug
                                          PublishedBy = bp.PublishedBy,
                                          CategoryId = bp.CategoryId,
                                          CategoryName = c.Name
-                                         /* Author = "Jhon Doe", */
                                      }).FirstOrDefaultAsync(cancellationToken);
 
             return joinedQuery;
