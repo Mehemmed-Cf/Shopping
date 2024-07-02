@@ -1,7 +1,4 @@
 
-
-
-
 //#region Single-Products
 
 const Single_Products = document.querySelectorAll(".Single-Product");
@@ -24,12 +21,6 @@ Single_Products.forEach(item => {
             AddToCart_Btn.classList.add("Appear");
             add_to_wishlist.classList.add("Appear");
             quickview.classList.add("Appear");
-
-            //console.log(Product_Content);
-            //console.log(add_to_wishlist);
-            //console.log(AddToCart_Btn);
-            //console.log(quickview);
-            //console.log(Price);
         });
 
         item.addEventListener("mouseout", () => {

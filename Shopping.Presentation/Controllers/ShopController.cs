@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
+using Shopping.Presentation.Helpers;
 
 namespace Shopping.Presentation.Controllers
 {
@@ -42,10 +43,58 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
-        public async Task<IActionResult> Index(ProductGetAllRequest request)
+        public async Task<IActionResult> Index(ProductGetAllRequest request, decimal? priceFrom, decimal? priceTo, string SortBy)
         {
             var response = await mediator.Send(request);
+
+            if (priceFrom.HasValue && priceTo.HasValue)
+            {
+                response = response.Where(p => p.Price >= priceFrom.Value && p.Price <= priceTo.Value);
+            }
+
+            switch (SortBy)
+            {
+                case "title-ascending":
+                    response = response.OrderBy(p => p.Title);
+                    break;
+                case "title-descending":
+                    response = response.OrderByDescending(p => p.Title);
+                    break;
+                case "price-ascending":
+                    response = response.OrderBy(p => p.Price);
+                    break;
+                case "price-descending":
+                    response = response.OrderByDescending(p => p.Price);
+                    break;
+                case "created-ascending":
+                    response = response.OrderBy(p => p.CreatedAt);
+                    break;
+                case "created-descending":
+                    response = response.OrderByDescending(p => p.CreatedAt);
+                    break;
+                default:
+                    break;
+            }
+
+            if (RouteHelper.IsJsonRequest(HttpContext))
+            {
+                return Json(response);
+            }
+
             return View(response);
         }
+
+        //public async Task<IActionResult> Index(ProductGetAllRequest request, decimal? priceFrom, decimal? priceTo)
+        //{
+        //    var response = await mediator.Send(request);
+
+        //    if (priceFrom.HasValue && priceTo.HasValue)
+        //    {
+        //        response = response.Where(p => p.Price >= priceFrom.Value && p.Price <= priceTo.Value);
+
+        //    }
+
+        //    return View(response);
+        //}
     }
 }

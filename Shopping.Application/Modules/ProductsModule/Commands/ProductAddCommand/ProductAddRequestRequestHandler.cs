@@ -28,6 +28,8 @@ namespace Shopping.Application.Modules.ProductsModule.Commands.ProductAddCommand
                 BrandId = request.BrandId,
                 SizeId = request.SizeId,
                 ColorId = request.ColorId,
+                CreatedBy = 1, 
+                CreatedAt = DateTime.UtcNow
             };
 
             entity.ImagePath = await fileService.UploadAsync(request.Image);

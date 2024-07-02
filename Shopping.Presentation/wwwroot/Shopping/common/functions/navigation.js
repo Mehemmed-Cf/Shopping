@@ -6,24 +6,12 @@ const settings_bar = document.querySelector("#Settings-Bar");
 const body = document.querySelector('body');
 const Page_LinksAndLogo = document.querySelector(".Page-LinksAndLogo");
 const SignIn_Link = document.querySelector("#SignIn-Bar");
+const MyWishlist_Bar = document.querySelector("#MyWishlist-Bar");
 const Bars_Link = document.querySelector(".Bars_Link");
 const Links_Bar = document.querySelector("#Links-Bar");
 const SearchAndBasket = document.querySelector(".SearchAndBasket");
 const BasketIcon = SearchAndBasket.querySelector("#Basket");
 
-/*BasketIcon.addEventListener("click", () => {
-    window.open("../Cart/index.html");
-});*/
-
-//#region SignIn
-
-SignIn_Link.addEventListener("click" , (e) => {
-    e.stopPropagation();
-
-    window.open("../Login/index.html", "_self");
-})
-
-//#endregion
 
 //#region  Settings Bar
 
@@ -93,25 +81,4 @@ Bars_Link.addEventListener("click", () => {
  });
 
 //#endregion
-
-//#region Page-Links
-
-// const Page_Links = document.querySelector(".Page-Links");
-// const Links = Page_Links.querySelectorAll("a");
-
-
-// Links[0].addEventListener("click" , () => {
-//     window.open("../Home/index.html", "_self");
-// });
-
-// Links[1].addEventListener("click" , () => {
-//     window.open("../About/index.html", "_self");
-// });
-
-//#endregion
-
-
-
-
-
 

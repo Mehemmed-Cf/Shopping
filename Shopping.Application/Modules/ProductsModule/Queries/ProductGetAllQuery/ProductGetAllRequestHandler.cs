@@ -45,13 +45,6 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery
             var colorSet = await colorRepository.GetAll(m => m.DeletedAt == null).ToDictionaryAsync(c => c.Id, cancellationToken);
             var sizeSet = await sizeRepository.GetAll(m => m.DeletedAt == null).ToDictionaryAsync(s => s.Id, cancellationToken);
 
-            /*            var productSet = productRepository.GetAll();
-                        var categorySet = categoryRepository.GetAll();
-                        var materialSet = materialRepository.GetAll();
-                        var brandSet = brandRepository.GetAll();
-                        var colorSet = colorRepository.GetAll();
-                        var sizeSet = sizeRepository.GetAll();*/
-
             var queryResponse = await query.Select(m => new ProductGetAllRequestDto
             {
                 Id = m.Id,
@@ -62,28 +55,17 @@ namespace Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery
                 CategoryName = categorySet.ContainsKey(m.CategoryId) ? categorySet[m.CategoryId].Name : null,
                 CategoryId = m.CategoryId,
                 BrandName = brandSet.ContainsKey(m.BrandId) ? brandSet[m.BrandId].Name : null,
+                BrandId = m.BrandId,
                 ColorName = colorSet.ContainsKey(m.ColorId) ? colorSet[m.ColorId].Name : null,
+                ColorId = m.ColorId,
                 HexCode = colorSet.ContainsKey(m.ColorId) ? colorSet[m.ColorId].HexCode : null,
                 SizeName = sizeSet.ContainsKey(m.SizeId) ? sizeSet[m.SizeId].Name : null,
+                SizeId = m.SizeId,
                 SizeSmallName = sizeSet.ContainsKey(m.SizeId) ? sizeSet[m.SizeId].SmallName : null,
                 MaterialName = materialSet.ContainsKey(m.MaterialId) ? materialSet[m.MaterialId].Name : null,
+                MaterialId = m.MaterialId,
+                CreatedAt = m.CreatedAt,
             }).ToListAsync(cancellationToken);
-
-            /*            var queryResponse = await query.Select(m => new ProductGetAllRequestDto
-                        {
-                            Id = m.Id,
-                            Title = m.Title,
-                            ImageUrl = $"{host}/uploads/images/{m.ImagePath}",
-                            Price = m.Price,
-                            StockCount = m.StockCount,
-                            CategoryName = "Demo",
-                            BrandName = "Demo Brand",
-                            ColorName = "Demo Color",
-                            HexCode = "Demo Hex",
-                            SizeName = "Demo Size",
-                            SizeSmallName = "Demo SmallName",
-                            MaterialName = "Demo Material",
-                        }).ToListAsync(cancellationToken);*/
 
             return queryResponse;
         }

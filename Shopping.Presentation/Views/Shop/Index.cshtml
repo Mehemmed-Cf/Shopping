@@ -134,12 +134,12 @@
 
                           <li>
                             <input id="instock" type="checkbox" value="1" />
-                            <label for="instock">In stock (Count)</label>
+                            <label for="instock">In stock </label>
                           </li>
 
                           <li>
                             <input id="outofstock" type="checkbox" value="1" />
-                            <label for="outofstock" >Out of stock (Count)</label>
+                            <label for="outofstock" >Out of stock </label>
                           </li>
 
                         </ul>
@@ -158,9 +158,9 @@
                         <div class="Filter-Value">
                           <span class="Filter-Value-Selected">
                            "Price: "
-                           <span id="money">$0.00</span>
+                           <span class="price-min" id="money">$0.00</span>
                            " - "
-                           <span id="money">$150.00</span>
+                           <span class="price-max" id="money">$150.00</span>
                           </span>
                         </div>
                         
@@ -168,13 +168,13 @@
                           <div class="Price-Filter">
                             <div class="Filter-Range-Form">
                               <span>$</span>
-                              <input id="Filter-Price" max="150.00" placeholder="0" min="0" type="number" value="0.00" />
+                              <input id="Filter-Price" class="price-from" max="10000.00" placeholder="0" min="0" type="number" value="0.00" />
                               <label for="Filter-Price">From</label>
                             </div>
 
                             <div class="Filter-Range-To">
                               <span>$</span>
-                              <input id="Filter-Price" max="150.00" placeholder="0" min="0" type="number" value="150.00" />
+                              <input id="Filter-Price" class="price-to" max="10000.00" placeholder="0" min="0" type="number" value="150.00" />
                               <label for="Filter-Price">To</label>
                             </div>
 
@@ -201,37 +201,179 @@
                         
                         <ul>
 
-                          <li>
-                            <input id="Pants" type="checkbox" value="1" />
-                            <label for="Pants">Pants (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Electronics" type="checkbox" value="1" />
+                                <label for="Electronics">Electronics</label>
+                            </li>
 
-                          <li>
-                            <input id="T-Shirts" type="checkbox" value="1" />
-                            <label for="T-Shirts">T-Shirts (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Mobile-Devices" type="checkbox" value="1" />
+                                <label for="Mobile-Devices">Mobile Devices</label>
+                            </li>
 
-                          <li>
-                            <input id="Hoodies" type="checkbox" value="1" />
-                            <label for="Hoodies">Hoodies (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Smartphones" type="checkbox" value="1" />
+                                <label for="Smartphones">Smartphones</label>
+                            </li>
 
-                          <li>
-                            <input id="Watches" type="checkbox" value="1" />
-                            <label for="Watches">Watches (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Tablets" type="checkbox" value="1" />
+                                <label for="Tablets">Tablets</label>
+                            </li>
 
-                          <li>
-                            <input id="Phones" type="checkbox" value="1" />
-                            <label for="Phones">Phones (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Accessories" type="checkbox" value="1" />
+                                <label for="Accessories">Accessories</label>
+                            </li>
 
-                          <li>
-                            <input id="Computers" type="checkbox" value="1" />
-                            <label for="Computers">Computers (Count)</label>
-                          </li>
+                            <li>
+                                <input id="Computing" type="checkbox" value="1" />
+                                <label for="Computing">Computing</label>
+                            </li>
+
+                            <li>
+                                <input id="Desktops" type="checkbox" value="1" />
+                                <label for="Desktops">Desktops</label>
+                            </li>
+
+                            <li>
+                                <input id="Laptops" type="checkbox" value="1" />
+                                <label for="Laptops">Laptops</label>
+                            </li>
+
+                            <li>
+                                <input id="Peripherals" type="checkbox" value="1" />
+                                <label for="Peripherals">Peripherals</label>
+                            </li>
+
+                            <li>
+                                <input id="Audio" type="checkbox" value="1" />
+                                <label for="Audio">Audio</label>
+                            </li>
+
+                            <li>
+                                <input id="Headphones" type="checkbox" value="1" />
+                                <label for="Headphones">Headphones</label>
+                            </li>
+
+                            <li>
+                                <input id="Speakers" type="checkbox" value="1" />
+                                <label for="Speakers">Speakers</label>
+                            </li>
+
+                            <li>
+                                <input id="Wearable-Technology" type="checkbox" value="1" />
+                                <label for="Wearable-Technology">Wearable Technology</label>
+                            </li>
+
+                            <li>
+                                <input id="Smartwatches" type="checkbox" value="1" />
+                                <label for="Smartwatches">Smartwatches</label>
+                            </li>
+
+                            <li>
+                                <input id="TVs" type="checkbox" value="1" />
+                                <label for="TVs">TVs</label>
+                            </li>
+
+                            <li>
+                                <input id="LED-TVs" type="checkbox" value="1" />
+                                <label for="LED-TVs">LED TVs</label>
+                            </li>
+
+                            <li>
+                                <input id="OLED-TVs" type="checkbox" value="1" />
+                                <label for="OLED-TVs">OLED TVs</label>
+                            </li>
+
+                            <li>
+                                <input id="QLED-TVs" type="checkbox" value="1" />
+                                <label for="QLED-TVs">QLED TVs</label>
+                            </li>
+
+                            <li>
+                                <input id="Smart-TVs" type="checkbox" value="1" />
+                                <label for="Smart-TVs">Smart TVs</label>
+                            </li>
+
+                            <li>
+                                <input id="Home-Gadgets" type="checkbox" value="1" />
+                                <label for="Home-Gadgets">Home Gadgets</label>
+                            </li>
+
+                            <li>
+                                <input id="Fashion-and-Apparel" type="checkbox" value="1" />
+                                <label for="Fashion-and-Apparel">Fashion and Apparel</label>
+                            </li>
+
+                            <li>
+                                <input id="Mens-Clothing" type="checkbox" value="1" />
+                                <label for="Mens-Clothing">Men's Clothing</label>
+                            </li>
+
+                            <li>
+                                <input id="Shirts" type="checkbox" value="1" />
+                                <label for="Shirts">Shirts</label>
+                            </li>
+
+                            <li>
+                                <input id="Pants" type="checkbox" value="1" />
+                                <label for="Pants">Pants</label>
+                            </li>
+
+                            <li>
+                                <input id="Suits" type="checkbox" value="1" />
+                                <label for="Suits">Suits</label>
+                            </li>
+
+                            <li>
+                                <input id="Jackets" type="checkbox" value="1" />
+                                <label for="Jackets">Jackets</label>
+                            </li>
+
+                            <li>
+                                <input id="Womens-Clothing" type="checkbox" value="1" />
+                                <label for="Womens-Clothing">Women's Clothing</label>
+                            </li>
+
+                            <li>
+                                <input id="Dresses" type="checkbox" value="1" />
+                                <label for="Dresses">Dresses</label>
+                            </li>
+
+                            <li>
+                                <input id="Tops" type="checkbox" value="1" />
+                                <label for="Tops">Tops</label>
+                            </li>
+
+                            <li>
+                                <input id="Skirts" type="checkbox" value="1" />
+                                <label for="Skirts">Skirts</label>
+                            </li>
+
+                            <li>
+                                <input id="Outerwear" type="checkbox" value="1" />
+                                <label for="Outerwear">Outerwear</label>
+                            </li>
+
+                            <li>
+                                <input id="Home-and-Kitchen" type="checkbox" value="1" />
+                                <label for="Home-and-Kitchen">Home and Kitchen</label>
+                            </li>
+
+                            <li>
+                                <input id="Cookware" type="checkbox" value="1" />
+                                <label for="Cookware">Cookware</label>
+                            </li>
+
+                            <li>
+                                <input id="Kitchen-Gadgets" type="checkbox" value="1" />
+                                <label for="Kitchen-Gadgets">Kitchen Gadgets</label>
+                            </li>
+
 
                         </ul>
+
                       </div>
                     </div>
 
@@ -251,32 +393,84 @@
                         
                         <ul>
 
-                          <li>
-                            <input id="CF-Brothers" type="checkbox" value="1" />
-                            <label for="CF-Brothers">CF-Brothers (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Lenavo" type="checkbox" value="1" />
+                                                    <label for="Lenavo">Lenavo </label>
+                                                </li>
 
-                          <li>
-                            <input id="Nike" type="checkbox" value="1" />
-                            <label for="Nike">Nike (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Samsung" type="checkbox" value="1" />
+                                                    <label for="Samsung">Samsung </label>
+                                                </li>
 
-                          <li>
-                            <input id="Mac" type="checkbox" value="1" />
-                            <label for="Mac">Mac (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Apple" type="checkbox" value="1" />
+                                                    <label for="Apple">Apple </label>
+                                                </li>
 
-                          <li>
-                            <input id="Lenavo" type="checkbox" value="1" />
-                            <label for="Lenavo">Lenavo (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Dell" type="checkbox" value="1" />
+                                                    <label for="Dell">Dell </label>
+                                                </li>
 
-                          <li>
-                            <input id="MSI" type="checkbox" value="1" />
-                            <label for="MSI">MSI (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Asus" type="checkbox" value="1" />
+                                                    <label for="Asus">Asus </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="HP" type="checkbox" value="1" />
+                                                    <label for="HP">HP </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="OtterBox" type="checkbox" value="1" />
+                                                    <label for="OtterBox">OtterBox </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Sony" type="checkbox" value="1" />
+                                                    <label for="Sony">Sony </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Le-Creuset" type="checkbox" value="1" />
+                                                    <label for="Le-Creuset">Le Creuset </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Armani" type="checkbox" value="1" />
+                                                    <label for="Armani">Armani </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="CF-Brothers" type="checkbox" value="1" />
+                                                    <label for="CF-Brothers">CF Brothers </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Forever-21" type="checkbox" value="1" />
+                                                    <label for="Forever-21">Forever 21 </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Zara" type="checkbox" value="1" />
+                                                    <label for="Zara">Zara </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Diane-von-Furstenberg" type="checkbox" value="1" />
+                                                    <label for="Diane-von-Furstenberg">Diane von Furstenberg </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Lc-Waikiki" type="checkbox" value="1" />
+                                                    <label for="Lc-Waikiki">Lc Waikiki </label>
+                                                </li>
+
 
                         </ul>
+
                       </div>
                     </div>
 
@@ -296,32 +490,99 @@
                         
                         <ul>
 
-                          <li>
-                            <input id="Yellow" type="checkbox" value="1" />
-                            <label for="Yellow">Yellow (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Galvanized" type="checkbox" value="1" />
+                                                    <label for="Galvanized">Galvanized </label>
+                                                </li>
 
-                          <li>
-                            <input id="Pink" type="checkbox" value="1" />
-                            <label for="Pink">Pink (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Plazma-Pink" type="checkbox" value="1" />
+                                                    <label for="Plazma-Pink">Plazma Pink </label>
+                                                </li>
 
-                          <li>
-                            <input id="Dark" type="checkbox" value="1" />
-                            <label for="Dark">Dark (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Black" type="checkbox" value="1" />
+                                                    <label for="Black">Black </label>
+                                                </li>
 
-                          <li>
-                            <input id="Blue" type="checkbox" value="1" />
-                            <label for="blue">Blue (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Gray" type="checkbox" value="1" />
+                                                    <label for="Gray">Gray </label>
+                                                </li>
 
-                          <li>
-                            <input id="Red" type="checkbox" value="1" />
-                            <label for="Red">Red (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Red" type="checkbox" value="1" />
+                                                    <label for="Red">Red </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Blood" type="checkbox" value="1" />
+                                                    <label for="Blood">Blood </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Stardust-Silver" type="checkbox" value="1" />
+                                                    <label for="Stardust-Silver">Stardust Silver </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Blue" type="checkbox" value="1" />
+                                                    <label for="Blue">Blue </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Infinity-Gold" type="checkbox" value="1" />
+                                                    <label for="Infinity-Gold">Infinity Gold </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="White" type="checkbox" value="1" />
+                                                    <label for="White">White </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Cosmic-Coral" type="checkbox" value="1" />
+                                                    <label for="Cosmic-Coral">Cosmic Coral </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Quantum-Quartz" type="checkbox" value="1" />
+                                                    <label for="Quantum-Quartz">Quantum Quartz </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Astral-Violet" type="checkbox" value="1" />
+                                                    <label for="Astral-Violet">Astral Violet </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Nova-Blue" type="checkbox" value="1" />
+                                                    <label for="Nova-Blue">Nova Blue </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Cosmic-Teal" type="checkbox" value="1" />
+                                                    <label for="Cosmic-Teal">Cosmic Teal </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Celestial-Blue" type="checkbox" value="1" />
+                                                    <label for="Celestial-Blue">Celestial Blue </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Interstellar-Indigo" type="checkbox" value="1" />
+                                                    <label for="Interstellar-Indigo">Interstellar Indigo </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Solar-Flare-Orange" type="checkbox" value="1" />
+                                                    <label for="Solar-Flare-Orange">Solar Flare Orange </label>
+                                                </li>
+
 
                         </ul>
+
                       </div>
                     </div>
 
@@ -341,27 +602,114 @@
                         
                         <ul>
 
-                          <li>
-                            <input id="Glass" type="checkbox" value="1" />
-                            <label for="Glass">Glass (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Galvanized_Steel" type="checkbox" value="1" />
+                                                    <label for="Galvanized_Steel">Galvanized Steel </label>
+                                                </li>
 
-                          <li>
-                            <input id="Cotton" type="checkbox" value="1" />
-                            <label for="Cotton">Cotton (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Plastic" type="checkbox" value="1" />
+                                                    <label for="Plastic">Plastic </label>
+                                                </li>
 
-                          <li>
-                            <input id="Galvanized_Steel" type="checkbox" value="1" />
-                            <label for="Galvanized_Steel">Galvanized Steel (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Stainless_Steel" type="checkbox" value="1" />
+                                                    <label for="Stainless_Steel">Stainless Steel </label>
+                                                </li>
 
-                          <li>
-                            <input id="Plastic" type="checkbox" value="1" />
-                            <label for="Plastic">Plastic (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Leather" type="checkbox" value="1" />
+                                                    <label for="Leather">Leather </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Foam" type="checkbox" value="1" />
+                                                    <label for="Foam">Foam </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Aluminum" type="checkbox" value="1" />
+                                                    <label for="Aluminum">Aluminum </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Gorilla_Glass" type="checkbox" value="1" />
+                                                    <label for="Gorilla_Glass">Gorilla Glass </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Polyester" type="checkbox" value="1" />
+                                                    <label for="Polyester">Polyester </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Wool" type="checkbox" value="1" />
+                                                    <label for="Wool">Wool </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Cotton" type="checkbox" value="1" />
+                                                    <label for="Cotton">Cotton </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Suede" type="checkbox" value="1" />
+                                                    <label for="Suede">Suede </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Fur" type="checkbox" value="1" />
+                                                    <label for="Fur">Fur </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Fiberglass" type="checkbox" value="1" />
+                                                    <label for="Fiberglass">Fiberglass </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Acrylic" type="checkbox" value="1" />
+                                                    <label for="Acrylic">Acrylic </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Magnesium" type="checkbox" value="1" />
+                                                    <label for="Magnesium">Magnesium </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Brass" type="checkbox" value="1" />
+                                                    <label for="Brass">Brass </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Zinc" type="checkbox" value="1" />
+                                                    <label for="Zinc">Zinc </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Nickel" type="checkbox" value="1" />
+                                                    <label for="Nickel">Nickel </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Titanium" type="checkbox" value="1" />
+                                                    <label for="Titanium">Titanium </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Carbon_Fiber" type="checkbox" value="1" />
+                                                    <label for="Carbon_Fiber">Carbon Fiber </label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Graphite" type="checkbox" value="1" />
+                                                    <label for="Graphite">Graphite </label>
+                                                </li>
+
 
                         </ul>
+
                       </div>
                     </div>
 
@@ -381,37 +729,54 @@
                         
                         <ul>
 
-                          <li>
-                            <input id="xs" type="checkbox" value="1" />
-                            <label for="xs">xs (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="XL" type="checkbox" value="1" />
+                                                    <label for="XL">XL</label>
+                                                </li>
 
-                          <li>
-                            <input id="M" type="checkbox" value="1" />
-                            <label for="M">M (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="L" type="checkbox" value="1" />
+                                                    <label for="L">L</label>
+                                                </li>
 
-                          <li>
-                            <input id="L" type="checkbox" value="1" />
-                            <label for="L">L (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="M" type="checkbox" value="1" />
+                                                    <label for="M">M</label>
+                                                </li>
 
-                          <li>
-                            <input id="xl" type="checkbox" value="1" />
-                            <label for="xl">xl (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="S" type="checkbox" value="1" />
+                                                    <label for="S">S</label>
+                                                </li>
 
-                          <li>
-                            <input id="ml" type="checkbox" value="1" />
-                            <label for="ml">ml (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="C" type="checkbox" value="1" />
+                                                    <label for="C">Compact</label>
+                                                </li>
 
-                          <li>
-                            <input id="X" type="checkbox" value="1" />
-                            <label for="X">X (Count)</label>
-                          </li>
+                                                <li>
+                                                    <input id="Std" type="checkbox" value="1" />
+                                                    <label for="Std">Standard</label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="Mini" type="checkbox" value="1" />
+                                                    <label for="Mini">Mini</label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="ml" type="checkbox" value="1" />
+                                                    <label for="ml">ML</label>
+                                                </li>
+
+                                                <li>
+                                                    <input id="xs" type="checkbox" value="1" />
+                                                    <label for="xs">XS</label>
+                                                </li>
+
 
                         </ul>
+
                       </div>
                     </div>
 
@@ -462,24 +827,24 @@
 
                     @foreach (var product in Model)
                     {
-                      <div class="Single-Product">
+                      <div class="Single-Product" style="position: relative">
                         <div class="Pro-Img">
                             <a>
                                 <img src="@(product.ImageUrl)" />
                             </a>
                         </div>
-                        <div style="transition: 0.3s ease-in-out" class="Product-Content">
+                        <div style="transition: 0.3s ease-in-out; width: 190px; height: 100px" class="Product-Content">
                              <h4>@product.Title</h4>
                             <div id="product_rating"></div>
-                            <p>
+                            <p style="position: absolute; bottom: 0px !important; transform: translateY(0px) !important">
                                <span style="transition: 0.5s ease-in-out" id="price">
-                                    <span id="money">$@product.Price</span>
+                                    <span style="font-size: 22px; font-weight: 600;" id="money">$@product.Price</span>
                                 </span>
                                 <del style="display: none;" id="prev_price">
                                     <span id="money">$150.00</span>
                                 </del>
                             </p>
-                            <div style="transform: translateY(20px)" id="product-actions">
+                            <div id="product-actions" style="transform: translateY(40px)">
                                 <div class="Primary-Actions">
                                     <button class="Add-To-Cart"
                                             data-product-id="@product.Id"
@@ -497,7 +862,7 @@
                                         data-product-image="@product.ImageUrl">
                                         <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                     </a>
-                                    <a id="quickview">
+                                    <a id="quickview" data-product-id="@product.Id">
                                         <img src="~/Shopping/assets/icons/Quickview.svg" />
                                     </a>
                                 </div>
@@ -506,42 +871,6 @@
                      </div>
 
                     }
-
-
-                    <!-- 16 -->
-
-                    @* <div class="Single-Product">
-                      <div class="Pro-Img">
-                        <a>
-                          <img src="~/Shopping/assets/images/HD_TV.webp" />
-                        </a>
-                      </div>
-                      <div class="Product-Content">
-                        <h4>Demo Product Title</h4>
-                        <div id="product_rating"></div>
-                        <p>
-                          <span id="price">
-                            <span id="money">$100.00</span>
-                          </span>
-                          <del id="prev_price">
-                            <span id="money">$150.00</span>
-                           </del>
-                        </p>
-                        <div id="product-actions">
-                          <div class="Primary-Actions">
-                            <button class="Add-To-Cart">Add To Cart</button>
-                          </div>
-                          <div class="Secondary-Actions">
-                            <a id="add-to-wishlist">
-                              <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                            </a>
-                            <a id="quickview">
-                              <img src="~/Shopping/assets/icons/Quickview.svg" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div> *@
 
                   </div>
 
@@ -1112,7 +1441,7 @@
 
                 </div>
 
-                <div class="Change-Page">
+@*                 <div class="Change-Page">
                   <div class="Change-Item">
                       <div class="Shop-Pagination">
                           <div id="pagination">
@@ -1132,7 +1461,7 @@
                       </div>
                   </div>
               </div>
-
+ *@
               </div>
             </div>
           </div>
@@ -1140,8 +1469,167 @@
       </div>
     </main>
 
+    @* SortBy *@
+
     <script>
 
+        document.getElementById('SortBy').addEventListener('change', function () {
+            applyFilters();
+        });
+
+        function applyFilters() {
+            const sortBy = document.getElementById('SortBy').value;
+
+            const queryParams = new URLSearchParams({
+                sortBy: sortBy
+            });
+
+            fetch(`/Shop/Index?${queryParams.toString()}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log(data)
+
+                    const tabContent = document.querySelector('.Tab-Content');
+                    tabContent.innerHTML = ''; // Clear existing products
+
+                    switch (sortBy) {
+                        case "title-ascending":
+                            data.sort((a, b) => a.title.localeCompare(b.title));
+                            break;
+                        case "title-descending":
+                            data.sort((a, b) => b.title.localeCompare(a.title));
+                            break;
+                        case "price-ascending":
+                            data.sort((a, b) => a.price - b.price);
+                            break;
+                        case "price-descending":
+                            data.sort((a, b) => b.price - a.price);
+                            break;
+                        case "created-ascending":
+                            data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                            break;
+                        case "created-descending":
+                            data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                            break;
+                        default:
+                            break;
+                    }
+
+                    console.log(data)
+
+                    // Update product list
+                    data.forEach(product => {
+                        const productItem = document.createElement('div');
+                        productItem.className = 'Single-Product';
+                        productItem.style.position = 'relative';
+                        productItem.innerHTML = `
+                        <div class="Pro-Img">
+                            <a>
+                                <img src="${product.ImageUrl}" />
+                            </a>
+                        </div>
+                        <div class="Product-Content" style="transition: 0.3s ease-in-out; width: 190px; height: 100px">
+                            <h4>${product.Title}</h4>
+                            <div id="product_rating"></div>
+                            <p style="position: absolute; bottom: 0px !important; transform: translateY(0px) !important">
+                                <span style="transition: 0.5s ease-in-out" id="price">
+                                    <span style="font-size: 22px; font-weight: 600;" id="money">$${product.Price}</span>
+                                </span>
+                                <del style="display: none;" id="prev_price">
+                                    <span id="money">$150.00</span>
+                                </del>
+                            </p>
+                            <div id="product-actions" style="transform: translateY(40px)">
+                                <div class="Primary-Actions">
+                                    <button class="Add-To-Cart"
+                                            data-product-id="${product.Id}"
+                                            data-product-name="${product.Title}"
+                                            data-product-price="${product.Price}"
+                                            data-product-image="${product.ImageUrl}">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                                <div class="Secondary-Actions">
+                                    <a id="add-to-wishlist"
+                                        data-product-id="${product.Id}"
+                                        data-product-name="${product.Title}"
+                                        data-product-price="${product.Price}"
+                                        data-product-image="${product.ImageUrl}">
+                                        <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                    </a>
+                                    <a id="quickview" data-product-id="${product.Id}">
+                                        <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        tabContent.appendChild(productItem);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+    @* Price Filter *@
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButton = document.getElementById('Filter_Btn');
+            const priceFromInput = document.querySelector('.price-from');
+            const priceToInput = document.querySelector('.price-to');
+            const priceMin = document.querySelector('.price-min');
+            const priceMax = document.querySelector('.price-max');
+
+            function updatePriceDisplay() {
+                const priceFrom = priceFromInput.value;
+                const priceTo = priceToInput.value;
+
+                priceMin.textContent = `$${parseFloat(priceFrom).toFixed(2)}`;
+                priceMax.textContent = `$${parseFloat(priceTo).toFixed(2)}`;
+
+                localStorage.setItem('priceFrom', priceFrom);
+                localStorage.setItem('priceTo', priceTo);
+            }
+
+            if (filterButton && priceFromInput && priceToInput && priceMin && priceMax) {
+
+                const storedPriceFrom = localStorage.getItem('priceFrom');
+                const storedPriceTo = localStorage.getItem('priceTo');
+
+                if (storedPriceFrom && storedPriceTo) {
+                    priceFromInput.value = storedPriceFrom;
+                    priceToInput.value = storedPriceTo;
+                    updatePriceDisplay();
+                }
+
+                filterButton.addEventListener('click', function () {
+                    const priceFrom = priceFromInput.value;
+                    const priceTo = priceToInput.value;
+
+                    if (priceFrom !== "" && priceTo !== "" && !isNaN(priceFrom) && !isNaN(priceTo)) {
+                        updatePriceDisplay();
+
+                        window.location.href = `?priceFrom=${priceFrom}&priceTo=${priceTo}`;
+                    } else {
+                        alert("Please enter valid price values.");
+                    }
+                });
+            } else {
+                console.error('Filter button, input fields, or price display elements are missing.');
+            }
+        });
+    </script>
+
+    @* Widgets *@
+
+    <script>
 
         //#region sidebar
 
