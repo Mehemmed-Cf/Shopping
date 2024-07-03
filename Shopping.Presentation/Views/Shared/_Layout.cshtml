@@ -34,6 +34,7 @@
 <body>
 
     <nav class="Navigation">
+
         <div class="container">
 
             <div class="SupportAndSettings">
@@ -262,6 +263,91 @@
 
         function showLoader(show) {
             loaderElement.style.display = show ? "grid" : "none";
+        }
+
+    </script>
+
+    @* search *@
+
+    <script>
+
+        const SubmitSearch = document.querySelector(".Submit-Search");
+
+        SubmitSearch.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            performSearch(e);
+        })
+
+        function performSearch(event) {
+            event.preventDefault();
+
+            const title = document.querySelector('.Search-Input').value;
+            searchByTitle(title);
+            return false;
+        }
+
+        function searchByTitle(title) { 
+            window.history.pushState({}, '', `/Search/Index?title=${title}`);
+
+            fetch(`/Home/SearchByTitle?title=${title}`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const tabContent = document.querySelector('.Tab-Content');
+                    tabContent.innerHTML = '';
+
+                    data.forEach(product => {
+                        const productItem = document.createElement('div');
+                        productItem.className = 'Single-Product';
+                        productItem.style.position = 'relative';
+                        productItem.innerHTML = `
+                        <div class="Pro-Img">
+                            <a>
+                                <img src="${product.imageUrl}" />
+                            </a>
+                        </div>
+                        <div class="Product-Content" style="transition: 0.3s ease-in-out; width: 190px; height: 100px">
+                            <h4>${product.title}</h4>
+                            <div id="product_rating"></div>
+                            <p style="position: absolute; bottom: 0px !important; transform: translateY(0px) !important">
+                                <span style="transition: 0.5s ease-in-out" id="price">
+                                    <span style="font-size: 22px; font-weight: 600;" id="money">$${product.price}</span>
+                                </span>
+                                <del style="display: none;" id="prev_price">
+                                    <span id="money">$150.00</span>
+                                </del>
+                            </p>
+                            <div id="product-actions" style="transform: translateY(40px)">
+                                <div class="Primary-Actions">
+                                    <button class="Add-To-Cart"
+                                            data-product-id="${product.id}"
+                                            data-product-name="${product.title}"
+                                            data-product-price="${product.price}"
+                                            data-product-image="${product.imageUrl}">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                                <div class="Secondary-Actions">
+                                    <a id="add-to-wishlist"
+                                        data-product-id="${product.id}"
+                                        data-product-name="${product.title}"
+                                        data-product-price="${product.price}"
+                                        data-product-image="${product.imageUrl}">
+                                        <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                    </a>
+                                    <a id="quickview" data-product-id="${product.id}">
+                                        <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        tabContent.appendChild(productItem);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
         }
 
     </script>

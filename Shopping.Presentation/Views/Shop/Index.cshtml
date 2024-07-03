@@ -96,7 +96,7 @@
                     <div class="Widget-List">
                       <ul>
 
-                        <!-- <li>
+                        @* <li>
                           <a>
                             Filter-Item
 
@@ -109,7 +109,7 @@
                           
                           <a>Clear all</a>
 
-                        </li>
+                        </li> *@
 
                       </ul>
                     </div>
@@ -793,17 +793,6 @@
                 </div>
 
                 <div class="Grid-List">
-
-                  <!-- <div class="Grid-List-View">
-                    <ul>
-                      <li>
-                        <a>
-                          <img />
-                        </a>
-                      </li>
-                      <li></li>
-                    </ul>
-                  </div> -->
 
                   <div class="Main-Toolbar-Sorter">
                     <div class="Toolbar-Sorter">
@@ -1498,48 +1487,50 @@
                     const tabContent = document.querySelector('.Tab-Content');
                     tabContent.innerHTML = ''; // Clear existing products
 
-                    switch (sortBy) {
-                        case "title-ascending":
-                            data.sort((a, b) => a.title.localeCompare(b.title));
-                            break;
-                        case "title-descending":
-                            data.sort((a, b) => b.title.localeCompare(a.title));
-                            break;
-                        case "price-ascending":
-                            data.sort((a, b) => a.price - b.price);
-                            break;
-                        case "price-descending":
-                            data.sort((a, b) => b.price - a.price);
-                            break;
-                        case "created-ascending":
-                            data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-                            break;
-                        case "created-descending":
-                            data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                            break;
-                        default:
-                            break;
-                    }
+                    // switch (sortBy) {
+                    //     case "title-ascending":
+                    //         data.sort((a, b) => a.Title.localeCompare(b.Title));
+                    //         break;
+                    //     case "title-descending":
+                    //         data.sort((a, b) => b.Title.localeCompare(a.Title));
+                    //         break;
+                    //     case "price-ascending":
+                    //         data.sort((a, b) => a.Price - b.Price);
+                    //         break;
+                    //     case "price-descending":
+                    //         data.sort((a, b) => b.Price - a.Price);
+                    //         break;
+                    //     case "created-ascending":
+                    //         data.sort((a, b) => new Date(a.CreatedAt) - new Date(b.CreatedAt));
+                    //         break;
+                    //     case "created-descending":
+                    //         data.sort((a, b) => new Date(b.CreatedAt) - new Date(a.CreatedAt));
+                    //         break;
+                    //     default:
+                    //         break;
+                    // }
 
-                    console.log(data)
 
                     // Update product list
                     data.forEach(product => {
                         const productItem = document.createElement('div');
                         productItem.className = 'Single-Product';
                         productItem.style.position = 'relative';
+
+                        console.log(product)
+
                         productItem.innerHTML = `
                         <div class="Pro-Img">
                             <a>
-                                <img src="${product.ImageUrl}" />
+                                <img src="${product.imageUrl}" />
                             </a>
                         </div>
                         <div class="Product-Content" style="transition: 0.3s ease-in-out; width: 190px; height: 100px">
-                            <h4>${product.Title}</h4>
+                                    <h4>${product.title}</h4>
                             <div id="product_rating"></div>
                             <p style="position: absolute; bottom: 0px !important; transform: translateY(0px) !important">
                                 <span style="transition: 0.5s ease-in-out" id="price">
-                                    <span style="font-size: 22px; font-weight: 600;" id="money">$${product.Price}</span>
+                                            <span style="font-size: 22px; font-weight: 600;" id="money">$${product.price}</span>
                                 </span>
                                 <del style="display: none;" id="prev_price">
                                     <span id="money">$150.00</span>
@@ -1548,22 +1539,22 @@
                             <div id="product-actions" style="transform: translateY(40px)">
                                 <div class="Primary-Actions">
                                     <button class="Add-To-Cart"
-                                            data-product-id="${product.Id}"
-                                            data-product-name="${product.Title}"
-                                            data-product-price="${product.Price}"
-                                            data-product-image="${product.ImageUrl}">
+                                                    data-product-id="${product.id}"
+                                                    data-product-name="${product.title}"
+                                            data-product-price="${product.price}"
+                                            data-product-image="${product.imageUrl}">
                                         Add To Cart
                                     </button>
                                 </div>
                                 <div class="Secondary-Actions">
                                     <a id="add-to-wishlist"
-                                        data-product-id="${product.Id}"
-                                        data-product-name="${product.Title}"
-                                        data-product-price="${product.Price}"
-                                        data-product-image="${product.ImageUrl}">
+                                        data-product-id="${product.id}"
+                                        data-product-name="${product.title}"
+                                        data-product-price="${product.price}"
+                                        data-product-image="${product.imageUrl}">
                                         <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                     </a>
-                                    <a id="quickview" data-product-id="${product.Id}">
+                                    <a id="quickview" data-product-id="${product.id}">
                                         <img src="~/Shopping/assets/icons/Quickview.svg" />
                                     </a>
                                 </div>

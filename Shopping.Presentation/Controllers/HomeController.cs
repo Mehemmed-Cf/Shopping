@@ -4,6 +4,7 @@ using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
 using Shopping.Application.Modules.SubscribersModule.Commands.SubscriberAddCommand;
 using Shopping.Application.Modules.SubscribersModule.Queries.SubscriberGetByEmailQuery;
+using Shopping.Application.Modules.ProductsModule.Queries.FilterProductByTitle;
 
 namespace Shopping.Presentation.Controllers
 {
@@ -51,6 +52,20 @@ namespace Shopping.Presentation.Controllers
         {
             var response = await mediator.Send(request);
             return View(response);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchByTitle(string title)
+        {
+            var request = new FilterByTitleRequest { Title = title };
+            var result = await mediator.Send(request);
+
+            if (result == null || !result.Any())
+            {
+                return NotFound("No products found with the given title.");
+            }
+
+            return Ok(result);
         }
 
         //[HttpGet("/Admin/Subscribers/{email}")]
