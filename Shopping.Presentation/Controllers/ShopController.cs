@@ -73,6 +73,7 @@ namespace Shopping.Presentation.Controllers
                     response = response.OrderByDescending(p => p.CreatedAt);
                     break;
                 default:
+                    response = response.OrderBy(p => p.Title); // Default sort order
                     break;
             }
 
@@ -83,18 +84,5 @@ namespace Shopping.Presentation.Controllers
 
             return View(response);
         }
-
-        //public async Task<IActionResult> Index(ProductGetAllRequest request, decimal? priceFrom, decimal? priceTo)
-        //{
-        //    var response = await mediator.Send(request);
-
-        //    if (priceFrom.HasValue && priceTo.HasValue)
-        //    {
-        //        response = response.Where(p => p.Price >= priceFrom.Value && p.Price <= priceTo.Value);
-
-        //    }
-
-        //    return View(response);
-        //}
     }
 }

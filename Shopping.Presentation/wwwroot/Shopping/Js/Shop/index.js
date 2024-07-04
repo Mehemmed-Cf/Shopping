@@ -4,12 +4,15 @@
 const Widget_List = document.querySelector(".Widget-List");
 const Widget_Ul = Widget_List.querySelector("ul");
 
-
 const Input_Elements = document.querySelectorAll("input[type='checkbox']");
+
 
 Input_Elements.forEach(input => {
 
-    const Active_List = document.querySelector(".Active")
+    const Active_List = document.querySelector(".Active");
+
+    console.log(Active_List);
+
     const widget = input.closest(".Widget-Collapse"); //travels the parent elements of the input seeking for the nearest ancestor with the class name
     const filterValue = widget.querySelector(".Filter-Value");
     const selectedCount = filterValue.querySelector("span");
@@ -21,22 +24,28 @@ Input_Elements.forEach(input => {
         selectedCount.textContent = `${checkedCount} Selected`;
     };
 
-    Active_List.addEventListener("click", () => {
-        const listItems = Widget_List.querySelectorAll("li");
+    if (Active_List) {
 
-        listItems.forEach(li => {
-            if (!li.classList.contains("Active")) {
-                li.remove();
-            }
+        Active_List.addEventListener("click", () => {
+            const listItems = Widget_List.querySelectorAll("li");
+
+            listItems.forEach(li => {
+                if (!li.classList.contains("Active")) {
+                    li.remove();
+                }
+            });
+
+            Input_Elements.forEach(input => {
+                input.checked = false;
+            });
+
+            updateSelectedCount();
+
         });
+    } else {
+        console.error("Active element not found.");
+    }
 
-        Input_Elements.forEach(input => {
-            input.checked = false;
-        });
-
-        updateSelectedCount();
-
-    });
 
     resetLink.addEventListener("click", () => {
 

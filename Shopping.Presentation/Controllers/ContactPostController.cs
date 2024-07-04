@@ -20,12 +20,10 @@ namespace Shopping.Presentation.Controllers
         {
             if (Request.Headers["Accept"].ToString().Contains("application/json"))
             {
-                // Return JSON response
                 return Ok(new { message = "JSON response" });
             }
             else
             {
-                // Return View response
                 return View();
             }
         }
@@ -57,19 +55,11 @@ namespace Shopping.Presentation.Controllers
             {
                 await mediator.Send(request);
 
-                TempData["SuccessMessage"] = "Submission successful. Approved with a 'Dexter Morgan' level of precision!";
+                TempData["SuccessMessage"] = System.Web.HttpUtility.JavaScriptStringEncode("Submission successful. Approved with a 'Dexter Morgan' level of precision!");
+                //TempData["SuccessMessage"] = "Submission successful. Approved with a 'Dexter Morgan' level of precision!";
 
                 return RedirectToAction(nameof(Index));
-
-                //return Json(new
-                //{
-                //    error = false,
-                //    message = "",
-                //    errors = new Dictionary<string, IEnumerable<string>>()
-                //});
             }
-
-            //List< KeyValuePair<string,ModelStateEntry> > 
 
             var errors = ModelState.Select(m => new
             {

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
-using Shopping.Application.Modules.SubscribersModule.Commands.SubscriberAddCommand;
-using Shopping.Application.Modules.SubscribersModule.Queries.SubscriberGetByEmailQuery;
 using Shopping.Application.Modules.ProductsModule.Queries.FilterProductByTitle;
 
 namespace Shopping.Presentation.Controllers
@@ -69,46 +67,46 @@ namespace Shopping.Presentation.Controllers
         }
 
         //[HttpGet("/Admin/Subscribers/{email}")]
-        public async Task<IActionResult> CheckEmailExists(string email)
-        {
-            try
-            {
-                var subscriber = await subscriberRepository.GetByEmailAsync(email); // Implement this method in your repository
-                if (subscriber != null)
-                {
-                    return Ok(new { exists = true });
-                }
-                else
-                {
-                    return Ok(new { exists = false });
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
-        }
+        //public async Task<IActionResult> CheckEmailExists(string email)
+        //{
+        //    try
+        //    {
+        //        var subscriber = await subscriberRepository.GetByEmailAsync(email); // Implement this method in your repository
+        //        if (subscriber != null)
+        //        {
+        //            return Ok(new { exists = true });
+        //        }
+        //        else
+        //        {
+        //            return Ok(new { exists = false });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "Internal server error" });
+        //    }
+        //}
 
-        [HttpPost("/Admin/Subscribers")]
-        public async Task<IActionResult> Subscribe([FromBody] SubscriberAddRequest request)
-        {
-            try
-            {
-                var existingSubscriber = await mediator.Send(new SubscriberGetByEmailRequest { Email = request.Email });
+        //[HttpPost("/Admin/Subscribers")]
+        //public async Task<IActionResult> Subscribe([FromBody] SubscriberAddRequest request)
+        //{
+        //    try
+        //    {
+        //        var existingSubscriber = await mediator.Send(new SubscriberGetByEmailRequest { Email = request.Email });
 
-                if (existingSubscriber != null)
-                {
-                    ModelState.AddModelError("Email", "You are already subscribed.");
-                    return Json(new { Message = "You are already subscribed." });
-                }
+        //        if (existingSubscriber != null)
+        //        {
+        //            ModelState.AddModelError("Email", "You are already subscribed.");
+        //            return Json(new { Message = "You are already subscribed." });
+        //        }
 
-                var response = await mediator.Send(request);
-                return Json(new { Message = "Subscription successful" });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
-        }
+        //        var response = await mediator.Send(request);
+        //        return Json(new { Message = "Subscription successful" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "Internal server error" });
+        //    }
+        //}
     }
 }

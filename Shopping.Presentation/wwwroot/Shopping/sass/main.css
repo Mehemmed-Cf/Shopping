@@ -418,10 +418,10 @@ body {
 @media (max-width: 991px) {
   .Navigation .container .Page-LinksAndLogo {
     width: 900px;
-    margin-left: 130px;
+    margin-left: 130px !important;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 762px) {
   .Navigation .container .Page-LinksAndLogo {
     width: 400px;
     margin: 0;

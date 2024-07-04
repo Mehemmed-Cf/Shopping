@@ -28,15 +28,24 @@
             height: 100%;
         }
 
-/*         .Section_Swip {
-            display: flex !important;
+        @@media (max-width: 991px) {
+          .Navigation .container .Page-LinksAndLogo {
+            margin-left: 130px !important;
+          }
         }
 
-        @@media (max-width: 991px) {
-            .Owl_Outer {
-                width: 750px;
+       @@media (max-width: 991px) {
+          .Main .Section_7 .Popular-Categories .container .Border .Row .Column {
+            width: 70% !important;
+            transform: scale(0.9);
+          }
+       }
+
+        @@media (max-width: 762px) {
+            .Main .Section_7 .Popular-Categories .container .Border .Row .Column {
+                width: 100% !important;
             }
-        } */
+        }
 
         .Owl_Outer {
             position: relative;
@@ -51,12 +60,6 @@
                 width: 750px;
             }
         }
-
-/*         @@media (max-width: 762px) {
-            .Owl_Outer {
-                width: 550px;
-            }
-        } */
 
         .Owl_Stage {
             display: none;
@@ -79,6 +82,17 @@
 
         .Owl_Stage @@media (max-width: 991px) {
             width: 750px;
+        }
+
+        @@media (max-width: 991px) {
+            #Stage_7 {
+                display: none !important;
+            }
+        }
+
+        #Stage_7 @@media (max-width: 762px) {
+            width: 450px !important;
+            flex-direction: column !important;
         }
 
         #Owl_Item {
@@ -2170,9 +2184,9 @@
                         <div class="Group-Title">
                             <h2>Popular Categories</h2>
                         </div>
-                        <div class="Row">
+                        <div class="Row" id="Row_7">
 
-                            <div class="Column" id="Laptops">
+                            <div class="Column" class="Col_7" id="Laptops">
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
@@ -2194,7 +2208,7 @@
                                 </div>
                             </div>
 
-                            <div class="Column" id="Monitors">
+                            <div class="Column" class="Col_7 id="Monitors">
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
@@ -2216,7 +2230,7 @@
                                 </div>
                             </div>
 
-                            <div class="Column" id="Ram/Memory">
+                            <div class="Column" class="Col_7 id="Ram/Memory">
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
@@ -2238,7 +2252,7 @@
                                 </div>
                             </div>
 
-                            <div class="Column" id="Digital Cameras">
+                            <div class="Column" class="Col_7 id="Digital Cameras">
                                 <div class="Single-Category">
                                     <div class="Category-Img">
                                         <a>
@@ -2261,10 +2275,10 @@
                             </div>
 
                         </div>
-                        <div class="Row" style="display: flex; flex-direction: row;">
+                        <div class="Row" style="display: flex; justify-content: center">
                             <div class="Brand-Banner">
                                 <div class="Owl-Stage-Outer">
-                                    <div class="Owl-Stage">
+                                    <div class="Owl-Stage" id="Stage_7" style="display: flex;">
 
                                         <!-- 1 -->
 
@@ -2945,81 +2959,6 @@
             //#endregion
 
         });
-    </script>
-
-    @* JQuery *@
-
-    <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const emailInput = document.getElementById('Email-Subscribe');
-                const submitButton = document.getElementById('submit-subscription');
-                const errorMessage = document.getElementById('subscribe-error-message');
-
-                submitButton.addEventListener('click', async function (event) {
-                    event.preventDefault();
-
-                    const email = emailInput.value.trim();
-                    const response = await addSubscriber(email);
-
-                    if (response.error) {
-                        console.error(response.error);
-                        errorMessage.textContent = 'Subscription failed. Please try again later.';
-                    } else {
-                        alert('Subscription successful');
-                        errorMessage.textContent = '';
-                    }
-                });
-            });
-
-            async function checkEmailExists(email) {
-                try {
-
-                const response = await fetch(`/Admin/Subscribers/${email}`, {
-                    method: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                });
-
-                    if (!response.ok) {
-                        throw new Error('Server responded with error: ' + response.status);
-                    }
-                    const data = await response.json();
-                    return data.exists; // Assuming your backend returns { exists: true/false }
-                } catch (error) {
-                    console.error('Error checking email:', error.message);
-                    return false; // Return false in case of any error
-                }
-            }
-
-        async function addSubscriber(email) {
-                try {
-                const emailExists = await checkEmailExists(email);
-
-                    if (emailExists) {
-                        console.log('Email already exists.');
-                        return { message: 'Email already subscribed' };
-                    }
-
-                const response = await fetch(`/Admin/Subscribers/Create`, {
-                        method: 'POST',
-                        headers: {
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                        },
-                    body: JSON.stringify({ email })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Failed to subscribe.');
-                    }
-
-                    return await response.json();
-                } catch (error) {
-                    console.error('Subscription error:', error.message);
-                    return { error: 'Subscription failed. Please try again later.' };
-                }
-            }
     </script>
 
     <!-- Swiper JS -->

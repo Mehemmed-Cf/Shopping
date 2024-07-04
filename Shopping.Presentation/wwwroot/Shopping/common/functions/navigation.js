@@ -12,6 +12,19 @@ const Links_Bar = document.querySelector("#Links-Bar");
 const SearchAndBasket = document.querySelector(".SearchAndBasket");
 const BasketIcon = SearchAndBasket.querySelector("#Basket");
 
+SignIn_Link.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    window.open("https://localhost:7297/Login");
+})
+
+MyWishlist_Bar.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    window.open("https://localhost:7297/Wishlist");
+})
 
 //#region  Settings Bar
 

@@ -7,7 +7,6 @@ function EmailValidation() {
     const emailInput = document.querySelector("#Email-Subscribe");
     const errorMessage = document.querySelector("#subscribe-error-message");
     const Submit_Btn = document.querySelector("#submit-subscription");
-    // const Submit_Form = document.querySelector(".Subscribe-Form");
 
     emailInput.addEventListener("keyup", () => {
       const email = emailInput.value.trim();
@@ -40,32 +39,54 @@ function EmailValidation() {
     });
 
     Submit_Btn.addEventListener("click", () => {
-      if (errorMessage.classList.contains("True")) {
-        Toastify({
-          text: "We will sell your info to Mark Zuckerberg ;)",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          style: {
-          background: "linear- gradient(to right, #00b09b, #96c93d)",
-          },
-        }).showToast();
-      } else {
-        Toastify({
-          text: "Wrong Email Format ;(",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "right",
-          stopOnFocus: true,
-          style: {
-            background: "red",
-          },
-        }).showToast();
-      }
+        const email = emailInput.value.trim();
+
+        if (errorMessage.classList.contains("True")) {
+            const existingEmails = JSON.parse(localStorage.getItem("subscribedEmails")) || [];
+
+            if (existingEmails.includes(email)) {
+                Toastify({
+                    text: "This email is already subscribed. If you want to pay me some money that hard you can send some money to my card",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                    },
+                }).showToast();
+            } else {
+                existingEmails.push(email);
+                localStorage.setItem("subscribedEmails", JSON.stringify(existingEmails));
+
+                Toastify({
+                    text: "Thanks, We will sell your info to Mark Zuckerberg ;)",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                }).showToast();
+            }
+        } else {
+            Toastify({
+                text: "Your Email format did not reach Dexter Morgan Level of approval ;(",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: "red",
+                },
+            }).showToast();
+        }
     });
+
 
     document.addEventListener("click", (e) => {
       e.stopPropagation();
