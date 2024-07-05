@@ -270,6 +270,26 @@
     @* search *@
 
     <script>
+        submitSearch_Btn = document.querySelector(".Submit-Search");
+
+        submitSearch_Btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const searchValue = document.querySelector(".Search-Input").value;
+            localStorage.setItem('searchTerm', searchValue);
+            window.location.href = '/search';
+        });
+
+        const searchInput = document.querySelector(".Search-Input");
+        
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitSearch_Btn.click();
+            }
+        });
+    </script>
+
+@*     <script>
 
         const SubmitSearch = document.querySelector(".Submit-Search");
 
@@ -297,6 +317,8 @@
                 .then(data => {
                     const tabContent = document.querySelector('.Tab-Content');
                     tabContent.innerHTML = '';
+
+                    console.log(data);
 
                     data.forEach(product => {
                         const productItem = document.createElement('div');
@@ -351,7 +373,7 @@
         }
 
     </script>
-
+ *@
     @* Layout Script *@
 
     <script>

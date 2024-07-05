@@ -241,48 +241,14 @@
 
 </head>
 <body>
-    
+
     <main role="main">
-        <div class="Search_Section">
-            <div class="Search_page">
+        <div class="Wishlist-Section">
+            <div class="Wishlist-Area">
                 <div class="container">
-                    <div class="Row">
-                        <div class="Col">
-                            <div class="Search_Item">
-                                <div id="last-view">
+                    <div class="Wishlist-Exists">
+                        <div class="Row">
 
-                                    <div class="Single-Product Col">
-                                        <div class="Pro-Img">
-                                            <a>
-                                                <img src="~/Shopping/assets/images/Camera.webp" />
-                                            </a>
-                                            <div class="product-actions">
-                                                <div class="Primary-Actions">
-                                                    <button class="Add-To-Cart">Add To Cart</button>
-                                                </div>
-                                                <div class="Secondary-Actions">
-                                                    <a id="add-to-wishlist">
-                                                        <img src="~/Shopping/assets/icons/WishIcon.svg" />
-                                                    </a>
-                                                    <a id="quickview">
-                                                        <img src="~/Shopping/assets/icons/Quickview.svg" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="Product-Content">
-                                            <h4>Demo Product Title</h4>
-                                            <div id="product-rating"></div>
-                                            <p>
-                                                <span id="price">
-                                                    <span id="money">$100.00</span>
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,5 +256,238 @@
         </div>
     </main>
 
+    @* Icons *@
+
+    <script>
+        const wishIconPath = '@Url.Content("~/Shopping/assets/icons/WishIcon.svg")';
+        const whiteWishIconPath = '@Url.Content("~/Shopping/assets/icons/WhiteWish.svg")';
+        const quickviewIconPath = '@Url.Content("~/Shopping/assets/icons/Quickview.svg")';
+    </script>
+
+    @* Fetch & Fill *@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchTerm = localStorage.getItem('searchTerm');
+            if (searchTerm) {
+                fetchSearchResults(searchTerm);
+            }
+        });
+
+        function displaySearchResults(products) {
+            const row = document.querySelector('.Row');
+            row.innerHTML = '';
+
+            if (products.length === 0) {
+                row.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+
+                const Single_Product = document.createElement("div");
+                Single_Product.classList.add("Single-Product", "Col");
+
+                const Pro_Img = document.createElement("div");
+                Pro_Img.classList.add("Pro-Img");
+                Pro_Img.style.marginRight = "20px";
+
+                const ImageLink = document.createElement("a");
+
+                const ImageElement = document.createElement("img");
+                ImageElement.src = product.imageUrl;
+
+                ImageLink.appendChild(ImageElement);
+
+                Pro_Img.appendChild(ImageLink);
+
+                const productActions = document.createElement("div");
+                productActions.classList.add("product-actions");
+
+                const primaryActions = document.createElement("div");
+                primaryActions.classList.add("Primary-Actions");
+
+                const addToCartButton = document.createElement("button");
+                addToCartButton.classList.add("Add-To-Cart");
+                addToCartButton.textContent = "Add To Cart";
+                addToCartButton.setAttribute('data-product-id', product.id);
+                addToCartButton.setAttribute('data-product-name', product.title);
+                addToCartButton.setAttribute('data-product-price', product.price);
+                addToCartButton.setAttribute('data-product-image', product.imageUrl);
+
+                primaryActions.appendChild(addToCartButton);
+
+                const secondaryActions = document.createElement("div");
+                secondaryActions.classList.add("Secondary-Actions");
+
+                const addToWishlistLink = document.createElement("a");
+                addToWishlistLink.id = "add-to-wishlist";
+                addToWishlistLink.style.cursor = "pointer";
+                addToWishlistLink.setAttribute('data-product-id', product.id);
+                addToWishlistLink.setAttribute('data-product-name', product.title);
+                addToWishlistLink.setAttribute('data-product-price', product.price);
+                addToWishlistLink.setAttribute('data-product-image', product.imageUrl);
+
+                const wishlistIcon = document.createElement("img");
+                wishlistIcon.src = whiteWishIconPath
+
+                addToWishlistLink.appendChild(wishlistIcon);
+
+                const quickviewLink = document.createElement("a");
+                quickviewLink.id = "quickview";
+
+                const quickviewIcon = document.createElement("img");
+                quickviewIcon.src = quickviewIconPath;
+                quickviewLink.style.cursor = "pointer";
+                quickviewLink.setAttribute('data-product-id', product.id);
+
+                quickviewLink.appendChild(quickviewIcon);
+
+                secondaryActions.appendChild(addToWishlistLink);
+                secondaryActions.appendChild(quickviewLink);
+
+                productActions.appendChild(primaryActions);
+                productActions.appendChild(secondaryActions);
+
+                Pro_Img.appendChild(productActions);
+
+                Single_Product.append(Pro_Img);
+
+                const Product_Content = document.createElement("div");
+                Product_Content.classList.add("Product-Content");
+                Product_Content.style.height = "150px";
+                Product_Content.style.position = "relative";
+                Product_Content.style.zIndex = "auto";
+
+                const productTitle = document.createElement("h4");
+                productTitle.textContent = product.title;
+
+                const productPrice = document.createElement("p");
+
+                productPrice.style.position = "absolute";
+                productPrice.style.bottom = "10%";
+
+                const priceSpan = document.createElement("span");
+                priceSpan.id = "price";
+
+                const moneySpan = document.createElement("span");
+                moneySpan.id = "money";
+                moneySpan.textContent = `$${product.price}`;
+                priceSpan.appendChild(moneySpan);
+                productPrice.appendChild(priceSpan);
+
+                Product_Content.appendChild(productTitle);
+                Product_Content.appendChild(productPrice);
+
+                Single_Product.appendChild(Product_Content);
+
+                row.appendChild(Single_Product);
+            });
+        }
+
+        function fetchSearchResults(searchTerm) {
+            fetch(`/Admin/products`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const filteredProducts = data.filter(product =>
+                        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                                        console.log(filteredProducts);
+
+                    displaySearchResults(filteredProducts);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
+        }
+    </script>
+
+    @* SingleProducts *@
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const Single_Products = document.querySelectorAll(".Single-Product.Col");
+
+            Single_Products.forEach(item => {
+                const AddToCart_Btn = item.querySelector(".Add-To-Cart");
+                const add_to_wishlist = item.querySelector("#add-to-wishlist");
+                const quickview = item.querySelector("#quickview");
+                const Product_Content = item.querySelector(".Product-Content");
+                const Price = item.querySelector("p");
+                const product_actions = item.querySelector(".product-actions");
+                let IsClicked = false;
+
+                if (screen.width > 1000) {
+
+                    item.addEventListener("mouseover", () => {
+                        Product_Content.style.transform = "translateY(-20px)";
+                        product_actions.style.transform = "translateY(20px)";
+
+                        Price.style.opacity = 0;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        Product_Content.style.transform = "translateY(0px)"
+                        product_actions.style.transform = "translateY(0px)";
+
+                        Price.style.opacity = 1;
+
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 991) {
+
+                    item.addEventListener("click", () => {
+                        IsClicked = !IsClicked;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 762)
+
+                    item.addEventListener("mouseover", () => {
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+
+                        Price.style.opacity = 1;
+                    });
+
+                item.addEventListener("mouseout", () => {
+                    AddToCart_Btn.classList.remove("Appear");
+                    add_to_wishlist.classList.remove("Appear");
+                    quickview.classList.remove("Appear");
+                });
+
+            });
+
+        });
+
+    </script>
+    
 </body>
 </html>

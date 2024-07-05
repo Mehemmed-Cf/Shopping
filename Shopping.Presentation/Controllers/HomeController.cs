@@ -52,19 +52,19 @@ namespace Shopping.Presentation.Controllers
             return View(response);
         }
 
-        [HttpGet("search")]
-        public async Task<IActionResult> SearchByTitle(string title)
-        {
-            var request = new FilterByTitleRequest { Title = title };
-            var result = await mediator.Send(request);
+        //[HttpGet("search")]
+        //public async Task<IActionResult> SearchByTitle(string title)
+        //{
+        //    var request = new FilterByTitleRequest { Title = title };
+        //    var result = await mediator.Send(request);
 
-            if (result == null || !result.Any())
-            {
-                return NotFound("No products found with the given title.");
-            }
+        //    if (result == null || !result.Any())
+        //    {
+        //        return NotFound("No products found with the given title.");
+        //    }
 
-            return Ok(result);
-        }
+        //    return Json(result);
+        //}
 
         //[HttpGet("/Admin/Subscribers/{email}")]
         //public async Task<IActionResult> CheckEmailExists(string email)
