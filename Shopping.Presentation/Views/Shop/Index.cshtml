@@ -814,7 +814,7 @@
 
                     @foreach (var product in Model)
                     {
-                      <div class="Single-Product" style="position: relative">
+                      <div class="Single-Product" data-product-id="@product.Id" style="position: relative">
                         <div class="Pro-Img">
                             <a>
                                 <img src="@(product.ImageUrl)" />

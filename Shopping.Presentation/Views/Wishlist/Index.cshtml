@@ -47,6 +47,7 @@
 
                     const Single_Product = document.createElement("div");
                     Single_Product.classList.add("Single-Product", "Col");
+                    Single_Product.setAttribute('data-product-id', item.id);
 
                     const Pro_Img = document.createElement("div");
                     Pro_Img.classList.add("Pro-Img");
@@ -90,7 +91,6 @@
                     addToWishlistLink.setAttribute('data-product-image', item.imageUrl);
 
                     const wishlistIcon = document.createElement("img");
-                    //wishlistIcon.src = wishIconPath;
                     wishlistIcon.src = whiteWishIconPath
 
                     addToWishlistLink.appendChild(wishlistIcon);
@@ -155,10 +155,12 @@
 
     </script> 
 
-    @* SingleProducts *@
+    @* SingleProducts && Quickview *@
 
     <script>
+
         document.addEventListener("DOMContentLoaded", () => {
+
             const Single_Products = document.querySelectorAll(".Single-Product.Col");
 
             Single_Products.forEach(item => {
@@ -210,7 +212,7 @@
                         quickview.classList.remove("Appear");
                     });
 
-                } else if (screen.width <= 762)
+                } else if (screen.width <= 762) {
 
                     item.addEventListener("mouseover", () => {
                         AddToCart_Btn.classList.add("Appear");
@@ -220,12 +222,13 @@
                         Price.style.opacity = 1;
                     });
 
-                item.addEventListener("mouseout", () => {
-                    AddToCart_Btn.classList.remove("Appear");
-                    add_to_wishlist.classList.remove("Appear");
-                    quickview.classList.remove("Appear");
-                });
+                    item.addEventListener("mouseout", () => {
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
 
+                }
             });
 
         });

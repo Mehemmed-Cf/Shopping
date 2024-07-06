@@ -1,8 +1,6 @@
-﻿using Azure;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
-using Shopping.Application.Repositories;
 
 namespace Shopping.Presentation.Controllers
 {
@@ -23,17 +21,18 @@ namespace Shopping.Presentation.Controllers
             {
                 var response = await mediator.Send(request);
 
-                //if (response == null)
-                //{
-                //    return View("~/Views/NotFound/Index.cshtml");
-                //}
+                if (response == null)
+                {
+                    return View("~/Views/NotFound/Index.cshtml");
+                    //return Ok();
+                }
 
                 return View(response);
             }
             catch (Exception ex)
             {
-                return View();
-                //return View("~/Views/NotFound/Index.cshtml");
+                return View("~/Views/NotFound/Index.cshtml");
+               // return Ok();
             }
         }
     }

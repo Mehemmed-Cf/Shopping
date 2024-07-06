@@ -56,7 +56,6 @@ namespace Shopping.Presentation.Controllers
                 await mediator.Send(request);
 
                 TempData["SuccessMessage"] = System.Web.HttpUtility.JavaScriptStringEncode("Submission successful. Approved with a 'Dexter Morgan' level of precision!");
-                //TempData["SuccessMessage"] = "Submission successful. Approved with a 'Dexter Morgan' level of precision!";
 
                 return RedirectToAction(nameof(Index));
             }

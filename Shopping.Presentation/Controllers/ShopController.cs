@@ -52,7 +52,7 @@ namespace Shopping.Presentation.Controllers
                 response = response.Where(p => p.Price >= priceFrom.Value && p.Price <= priceTo.Value);
             }
 
-            switch (SortBy)
+            switch (SortBy) 
             {
                 case "title-ascending":
                     response = response.OrderBy(p => p.Title);

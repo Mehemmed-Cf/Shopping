@@ -606,7 +606,6 @@
                     price: addToCartButton.getAttribute('data-product-price'),
                     imageUrl: addToCartButton.getAttribute('data-product-image'),
                     quantity: parseInt(quantityInput.value) || 1,
-                    //quantity: parseInt(addToCartButton.getAttribute('data-quantity')) || 1,
                 };
 
                 alert(`Added ${product.quantity} ${product.name}(s) to cart.`);
@@ -670,7 +669,7 @@
                 }
             } catch (error) {
                 console.error('Error fetching product details:', error);
-                //window.location.href = "https://localhost:7297/NotFound";
+                window.location.href = "https://localhost:7297/NotFound";
             }
         });
 

@@ -71,6 +71,8 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            showLoader(true);
+
             const cartItems = JSON.parse(localStorage.getItem('cart'));
 
             const tbody = document.querySelector('tbody');
@@ -168,12 +170,6 @@
                         updateQuantity(item.id, newValue);
                     });
 
-                    // quantityInput.addEventListener('input', () => {
-                    //     updateTotal();
-                    //     updateQuantity(item.id, parseInt(quantityInput.value));
-                    //     updateTotalAmount(cartItems);
-                    // });
-
                     quantityInput.addEventListener('input', updateQuantityHandler);
                     quantityInput.addEventListener('change', updateTotalAmountHandler);
 
@@ -203,6 +199,8 @@
             }
 
             updateItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
+
+            showLoader(false);
         });
 
         function updateQuantity(productId, newQuantity) {
@@ -217,13 +215,14 @@
             });
 
             localStorage.setItem('cart', JSON.stringify(updatedItems));
-            updateItemCount(updatedItems.reduce((total, item) => total + item.quantity, 0)); // Use updatedItems instead of cart
-            updateTotalAmount(updatedItems); // Call updateTotalAmount with updatedItems
+            updateItemCount(updatedItems.reduce((total, item) => total + item.quantity, 0)); // Using updatedItems instead of cart because updated items are filtered
+            updateTotalAmount(updatedItems);
 
         }
 
         function updateItemCount(count) {
             const itemCountElement = document.getElementById('ItemCount');
+
             if (itemCountElement) {
                 itemCountElement.textContent = count;
             }
