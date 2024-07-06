@@ -4,6 +4,9 @@ using Shopping.DataAccessLayer.DataContexts;
 using Shopping.Infrastructure.Abstracts;
 using Shopping.Presentation.AppCode.DI;
 using Shopping.Application.Services;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Shopping.Application.Services.File;
 
 namespace Shopping.Presentation
 {
@@ -17,19 +20,25 @@ namespace Shopping.Presentation
 
             builder.Services.AddDbContext<DbContext, DataContext>(cfg =>
             {
+                string cs = builder.Configuration.GetConnectionString("cString");
 
-                cfg.UseSqlServer(builder.Configuration.GetConnectionString("cString"), opt =>
+                cfg.UseSqlServer(cs, opt =>
                 {
-
                     opt.MigrationsHistoryTable("MigrationHistory");
                 });
             });
 
             builder.Services.AddScoped<IIdentityService, FakeIdentityService>();
 
+            builder.Services.AddSingleton<IFileService, FileService>();
+
+            builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddRouting(cfg => cfg.LowercaseUrls = true);
+
+            /*builder.Services.AddFluentValidationAutoValidation(cfg => cfg.DisableDataAnnotationsValidation = false);*/
 
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IApplicationReferance>()); // Butun repositoriler
 

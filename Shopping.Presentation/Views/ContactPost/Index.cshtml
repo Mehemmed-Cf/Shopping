@@ -1,0 +1,85 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+</head>
+<body>
+
+    <main role="main">
+        <div class="Contact-Section">
+            <div class="Contact-Area">
+                <div class="container">
+                    <div class="Row">
+                        <div class="Column">
+                            <h3>Contact Us</h3>
+                            <p>we will probably not care but contact us</p>
+
+                            <form id="contact_form" method="post" asp-controller="ContactPost" asp-action="Contact" form-type="contact">
+                                <div class="Address-Wrapper">
+
+                                    <div id= class="Col">
+                                        <div class="address-frame" id="contact-name">
+                                            <input id="contact-Input-Name" name="FullName" type="text" placeholder="FullName" />
+                                        </div>
+                                    </div>
+
+                                    <div class="Col">
+                                        <div class="address-frame" id="contact-email">
+                                            <input style="text-transform: none" id="contact-Input-Name" name="Email" type="email" placeholder="example@gmail.com" />
+                                        </div>
+                                    </div>
+
+                                    <div class="Col-2">
+                                        <div class="address-frame-subject" id="contact-subject">
+                                            <input type="text" name="Subject" placeholder="Subject:" />
+                                        </div>
+                                    </div>
+
+                                    <div class="Col-2">
+                                        <div class="address-frame-textarea" id="contact-textarea" style="text-transform: none !important">
+                                            <input type="text" name="Content" placeholder="Your Text here:" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="Send-Email">
+                                    <button class="Send-Email-Btn" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                Toastify({
+                    text: '@TempData["SuccessMessage"]',
+                    duration: 5000,
+                    close: true,
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            </text>
+
+            TempData.Remove("SuccessMessage");
+        }
+    </script>
+
+</body>
+</html>

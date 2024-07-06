@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Configurations\TypeEntityTypeConfiguration.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="8.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />

@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            color: #444;
+        }
+
+        .Row {
+            display: flex;
+            flex-direction: row;
+            margin-right: -15px;
+            margin-left: -15px;
+            gap: 30px;
+        }
+
+        .Col {
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            list-style: none;
+        }
+
+        main {
+            display: block;
+        }
+
+        .Search_Section .Search_Page {
+            padding-bottom: 50px;
+        }
+
+            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product {
+                position: relative;
+                background: #fff;
+                transition: all .5s ease-in-out;
+                margin-bottom: 30px;
+                float: left;
+                min-height: 1px;
+                padding-right: 15px;
+                padding-left: 15px;
+                width: 100%;
+                height: 360px;
+                overflow: hidden;
+            }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img {
+                    position: relative;
+                }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img a {
+                        text-decoration: none;
+                    }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img a img {
+                            width: 100%;
+                            vertical-align: middle;
+                        }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        transition: 0.3s ease-in-out;
+                        position: absolute;
+                        width: 100%;
+                        z-index: 25;
+                        bottom: -80px;
+                        left: 10px;
+                    }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Primary-Actions {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            bottom: 1px;
+                            z-index: 30;
+                            left: -10px;
+                            position: absolute;
+                        }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            visibility: hidden;
+                            bottom: 1px;
+                            left: 120px;
+                            position: absolute;
+                            z-index: 30;
+                            gap: 7px;
+                        }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: var(--Background-Dark);
+                                height: 32px;
+                                width: 30px;
+                                border-radius: 5px;
+                                will-change: color;
+                                transition: opacity 0.3s ease;
+                                opacity: 0;
+                            }
+
+                                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist:hover {
+                                    background-color: var(--Main-Blue);
+                                }
+
+                                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #add-to-wishlist img {
+                                    width: 15px;
+                                }
+
+                            .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: var(--Background-Dark);
+                                height: 32px;
+                                width: 30px;
+                                border-radius: 5px;
+                                will-change: color;
+                                transition: opacity 0.3s ease;
+                                opacity: 0;
+                                cursor: pointer;
+                            }
+
+                                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview:hover {
+                                    background-color: var(--Main-Blue);
+                                }
+
+                                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Secondary-Actions #quickview img {
+                                    width: 15px;
+                                }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Pro-Img .product-actions .Appear {
+                            opacity: 1 !important;
+                            visibility: visible !important;
+                            transition: opacity 0.5s ease !important;
+                        }
+
+                .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content {
+                    transition: all .3s ease 0s;
+                    position: relative;
+                    z-index: 66;
+                }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content h4 {
+                        color: #363f4d;
+                        display: block;
+                        font-size: 14px !important;
+                        font-weight: 500;
+                        margin-bottom: 15px;
+                        text-transform: capitalize;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content .Pro-Rating {
+                        height: 25px;
+                        margin-bottom: 12px;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 40px;
+                        gap: 10px;
+                        color: var(--Font-Color);
+                    }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #price {
+                            display: inline-block;
+                            font-family: sans-serif;
+                            font-size: 18px;
+                            font-size: 600;
+                            line-height: 22px;
+                        }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #price {
+                            font-family: sans-serif;
+                            font-size: 26px;
+                            font-size: 600;
+                            line-height: 22px;
+                        }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #prev_price {
+                            color: #a4a4a4;
+                            font-family: sans-serif;
+                            font-size: 14px;
+                            font-size: 500;
+                            line-height: 120%;
+                        }
+
+                        .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content > p #prev_price {
+                            font-family: sans-serif;
+                            font-size: 20px;
+                            font-size: 600;
+                            line-height: 22px;
+                        }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content p {
+                        font-family: sans-serif;
+                        font-size: 14px;
+                        font-size: 400;
+                        line-height: 22px;
+                        color: #282828;
+                        margin: 15px 10px 20px;
+                    }
+
+                    .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .Single-Product .Product-Content p {
+                        font-family: sans-serif;
+                        font-size: 16px;
+                        font-size: 400;
+                        line-height: 22px;
+                    }
+    </style>
+
+</head>
+<body>
+
+    <main role="main">
+        <div class="Wishlist-Section">
+            <div class="Wishlist-Area">
+                <div class="container">
+                    <div class="Wishlist-Exists">
+                        <div class="Row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @* Icons *@
+
+    <script>
+        const wishIconPath = '@Url.Content("~/Shopping/assets/icons/WishIcon.svg")';
+        const whiteWishIconPath = '@Url.Content("~/Shopping/assets/icons/WhiteWish.svg")';
+        const quickviewIconPath = '@Url.Content("~/Shopping/assets/icons/Quickview.svg")';
+    </script>
+
+    @* Fetch & Fill *@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchTerm = localStorage.getItem('searchTerm');
+            if (searchTerm) {
+                fetchSearchResults(searchTerm);
+            }
+        });
+
+        function displaySearchResults(products) {
+            const row = document.querySelector('.Row');
+            row.innerHTML = '';
+
+            if (products.length === 0) {
+                row.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+
+                const Single_Product = document.createElement("div");
+                Single_Product.classList.add("Single-Product", "Col");
+
+                const Pro_Img = document.createElement("div");
+                Pro_Img.classList.add("Pro-Img");
+                Pro_Img.style.marginRight = "20px";
+
+                const ImageLink = document.createElement("a");
+
+                const ImageElement = document.createElement("img");
+                ImageElement.src = product.imageUrl;
+
+                ImageLink.appendChild(ImageElement);
+
+                Pro_Img.appendChild(ImageLink);
+
+                const productActions = document.createElement("div");
+                productActions.classList.add("product-actions");
+
+                const primaryActions = document.createElement("div");
+                primaryActions.classList.add("Primary-Actions");
+
+                const addToCartButton = document.createElement("button");
+                addToCartButton.classList.add("Add-To-Cart");
+                addToCartButton.textContent = "Add To Cart";
+                addToCartButton.setAttribute('data-product-id', product.id);
+                addToCartButton.setAttribute('data-product-name', product.title );
+                addToCartButton.setAttribute('data-product-price', product.price);
+                addToCartButton.setAttribute('data-product-image', product.imageUrl);
+
+                primaryActions.appendChild(addToCartButton);
+
+                const secondaryActions = document.createElement("div");
+                secondaryActions.classList.add("Secondary-Actions");
+
+                const addToWishlistLink = document.createElement("a");
+                addToWishlistLink.id = "add-to-wishlist";
+                addToWishlistLink.style.cursor = "pointer";
+                addToWishlistLink.setAttribute('data-product-id', product.id);
+                addToWishlistLink.setAttribute('data-product-name', product.title);
+                addToWishlistLink.setAttribute('data-product-price', product.price);
+                addToWishlistLink.setAttribute('data-product-image', product.imageUrl);
+
+                const wishlistIcon = document.createElement("img");
+                wishlistIcon.src = whiteWishIconPath
+
+                addToWishlistLink.appendChild(wishlistIcon);
+
+                const quickviewLink = document.createElement("a");
+                quickviewLink.id = "quickview";
+
+                const quickviewIcon = document.createElement("img");
+                quickviewIcon.src = quickviewIconPath;
+                quickviewLink.style.cursor = "pointer";
+                quickviewLink.setAttribute('data-product-id', product.id);
+
+                quickviewLink.appendChild(quickviewIcon);
+
+                secondaryActions.appendChild(addToWishlistLink);
+                secondaryActions.appendChild(quickviewLink);
+
+                productActions.appendChild(primaryActions);
+                productActions.appendChild(secondaryActions);
+
+                Pro_Img.appendChild(productActions);
+
+                Single_Product.append(Pro_Img);
+
+                const Product_Content = document.createElement("div");
+                Product_Content.classList.add("Product-Content");
+                Product_Content.style.height = "150px";
+                Product_Content.style.position = "relative";
+                Product_Content.style.zIndex = "auto";
+
+                const productTitle = document.createElement("h4");
+                productTitle.textContent = product.title;
+
+                const productPrice = document.createElement("p");
+
+                productPrice.style.position = "absolute";
+                productPrice.style.bottom = "10%";
+
+                const priceSpan = document.createElement("span");
+                priceSpan.id = "price";
+
+                const moneySpan = document.createElement("span");
+                moneySpan.id = "money";
+                moneySpan.textContent = `$${product.price}`;
+                priceSpan.appendChild(moneySpan);
+                productPrice.appendChild(priceSpan);
+
+                Product_Content.appendChild(productTitle);
+                Product_Content.appendChild(productPrice);
+
+                Single_Product.appendChild(Product_Content);
+
+                row.appendChild(Single_Product);
+            });
+        }
+
+        function fetchSearchResults(searchTerm) {
+            fetch(`/Admin/products`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const filteredProducts = data.filter(product =>
+                        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                                        console.log(filteredProducts);
+
+                    displaySearchResults(filteredProducts);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
+        }
+    </script>
+
+    @* SingleProducts *@
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const Single_Products = document.querySelectorAll(".Single-Product.Col");
+
+            Single_Products.forEach(item => {
+                const AddToCart_Btn = item.querySelector(".Add-To-Cart");
+                const add_to_wishlist = item.querySelector("#add-to-wishlist");
+                const quickview = item.querySelector("#quickview");
+                const Product_Content = item.querySelector(".Product-Content");
+                const Price = item.querySelector("p");
+                const product_actions = item.querySelector(".product-actions");
+                let IsClicked = false;
+
+                if (screen.width > 1000) {
+
+                    item.addEventListener("mouseover", () => {
+                        Product_Content.style.transform = "translateY(-20px)";
+                        product_actions.style.transform = "translateY(20px)";
+
+                        Price.style.opacity = 0;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        Product_Content.style.transform = "translateY(0px)"
+                        product_actions.style.transform = "translateY(0px)";
+
+                        Price.style.opacity = 1;
+
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 991) {
+
+                    item.addEventListener("click", () => {
+                        IsClicked = !IsClicked;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 762)
+
+                    item.addEventListener("mouseover", () => {
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+
+                        Price.style.opacity = 1;
+                    });
+
+                item.addEventListener("mouseout", () => {
+                    AddToCart_Btn.classList.remove("Appear");
+                    add_to_wishlist.classList.remove("Appear");
+                    quickview.classList.remove("Appear");
+                });
+
+            });
+
+        });
+
+    </script>
+    
+</body>
+</html>

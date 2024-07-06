@@ -40,5 +40,14 @@ namespace Shopping.Application.Services.File
 
             return UploadAsync(file);
         }
+
+        public string GetProductImageUrl(int productId)
+        {
+            // Logic to determine image URL based on product ID
+            // For example, you might construct the URL based on a known path pattern and the product ID
+            string imageUrl = $"~/Shopping/assets/images/product_{productId}.jpg";
+
+            return imageUrl;
+        }
     }
 }

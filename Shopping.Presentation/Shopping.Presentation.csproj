@@ -8,16 +8,20 @@
 
   <ItemGroup>
     <Folder Include="AppCode\Pipeline\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Shopping\Js\Blog\index.js" />
+    <None Include="wwwroot\Shopping\Js\Home\index.js" />
+    <None Include="wwwroot\Shopping\Js\Login\index.js" />
+    <None Include="wwwroot\Shopping\Js\Not-Found\index.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -29,6 +33,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
 
@@ -37,6 +42,13 @@
     <ProjectReference Include="..\Shopping.DataAccessLayer\Shopping.DataAccessLayer.csproj" />
     <ProjectReference Include="..\Shopping.Infrastructure\Shopping.Infrastructure.csproj" />
     <ProjectReference Include="..\Shopping.Repository\Shopping.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Shopping\sass\main.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,197 @@
+﻿@using Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetAllQuery
+@model IEnumerable<BlogPostGetAllRequestDto>
+@{
+    var reversedModel = Model.Reverse();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <style>
+
+        main .Latest-Blogs .Blog-Area .container .Row .Col-Content .Row .Col-Blog .Single-Blog .Blog-Content #blog-content-upper p {
+            height: auto !important;
+        }
+
+        main .Latest-Blogs .Blog-Area {
+            height: fit-content;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <main role="main">
+        <section class="Latest-Blogs">
+            <div class="Blog-Area" style="padding-bottom: 150px;">
+                <div class="container">
+                    <div class="Row" style="display: flex; justify-content: center; min-height: 150px;">
+                        <div class="Col-Header">
+                            <div class="Section-Title">
+                                <h3>ALL LATEST BLOGS</h3>
+                            </div>
+                        </div>
+
+                        <div class="cube-loader">
+                            <div class="cube-top"></div>
+                            <div class="cube-wrapper">
+                                <span style="--i:0" class="cube-span"></span>
+                                <span style="--i:1" class="cube-span"></span>
+                                <span style="--i:2" class="cube-span"></span>
+                                <span style="--i:3" class="cube-span"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="Col-Content" style="display: none; justify-content: center; height: max-content">
+
+                            <div class="Row Active-Row" style="display: flex; justify-content: center;">
+
+                                  @foreach(var blog in Model) {
+
+                                    <div class="Col-Blog" style="width: 410px; height: 600px;">
+                                        <div class="Single-Blog">
+
+                                            <div class="Blog-Img">
+                                                <a>
+                                                    <img style="width: 410px; height: 200px;" src="@(blog.ImageUrl)" />
+                                                </a>
+                                            </div>
+
+                                            <div class="Blog-Content">
+
+                                                <div id="blog-content-upper">
+                                                    <h6>@blog.Title</h6>
+                                                    <div>
+                                                        @Html.Raw(blog.Body?.Trim())
+                                                    </div>  
+                                                </div>
+
+                                                <div id="blog-content-lower">
+                                                    <a>Read more</a>
+                                                    <span>@if(blog.PublishedAt != null)
+                                                        {
+                                                            @blog.PublishedAt?.ToShortDateString();
+                                                        }
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  }
+
+                            </div>
+
+                            <div class="Row">
+
+                                @foreach (var blog in reversedModel)
+                                {
+
+                                    <div class="Col-Blog" style="width: 410px; height: 500px;">
+                                        <div class="Single-Blog">
+
+                                            <div class="Blog-Img">
+                                                <a>
+                                                    <img style="width: 410px;" src="@(blog.ImageUrl)" />
+                                                </a>
+                                            </div>
+
+                                            <div class="Blog-Content">
+
+                                                <div id="blog-content-upper">
+                                                    <h6>@blog.Title</h6>
+                                                    <div style="height: auto !important;">
+                                                        @Html.Raw(blog.Body?.Trim())
+                                                    </div>
+                                                </div>
+
+                                                <div id="blog-content-lower">
+                                                    <a>Read more</a>
+                                                    <span>
+                                                        @if (blog.PublishedAt != null)
+                                                        {
+                                                            @blog.PublishedAt?.ToShortDateString()
+                                                            ;
+                                                        }
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+
+@*                             <div class="Change-Page">
+                                <div class="Change-Item">
+                                    <div class="Shop-Pagination">
+                                        <div id="pagination">
+                                            <ul id="list-inline">
+                                                <div class="List-Prev Disable-Ancle">
+                                                    <img src="~/Shopping/assets/icons/AnclePrevious.svg" />
+                                                </div>
+
+                                                <li class="Active-List">1</li>
+                                                <li>2</li>
+
+                                                <div class="List-Next">
+                                                    <img src="~/Shopping/assets/icons/AncleNext.svg" />
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> *@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showLoader(true);
+
+            setTimeout(() => {
+                showLoader(false);
+            }, 2000);
+
+            function showLoader(show) {
+                const loader = document.querySelector('.cube-loader');
+                const row = document.querySelector('.Active-Row');
+
+                console.log('Loader element:', loader);
+                console.log('Row element:', row);
+
+                if (loader && row) { // Check if elements are found
+                    if (show) {
+                        loader.style.display = 'block';
+                        row.style.display = 'none';
+                        console.log('Loader shown');
+                    } else {
+                        loader.style.display = 'none';
+                        row.style.display = 'flex';
+                        console.log('Loader hidden, row shown');
+                    }
+                } else {
+                    console.error('Loader or row element not found.');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

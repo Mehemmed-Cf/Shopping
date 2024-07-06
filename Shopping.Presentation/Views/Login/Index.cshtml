@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+<body>
+
+    <section class="Login-Section">
+        <div class="container">
+            <div class="Login-Row">
+                <div class="CustomerLoginInfo">
+                    <form id="customer_login" method="post">
+                        <!-- action="/account/login" data-form-type="login" -->
+                        <h2>Login</h2>
+                        <div id="Login-Form-Container">
+                            <div id="customerEmail">
+                                <input id="customerEmail" type="email" placeholder="Email" autocapitalize="off" autocorrect="off" />
+                                <p class="Email-Error-Message"></p>
+                            </div>
+                            <div id="customerPassword">
+                                <input id="customerPassword" type="password" placeholder="Password" autocapitalize="off" autocorrect="off" />
+                                <p class="Password-Error-Message"></p>
+                            </div>
+                        </div>
+                        <div class="Button-Box">
+                            <div class="login-toggle">
+                                <button class="Sign-In" type="submit">Sign In</button>
+                                <a id="RecoverPassword">Forgot your password?</a>
+                            </div>
+
+                            <div class="create-account-link">
+                                <a class="CreateAccount-Link">Create Account</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

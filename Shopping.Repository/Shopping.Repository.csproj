@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Shopping.Application\Shopping.Application.csproj" />
     <ProjectReference Include="..\Shopping.Domain\Shopping.Domain.csproj" />
     <ProjectReference Include="..\Shopping.Infrastructure\Shopping.Infrastructure.csproj" />

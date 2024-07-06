@@ -1,0 +1,560 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="~/Shopping/sass/main.css" />
+
+    <!-- Google -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- swipper -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- toaster -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- internal -->
+    <script defer src="~/Shopping/common/functions/navigation.js"></script>
+    <script defer src="~/Shopping/common/functions/index.js"></script>
+
+    @await RenderSectionAsync("addcss", required: false)
+
+</head>
+<body>
+
+    <nav class="Navigation">
+
+        <div class="container">
+
+            <div class="SupportAndSettings">
+
+                <span id="Support">
+                    <p>
+                        <img src="~/Shopping/assets/icons/SupportIcone.svg" style="width: 10px;" />
+                        Support: 123 456 789
+                    </p>
+                </span>
+
+                <div id="Settings" href="#">
+                    <p>
+                        <img src="~/Shopping/assets/icons/SettingsIcone.svg" style="width: 10px;" />
+                        Settings
+                    </p>
+                    <div id="Settings-Bar">
+                        <div id="MyAccount-Bar">
+                            <p>My Account</p>
+                        </div>
+                        <div href="https://localhost:7297/Wishlist" id="MyWishlist-Bar">
+                            <p>My Wishlist</p>
+                        </div>
+                        <div href="https://localhost:7297/Login" id="SignIn-Bar">
+                            <p>Sign In</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Page-LinksAndLogo">
+                <img src="~/Shopping/assets/icons/BigBasketLogo.svg" />
+
+                <a class="Bars_Link">
+                    <img src="~/Shopping/assets/icons/BarsIcon_Grey.svg" />
+                </a>
+
+                <div style="display: none;" id="Links-Bar">
+
+                    <div id="Home-Bar" class="Link-Bar">
+                        <p>Home</p>
+                    </div>
+
+                    <div id="AboutUs-Bar" class="Link-Bar">
+                        <p>About Us</p>
+                    </div>
+
+                    <div id="ContactUs-Bar" class="Link-Bar">
+                        <p>Contact us</p>
+                    </div>
+
+                    <div id="Blog-Bar" class="Link-Bar">
+                        <p>Blog</p>
+                    </div>
+
+                    <div id="Shop-Bar" class="Link-Bar">
+                        <p>Shop</p>
+                    </div>
+
+                </div>
+
+                <div class="Page-Links">
+                    <a href="/Home">Home</a>
+                    <a href="/About">About Us</a>
+                    <a href="/ContactPost">Contact Us</a>
+                    <a href="/Blog">Blog</a>
+                    <a href="/Shop">Shop</a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="SearchAndBasket">
+            <button class="AllCategories">
+                <p>ALL CATEGORIES</p>
+                <img src="~/Shopping/assets/icons/BarsIcon.svg" />
+            </button>
+
+            <div class="Search">
+                <input class="Search-Input" type="search"
+                       placeholder="Search Your Likings" />
+                <button class="Submit-Search">
+                    <img src="~/Shopping/assets/icons/SearchIcon.svg" />
+                </button>
+            </div>
+
+            <div id="LikeAndBasket">
+                <a href="https://localhost:7297/WishList" id="Liked">
+                    <img src="~/Shopping/assets/icons/LoveIcon.svg" />
+                </a>
+
+                <a id="Basket" href="https://localhost:7297/Cart">
+                    <img src="~/Shopping/assets/icons/BasketIcon.svg" />
+                    <span style="text-align: center; vertical-align: middle;" id="ItemCount">
+                        <p>0</p>
+                    </span>
+                </a>
+            </div>
+
+        </div>
+        </div>
+
+    </nav>
+
+@*     <section class="Search-Section">
+        @Html.Partial("_Search")
+    </section> *@
+
+    @RenderBody()
+
+    <footer class="Footer">
+        <div class="container">
+            <div class="FooterRow">
+                <div class="Footer-ContactUs">
+                    <h3>CONTACT US</h3>
+                    <div id="Contact-Content">
+                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <div id="Payment-Methods">
+                            <h4>Payment Methods:</h4>
+                            <img src="~/Shopping/assets/images/PaymentMethods.jpg" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information -->
+
+                <div class="Footer-Contents">
+                    <h3>INFORMATION</h3>
+                    <div id="Content-Links">
+                        <a>Site Map</a>
+                        <a>Specials</a>
+                        <a>Jobs</a>
+                        <a>Delivery Information</a>
+                        <a>Privacy Policy</a>
+                        <a>Order History</a>
+                    </div>
+                </div>
+
+                <!-- My Account -->
+
+                <div class="Footer-Contents">
+                    <h3>MY ACCOUNT</h3>
+                    <div id="Content-Links">
+                        <a>My Account</a>
+                        <a>Checkout</a>
+                        <a>Login</a>
+                        <a>Order Status</a>
+                        <a>Site Map</a>
+                        <a>Address</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+
+                <div class="Footer-Contents">
+                    <h3>CUSTOMER SERVICE</h3>
+                    <div id="Content-Links">
+                        <a>My Account</a>
+                        <a>New</a>
+                        <a>GiftCards</a>
+                        <a>Return Policy</a>
+                        <a>Your Orders</a>
+                        <a>Subway</a>
+                    </div>
+                </div>
+
+                <!-- Let Us Help You -->
+
+                <div class="Footer-Contents">
+                    <h3>LET US HELP YOU</h3>
+                    <div id="Content-Links">
+                        <a>Your Account</a>
+                        <a>Your Orders</a>
+                        <a>Shipping</a>
+                        <a>Amazon Prime</a>
+                        <a>Replacements</a>
+                        <a>Manage</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="Footer-Line">
+            </div>
+        </div>
+
+        <div class="Footer-Bottom">
+            <div class="container">
+                <div class="Footer-Bottom-Row">
+                    <div id="Footer-Copyright">
+                        <p>
+                            Copyright © 2021 HasThemes | Built with BigOn by HasThemes | rebuild by CF-Mehemmed
+                        </p>
+                    </div>
+                    <div id="Footer-SocialLinks">
+                        <a href="#">
+                            <img src="~/Shopping/assets/icons/FacebookLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="~/Shopping/assets/icons/TwitterLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="~/Shopping/assets/icons/LinkedinLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="~/Shopping/assets/icons/InstagramLogo.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="~/Shopping/assets/icons/Pinterestlogo.svg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @* loader *@
+
+    <script>
+
+        const loaderElement = document.querySelector(".Loader");
+
+        function showLoader(show) {
+            loaderElement.style.display = show ? "grid" : "none";
+        }
+
+    </script>
+
+    @* search *@
+
+    <script>
+        submitSearch_Btn = document.querySelector(".Submit-Search");
+
+        submitSearch_Btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const searchValue = document.querySelector(".Search-Input").value;
+            localStorage.setItem('searchTerm', searchValue);
+            window.location.href = '/search';
+        });
+
+        const searchInput = document.querySelector(".Search-Input");
+        
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitSearch_Btn.click();
+            }
+        });
+    </script>
+
+    @* Layout Script *@
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('https://localhost:7297/Admin/products', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => response.json())
+                .then(products => {
+                    const AddToCart_Btns = document.querySelectorAll(".Add-To-Cart");
+                    const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
+                    const quickviewButtons = document.querySelectorAll("#quickview");
+                    const Single_Products = document.querySelectorAll(".Single-Product");
+
+                    quickviewButtons.forEach(button => {
+                        button.addEventListener("click", (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+
+                            let productId = button.getAttribute("data-product-id");
+
+                            if (productId == null || productId == undefined || isNaN(productId)) {
+                                window.location.href = "https://localhost:7297/NotFound";
+                                console.log("Redirecting to:", `nOTfOUNND`);
+                            } else {
+                                console.log("Redirecting to:", `/ProductDetails/${productId}`);
+                                window.location.href = `/ProductDetails/${productId}`;
+                            }
+                        });
+                    });
+
+                    Single_Products.forEach(SingleProduct => {
+                        SingleProduct.addEventListener("click", (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+
+                            let productId = SingleProduct.getAttribute("data-product-id");
+
+                            if (productId == null || productId == undefined || productId == NaN) {
+                                window.location.href = "https://localhost:7297/NotFound";
+                            } else {
+                                window.location.href = `/ProductDetails/${productId}`;
+                            }
+                        });
+                    });
+
+                    AddToCart_Btns.forEach(AddToCart_Btn => {
+                        AddToCart_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+
+                            const product = {
+                                id: AddToCart_Btn.getAttribute('data-product-id'),
+                                name: AddToCart_Btn.getAttribute('data-product-name'),
+                                price: AddToCart_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToCart_Btn.getAttribute('data-product-image'),
+                                quantity: parseInt(AddToCart_Btn.getAttribute('data-quantity')) || 1,
+                               // quantity: 1,
+
+                            };
+
+                            if (!product || product.id === null) {
+                                Toastify({
+                                    text: 'Invalid product or missing ID. Please try again.',
+                                    duration: 3000,
+                                    gravity: 'top',
+                                    position: 'right',
+                                    backgroundColor: 'red',
+                                    stopOnFocus: true,
+                                }).showToast();
+                                return;
+                            }
+
+                            addToCart(product);
+                        });
+                    });
+
+                    AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+                        AddToWishlist_Btn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+
+                            const wishIcon = AddToWishlist_Btn.querySelector('img');
+                            const currentSrc = wishIcon.getAttribute('src');
+
+                            const baseUrl = window.location.origin;
+
+                            const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                            const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+
+                            const originalFullUrl = baseUrl + originalImagePath;
+                            const newFullUrl = baseUrl + newImagePath;
+
+                            const product = {
+                                id: AddToWishlist_Btn.getAttribute('data-product-id'),
+                                name: AddToWishlist_Btn.getAttribute('data-product-name'),
+                                price: AddToWishlist_Btn.getAttribute('data-product-price'),
+                                imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
+                            };
+
+                            if (!product || product.id === null) {
+                                Toastify({
+                                    text: 'Invalid product or missing ID. Please try again.',
+                                    duration: 3000,
+                                    gravity: 'top',
+                                    position: 'right',
+                                    backgroundColor: 'red',
+                                    stopOnFocus: true,
+                                }).showToast();
+                                return;
+                            }
+
+                            addToWishlist(product, wishIcon, originalFullUrl, newFullUrl);
+
+                            updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl);
+                        });
+
+                        initializeWishlistIcons();
+                    });
+                    
+                    updateItemCount(getCartItemCount());
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        });
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingProductIndex !== -1) {
+                // If product exists, update its quantity
+                cart[existingProductIndex].quantity += product.quantity;
+
+                Toastify({
+                    text: `Product ${product.name} quantity increased`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+            } else {
+                // If product doesn't exist, add it to the cart
+                cart.push(product);
+
+                Toastify({
+                    text: `Product ${product.name} added to your Cart`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // If localStorage cart is empty, initialize it
+            if (!localStorage.getItem('cart')) {
+                localStorage.setItem('cart', JSON.stringify([]));
+            }
+
+            updateItemCount(getCartItemCount());
+        }
+
+        function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                Toastify({
+                    text: `Product ${product.name} removed from your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "orange",
+                    stopOnFocus: true,
+                }).showToast();
+
+                wishlist = wishlist.filter(item => item.id !== product.id);
+                wishIcon.setAttribute('src', originalFullUrl);
+            } else {
+                Toastify({
+                    text: `Product ${product.name} added to your WishList`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "green",
+                    stopOnFocus: true,
+                }).showToast();
+
+                product.iconUrl = newFullUrl;
+                wishlist.push(product);
+                wishIcon.setAttribute('src', newFullUrl);
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        function updateWishlistIcon(wishIcon, product, originalFullUrl, newFullUrl) {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const existingProduct = wishlist.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                wishIcon.setAttribute('src', newFullUrl);
+            } else {
+                wishIcon.setAttribute('src', originalFullUrl);
+            }
+        }
+
+        function initializeWishlistIcons() {
+            const AddToWishlist_Btns = document.querySelectorAll("#add-to-wishlist");
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            AddToWishlist_Btns.forEach(AddToWishlist_Btn => {
+                const wishIcon = AddToWishlist_Btn.querySelector('img');
+                const productID = AddToWishlist_Btn.getAttribute('data-product-id');
+                const baseUrl = window.location.origin;
+                const originalImagePath = "/Shopping/assets/icons/WishIcon.svg";
+                const newImagePath = "/Shopping/assets/icons/WhiteWish.svg";
+                const originalFullUrl = baseUrl + originalImagePath;
+                const newFullUrl = baseUrl + newImagePath;
+
+
+                const existingProduct = wishlistItems.find(item => item.id === productID);
+                const newSrc = existingProduct ? newFullUrl : originalFullUrl;
+
+                wishIcon.setAttribute('src', newSrc);
+            });
+        }
+
+        function updateItemCount(count) {
+            const itemCountElement = document.getElementById('ItemCount');
+
+            if (itemCountElement) {
+                itemCountElement.textContent = count;
+            }
+
+            localStorage.setItem('itemCount', count);
+        }
+
+        function getCartItemCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0); // Define count here
+            return count;
+        }
+
+    </script>
+
+    @* sign in *@
+
+    <script>
+        const SignIn_Bar = document.querySelector("#SignIn-Bar");
+
+        SignIn_Bar.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            window.open('/Login', 'self');
+        })
+    </script>
+
+    @await RenderSectionAsync("addjs", required: false)
+
+</body>
+</html>

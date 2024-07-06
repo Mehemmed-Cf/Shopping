@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shopping.Application.Repositories;
-using Shopping.Domain.Modules.Entities;
+using Shopping.Domain.Models.Entities;
 using Shopping.Infrastructure.Concrates;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shopping.Repository
 {
-    public class SizeRepository : AsyncRepository<Size>, ISizeRepository
+    class SizeRepository : AsyncRepository<Size>, ISizeRepository
     {
         public SizeRepository(DbContext db) : base(db)
         {

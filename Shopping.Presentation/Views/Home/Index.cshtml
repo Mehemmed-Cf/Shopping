@@ -1,0 +1,3106 @@
+﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
+@model IEnumerable<ProductGetAllRequestDto>
+
+@{
+    var reversedModel = Model.Reverse();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+    <!-- internal -->
+    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
+    <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
+
+
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        @@media (max-width: 991px) {
+          .Navigation .container .Page-LinksAndLogo {
+            margin-left: 130px !important;
+          }
+        }
+
+       @@media (max-width: 991px) {
+          .Main .Section_7 .Popular-Categories .container .Border .Row .Column {
+            width: 70% !important;
+            transform: scale(0.9);
+          }
+       }
+
+        @@media (max-width: 762px) {
+            .Main .Section_7 .Popular-Categories .container .Border .Row .Column {
+                width: 100% !important;
+            }
+        }
+
+        .Owl_Outer {
+            position: relative;
+            overflow: hidden;
+            height: 110%;
+            margin-bottom: 150px;
+            width: 1170px;
+        }
+
+        @@media (max-width: 991px) {
+            .Owl_Outer {
+                width: 750px;
+            }
+        }
+
+        .Owl_Stage {
+            display: none;
+            justify-content: center !important;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease-in-out;
+            will-change: transform;
+            height: 70%;
+            width: 100%;
+            position: relative;
+        }
+
+        .Active-Stage {
+          display: flex !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+
+        .Owl_Stage @@media (max-width: 991px) {
+            width: 750px;
+        }
+
+        @@media (max-width: 991px) {
+            #Stage_7 {
+                display: none !important;
+            }
+        }
+
+        #Stage_7 @@media (max-width: 762px) {
+            width: 450px !important;
+            flex-direction: column !important;
+        }
+
+        #Owl_Item {
+            visibility: visible;
+            width: 227.6px;
+            padding: 16px 15px;
+            float: left;
+        }
+
+        #Owl_Item .Single-Product {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 289px;
+            position: relative;
+            background: #fff;
+            transition: all 0.5s ease-in-out;
+            flex-direction: column;
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        #Owl_Item .Single-Product .Product-Img img {
+            width: 200px;
+        }
+
+        #Owl_Item .Single-Product .Product-Content {
+            transition: all 0.3s ease-in-out;
+            z-index: 19;
+        }
+
+        #Owl_Item .Single-Product .Product-Content .ComeFromBottomAnimation {
+            animation-name: ComeFromBottom;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #popup_cart_title {
+            font-family: sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 120%;
+            color: var(--Background-Dark);
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-rating {
+            display: flex;
+        }
+
+        #Owl_Item .Single-Product .Product-Content p {
+            display: flex;
+            flex-direction: column;
+            padding-top: 40px;
+            gap: 5px;
+            color: var(--Font-Color);
+        }
+
+        #Owl_Item .Single-Product .Product-Content p #price {
+            font-family: sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 120%;
+        }
+
+        #Owl_Item .Single-Product .Product-Content p #prev_price {
+            color: #a4a4a4;
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 120%;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: 0.3s ease-in-out;
+            position: absolute;
+            width: 100%;
+            z-index: 25;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Primary-Actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 1px;
+            z-index: 30;
+            left: -10px;
+            position: absolute;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Appear {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: opacity 0.6s ease !important;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            bottom: 1px;
+            right: -20px;
+            position: absolute;
+            z-index: 30;
+            gap: 7px;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--Background-Dark);
+            height: 32px;
+            width: 30px;
+            border-radius: 5px;
+            will-change: color;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist:hover {
+            background-color: var(--Main-Blue);
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #add-to-wishlist img {
+            width: 15px;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--Background-Dark);
+            height: 32px;
+            width: 30px;
+            border-radius: 5px;
+            will-change: color;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview:hover {
+            background-color: var(--Main-Blue);
+        }
+
+        #Owl_Item .Single-Product .Product-Content #product-actions .Secondary-Actions #quickview img {
+            width: 15px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+
+    <style>
+
+    .Header-Row {
+      margin-right: -15px;
+      margin-left: -15px;
+      width: 100%;
+      position: relative;
+
+     @@media (max-width: 991px) {
+        width: 750px !important;
+        margin: auto;
+      }
+
+      @@media (max-width: 762px) {
+        width: 250px;
+      }
+    }
+
+    .Header-Row .Product-List {
+      display: flex;
+      border-bottom: 1px solid #ebebeb;
+      margin-left: 15px; /* 15px */
+      margin-right: 15px;
+      margin-bottom: 40px;
+      padding: 25px 0 20px;
+      list-style: none;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .Header-Row .Product-List h2 {
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 120%;
+      color: var(--Background-Dark);
+      position: absolute;
+      left: 30px;
+    }
+
+    @@media (max-width: 991px) {
+      .Header-Row .Product-List h2 {
+        font-size: 13px;
+      }
+    }
+
+    @@media (max-width: 762px) {
+      .Header-Row .Product-List h2 {
+        position: initial;
+        font-size: 16px;
+        margin-bottom: 20px;
+        margin-right: 270px;
+      }
+    }
+
+    .Header-Row .Product-List li {
+      cursor: pointer;
+      display: inline-block;
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 120%;
+      padding-right: 40px;
+      position: relative;
+      text-transform: uppercase;
+      will-change: color;
+      white-space: nowrap;
+      transition: 0.5s;
+    }
+
+    .Header-Row .Product-List li a {
+      color: #aaa;
+    }
+
+    .Header-Row .Product-List .Active-List {
+      transition: color 0.5s ease-in-out;
+    }
+
+    .Header-Row .Product-List .Active-List a {
+      color: #363f4d !important;
+    }
+
+  </style>
+
+  <style>
+  
+  .cube-loader {
+    position: relative;
+    /* u can choose any size */
+    width: 75px;
+    height: 75px;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg);
+    animation: animate 4s linear infinite;
+}
+
+@@keyframes animate {
+    0% {
+        transform: rotateX(-30deg) rotateY(0);
+    }
+
+    100% {
+        transform: rotateX(-30deg) rotateY(360deg);
+    }
+}
+
+.cube-loader .cube-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* top: 0;
+  left: 0; */
+    transform-style: preserve-3d;
+}
+
+    .cube-loader .cube-wrapper .cube-span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* top: 0;
+  left: 0; */
+        /* width 75px / 2 = 37.5px */
+        transform: rotateY(calc(90deg * var(--i))) translateZ(37.5px);
+        background: linear-gradient( to bottom, hsl(330, 3.13%, 25.1%) 0%, hsl(177.27, 21.71%, 32.06%) 5.5%, hsl(176.67, 34.1%, 36.88%) 12.1%, hsl(176.61, 42.28%, 40.7%) 19.6%, hsl(176.63, 48.32%, 43.88%) 27.9%, hsl(176.66, 53.07%, 46.58%) 36.6%, hsl(176.7, 56.94%, 48.91%) 45.6%, hsl(176.74, 62.39%, 50.91%) 54.6%, hsl(176.77, 69.86%, 52.62%) 63.4%, hsl(176.8, 76.78%, 54.08%) 71.7%, hsl(176.83, 83.02%, 55.29%) 79.4%, hsl(176.85, 88.44%, 56.28%) 86.2%, hsl(176.86, 92.9%, 57.04%) 91.9%, hsl(176.88, 96.24%, 57.59%) 96.3%, hsl(176.88, 98.34%, 57.93%) 99%, hsl(176.89, 99.07%, 58.04%) 100% );
+    }
+
+.cube-top {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background: hsl(330, 3.13%, 25.1%) 0%;
+    /* width 75px / 2 = 37.5px */
+    transform: rotateX(90deg) translateZ(37.5px);
+    transform-style: preserve-3d;
+}
+
+    .cube-top::before {
+        content: '';
+        position: absolute;
+        /* u can choose any size */
+        width: 75px;
+        height: 75px;
+        background: hsl(176.61, 42.28%, 40.7%) 19.6%;
+        transform: translateZ(-90px);
+        filter: blur(10px);
+        box-shadow: 0 0 10px #323232, 0 0 20px hsl(176.61, 42.28%, 40.7%) 19.6%, 0 0 30px #323232, 0 0 40px hsl(176.61, 42.28%, 40.7%) 19.6%;
+    }
+
+
+  </style>
+
+</head>
+<body>
+
+    <main class="Main">
+
+        <section class="Home-Section">
+            <div class="container">
+                <div class="Row">
+                    <div class="Row-Slider">
+                        <a class="Bigon_Monitor">
+                            <img src="~/Shopping/assets/images/Big_Monitor.webp" />
+                        </a>
+                        <a class="Bigon_SmartWatch">
+                            <img src="~/Shopping/assets/images/Big_SmartWatch.webp" />
+                        </a>
+
+                        <div class="Nivo_Control">
+                            <div class="First_Nivo_Point" class="Active" id="Nivo_Point"></div>
+                            <div class="Second_Nivo_Point" id="Nivo_Point"></div>
+                        </div>
+                    </div>
+
+                    <div class="Slider-Left-Content">
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/Remote.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$50.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="has_prev_price" class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/Toaster.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$120.00</span>
+                                        </span>
+                                        <del id="prev_price">
+                                            <span id="money">$150.00</span>
+                                        </del>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$100.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/White_Xbox.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$80.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/WhiteCamera.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$40.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/Lamps.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$60.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="has_prev_price" class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/Computer.jpg" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$150.00</span>
+                                        </span>
+                                        <del id="prev_price">
+                                            <span id="money">$180.00</span>
+                                        </del>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Multi-Product">
+                            <div class="Single-Product">
+                                <div class="pro-img">
+                                    <img src="~/Shopping/assets/images/Headphones.webp" />
+                                </div>
+                                <div class="pro-content">
+                                    <h4>Demo Product Title</h4>
+                                    <div id="product_rating"></div>
+                                    <p>
+                                        <span id="price">
+                                            <span id="money">$60.00</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Section_2">
+            <div class="container">
+                <div class="Row">
+                    <div class="First-Col">
+                        <a>
+                            <img src="~/Shopping/assets/images/phone-3.jpg" />
+                        </a>
+                    </div>
+
+                    <div class="Second-Col">
+                        <a>
+                            <img src="~/Shopping/assets/images/FuturePhone.jpg" />
+                        </a>
+                    </div>
+
+                    <div class="Third-Col">
+                        <a>
+                            <img src="~/Shopping/assets/images/WirelyHeadphones.jpg" />
+                        </a>
+                    </div>
+
+                    <!-- I tried to make my own Column here but I couldnt find
+                    good pictures that I can crop so I couldnt adjust it nicely
+                    and I decided to use stock pictures just like in the Bigon Website -->
+                    <!-- <div class="Third-Col">
+                      <div class="Col-Content">
+                        <div class="Content-Header">
+                          <h4>Your Guide To Lengthening</h4>
+                          <h3>Headphone Cable</h3>
+                        </div>
+                        <p>
+                          <span id="price">
+                            <span id="money">$100.00</span>
+                          </span>
+                            <del id="prev_price">
+                             <span id="money">$130.00</span>
+                            </del>
+                        </p>
+                      </div>
+
+
+                      <div class="Col-Img">
+                        <a>
+                          <img src="~/Shopping/assets/images/FlipPhone.webp" />
+                        </a>
+                      </div> -->
+
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="Section_Swip">
+            <div class="container">
+
+                <div class="Header-Row SwipHead_1">
+
+                    <ul class="Product-List">
+                        <li id="List_element_1" class="Active-List">
+                            <a>new products</a>
+                        </li>
+                        <li id="List_element_2">
+                            <a>onsale</a>
+                        </li>
+                        <li id="List_element_3">
+                            <a>featured</a>
+                        </li>
+                    </ul>
+
+                    <div class="Owl_Outer Outer_Owl_1">
+
+                        <div class="Owl_Stage Active-Stage" style="min-height: 150px;">
+
+                            <div class="cube-loader">
+                                <div class="cube-top"></div>
+                                <div class="cube-wrapper">
+                                    <span style="--i:0" class="cube-span"></span>
+                                    <span style="--i:1" class="cube-span"></span>
+                                    <span style="--i:2" class="cube-span"></span>
+                                    <span style="--i:3" class="cube-span"></span>
+                                </div>
+                            </div>
+
+
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper"> 
+                                <div class="swiper-wrapper">
+
+                                    @foreach (var product in Model)
+                                    {
+                                        <div class="swiper-slide"> 
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img" data-product-id="@product.Id">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions" style="width: 155px !important; margin-left: 20px">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl"
+                                                                    >
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview" 
+                                                                data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+                        </div>
+
+                        <div id="OnSale-Stage" id="OnSale_Item" class="Owl_Stage" style="min-height: 150px;">
+
+                            <div class="cube-loader">
+                                <div class="cube-top"></div>
+                                <div class="cube-wrapper">
+                                    <span style="--i:0" class="cube-span"></span>
+                                    <span style="--i:1" class="cube-span"></span>
+                                    <span style="--i:2" class="cube-span"></span>
+                                    <span style="--i:3" class="cube-span"></span>
+                                </div>
+                            </div>
+
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (var product in reversedModel)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions" style="width: 155px !important; margin-left: 20px">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="Owl_Stage" style="min-height: 150px;">
+
+                            <div class="cube-loader">
+                                <div class="cube-top"></div>
+                                <div class="cube-wrapper">
+                                    <span style="--i:0" class="cube-span"></span>
+                                    <span style="--i:1" class="cube-span"></span>
+                                    <span style="--i:2" class="cube-span"></span>
+                                    <span style="--i:3" class="cube-span"></span>
+                                </div>
+                            </div>
+
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (var product in Model)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions" style="width: 155px !important; margin-left: 20px">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                    data-product-id="@product.Id"
+                                                                    data-product-name="@product.Title"
+                                                                    data-product-price="@product.Price"
+                                                                    data-product-image="@product.ImageUrl">
+                                                                </a>
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="Section_4">
+            <div class="container">
+                <div class="Row">
+                    <div class="First-Col">
+                        <a>
+                            <img src="~/Shopping/assets/images/FloatingStyleTv.webp" />
+                        </a>
+                    </div>
+
+                    <div class="Second-Col">
+                        <a>
+                            <img src="~/Shopping/assets/images/Duct VOO.webp" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="Section_5">
+            <div class="Best-Selling">
+                <div class="container">
+                    <div class="Row">
+                        <div class="DealOfThe-Days">
+                            <div class="Deal">
+                                <div class="Group-Title">
+                                    <h2>Deal of the days</h2>
+                                    <div class="Owl-Nav">
+                                        <div class="Owl-Prev_2">
+                                            <img src="~/Shopping/assets/icons/AnclePrevious.svg" />
+                                        </div>
+                                        <div class="Owl-Next_2">
+                                            <img src="~/Shopping/assets/icons/AncleNext.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Deal-Product">
+                                    <div class="Owl_Stage_Outer">
+                                        <div class="Owl_Stage_2">
+
+                                            <!-- 1 -->
+
+                                            <div id="Owl_Item_2" class="Owl_Active">
+                                                <div class="Single-Product">
+                                                    <div class="Pro-Img">
+                                                        <a>
+                                                            <img src="~/Shopping/assets/images/Toaster.webp" />
+                                                        </a>
+
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                            </div>
+
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Product-Content">
+                                                        <h4 class="Cart-Title">Creative Product Title</h4>
+
+                                                        <div class="Pro-Rating">
+                                                            <span></span>
+                                                        </div>
+
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$120.00</span>
+                                                            </span>
+                                                            <del id="prev_price">
+                                                                <span id="money">$150.00</span>
+                                                            </del>
+                                                        </p>
+
+                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- 2 -->
+
+                                            <div id="Owl_Item_2">
+                                                <div class="Single-Product">
+                                                    <div class="Pro-Img">
+                                                        <a>
+                                                            <img src="~/Shopping/assets/images/Toaster.webp" />
+                                                        </a>
+
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                            </div>
+
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Product-Content">
+                                                        <h4 class="Cart-Title">Creative Product Title</h4>
+
+                                                        <div class="Pro-Rating">
+                                                            <span></span>
+                                                        </div>
+
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$120.00</span>
+                                                            </span>
+                                                            <del id="prev_price">
+                                                                <span id="money">$150.00</span>
+                                                            </del>
+                                                        </p>
+
+                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- 3 -->
+
+
+                                            <div id="Owl_Item_2">
+                                                <div class="Single-Product">
+                                                    <div class="Pro-Img">
+                                                        <a>
+                                                            <img src="~/Shopping/assets/images/Toaster.webp" />
+                                                        </a>
+
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                            </div>
+
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Product-Content">
+                                                        <h4 class="Cart-Title">Creative Product Title</h4>
+
+                                                        <div class="Pro-Rating">
+                                                            <span></span>
+                                                        </div>
+
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$120.00</span>
+                                                            </span>
+                                                            <del id="prev_price">
+                                                                <span id="money">$150.00</span>
+                                                            </del>
+                                                        </p>
+
+                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- 4 -->
+
+
+                                            <div id="Owl_Item_2">
+                                                <div class="Single-Product">
+                                                    <div class="Pro-Img">
+                                                        <a>
+                                                            <img src="~/Shopping/assets/images/Toaster.webp" />
+                                                        </a>
+
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                            </div>
+
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Product-Content">
+                                                        <h4 class="Cart-Title">Creative Product Title</h4>
+
+                                                        <div class="Pro-Rating">
+                                                            <span></span>
+                                                        </div>
+
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$120.00</span>
+                                                            </span>
+                                                            <del id="prev_price">
+                                                                <span id="money">$150.00</span>
+                                                            </del>
+                                                        </p>
+
+                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- 5 -->
+
+                                            <div id="Owl_Item_2">
+                                                <div class="Single-Product">
+                                                    <div class="Pro-Img">
+                                                        <a>
+                                                            <img src="~/Shopping/assets/images/Toaster.webp" />
+                                                        </a>
+
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                            </div>
+
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Product-Content">
+                                                        <h4 class="Cart-Title">Creative Product Title</h4>
+
+                                                        <div class="Pro-Rating">
+                                                            <span></span>
+                                                        </div>
+
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$120.00</span>
+                                                            </span>
+                                                            <del id="prev_price">
+                                                                <span id="money">$150.00</span>
+                                                            </del>
+                                                        </p>
+
+                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BestSelling-Items">
+                            <div class="SellingItems">
+                                <div class="BestSelling-Categories">
+                                    <div class="Row">
+                                        <div class="Row-Group">
+                                            <div class="Group-Title">
+                                                <h2>Best Selling Items</h2>
+                                                <ul class="Product-List">
+                                                    <li id="List_element_4" class="Active-List">Laptops</li>
+                                                    <li id="List_element_5">Monitors</li>
+                                                    <div class="Owl-Nav">
+                                                        <div class="Owl-Prev_3">
+                                                            <img src="~/Shopping/assets/icons/AnclePrevious.svg" />
+                                                        </div>
+                                                        <div class="Owl-Next_3">
+                                                            <img src="~/Shopping/assets/icons/AncleNext.svg" />
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="Tab-Content">
+                                        <div class="Tab-Owl">
+                                            <div class="Best-Selling-Pro">
+                                                <div class="Owl_Carousel">
+                                                    <div class="Owl_Stage_Outer_2">
+                                                        <div class="Owl_Stage_3 Active-Stage">
+
+                                                            <!-- 1 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 2 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 3 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 4 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 5 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 6 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/Lamps.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 7 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 8 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 9 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 10 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 11 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 12 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 13 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="Owl_Stage_3">
+
+                                                            <!-- 1 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/Telescope.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 2 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/White_Xbox.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 3 -->
+
+                                                            <div id="Owl_Item_3" class="Owl_Active">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/Doleremque.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 4 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/Drone.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 5 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 6 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/Lamps.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 7 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 8 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 9 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 10 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 11 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 12 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 13 -->
+
+                                                            <div id="Owl_Item_3">
+                                                                <div class="Single-Product">
+                                                                    <div class="Product-Img">
+                                                                        <img src="~/Shopping/assets/images/HD_TV.webp" />
+                                                                    </div>
+                                                                    <div class="Product-Content">
+                                                                        <h4 id="popup_cart_title">Amazing Product Title</h4>
+                                                                        <div id="product-rating"></div>
+                                                                        <p>
+                                                                            <span id="price">
+                                                                                <span id="money">$100.00</span>
+                                                                            </span>
+                                                                        </p>
+                                                                        <div id="product-actions">
+                                                                            <div class="Primary-Actions">
+                                                                                <button class="Add-To-Cart">Add To Cart</button>
+                                                                            </div>
+                                                                            <div class="Secondary-Actions">
+                                                                                <a id="add-to-wishlist">
+                                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                                </a>
+                                                                                <a id="quickview">
+                                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Row">
+                                <div class="Carved-Products">
+                                    <div class="Single-Banner">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/CurvedHdTv.webp" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Section_Swip">
+            <div class="container">
+
+                <div class="Header-Row SwipHead_2">
+
+                    <ul class="Product-List">
+                        <h2>COMPUTER</h2>
+
+                        <li id="List_element_6" class="Active-List">
+                            <a>new products</a>
+                        </li>
+                        <li id="List_element_7">
+                            <a>onsale</a>
+                        </li>
+                        <li id="List_element_8">
+                            <a>featured</a>
+                        </li>
+                    </ul>
+
+
+                    <div class="Owl_Outer Outer_Owl_2">
+
+                        <div class="Owl_Stage Active-Stage">
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+
+                                    @foreach (var product in Model)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions" style="width: 155px !important; margin-left: 20px">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+                        </div>
+
+                        <div id="OnSale-Stage" id="OnSale_Item" class="Owl_Stage">
+
+                            <!-- Swiper -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (var product in reversedModel)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="Owl_Stage">
+
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (var product in Model)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div id="Owl_Item" class="Owl_Active">
+
+                                                <div class="Single-Product" data-product-id="@product.Id">
+
+                                                    <div class="Product-Img">
+                                                        <img src="@(product.ImageUrl)" />
+                                                    </div>
+
+                                                    <div class="Product-Content">
+                                                        <h4 id="popup_cart_title">@product.Title</h4>
+                                                        <div id="product-rating"></div>
+                                                        <p>
+                                                            <span id="price">
+                                                                <span id="money">$@product.Price</span>
+                                                            </span>
+                                                        </p>
+                                                        <div id="product-actions">
+                                                            <div class="Primary-Actions">
+                                                                <button class="Add-To-Cart"
+                                                                        data-product-id="@product.Id"
+                                                                        data-product-name="@product.Title"
+                                                                        data-product-price="@product.Price"
+                                                                        data-product-image="@product.ImageUrl">
+                                                                    Add To Cart
+                                                                </button>
+                                                            </div>
+                                                            <div class="Secondary-Actions">
+                                                                <a id="add-to-wishlist"
+                                                                   data-product-id="@product.Id"
+                                                                   data-product-name="@product.Title"
+                                                                   data-product-price="@product.Price"
+                                                                   data-product-image="@product.ImageUrl">
+                                                                    <img src="~/Shopping/assets/icons/WishIcon.svg" />
+                                                                </a>
+                                                                <a id="quickview"
+                                                                   data-product-id="@product.Id">
+                                                                    <img src="~/Shopping/assets/icons/Quickview.svg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="Section_7">
+            <div class="Popular-Categories">
+                <div class="container">
+                    <div class="Border">
+                        <div class="Group-Title">
+                            <h2>Popular Categories</h2>
+                        </div>
+                        <div class="Row" id="Row_7">
+
+                            <div class="Column" class="Col_7" id="Laptops">
+                                <div class="Single-Category">
+                                    <div class="Category-Img">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/Laptops.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="Category-Content">
+                                        <h3>Laptops</h3>
+                                        <div class="Cat-Content-List">
+                                            <ul>
+                                                <li>laptops price one</li>
+                                                <li>laptops price one</li>
+                                                <li>laptops price one</li>
+                                                <li>laptops price four</li>
+                                            </ul>
+                                        </div>
+                                        <div class="Cat-Btn">View more</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="Column" class="Col_7 id="Monitors">
+                                <div class="Single-Category">
+                                    <div class="Category-Img">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/Monitors.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="Category-Content">
+                                        <h3>Monitors</h3>
+                                        <div class="Cat-Content-List">
+                                            <ul>
+                                                <li>monitors price one</li>
+                                                <li>monitors price one</li>
+                                                <li>monitors price one</li>
+                                                <li>monitors price four</li>
+                                            </ul>
+                                        </div>
+                                        <div class="Cat-Btn">View more</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="Column" class="Col_7 id="Ram/Memory">
+                                <div class="Single-Category">
+                                    <div class="Category-Img">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/Ram&Memory.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="Category-Content">
+                                        <h3>Monitors</h3>
+                                        <div class="Cat-Content-List">
+                                            <ul>
+                                                <li>memory price one</li>
+                                                <li>memory price one</li>
+                                                <li>memory price one</li>
+                                                <li>memory price four</li>
+                                            </ul>
+                                        </div>
+                                        <div class="Cat-Btn">View more</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="Column" class="Col_7 id="Digital Cameras">
+                                <div class="Single-Category">
+                                    <div class="Category-Img">
+                                        <a>
+                                            <img src="~/Shopping/assets/images/DigitalCameras.jpg" />
+                                        </a>
+                                    </div>
+                                    <div class="Category-Content">
+                                        <h3>Monitors</h3>
+                                        <div class="Cat-Content-List">
+                                            <ul>
+                                                <li>camera price one</li>
+                                                <li>camera price one</li>
+                                                <li>camera price one</li>
+                                                <li>camera price four</li>
+                                            </ul>
+                                        </div>
+                                        <div class="Cat-Btn">View more</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="Row" style="display: flex; justify-content: center">
+                            <div class="Brand-Banner">
+                                <div class="Owl-Stage-Outer">
+                                    <div class="Owl-Stage" id="Stage_7" style="display: flex;">
+
+                                        <!-- 1 -->
+
+                                        <div id="Owl-Item">
+                                            <div class="Single-Brand">
+                                                <a>
+                                                    <img src="~/Shopping/assets/images/graphicriver.jpg" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2 -->
+
+                                        <div id="Owl-Item">
+                                            <div class="Single-Brand">
+                                                <a>
+                                                    <img src="~/Shopping/assets/images/themeforest.webp" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- 3 -->
+
+                                        <div id="Owl-Item">
+                                            <div class="Single-Brand">
+                                                <a>
+                                                    <img src="~/Shopping/assets/images/codecanyon.webp" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- 4 -->
+
+                                        <div id="Owl-Item">
+                                            <div class="Single-Brand">
+                                                <a>
+                                                    <img src="~/Shopping/assets/images/audiojungle.jpg" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- 5 -->
+
+                                        <div id="Owl-Item">
+                                            <div class="Single-Brand">
+                                                <a>
+                                                    <img src="~/Shopping/assets/images/activeden.webp" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Section_8" style="display: none;">
+            <div class="Blog">
+                <div class="container">
+                    <div class="Row">
+
+                        <div class="Column">
+                            <div class="Border">
+                                <div class="Group-Title">
+                                    <h2>From Our Blog</h2>
+                                </div>
+                                <div class="Row">
+                                    <div class="Popular-Cat">
+
+                                        <div class="Dual-Pop">
+                                            <div class="Main-Pop">
+                                                <div class="Pop-Img">
+                                                    <a>
+                                                        <img src="~/Shopping/assets/images/Home-Blog-1.webp" />
+                                                    </a>
+                                                </div>
+                                                <div class="Pop-Content">
+                                                    <h4>Temporibus autem quibusdam</h4>
+                                                    <span>15/Apr/ 18</span>
+                                                    <a class="Pop-Link">Read More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="Dual-Pop">
+                                            <div class="Main-Pop">
+                                                <div class="Pop-Img">
+                                                    <a>
+                                                        <img src="~/Shopping/assets/images/Home-Blog-2.webp" />
+                                                    </a>
+                                                </div>
+                                                <div class="Pop-Content">
+                                                    <h4>Temporibus autem quibusdam</h4>
+                                                    <span>15/Apr/ 18</span>
+                                                    <a class="Pop-Link">Read More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Column">
+                            <div class="Border">
+                                <div class="Group-Title">
+                                    <h2>WHAT THEY SAY</h2>
+
+                                    <div class="Owl-Nav">
+                                        <div class="Owl-Prev_5">
+                                            <img src="~/Shopping/assets/icons/AnclePrevious.svg" />
+                                        </div>
+                                        <div class="Owl-Next_5">
+                                            <img src="~/Shopping/assets/icons/AncleNext.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Testimonial-container">
+                                    <div class="Text-Slide">
+
+                                        <!-- 1 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 3 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 4 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 5 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 6 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 7 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 8 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 9 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 10 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 11 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 12 -->
+
+                                        <div class="Slick-List">
+                                            <div class="Slick-Track">
+                                                <div class="Single-Comments">
+                                                    <p id="desc"></p>
+                                                    <p id="email"></p>
+                                                    <p>
+                                                        <a id="name" href="#">Utheya</a>
+                                                        <span>Webdesigner</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="Slide-Thumb Active-Thumb">
+                                            <div class="Slick-List">
+                                                <div class="Slick-Track">
+
+                                                    <!-- 1 -->
+
+                                                    <div id="testimonial_img" class="Active-Testimonial">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 2 -->
+
+
+                                                    <div id="testimonial_img" class="Active-Testimonial">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 3 -->
+
+
+                                                    <div id="testimonial_img" class="Active-Testimonial">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 4 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 5 -->
+
+
+                                                    <div id="testimonial_img" class="Active-Testimonial">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 6 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 7 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 8 -->
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 9 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 10 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 11 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- 12 -->
+
+
+                                                    <div id="testimonial_img">
+                                                        <span>
+                                                            <img src="~/Shopping/assets/images/Utheya.webp" />
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Section_9">
+            <div class="Company-Policy">
+                <div class="container">
+                    <div class="Main-Policy">
+                        <div class="Row">
+
+                            <!-- 1 -->
+
+                            <div class="Column">
+                                <div class="Policy-Conditions">
+                                    <div class="Single-Policy">
+                                        <img style="left: -20px;" src="~/Shopping/assets/icons/ballon.webp" />
+                                        <div style="border-right: 1px solid #606060;" class="Policy-Desc">
+                                            <h3>Free Delivery</h3>
+                                            <p>Free shipping on all order</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2 -->
+
+                            <div class="Column">
+                                <div class="Policy-Conditions">
+                                    <div class="Single-Policy">
+                                        <img src="~/Shopping/assets/icons/Call.png" />
+                                        <div style="border-right: 1px solid #606060;" class="Policy-Desc">
+                                            <h3>Online Support 24/7</h3>
+                                            <p>Support online 24 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3 -->
+
+                            <div class="Column">
+                                <div class="Policy-Conditions">
+                                    <div class="Single-Policy">
+                                        <img src="~/Shopping/assets/icons/Money.webp" />
+                                        <div style="border-right: 1px solid #606060;" class="Policy-Desc">
+                                            <h3>Money Return</h3>
+                                            <p>Back guarantee under 7 days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4 -->
+
+                            <div class="Column">
+                                <div class="Policy-Conditions">
+                                    <div class="Single-Policy">
+                                        <img style="width: 40px; height: 40px;" src="~/Shopping/assets/icons/discount.png" />
+                                        <div class="Policy-Desc">
+                                            <h3>Member Discount</h3>
+                                            <p>Onevery order over $30.00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="Section_10">
+            <div class="Newsletter">
+                <div class="container">
+                    <div class="Row">
+
+                        <div class="Column-1">
+                            <div class="Main-News-Desc">
+                                <div class="Desc-Content">
+                                    <img src="~/Shopping/assets/icons/Newsletter.jpg" />
+                                    <h3>
+                                        Sign Up For
+                                        <span>Newsletters</span>
+                                    </h3>
+                                    <p>Get e-mail updates about our latest shop and special offers.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Column-2">
+                            <div class="Newsletter-Box">
+                                <div class="Subscribe-Form">
+                                    <div class="Mc-Form">
+                                        <div class="Subscribe-Form">
+                                            <input id="Email-Subscribe" type="email"
+                                                   placeholder="email@example.com" autocorrect="off" autocapitalize="off" />
+                                            <button class="Submit-Btn" id="submit-subscription">Subscribe</button>
+                                        </div>
+                                        <p id="subscribe-error-message"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    @* loader *@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showLoaderForSwiper(true);
+
+            setTimeout(() => {
+                showLoaderForSwiper(false);
+            }, 2000);
+
+            function showLoaderForSwiper(show) {
+                const stages = document.querySelectorAll('.Owl_Stage');
+
+                stages.forEach(stage => {
+                    const loader = stage.querySelector('.cube-loader');
+                    const swiper = stage.querySelector('.swiper');
+
+                    if (loader && swiper) {
+                        if (show) {
+                            loader.style.display = 'block';
+                            swiper.style.display = 'none';
+                        } else {
+                            loader.style.display = 'none';
+                            swiper.style.display = 'block';
+                        }
+                    } else {
+                        console.error('Loader or swiper element not found in Owl_Stage:', stage);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            //#region List-Elements-1 for swipper
+
+            const Outer_Owl_1 = document.querySelector(".Outer_Owl_1");
+            const Owl_Stages_List = Outer_Owl_1.querySelectorAll(".Owl_Stage");
+
+            const List_Element_1 = document.querySelector("#List_element_1");
+            const List_Element_2 = document.querySelector("#List_element_2");
+            const List_Element_3 = document.querySelector("#List_element_3");
+
+            List_Element_2.addEventListener("click", () => {
+
+                List_Element_3.classList.remove("Active-List");
+                List_Element_1.classList.remove("Active-List");
+
+                List_Element_2.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.remove("Active-Stage");
+                Owl_Stages_List[2].classList.remove("Active-Stage");
+
+                Owl_Stages_List[1].classList.add("Active-Stage");
+            });
+
+            List_Element_3.addEventListener("click", () => {
+
+                List_Element_1.classList.remove("Active-List");
+                List_Element_2.classList.remove("Active-List");
+
+                List_Element_3.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.remove("Active-Stage");
+                Owl_Stages_List[1].classList.remove("Active-Stage");
+
+                Owl_Stages_List[2].classList.add("Active-Stage");
+            });
+
+            List_Element_1.addEventListener("click", () => {
+
+                List_Element_2.classList.remove("Active-List");
+                List_Element_3.classList.remove("Active-List");
+
+                List_Element_1.classList.add("Active-List");
+
+                Owl_Stages_List[0].classList.add("Active-Stage");
+
+                Owl_Stages_List[1].classList.remove("Active-Stage");
+                Owl_Stages_List[2].classList.remove("Active-Stage");
+            });
+
+            //#endregion
+
+            //#region List-Elements-3 for swipper
+
+            const Outer_Owl_2 = document.querySelector(".Outer_Owl_2");
+            const Owl_Stages_List_2_Swipper = Outer_Owl_2.querySelectorAll(".Owl_Stage");
+
+            const List_Element_6 = document.querySelector("#List_element_6");
+            const List_Element_7 = document.querySelector("#List_element_7");
+            const List_Element_8 = document.querySelector("#List_element_8");
+
+            List_Element_7.addEventListener("click", () => {
+
+                List_Element_6.classList.remove("Active-List");
+                List_Element_8.classList.remove("Active-List");
+
+                List_Element_7.classList.add("Active-List");
+
+                Owl_Stages_List_2_Swipper[0].classList.remove("Active-Stage");
+                Owl_Stages_List_2_Swipper[2].classList.remove("Active-Stage");
+
+                Owl_Stages_List_2_Swipper[1].classList.add("Active-Stage");
+            });
+
+            List_Element_8.addEventListener("click", () => {
+
+                List_Element_6.classList.remove("Active-List");
+                List_Element_7.classList.remove("Active-List");
+
+                List_Element_8.classList.add("Active-List");
+
+                Owl_Stages_List_2_Swipper[0].classList.remove("Active-Stage");
+                Owl_Stages_List_2_Swipper[1].classList.remove("Active-Stage");
+
+                Owl_Stages_List_2_Swipper[2].classList.add("Active-Stage");
+            });
+
+            List_Element_6.addEventListener("click", () => {
+
+                List_Element_7.classList.remove("Active-List");
+                List_Element_8.classList.remove("Active-List");
+
+                List_Element_6.classList.add("Active-List");
+
+                Owl_Stages_List_2_Swipper[0].classList.add("Active-Stage");
+
+                Owl_Stages_List_2_Swipper[1].classList.remove("Active-Stage");
+                Owl_Stages_List_2_Swipper[2].classList.remove("Active-Stage");
+            });
+
+            //#endregion
+
+        });
+    </script>
+
+    @* Index *@
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            //#region Nivo Poinst
+
+            const Nivo_Points = document.querySelectorAll("#Nivo_Point");
+            const Nivo_Point_First = document.querySelector(".First_Nivo_Point");
+            const Nivo_Point_Second = document.querySelector(".Second_Nivo_Point");
+            const Bigon_Monitor = document.querySelector(".Bigon_Monitor");
+            const Bigon_SmartWatch = document.querySelector(".Bigon_SmartWatch");
+
+            Nivo_Point_First.classList.add("Active");
+
+            Nivo_Point_Second.addEventListener("click", (e) => {
+                e.stopPropagation();
+
+                Nivo_Point_First.classList.remove("Active");
+                Nivo_Point_Second.classList.add("Active");
+
+                Bigon_SmartWatch.style.opacity = "1";
+                Bigon_Monitor.style.opacity = "0";
+            })
+
+            Nivo_Point_First.addEventListener("click", (e) => {
+                e.stopPropagation();
+
+                Nivo_Point_Second.classList.remove("Active");
+                Nivo_Point_First.classList.add("Active");
+
+                Bigon_Monitor.style.opacity = "1";
+                Bigon_SmartWatch.style.opacity = "0";
+            })
+
+            //#endregion
+
+        });
+    </script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
+
+</body>
+</html>

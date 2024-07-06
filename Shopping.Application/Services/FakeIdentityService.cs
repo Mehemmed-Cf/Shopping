@@ -11,7 +11,7 @@ namespace Shopping.Application.Services
     {
         public int? GetPrincipialId()
         {
-            return null;
+            return 1;
         }
     }
 }

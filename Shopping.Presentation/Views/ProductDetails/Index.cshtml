@@ -1,0 +1,679 @@
+﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
+@model ProductGetByIdRequestDto
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed View</title>
+
+    <style>
+        button,
+        a {
+            cursor: pointer;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: 0.5 ease-in-out;
+        }
+
+        .Add-To-Cart:hover {
+            background-color: var(--Background-Dark) !important;
+        }
+
+        #add-to-wishlist:hover {
+            background-color: var(--Background-Dark) !important;
+        }
+
+        #Option {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            gap: 40px !important;
+        }
+
+            #Option .Option-Title {
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 120%;
+                display: block;
+                float: none;
+                margin-bottom: 5px;
+                margin-right: 0;
+                padding-bottom: 0;
+                position: relative;
+                margin-top: 0;
+            }
+
+            #Option .Swatch-Element {
+                float: left;
+            }
+
+                #Option .Swatch-Element input {
+                    display: none;
+                }
+
+                #Option .Swatch-Element label {
+                    background-color: white !important;
+                    color: #444444;
+                    text-transform: none;
+                    border: 1px solid transparent;
+                    position: relative;
+                    border-radius: 0;
+                    display: block;
+                    float: left;
+                    width: 22px;
+                    height: 22px;
+                    transition: all 0.3s ease 0s;
+                    margin: 0 10px 0 0;
+                    cursor: pointer;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+
+            #Option #swatch {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+            #Option #size .Size-Title {
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 120%;
+                display: block;
+                float: none;
+                margin-bottom: 5px;
+                margin-right: 0;
+                padding-bottom: 0;
+                position: relative;
+                margin-top: 0;
+            }
+
+            #Option #color {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+            #Option #material {
+                margin-bottom: 25px;
+                text-transform: lowercase;
+            }
+
+        .Active-Label {
+            color: var(--Main-Blue) !important;
+        }
+
+        .Product-Cart .box-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .Product-Cart .box-quantity .Quantity-Button {
+                border: 1px solid #dddddd;
+                overflow: hidden;
+                padding: 4px 0 4px 5px;
+                width: 80px;
+                height: 35px;
+                margin-right: 5px;
+                border-radius: 5px;
+            }
+
+                .Product-Cart .box-quantity .Quantity-Button #qtybtn {
+                    color: #666;
+                    cursor: pointer;
+                    float: left;
+                    font-size: 16px;
+                    font-weight: 600;
+                    height: 20px;
+                    line-height: 20px;
+                    position: relative;
+                    text-align: center;
+                    width: 20px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button #dec {
+                    margin-top: 2px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button #inc {
+                    margin-top: 2px;
+                }
+
+                .Product-Cart .box-quantity .Quantity-Button input {
+                    background: transparent none repeat scroll 0 0;
+                    border: none;
+                    float: left;
+                    font-size: 16px;
+                    height: 25px;
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                    width: 25px;
+                    transition: all 0.5s ease-out 0s;
+                    box-shadow: none;
+                    border-radius: 3px;
+                }
+
+    </style>
+
+    <style>
+        .Active-Label-Color {
+            transform: scale(1.15);
+            box-shadow: 1px 1px 3px #000 !important;
+        }
+
+        label {
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        label:hover {
+            transform: scale(1.02);
+        }
+
+    </style>
+
+</head>
+<body>
+
+     <main role="main" style="">
+        <div class="Product_Tab">
+            <div style="padding-top: 0px; padding-bottom: 300px;" class="Product_Thumbnail">
+                <div class="container">
+                    <div class="Row">
+
+                        <div class="Col Col-Pic">
+                            <div id="ProductPhoto">
+                                <img src="@Model.ImageUrl" alt="@Model.Title" />
+                            </div>
+                        </div>
+
+                        <div class="Col Col-Details">
+                            <form method="post" id="AddToCartForm">
+
+                                <div class="Thumbnail-Desc">
+
+                                    <div id="brand">
+                                        <span>@Model.BrandName</span>
+                                    </div>
+
+                                    <h3 id="title">@Model.Title</h3>
+
+                                    <div id="price">
+                                        <div class="Pro-Price">
+                                            <p>
+                                                <span id="ProductPrice">$@Model.Price</span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div id="inventory">
+                                        <div class="Inventory-Title">Availability:</div>
+                                        <div class="Variant-Inventory"><span style="color: var(--Main-Blue);">@Model.StockCount</span> left in stock</div>
+                                    </div>
+
+                                    <div id="Option">
+
+                                        <div id="swatch size">
+                                            <div class="Option-Title">Size :</div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-xl" type="radio" name="option-0" value="XL" checked>
+                                                <label for="Swatch-xl">XL</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-ml" type="radio" name="option-1" value="ml" checked>
+                                                <label for="Swatch-ml">ml</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-xs" type="radio" name="option-2" value="xs" checked>
+                                                <label for="Swatch-xs">xs</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-L" type="radio" name="option-3" value="L" checked>
+                                                <label for="Swatch-L">L</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-M" type="radio" name="option-4" value="M" checked>
+                                                <label for="Swatch-M">M</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-S" type="radio" name="option-5" value="S" checked>
+                                                <label for="Swatch-S">S</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-C" type="radio" name="option-6" value="C" checked>
+                                                <label for="Swatch-C">C</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Std" type="radio" name="option-7" value="Std" checked>
+                                                <label for="Swatch-Std">Std</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Mini" type="radio" name="option-8" value="Mini" checked>
+                                                <label for="Swatch-Mini">Mini</label>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div id="swatch color">
+                                            <div class="Option-Title">Color :</div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-1-violet" type="radio" name="option-0" value="#493232" checked>
+                                                <label for="swatch-1-violet" style="background-color: #493232 !important;" data-value="#493232"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-2-pink" type="radio" name="option-1" value="#fa00f2">
+                                                <label for="swatch-2-pink" style="background-color: #fa00f2 !important;" data-value="#fa00f2"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-3-black" type="radio" name="option-2" value="#000000">
+                                                <label for="swatch-3-black" style="background-color: #000000 !important;" data-value="#000000"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-4-gray" type="radio" name="option-3" value="#969696">
+                                                <label for="swatch-4-gray" style="background-color: #969696 !important;" data-value="#969696"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-5-red" type="radio" name="option-4" value="#ff0000">
+                                                <label for="swatch-5-red" style="background-color: #ff0000 !important;" data-value="#ff0000"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-6-blood" type="radio" name="option-5" value="#8f0000">
+                                                <label for="swatch-6-blood" style="background-color: #8f0000 !important;" data-value="#8f0000"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-7-silver" type="radio" name="option-6" value="#c0c0c0">
+                                                <label for="swatch-7-silver" style="background-color: #c0c0c0 !important;" data-value="#c0c0c0"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-8-blue" type="radio" name="option-7" value="#0007d1">
+                                                <label for="swatch-8-blue" style="background-color: #0007d1 !important;" data-value="#0007d1"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-9-gold" type="radio" name="option-8" value="#daa520">
+                                                <label for="swatch-9-gold" style="background-color: #daa520 !important;" data-value="#daa520"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-10-white" type="radio" name="option-9" value="#ffffff">
+                                                <label for="swatch-10-white" style="background-color: #ffffff !important; box-shadow: 1px 1px 3px #000 !important;" data-value="#ffffff"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-11-coral" type="radio" name="option-10" value="#ff7f50">
+                                                <label for="swatch-11-coral" style="background-color: #ff7f50 !important;" data-value="#ff7f50"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-12-quartz" type="radio" name="option-11" value="#435d62">
+                                                <label for="swatch-12-quartz" style="background-color: #435d62 !important;" data-value="#435d62"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-13-violet" type="radio" name="option-12" value="#ee82ee">
+                                                <label for="swatch-13-violet" style="background-color: #ee82ee !important;" data-value="#ee82ee"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-14-blue" type="radio" name="option-13" value="#87ceeb">
+                                                <label for="swatch-14-blue" style="background-color: #87ceeb !important;" data-value="#87ceeb"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-15-teal" type="radio" name="option-14" value="#008080">
+                                                <label for="swatch-15-teal" style="background-color: #008080 !important;" data-value="#008080"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-16-celestial-blue" type="radio" name="option-15" value="#7193ff">
+                                                <label for="swatch-16-celestial-blue" style="background-color: #7193ff !important;" data-value="#7193ff"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-17-indigo" type="radio" name="option-16" value="#4b0082">
+                                                <label for="swatch-17-indigo" style="background-color: #4b0082 !important;" data-value="#4b0082"></label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="swatch-18-orange" type="radio" name="option-17" value="#ffa500">
+                                                <label for="swatch-18-orange" style="background-color: #ffa500 !important;" data-value="#ffa500"></label>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="swatch material">
+
+                                            <div class="Option-Title">Material :</div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-GalvanizedSquareSteel" type="radio" name="option-0" value="Galvanized square steel" checked>
+                                                <label style="width: auto;" for="Swatch-GalvanizedSquareSteel">Galvanized square steel</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Plastic" type="radio" name="option-1" value="Plastic" checked>
+                                                <label style="width: auto;" for="Swatch-Plastic">Plastic</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-StainlessSteel" type="radio" name="option-2" value="Stainless Steel" checked>
+                                                <label style="width: auto;" for="Swatch-StainlessSteel">Stainless Steel</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Leather" type="radio" name="option-3" value="Leather" checked>
+                                                <label style="width: auto;" for="Swatch-Leather">Leather</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Foam" type="radio" name="option-4" value="Foam" checked>
+                                                <label style="width: auto;" for="Swatch-Foam">Foam</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Aluminum" type="radio" name="option-5" value="Aluminum" checked>
+                                                <label style="width: auto;" for="Swatch-Aluminum">Aluminum</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-GorillaGlass" type="radio" name="option-6" value="Gorilla Glass" checked>
+                                                <label style="width: auto;" for="Swatch-GorillaGlass">Gorilla Glass</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Polyester" type="radio" name="option-7" value="Polyester" checked>
+                                                <label style="width: auto;" for="Swatch-Polyester">Polyester</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Wool" type="radio" name="option-8" value="Wool" checked>
+                                                <label style="width: auto;" for="Swatch-Wool">Wool</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Cotton" type="radio" name="option-9" value="Cotton" checked>
+                                                <label style="width: auto;" for="Swatch-Cotton">Cotton</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Suede" type="radio" name="option-10" value="Suede" checked>
+                                                <label style="width: auto;" for="Swatch-Suede">Suede</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Fur" type="radio" name="option-11" value="Fur" checked>
+                                                <label style="width: auto;" for="Swatch-Fur">Fur</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Fiberglass" type="radio" name="option-12" value="Fiberglass" checked>
+                                                <label style="width: auto;" for="Swatch-Fiberglass">Fiberglass</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Acrylic" type="radio" name="option-13" value="Acrylic" checked>
+                                                <label style="width: auto;" for="Swatch-Acrylic">Acrylic</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Magnesium" type="radio" name="option-14" value="Magnesium" checked>
+                                                <label style="width: auto;" for="Swatch-Magnesium">Magnesium</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Brass" type="radio" name="option-15" value="Brass" checked>
+                                                <label style="width: auto;" for="Swatch-Brass">Brass</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Zinc" type="radio" name="option-16" value="Zinc" checked>
+                                                <label style="width: auto;" for="Swatch-Zinc">Zinc</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Nickel" type="radio" name="option-17" value="Nickel" checked>
+                                                <label style="width: auto;" for="Swatch-Nickel">Nickel</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Titanium" type="radio" name="option-18" value="Titanium" checked>
+                                                <label style="width: auto;" for="Swatch-Titanium">Titanium</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-CarbonFiber" type="radio" name="option-19" value="Carbon Fiber" checked>
+                                                <label style="width: auto;" for="Swatch-CarbonFiber">Carbon Fiber</label>
+                                            </div>
+
+                                            <div class="Swatch-Element">
+                                                <input id="Swatch-Graphite" type="radio" name="option-20" value="Graphite" checked>
+                                                <label style="width: auto;" for="Swatch-Graphite">Graphite</label>
+                                            </div>
+
+
+                                        </div>
+
+                                     </div>
+
+                                    <div class="Product-Cart">
+                                        <div class="box-quantity">
+                                            <div class="Quantity-Button">
+                                                <div style="position:absolute;
+                                                    left: 10px;
+                                                    font-size: 24px;
+                                                    bottom: 7px;
+                                                    cursor: pointer;
+                                                    transform: scale(1.1);
+                                                    "
+                                                     id="dec qtybtn">
+                                                    -
+                                                </div>
+
+                                                <input style="position:absolute;
+                                                    left: 30%;
+                                                    font-size: 20px;
+                                                    "
+                                                       class="cart-dec-inc-box" type="text" value="1" name="quantity" />
+
+                                                <div style="position:absolute;
+                                                     right: 10px;
+                                                     font-size: 20px;
+                                                     cursor: pointer;
+                                                     "
+                                                     id="inc qtybtn">
+                                                    +
+                                                </div>
+                                            </div>
+
+                                            <button style="
+                                              background-color: var(--Main-Blue);
+                                              border-radius: 0;"
+
+                                             class="Add-To-Cart"
+                                             type="button"
+                                             data-product-id="@Model.Id"
+                                             data-product-name="@Model.Title"
+                                             data-product-price="@Model.Price"
+                                             data-product-image="@Model.ImageUrl">
+                                             Add To Cart
+                                            </button>
+
+                                            <a style="
+                                              background-color: var(--Main-Blue);
+                                              height: 32px;
+                                              width: 35px;
+                                              position: relative;"
+
+                                             type="button"
+                                             id="add-to-wishlist"
+                                             class="Liked"
+                                             data-product-id="@Model.Id"
+                                             data-product-name="@Model.Title"
+                                             data-product-price="@Model.Price"
+                                             data-product-image="@Model.ImageUrl">
+                                             
+                                                <img style="width: 18px;
+                                                position: absolute;
+                                                right: 25%;
+                                                top: 20%;"
+                                                
+                                                src="~/Shopping/assets/icons/WishIcon.svg" />
+                                            </a>
+
+                                        </div>
+
+                                        <button class="Payment_Button">Buy it now</button>
+                                    </div>
+
+                                    <div id="product-detail">
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    @* Box Quantity and AddToCart *@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var quantityInput = document.querySelector('.cart-dec-inc-box');
+            var decBtn = document.getElementById('dec qtybtn');
+            var incBtn = document.getElementById('inc qtybtn');
+            var addToCartButton = document.querySelector('.Add-To-Cart');
+
+            if (!quantityInput || !decBtn || !incBtn || !addToCartButton) {
+                console.error('Required elements not found.');
+                return;
+            }
+
+            decBtn.addEventListener('click', function () {
+                var currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+                updateDataQuantity();
+            });
+
+            incBtn.addEventListener('click', function () {
+                var currentValue = parseInt(quantityInput.value);
+                quantityInput.value = currentValue + 1;
+                updateDataQuantity();
+            });
+
+            function updateDataQuantity() {
+                var currentQuantity = parseInt(quantityInput.value);
+                addToCartButton.setAttribute('data-quantity', currentQuantity);
+            }
+
+            addToCartButton.addEventListener('click', function () {
+                const product = {
+                    id: addToCartButton.getAttribute('data-product-id'),
+                    name: addToCartButton.getAttribute('data-product-name'),
+                    price: addToCartButton.getAttribute('data-product-price'),
+                    imageUrl: addToCartButton.getAttribute('data-product-image'),
+                    quantity: parseInt(quantityInput.value) || 1,
+                };
+
+                alert(`Added ${product.quantity} ${product.name}(s) to cart.`);
+            });
+        });
+    </script>
+
+    @* Params *@
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', async function () {
+
+            const pathParts = window.location.pathname.split('/');
+            const productId = pathParts[pathParts.length - 1];
+
+            try {
+                const response = await fetch(`https://localhost:7297/Admin/products/details/${productId}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch product details (status ${response.status})`);
+                }
+
+                const product = await response.json();
+
+                if (product && product.sizeSmallName && product.materialName && product.hexCode) {
+                    const sizeParam = product.sizeSmallName;
+                    const materialParam = product.materialName;
+                    const colorParam = product.hexCode;
+
+                    const sizeLabels = document.querySelectorAll('#swatch\\ size .Swatch-Element label');
+                    const materialLabels = document.querySelectorAll('#swatch\\ material .Swatch-Element label');
+                    const colorLabels = document.querySelectorAll('#swatch\\ color .Swatch-Element label');
+
+                    sizeLabels.forEach(label => {
+                        if (label.textContent.trim() === sizeParam) {
+                            label.classList.add('Active-Label');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
+
+                    materialLabels.forEach(label => {
+                        if (label.textContent.trim() === materialParam) {
+                            label.classList.add('Active-Label');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
+
+                    colorLabels.forEach(label => {
+                        const dataValue = label.getAttribute('data-value');
+                        if (dataValue === colorParam) {
+                            label.classList.add('Active-Label-Color');
+                            label.previousElementSibling.checked = true;
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+                window.location.href = "https://localhost:7297/NotFound";
+            }
+        });
+
+    </script>
+
+</body>
+</html>

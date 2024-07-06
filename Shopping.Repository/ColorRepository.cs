@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shopping.Application.Repositories;
-using Shopping.Domain.Modules.Entities;
+using Shopping.Domain.Models.Entities;
 using Shopping.Infrastructure.Abstracts;
 using Shopping.Infrastructure.Concrates;
 using System;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Shopping.Repository
 {
-    public class ColorRepository : AsyncRepository<Color>, IColorRepository
+    class ColorRepository : AsyncRepository<Color>, IColorRepository
     {
         public ColorRepository(DbContext db) : base(db)
         {

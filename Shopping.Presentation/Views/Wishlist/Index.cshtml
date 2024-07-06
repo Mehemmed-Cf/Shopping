@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+
+    <!-- internal -->
+
+</head>
+<body>
+
+    <main role="main">
+        <div class="Wishlist-Section">
+            <div class="Wishlist-Area">
+                <div class="container">
+                    <div class="Wishlist-Exists">
+                        <div class="Row">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @* Icons *@
+
+    <script>
+        const wishIconPath = '@Url.Content("~/Shopping/assets/icons/WishIcon.svg")';
+        const whiteWishIconPath = '@Url.Content("~/Shopping/assets/icons/WhiteWish.svg")';
+        const quickviewIconPath = '@Url.Content("~/Shopping/assets/icons/Quickview.svg")';
+    </script>
+
+    @* fill UI *@
+
+     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const Wishlist_Exists = document.querySelector('.Wishlist-Exists');
+
+            if (wishlistItems.length > 0) {
+                wishlistItems.forEach(item => {
+                    const row = document.querySelector('.Row');
+
+                    const Single_Product = document.createElement("div");
+                    Single_Product.classList.add("Single-Product", "Col");
+                    Single_Product.setAttribute('data-product-id', item.id);
+
+                    const Pro_Img = document.createElement("div");
+                    Pro_Img.classList.add("Pro-Img");
+                    Pro_Img.style.marginRight = "20px";
+
+
+                    const ImageLink = document.createElement("a");
+
+                    const ImageElement = document.createElement("img");
+                    ImageElement.src = item.imageUrl;
+
+                    ImageLink.appendChild(ImageElement);
+
+                    Pro_Img.appendChild(ImageLink);
+
+                    const productActions = document.createElement("div");
+                    productActions.classList.add("product-actions");
+
+                    const primaryActions = document.createElement("div");
+                    primaryActions.classList.add("Primary-Actions");
+
+                    const addToCartButton = document.createElement("button");
+                    addToCartButton.classList.add("Add-To-Cart");
+                    addToCartButton.textContent = "Add To Cart";
+                    addToCartButton.setAttribute('data-product-id', item.id);
+                    addToCartButton.setAttribute('data-product-name', item.name);
+                    addToCartButton.setAttribute('data-product-price', item.price);
+                    addToCartButton.setAttribute('data-product-image', item.imageUrl);
+
+                    primaryActions.appendChild(addToCartButton);
+
+                    const secondaryActions = document.createElement("div");
+                    secondaryActions.classList.add("Secondary-Actions");
+
+                    const addToWishlistLink = document.createElement("a");
+                    addToWishlistLink.id = "add-to-wishlist";
+                    addToWishlistLink.style.cursor = "pointer";
+                    addToWishlistLink.setAttribute('data-product-id', item.id);
+                    addToWishlistLink.setAttribute('data-product-name', item.name);
+                    addToWishlistLink.setAttribute('data-product-price', item.price);
+                    addToWishlistLink.setAttribute('data-product-image', item.imageUrl);
+
+                    const wishlistIcon = document.createElement("img");
+                    wishlistIcon.src = whiteWishIconPath
+
+                    addToWishlistLink.appendChild(wishlistIcon);
+
+                    const quickviewLink = document.createElement("a");
+                    quickviewLink.id = "quickview";
+
+                    const quickviewIcon = document.createElement("img");
+                    quickviewIcon.src = quickviewIconPath;
+                    quickviewLink.style.cursor = "pointer";
+                    quickviewLink.setAttribute('data-product-id', item.id);
+
+                    quickviewLink.appendChild(quickviewIcon);
+
+                    secondaryActions.appendChild(addToWishlistLink);
+                    secondaryActions.appendChild(quickviewLink);
+
+                    productActions.appendChild(primaryActions);
+                    productActions.appendChild(secondaryActions);
+
+                    Pro_Img.appendChild(productActions);
+
+                    Single_Product.append(Pro_Img);
+
+                    const Product_Content = document.createElement("div");
+                    Product_Content.classList.add("Product-Content");
+                    Product_Content.style.height = "150px";
+                    Product_Content.style.position = "relative";
+                    Product_Content.style.zIndex = "auto";
+
+                    const productTitle = document.createElement("h4");
+                    productTitle.textContent = item.name;
+
+                    const productPrice = document.createElement("p");
+
+                    productPrice.style.position = "absolute";
+                    productPrice.style.bottom = "10%";
+
+                    const priceSpan = document.createElement("span");
+                    priceSpan.id = "price";
+
+                    const moneySpan = document.createElement("span");
+                    moneySpan.id = "money";
+                    moneySpan.textContent = `$${item.price}`;
+                    priceSpan.appendChild(moneySpan);
+                    productPrice.appendChild(priceSpan);
+
+                    Product_Content.appendChild(productTitle);
+                    Product_Content.appendChild(productPrice);
+
+                    Single_Product.appendChild(Product_Content);
+
+                    row.appendChild(Single_Product);
+                });
+            } else {
+                const emptyMessage = document.createElement('h1');
+                emptyMessage.textContent = "Your Wishlist Is Currently Empty, Is Your life really that bad? ;( Wishing is a good thing ;)";
+                Wishlist_Exists.append(emptyMessage);
+            }
+
+        });
+
+    </script> 
+
+    @* SingleProducts && Quickview *@
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const Single_Products = document.querySelectorAll(".Single-Product.Col");
+
+            Single_Products.forEach(item => {
+                const AddToCart_Btn = item.querySelector(".Add-To-Cart");
+                const add_to_wishlist = item.querySelector("#add-to-wishlist");
+                const quickview = item.querySelector("#quickview");
+                const Product_Content = item.querySelector(".Product-Content");
+                const Price = item.querySelector("p");
+                const product_actions = item.querySelector(".product-actions");
+                let IsClicked = false;
+
+                if (screen.width > 1000) {
+
+                    item.addEventListener("mouseover", () => {
+                        Product_Content.style.transform = "translateY(-20px)";
+                        product_actions.style.transform = "translateY(20px)";
+
+                        Price.style.opacity = 0;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        Product_Content.style.transform = "translateY(0px)"
+                        product_actions.style.transform = "translateY(0px)";
+
+                        Price.style.opacity = 1;
+
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 991) {
+
+                    item.addEventListener("click", () => {
+                        IsClicked = !IsClicked;
+
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                } else if (screen.width <= 762) {
+
+                    item.addEventListener("mouseover", () => {
+                        AddToCart_Btn.classList.add("Appear");
+                        add_to_wishlist.classList.add("Appear");
+                        quickview.classList.add("Appear");
+
+                        Price.style.opacity = 1;
+                    });
+
+                    item.addEventListener("mouseout", () => {
+                        AddToCart_Btn.classList.remove("Appear");
+                        add_to_wishlist.classList.remove("Appear");
+                        quickview.classList.remove("Appear");
+                    });
+
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

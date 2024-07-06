@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using FluentValidation.AspNetCore;
 
 namespace Shopping.Application
 {
@@ -28,9 +29,9 @@ namespace Shopping.Application
             .As<IFileService>()
             .InstancePerLifetimeScope();
 
-            //builder.RegisterType<ValidatorInterceptor>()
-            //    .As<IValidatorInterceptor>()
-            //    .SingleInstance();
+/*            builder.RegisterType<ValidatorInterceptor>()
+              .As<IValidatorInterceptor>()
+              .SingleInstance();*/
         }
     }
 }

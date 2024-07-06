@@ -1,19 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shopping.Application.Repositories;
-using Shopping.Domain.Modules.Entities;
 using Shopping.Infrastructure.Concrates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shopping.Domain.Models.Entities;
 
 namespace Shopping.Repository
 {
-    public class BrandRepository : AsyncRepository<Brand>, IMaterialRepository
+    class BrandRepository : AsyncRepository<Brand>, IBrandRepository
     {
         public BrandRepository(DbContext db) : base(db)
         {
+
         }
     }
 }
