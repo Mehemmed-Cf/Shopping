@@ -37,20 +37,9 @@
                             </div>
                         </div>
 
-                        <div class="cube-loader">
-                            <div class="cube-top"></div>
-                            <div class="cube-wrapper">
-                                <span style="--i:0" class="cube-span"></span>
-                                <span style="--i:1" class="cube-span"></span>
-                                <span style="--i:2" class="cube-span"></span>
-                                <span style="--i:3" class="cube-span"></span>
-                            </div>
-                        </div>
+                        <div class="Col-Content" style="justify-content: center; height: max-content">
 
-
-                        <div class="Col-Content" style="display: none; justify-content: center; height: max-content">
-
-                            <div class="Row Active-Row" style="display: flex; justify-content: center;">
+                            <div class="Row Active-Row" style="justify-content: center;">
 
                                   @foreach(var blog in Model) {
 
@@ -160,38 +149,6 @@
             </div>
         </section>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            showLoader(true);
-
-            setTimeout(() => {
-                showLoader(false);
-            }, 2000);
-
-            function showLoader(show) {
-                const loader = document.querySelector('.cube-loader');
-                const row = document.querySelector('.Active-Row');
-
-                console.log('Loader element:', loader);
-                console.log('Row element:', row);
-
-                if (loader && row) { // Check if elements are found
-                    if (show) {
-                        loader.style.display = 'block';
-                        row.style.display = 'none';
-                        console.log('Loader shown');
-                    } else {
-                        loader.style.display = 'none';
-                        row.style.display = 'flex';
-                        console.log('Loader hidden, row shown');
-                    }
-                } else {
-                    console.error('Loader or row element not found.');
-                }
-            }
-        });
-    </script>
 
 </body>
 </html>
