@@ -168,7 +168,6 @@
     </script>
 
     <script>
-
         document.addEventListener("DOMContentLoaded", () => {
             showLoader(true);
 
@@ -256,21 +255,6 @@
                     if (errors.length > 0) {
                         alert(errors.join('\n'));
                     } else {
-                        let cart = JSON.parse(localStorage.getItem('cart'));
-
-                        if (!cart || cart.length === 0) {
-                            event.preventDefault();
-
-                            Toastify({
-                                text: "Your cart is empty. Please add products to your cart before checking out.",
-                                duration: 1800,
-                                gravity: "top",
-                                position: "right",
-                                backgroundColor: "red",
-                                stopOnFocus: true,
-                            }).showToast();
-                            return;
-                        }
 
                         localStorage.removeItem('itemCount');
                         localStorage.removeItem('cart');
@@ -291,6 +275,20 @@
                 });
 
             } else {
+
+                completeOrderButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    Toastify({
+                        text: "Your cart is empty. Please add products to your cart before checking out.",
+                        duration: 1800,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "red",
+                        stopOnFocus: true,
+                    }).showToast();
+                });
+
                 const emptyMessage = document.createElement('h1');
                 emptyMessage.textContent = "Your Cart Is Currently Empty";
                 container.append(emptyMessage);
