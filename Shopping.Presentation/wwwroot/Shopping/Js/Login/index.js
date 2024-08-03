@@ -87,17 +87,9 @@ LoginValidation();
 
 function LoginValidation() {
   Sign_In.addEventListener("click", () => {
-    // showButtonLoader(true);
-
     email = emailInput.value;
     password = passwordInput.value;
-
     LoginUser(email, password);
-
-    // showButtonLoader(false);
   });
 }
 
-// function showButtonLoader(show) {
-//   buttonLoader.style.display = show ? "grid" : "none";
-// }

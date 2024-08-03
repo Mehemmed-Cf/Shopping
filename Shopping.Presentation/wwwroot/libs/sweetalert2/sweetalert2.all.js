@@ -3731,7 +3731,7 @@
   };
 
   /**
-   * Resume timer. Returns number of milliseconds of timer remained.
+   * Shopping timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @returns {number | undefined}
@@ -3745,7 +3745,7 @@
   };
 
   /**
-   * Resume timer. Returns number of milliseconds of timer remained.
+   * Shopping timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @returns {number | undefined}

@@ -94,7 +94,6 @@
 
                         <div class="Row">
 
-
                         </div>
                     </div>
                 </div>
@@ -134,6 +133,8 @@
 
             if (wishlistItems.length > 0) {
                 wishlistItems.forEach(item => {
+                    console.log(item);
+
                     const row = document.querySelector('.Row');
 
                     const Single_Product = document.createElement("div");
@@ -166,6 +167,7 @@
                     addToCartButton.setAttribute('data-product-id', item.id);
                     addToCartButton.setAttribute('data-product-name', item.name);
                     addToCartButton.setAttribute('data-product-price', item.price);
+                    addToCartButton.setAttribute('data-product-stock', item.stockCount)
                     addToCartButton.setAttribute('data-product-image', item.imageUrl);
 
                     primaryActions.appendChild(addToCartButton);
@@ -179,6 +181,7 @@
                     addToWishlistLink.setAttribute('data-product-id', item.id);
                     addToWishlistLink.setAttribute('data-product-name', item.name);
                     addToWishlistLink.setAttribute('data-product-price', item.price);
+                    addToWishlistLink.setAttribute('data-product-stock', item.stockCount)
                     addToWishlistLink.setAttribute('data-product-image', item.imageUrl);
 
                     const wishlistIcon = document.createElement("img");
@@ -239,6 +242,9 @@
             } else {
                 const emptyMessage = document.createElement('h1');
                 emptyMessage.textContent = "Your Wishlist Is Currently Empty, Is Your life really that bad? ;( Wishing is a good thing ;)";
+                emptyMessage.style.transform = "translate(-400px, 0px)";
+                emptyMessage.style.fontWeight = "500";
+                emptyMessage.style.fontSize = "18px";
                 Wishlist_Exists.append(emptyMessage);
             }
 

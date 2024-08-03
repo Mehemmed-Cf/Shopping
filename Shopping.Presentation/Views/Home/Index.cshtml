@@ -2,7 +2,12 @@
 @model IEnumerable<ProductGetAllRequestDto>
 
 @{
-    var reversedModel = Model.Reverse();
+    IEnumerable<ProductGetAllRequestDto> reversedModel = default;
+
+    if(Model != null)
+    {
+        reversedModel = Model.Reverse();
+    }
 }
 
 <!DOCTYPE html>
@@ -17,7 +22,6 @@
 
 
     <!-- internal -->
-    @* <script defer src="~/Shopping/Js/Home/index.js"></script> *@
     <script defer src="~/Shopping/common/functions/emailValidation.js"></script>
 
 
@@ -677,6 +681,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -686,6 +691,7 @@
                                                                    data-product-id="@product.Id"
                                                                    data-product-name="@product.Title"
                                                                    data-product-price="@product.Price"
+                                                                   data-product-stock="@product.StockCount"
                                                                    data-product-image="@product.ImageUrl"
                                                                     >
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
@@ -707,7 +713,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
 
                         </div>
@@ -752,6 +758,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -761,6 +768,7 @@
                                                                    data-product-id="@product.Id"
                                                                    data-product-name="@product.Title"
                                                                    data-product-price="@product.Price"
+                                                                   data-product-stock="@product.StockCount"
                                                                    data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
@@ -781,7 +789,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
 
                         </div>
@@ -825,6 +833,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -835,6 +844,7 @@
                                                                     data-product-id="@product.Id"
                                                                     data-product-name="@product.Title"
                                                                     data-product-price="@product.Price"
+                                                                    data-product-stock="@product.StockCount"
                                                                     data-product-image="@product.ImageUrl">
                                                                 </a>
                                                                 <a id="quickview"
@@ -854,7 +864,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
                         </div>
 
@@ -2060,7 +2070,6 @@
                                 </div>
                             </div>
 
-                            <!-- Swiper -->
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
 
@@ -2089,6 +2098,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -2098,6 +2108,7 @@
                                                                    data-product-id="@product.Id"
                                                                    data-product-name="@product.Title"
                                                                    data-product-price="@product.Price"
+                                                                   data-product-stock="@product.StockCount"
                                                                    data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
@@ -2118,7 +2129,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
 
                         </div>
@@ -2163,6 +2174,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -2172,6 +2184,7 @@
                                                                    data-product-id="@product.Id"
                                                                    data-product-name="@product.Title"
                                                                    data-product-price="@product.Price"
+                                                                   data-product-stock="@product.StockCount"
                                                                    data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
@@ -2192,7 +2205,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
 
                         </div>
@@ -2236,6 +2249,7 @@
                                                                         data-product-id="@product.Id"
                                                                         data-product-name="@product.Title"
                                                                         data-product-price="@product.Price"
+                                                                        data-product-stock="@product.StockCount"
                                                                         data-product-image="@product.ImageUrl">
                                                                     Add To Cart
                                                                 </button>
@@ -2245,6 +2259,7 @@
                                                                    data-product-id="@product.Id"
                                                                    data-product-name="@product.Title"
                                                                    data-product-price="@product.Price"
+                                                                   data-product-stock="@product.StockCount"
                                                                    data-product-image="@product.ImageUrl">
                                                                     <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                                                 </a>
@@ -2265,7 +2280,7 @@
 
                                 </div>
 
-                                <div class="swiper-pagination"></div>
+                                <div style="display: none" class="swiper-pagination"></div>
                             </div>
                         </div>
 
@@ -2500,6 +2515,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="Testimonial-container">
                                     <div class="Text-Slide">
 
@@ -2801,6 +2817,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -2913,6 +2930,60 @@
         </section>
 
     </main>
+
+    @* LogMessages *@
+
+    <script>
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <text>
+                Toastify({
+                    text: '@Html.Raw(ViewBag.Message)',
+                    duration: 5000,
+                    close: true,
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            </text>
+        }
+    </script>
+
+    <script>
+
+        @if (TempData["LogOutMessage"] != null)
+        {
+            <text>
+                Toastify({
+                    text: '@TempData["LogOutMessage"]',
+                    duration: 5000,
+                    close: true,
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                }).showToast();
+            </text>
+
+            TempData.Remove("LogOutMessage");
+        }
+
+        @if (TempData["LogOutFailMessage"] != null)
+        {
+            <text>
+                Toastify({
+                    text: '@TempData["LogOutFailMessage"]',
+                    duration: 5000,
+                    close: true,
+                    gravity: 'top',
+                    position: 'right',
+                    backgroundColor: 'linear-gradient(to right, #ff6347, #dc143c)',
+                }).showToast();
+            </text>
+
+            TempData.Remove("LogOutFailMessage");
+        }
+
+    </script>
 
     @* loader *@
 

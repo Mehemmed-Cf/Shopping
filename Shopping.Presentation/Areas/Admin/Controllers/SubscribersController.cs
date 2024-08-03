@@ -12,6 +12,7 @@ using Shopping.Presentation.Helpers;
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class SubscribersController : Controller
     {
         private readonly IMediator mediator;

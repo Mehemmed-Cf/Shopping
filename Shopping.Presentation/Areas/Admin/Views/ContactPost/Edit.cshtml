@@ -76,15 +76,17 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" asp-for="AnsweredAt"></label>
-                            <input type="text" class="form-control" asp-for="AnsweredAt">
+                            @* <input type="text" class="form-control" asp-for="AnsweredAt"> *@
+                            <p class="form-control">@Model.AnsweredAt</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label" asp-for="AnsweredBy"></label>
-                            <input type="text" class="form-control" asp-for="AnsweredBy">
+                            <p class="form-control">@Model.AnsweredBy</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label" asp-for="CreatedAt"></label>
-                            <input type="text" class="form-control" asp-for="CreatedAt">
+                            @* <input type="text" class="form-control" asp-for="CreatedAt"> *@
+                            <p class="form-control">@Model.CreatedAt</p>
                         </div>
 
                         <div class="form-group text-right m-0">

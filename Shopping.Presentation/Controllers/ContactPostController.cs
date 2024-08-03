@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ContactPostsModule.Commands.ContactPostApplyCommand;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
@@ -16,6 +17,7 @@ namespace Shopping.Presentation.Controllers
             this.mediator = mediator;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             if (Request.Headers["Accept"].ToString().Contains("application/json"))

@@ -9,6 +9,7 @@ using Shopping.Application.Modules.SizesModule.Queries.SizeGetByIdQuery;
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class SizesController : Controller
     {
         private readonly IMediator mediator;

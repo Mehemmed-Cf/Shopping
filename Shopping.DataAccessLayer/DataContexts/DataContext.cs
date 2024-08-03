@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Shopping.Domain.Models.Entities.Membership;
 using Shopping.Infrastructure.Abstracts;
 
 namespace Shopping.DataAccessLayer.DataContexts
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<AppUser, AppRole, int, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
     {
         private readonly IIdentityService identityService;
 

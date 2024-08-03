@@ -4,9 +4,13 @@ using Shopping.DataAccessLayer.DataContexts;
 using Shopping.Infrastructure.Abstracts;
 using Shopping.Presentation.AppCode.DI;
 using Shopping.Application.Services;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Shopping.Application.Services.File;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using MediatR;
+using Shopping.Api.AppCode.Pipeline;
+using Shopping.Infrastructure.Configurations;
 
 namespace Shopping.Presentation
 {
@@ -18,6 +22,29 @@ namespace Shopping.Presentation
 
             builder.Host.UseServiceProviderFactory(new ShoppingServiceProviderFactory());
 
+            builder.Services.AddCors(cfg =>
+            {
+
+                cfg.AddPolicy("allowAll", p =>
+                {
+
+                    p.AllowAnyHeader();
+                    p.AllowAnyMethod();
+                    p.AllowAnyOrigin();
+
+                });
+
+            });
+
+            builder.Services.AddControllers(cfg =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                  .RequireAuthenticatedUser()
+                                  .Build();
+
+                cfg.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             builder.Services.AddDbContext<DbContext, DataContext>(cfg =>
             {
                 string cs = builder.Configuration.GetConnectionString("cString");
@@ -27,6 +54,11 @@ namespace Shopping.Presentation
                     opt.MigrationsHistoryTable("MigrationHistory");
                 });
             });
+
+            builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(HeaderBinderBehaviour<,>));
+
+            builder.Services.Configure<CryptoServiceOptions>(cfg => builder.Configuration.Bind(nameof(CryptoServiceOptions), cfg));
+            builder.Services.AddCustomIdentity(builder.Configuration);
 
             builder.Services.AddScoped<IIdentityService, FakeIdentityService>();
 
@@ -40,11 +72,21 @@ namespace Shopping.Presentation
 
             /*builder.Services.AddFluentValidationAutoValidation(cfg => cfg.DisableDataAnnotationsValidation = false);*/
 
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IApplicationReferance>()); // Butun repositoriler
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<IApplicationReferance>());
 
             var app = builder.Build();
 
             app.UseStaticFiles();
+
+            app.UseCors("allowAll");
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            app.UseErrorHandling();
+
+            app.MapControllers();
 
             app.MapControllerRoute(name: "areas", pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 

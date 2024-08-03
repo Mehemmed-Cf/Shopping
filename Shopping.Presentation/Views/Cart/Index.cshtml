@@ -162,17 +162,31 @@
     </script>
 
     <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const Checkout_Btn = document.querySelector(".Checkout-Btn");
+
+            Checkout_Btn.addEventListener("click", () => {
+                window.open("https://localhost:7297/Checkout");
+            });
+        });
+
+    </script>
+
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             showLoader(true);
 
-            const cartItems = JSON.parse(localStorage.getItem('cart'));
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
             const tbody = document.querySelector('tbody');
 
             updateTotalAmount(cartItems);
 
-            if (cartItems.length > 0) {
+            if (cartItems && cartItems.length > 0) {
                 cartItems.forEach(item => {
+                    console.log(item);
+
                     const row = document.createElement('tr');
                     row.style.height = "auto";
 
@@ -234,7 +248,6 @@
 
                             updateItemCount(cartItems.reduce((total, item) => total + item.quantity, 0));
                             updateTotalAmount(cartItems);
-                            //updateTotalCount();
                         }
                     });
 
@@ -248,11 +261,29 @@
                     //#region Quantity script
 
                     incBtn.addEventListener('click', () => {
-                        quantityInput.value = parseInt(quantityInput.value) + 1;
-
-                        updateTotal();
-                        updateQuantity(item.id, parseInt(quantityInput.value));
+                        const currentQuantity = parseInt(quantityInput.value);
+                        if (currentQuantity < item.stockCount) {
+                            quantityInput.value = currentQuantity + 1;
+                            updateTotal();
+                            updateQuantity(item.id, parseInt(quantityInput.value));
+                        } else {
+                            Toastify({
+                                text: `Cannot add more than ${item.stockCount} ${item.name}(s) to cart.`,
+                                duration: 3000,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "red",
+                                stopOnFocus: true,
+                            }).showToast();
+                        }
                     });
+
+                    // incBtn.addEventListener('click', () => {
+                    //     quantityInput.value = parseInt(quantityInput.value) + 1;
+
+                    //     updateTotal();
+                    //     updateQuantity(item.id, parseInt(quantityInput.value));
+                    // });
 
                     decBtn.addEventListener('click', () => {
                         const newValue = Math.max(parseInt(quantityInput.value) - 1, 1);
@@ -287,6 +318,9 @@
             } else {
                 const emptyMessage = document.createElement('h1');
                 emptyMessage.textContent = "Your Cart Is Currently Empty";
+                emptyMessage.style.transform = "translate(350px, 40px)";
+                emptyMessage.style.fontWeight = "500";
+                emptyMessage.style.fontSize = "18px";
                 tbody.append(emptyMessage);
             }
 

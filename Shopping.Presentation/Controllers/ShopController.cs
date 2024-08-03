@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
@@ -43,6 +44,7 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(ProductGetAllRequest request, decimal? priceFrom, decimal? priceTo, string SortBy)
         {
             var response = await mediator.Send(request);

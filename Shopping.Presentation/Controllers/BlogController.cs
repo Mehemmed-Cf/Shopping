@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.BlogPostsModule.Queries.BlogPostGetAllQuery;
 using Shopping.Application.Repositories;
@@ -26,6 +27,7 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Categories = _categoryRepository.GetAll();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(BlogPostGetAllRequest request)
         {
             var response = await mediator.Send(request);

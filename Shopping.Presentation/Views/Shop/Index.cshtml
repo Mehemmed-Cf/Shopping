@@ -1,8 +1,6 @@
 ﻿﻿@using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 @model IEnumerable<ProductGetAllRequestDto>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -810,6 +808,16 @@
 
                 <div class="Main-Categories">
 
+                    <div class="cube-loader" style="position: absolute; top: 10%; left: 45%;">
+                       <div class="cube-top"></div>
+                       <div class="cube-wrapper">
+                           <span style="--i:0" class="cube-span"></span>
+                           <span style="--i:1" class="cube-span"></span>
+                           <span style="--i:2" class="cube-span"></span>
+                           <span style="--i:3" class="cube-span"></span>
+                       </div>
+                   </div>
+
                   <div class="Tab-Content">
 
                     @foreach (var product in Model)
@@ -837,6 +845,7 @@
                                             data-product-id="@product.Id"
                                             data-product-name="@product.Title"
                                             data-product-price="@product.Price"
+                                            data-product-stock="@product.StockCount"
                                             data-product-image="@product.ImageUrl">
                                         Add To Cart
                                     </button>
@@ -846,6 +855,7 @@
                                         data-product-id="@product.Id"
                                         data-product-name="@product.Title"
                                         data-product-price="@product.Price"
+                                        data-product-stock="@product.StockCount"
                                         data-product-image="@product.ImageUrl">
                                         <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                     </a>
@@ -864,11 +874,41 @@
                 </div>
 
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </main>
+
+    @* loader *@
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showLoaderForSearch(true);
+
+            setTimeout(() => {
+                showLoaderForSearch(false);
+            }, 2000);
+
+            function showLoaderForSearch(show) {
+                const loader = document.querySelector('.cube-loader');
+                const Tab_Content = document.querySelector('.Tab-Content');
+
+                if (loader) {
+                    if (show) {
+                        loader.style.display = 'block';
+                        Tab_Content.style.display = 'none';
+                    } else {
+                        loader.style.display = 'none';
+                        Tab_Content.style.display = 'block';
+                    }
+                } else {
+                    console.error('Loader element not found:', Tab_Content);
+                }
+            }
+        });
+    </script>
 
     @* SortBy *@
 
@@ -893,9 +933,6 @@
             })
                 .then(response => response.json())
                 .then(data => {
-
-                    console.log(data)
-
                     const tabContent = document.querySelector('.Tab-Content');
                     tabContent.innerHTML = '';
 
@@ -903,8 +940,6 @@
                         const productItem = document.createElement('div');
                         productItem.className = 'Single-Product';
                         productItem.style.position = 'relative';
-
-                        console.log(product)
 
                         productItem.innerHTML = `
                         <div class="Pro-Img">
@@ -926,9 +961,10 @@
                             <div id="product-actions" style="transform: translateY(40px)">
                                 <div class="Primary-Actions">
                                     <button class="Add-To-Cart"
-                                                    data-product-id="${product.id}"
-                                                    data-product-name="${product.title}"
+                                            data-product-id="${product.id}"
+                                            data-product-name="${product.title}"
                                             data-product-price="${product.price}"
+                                            data-product-stock="${product.StockCount}"
                                             data-product-image="${product.imageUrl}">
                                         Add To Cart
                                     </button>
@@ -938,6 +974,7 @@
                                         data-product-id="${product.id}"
                                         data-product-name="${product.title}"
                                         data-product-price="${product.price}"
+                                        data-product-stock="${product.StockCount}"
                                         data-product-image="${product.imageUrl}">
                                         <img src="~/Shopping/assets/icons/WishIcon.svg" />
                                     </a>
@@ -1020,7 +1057,7 @@
         Input_Elements.forEach(input => {
 
             const Active_List = document.querySelector(".Active")
-            const widget = input.closest(".Widget-Collapse"); //travels the parent elements of the input seeking for the nearest ancestor with the class name
+            const widget = input.closest(".Widget-Collapse"); 
             const filterValue = widget.querySelector(".Filter-Value");
             const selectedCount = filterValue.querySelector("span");
             const resetLink = filterValue.querySelector("a");
@@ -1075,13 +1112,13 @@
             const label = document.querySelector(`label[for='${input.id}']`);
             const CancelIconPath = '@Html.Raw(Url.Content("~/Shopping/assets/icons/CancelIcon.svg"))';
 
-            input.addEventListener("change", () => { //Change => inout check / unceck
+            input.addEventListener("change", () => {
 
                 if (input.checked) {
 
                     if (label) {
                         const Filter_List_Item = document.createElement("li");
-                        Filter_List_Item.setAttribute("data-id", input.id); // Set data-id attribute
+                        Filter_List_Item.setAttribute("data-id", input.id); 
 
                         const Filter_Item = document.createElement("a");
 

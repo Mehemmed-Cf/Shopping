@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostAddCommand;
 using Shopping.Application.Modules.BlogPostsModule.Commands.BlogPostEditCommand;
@@ -10,6 +11,7 @@ using Shopping.Application.Repositories;
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SUPERADMIN")]
     public class BlogPostsController : Controller
     {
         private readonly IProductRepository _productRepository;

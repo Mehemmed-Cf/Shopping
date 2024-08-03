@@ -519,6 +519,7 @@
                                              data-product-id="@Model.Id"
                                              data-product-name="@Model.Title"
                                              data-product-price="@Model.Price"
+                                             data-product-stock="@Model.StockCount"
                                              data-product-image="@Model.ImageUrl">
                                              Add To Cart
                                             </button>
@@ -565,6 +566,19 @@
         </div>
     </main>
 
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const Payment_Btn = document.querySelector(".Payment_Button");
+
+            Payment_Btn
+            .addEventListener("click", () => {
+                window.open("https://localhost:7297/Checkout");
+            });
+        });
+
+    </script>
+
 
     @* Box Quantity and AddToCart *@
 
@@ -605,10 +619,34 @@
                     name: addToCartButton.getAttribute('data-product-name'),
                     price: addToCartButton.getAttribute('data-product-price'),
                     imageUrl: addToCartButton.getAttribute('data-product-image'),
+                    stockCount: parseInt(AddToCart_Btn.getAttribute('data-product-stock')),
                     quantity: parseInt(quantityInput.value) || 1,
                 };
 
-                alert(`Added ${product.quantity} ${product.name}(s) to cart.`);
+                console.log('Product:', product);
+
+                alert(`Adding ${product.quantity} ${product.name}(s) to cart.`);
+
+                if (product.quantity > product.stockCount) {
+                    Toastify({
+                        text: `Cannot add more than ${product.stockCount} ${product.name}(s) to cart.`,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "red",
+                        stopOnFocus: true,
+                    }).showToast();
+                    return;
+                } else {
+                    Toastify({
+                        text: `Added ${product.quantity} ${product.name}(s) to cart.`,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "green",
+                        stopOnFocus: true,
+                    }).showToast();
+                }
             });
         });
     </script>

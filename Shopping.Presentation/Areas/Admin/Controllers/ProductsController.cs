@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Commands.ProductAddCommand;
 using Shopping.Application.Modules.ProductsModule.Commands.ProductEditCommand;
@@ -11,6 +12,7 @@ using Shopping.Presentation.Helpers;
 namespace Shopping.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
@@ -48,6 +50,7 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(ProductGetAllRequest request)
         {
             var response = await mediator.Send(request);
@@ -55,13 +58,12 @@ namespace Shopping.Presentation.Areas.Admin.Controllers
             if (RouteHelper.IsJsonRequest(HttpContext))
             {
                 return Json(response);
-
             }
 
             return View(response);
-
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details([FromRoute] ProductGetByIdRequest request)
         {
             var response = await mediator.Send(request);

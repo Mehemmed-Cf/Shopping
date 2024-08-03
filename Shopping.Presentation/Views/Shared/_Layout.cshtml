@@ -30,6 +30,56 @@
 
     @await RenderSectionAsync("addcss", required: false)
 
+    <style>
+
+        #SignOut_Btn:hover {
+            color: var(--Main-Blue) !important;
+            transform: scale(1.02);
+        }
+
+        @@media (max-width: 991px) {
+            .Bars_Link {
+                transform: translateX(-150px);
+            }
+        }
+
+        @@media (max-width: 762px) {
+            .Bars_Link {
+                transform: translateX(-100px);
+            }
+        }
+
+        @@media (max-width: 762px) {
+          .Navigation .container .Page-LinksAndLogo {
+            width: 400px;
+            margin: 0 !important;
+          }
+        }
+
+        @@media (max-width: 762px) {
+          .Navigation .container .SupportAndSettings {
+            width: 450px;
+            transform: translateX(-20%);
+          }
+        }
+
+        @@media (max-width: 991px) {
+            .Navigation .container .Page-LinksAndLogo {
+                width: 600px;
+                margin-left: 130px !important;
+            }
+        }
+
+        @@media (max-width: 991px) {
+          .Footer .FooterRow {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* width: 100vw; */
+          }
+        }
+
+    </style>
+
 </head>
 <body>
 
@@ -58,21 +108,33 @@
                         <div href="https://localhost:7297/Wishlist" id="MyWishlist-Bar">
                             <p>My Wishlist</p>
                         </div>
-                        <div href="https://localhost:7297/Login" id="SignIn-Bar">
-                            <p>Sign In</p>
-                        </div>
+                        @if(!User.Identity.IsAuthenticated){
+                            <div href="https://localhost:7297/Login" id="SignIn-Bar">
+                                <p>Sign In</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="SignIn-Bar">
+                                <form asp-controller="Logout" asp-action="Signout" method="get" id="logoutForm">
+                                    <button id="SignOut_Btn" type="submit" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0;">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
 
             <div class="Page-LinksAndLogo">
-                <img src="~/Shopping/assets/icons/BigBasketLogo.svg" />
+                <img id="BigBasket" src="~/Shopping/assets/icons/BigBasketLogo.svg" />
 
                 <a class="Bars_Link">
-                    <img src="~/Shopping/assets/icons/BarsIcon_Grey.svg" />
+                    <img style="cursor: pointer" src="~/Shopping/assets/icons/BarsIcon_Grey.svg" />
                 </a>
 
-                <div style="display: none;" id="Links-Bar">
+                <div style="display: none" id="Links-Bar">
 
                     <div id="Home-Bar" class="Link-Bar">
                         <p>Home</p>
@@ -141,10 +203,6 @@
 
     </nav>
 
-@*     <section class="Search-Section">
-        @Html.Partial("_Search")
-    </section> *@
-
     @RenderBody()
 
     <footer class="Footer">
@@ -153,7 +211,7 @@
                 <div class="Footer-ContactUs">
                     <h3>CONTACT US</h3>
                     <div id="Contact-Content">
-                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <p>"Nam Liber Tempor Cum Soluta Nobis Eleifend Option Congue Nihil Imperdiet Doming Id Quod Mazim Placerat Facer Possim Assu. Or as the Postal Dude would put it, 'Why bother with all this fancy Latin crap when you can just get things done the brutal way?'"</p>
                         <div id="Payment-Methods">
                             <h4>Payment Methods:</h4>
                             <img src="~/Shopping/assets/images/PaymentMethods.jpg" />
@@ -255,6 +313,63 @@
         </div>
     </footer>
 
+    @* BasketIcon *@
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => { 
+        
+
+
+        });
+
+    </script>
+
+    @* BigBasket *@
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            var Logo = document.querySelector("#BigBasket");
+
+            Logo.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                window.open('/Home');
+            });
+
+        });
+
+    </script>
+
+    @* Sign *@
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            var SignOut_Btn = document.querySelector("#SignOut_Btn");
+
+            SignOut_Btn.addEventListener("click", () => {
+                fetch('https://localhost:7297/account/signout', {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    console.log('Signed out successfully');
+                })
+                .catch(error => {
+                    console.error('Error signing out:', error);
+                });
+            });
+        });
+
+    </script>
+
     @* search *@
 
     <script>
@@ -304,9 +419,7 @@
 
                             if (productId == null || productId == undefined || isNaN(productId)) {
                                 window.location.href = "https://localhost:7297/NotFound";
-                                console.log("Redirecting to:", `nOTfOUNND`);
                             } else {
-                                console.log("Redirecting to:", `/ProductDetails/${productId}`);
                                 window.location.href = `/ProductDetails/${productId}`;
                             }
                         });
@@ -336,9 +449,8 @@
                                 name: AddToCart_Btn.getAttribute('data-product-name'),
                                 price: AddToCart_Btn.getAttribute('data-product-price'),
                                 imageUrl: AddToCart_Btn.getAttribute('data-product-image'),
+                                stockCount: parseInt(AddToCart_Btn.getAttribute('data-product-stock')),
                                 quantity: parseInt(AddToCart_Btn.getAttribute('data-quantity')) || 1,
-                               // quantity: 1,
-
                             };
 
                             if (!product || product.id === null) {
@@ -377,6 +489,7 @@
                                 name: AddToWishlist_Btn.getAttribute('data-product-name'),
                                 price: AddToWishlist_Btn.getAttribute('data-product-price'),
                                 imageUrl: AddToWishlist_Btn.getAttribute('data-product-image'),
+                                stockCount: parseInt(AddToWishlist_Btn.getAttribute('data-product-stock')),
                             };
 
                             if (!product || product.id === null) {
@@ -404,14 +517,66 @@
                 .catch(error => console.error('Error fetching products:', error));
         });
 
+        // function addToCart(product) {
+        //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        //     const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+        //     if (existingProductIndex !== -1) {
+        //         cart[existingProductIndex].quantity += product.quantity;
+
+        //         Toastify({
+        //             text: `Product ${product.name} quantity increased`,
+        //             duration: 3000,
+        //             gravity: "top",
+        //             position: "right",
+        //             backgroundColor: "green",
+        //             stopOnFocus: true,
+        //         }).showToast();
+        //     } else {
+        //         cart.push(product);
+
+        //         Toastify({
+        //             text: `Product ${product.name} added to your Cart`,
+        //             duration: 3000,
+        //             gravity: "top",
+        //             position: "right",
+        //             backgroundColor: "green",
+        //             stopOnFocus: true,
+        //         }).showToast();
+        //     }
+
+        //     localStorage.setItem('cart', JSON.stringify(cart));
+
+        //     if (!localStorage.getItem('cart')) {
+        //         localStorage.setItem('cart', JSON.stringify([]));
+        //     }
+
+        //     updateItemCount(getCartItemCount());
+        // }
+
         function addToCart(product) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
             if (existingProductIndex !== -1) {
-                // If product exists, update its quantity
-                cart[existingProductIndex].quantity += product.quantity;
+                const existingProduct = cart[existingProductIndex];
+                const newQuantity = existingProduct.quantity + product.quantity;
+
+                if (newQuantity > product.stockCount) {
+                    Toastify({
+                        text: 'Cannot add more items than available in stock.',
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "red",
+                        stopOnFocus: true,
+                    }).showToast();
+                    return;
+                }
+
+                existingProduct.quantity = newQuantity; 
 
                 Toastify({
                     text: `Product ${product.name} quantity increased`,
@@ -422,7 +587,18 @@
                     stopOnFocus: true,
                 }).showToast();
             } else {
-                // If product doesn't exist, add it to the cart
+                if (product.quantity > product.stockCount) {
+                    Toastify({
+                        text: 'Cannot add more items than available in stock.',
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "red",
+                        stopOnFocus: true,
+                    }).showToast();
+                    return;
+                }
+
                 cart.push(product);
 
                 Toastify({
@@ -437,13 +613,13 @@
 
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            // If localStorage cart is empty, initialize it
             if (!localStorage.getItem('cart')) {
                 localStorage.setItem('cart', JSON.stringify([]));
             }
 
             updateItemCount(getCartItemCount());
         }
+
 
         function addToWishlist(product, wishIcon, originalFullUrl, newFullUrl) {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];

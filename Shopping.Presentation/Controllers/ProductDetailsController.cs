@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetByIdQuery;
 
@@ -14,6 +15,7 @@ namespace Shopping.Presentation.Controllers
             this.mediator = mediator;
         }
 
+        [AllowAnonymous]
         [Route("ProductDetails/{id}")]
         public async Task<IActionResult> Index([FromRoute] ProductGetByIdRequest request)
         {

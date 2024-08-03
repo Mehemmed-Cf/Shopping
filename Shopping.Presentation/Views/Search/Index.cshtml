@@ -247,6 +247,17 @@
             <div class="Wishlist-Area">
                 <div class="container">
                     <div class="Wishlist-Exists">
+
+                        <div class="cube-loader" style="position: absolute; top: 33%;">
+                            <div class="cube-top"></div>
+                            <div class="cube-wrapper">
+                                <span style="--i:0" class="cube-span"></span>
+                                <span style="--i:1" class="cube-span"></span>
+                                <span style="--i:2" class="cube-span"></span>
+                                <span style="--i:3" class="cube-span"></span>
+                            </div>
+                        </div>
+
                         <div class="Row">
 
                         </div>
@@ -255,6 +266,18 @@
             </div>
         </div>
     </main>
+
+    @* loader *@
+
+    <script>
+
+        const loaderElement = document.querySelector(".cube-loader");
+
+        function showLoader(show) {
+            loaderElement.style.display = show ? "block" : "none";
+        }
+
+    </script>
 
     @* Icons *@
 
@@ -272,25 +295,37 @@
             if (searchTerm) {
                 fetchSearchResults(searchTerm);
             }
+
         });
 
         function displaySearchResults(products) {
+            showLoader(true);
+
             const row = document.querySelector('.Row');
             row.innerHTML = '';
 
             if (products.length === 0) {
-                row.innerHTML = '<p>No products found.</p>';
+                const emptyMessage = document.createElement('p');
+                emptyMessage.textContent = "No products found.";
+                emptyMessage.style.transform = "translate(500px, 0px)";
+                emptyMessage.style.fontWeight = "500";
+                emptyMessage.style.fontSize = "18px";
+                row.appendChild(emptyMessage);
+
+                showLoader(false);
                 return;
             }
 
             products.forEach(product => {
-
                 const Single_Product = document.createElement("div");
                 Single_Product.classList.add("Single-Product", "Col");
+                Single_Product.setAttribute('data-product-id', product.id);
+                Single_Product.style.cursor = "pointer";    
 
                 const Pro_Img = document.createElement("div");
                 Pro_Img.classList.add("Pro-Img");
                 Pro_Img.style.marginRight = "20px";
+                Pro_Img.setAttribute('data-product-id', product.id);
 
                 const ImageLink = document.createElement("a");
 
@@ -311,8 +346,9 @@
                 addToCartButton.classList.add("Add-To-Cart");
                 addToCartButton.textContent = "Add To Cart";
                 addToCartButton.setAttribute('data-product-id', product.id);
-                addToCartButton.setAttribute('data-product-name', product.title );
+                addToCartButton.setAttribute('data-product-name', product.title);
                 addToCartButton.setAttribute('data-product-price', product.price);
+                addToCartButton.setAttribute('data-product-stock', product.stockCount)
                 addToCartButton.setAttribute('data-product-image', product.imageUrl);
 
                 primaryActions.appendChild(addToCartButton);
@@ -326,6 +362,7 @@
                 addToWishlistLink.setAttribute('data-product-id', product.id);
                 addToWishlistLink.setAttribute('data-product-name', product.title);
                 addToWishlistLink.setAttribute('data-product-price', product.price);
+                addToWishlistLink.setAttribute('data-product-stock', product.stockCount)
                 addToWishlistLink.setAttribute('data-product-image', product.imageUrl);
 
                 const wishlistIcon = document.createElement("img");
@@ -383,6 +420,10 @@
 
                 row.appendChild(Single_Product);
             });
+
+            setupHoverEffects();
+
+            showLoader(false);
         }
 
         function fetchSearchResults(searchTerm) {
@@ -402,7 +443,6 @@
                     const filteredProducts = data.filter(product =>
                         product.title.toLowerCase().includes(searchTerm.toLowerCase())
                     );
-                                        console.log(filteredProducts);
 
                     displaySearchResults(filteredProducts);
                 })
@@ -410,15 +450,13 @@
                     console.error('Error fetching search results:', error);
                 });
         }
-    </script>
 
-    @* SingleProducts *@
+        function setupHoverEffects() {
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
             const Single_Products = document.querySelectorAll(".Single-Product.Col");
 
             Single_Products.forEach(item => {
+
                 const AddToCart_Btn = item.querySelector(".Add-To-Cart");
                 const add_to_wishlist = item.querySelector("#add-to-wishlist");
                 const quickview = item.querySelector("#quickview");
@@ -485,9 +523,11 @@
 
             });
 
-        });
+
+
+        }
 
     </script>
-    
+
 </body>
 </html>

@@ -23,8 +23,10 @@ namespace Shopping.Application.Modules.ContactPostsModule.Commands.ContactPostEd
             //entity.Subject = request.Subject;
             //entity.Content = request.Content;
             entity.Answer = request.Answer;
-            entity.AnsweredAt = request.AnsweredAt;
-            entity.AnsweredBy = request.AnsweredBy;
+            //entity.AnsweredAt = request.AnsweredAt;
+            //entity.AnsweredBy = request.AnsweredBy;
+            entity.AnsweredAt = DateTime.UtcNow;
+            entity.AnsweredBy = 1;
             entity.CreatedAt = request.CreatedAt;
 
 

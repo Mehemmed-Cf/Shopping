@@ -285,7 +285,7 @@ body {
 @media (max-width: 762px) {
   .Navigation .container .SupportAndSettings {
     width: 450px;
-    transform: translateX(0%);
+    transform: translateX(-20%);
   }
 }
 .Navigation .container .SupportAndSettings #Support {
@@ -424,7 +424,7 @@ body {
 @media (max-width: 762px) {
   .Navigation .container .Page-LinksAndLogo {
     width: 400px;
-    margin: 0;
+    margin: 0 !important;
   }
 }
 .Navigation .container .Page-LinksAndLogo > img {
@@ -638,7 +638,7 @@ body {
   .Footer .FooterRow {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 100vw;
+    /*width: 100vw;*/
   }
 }
 @media (max-width: 762px) {
@@ -7058,4 +7058,532 @@ main .Search_Section .Search_Page .container .Row .Col .Search_Item #last-view .
     text-transform: capitalize;
   }
 }
+
+.Checkout_Section {
+display: flex;
+flex-direction: row;
+border-top: 1px solid gray;
+}
+
+.Checkout_Section .Billing-Area {
+display: flex;
+height: 100%;
+width: 60%;
+block-size: 100%;
+flex-direction: column;
+border-right: 1px solid gray;
+padding-left: 5%;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info {
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: auto auto 1fr auto;
+width: 100%;
+inline-size: 100%;
+padding: 38px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info {
+display: grid;
+grid-template-columns: minmax(0, 1fr);
+-moz-column-gap: 2.1rem;
+column-gap: 2.1rem;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form {
+display: contents;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout {
+position: relative;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Contact .Contact-Form h2 {
+font-family: sans-serif;
+font-size: 22px;
+font-weight: 600;
+line-height: 25px;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+align-items: baseline;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-transform: uppercase;
+color: var(--Background-Dark);
+margin-bottom: 20px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Contact .Contact-Form input {
+width: 555px;
+height: 45px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 16px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form {
+position: relative;
+display: grid;
+grid-template-columns: minmax(0, 1fr);
+row-gap: 1.4rem;
+-moz-column-gap: 1.4rem;
+column-gap: 1.4rem;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form h2 {
+font-family: sans-serif;
+font-size: 22px;
+font-weight: 600;
+line-height: 25px;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-transform: uppercase;
+color: var(--Background-Dark);
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm {
+position: relative;
+display: grid;
+grid-template-columns: minmax(0, 1fr);
+-moz-column-gap: 2.6rem;
+column-gap: 2.6rem;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Location label {
+font-family: sans-serif;
+font-size: 13px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+display: block;
+text-overflow: ellipsis;
+white-space: nowrap;
+position: absolute;
+left: 10px;
+opacity: 0.7;
+top: 5px;
+z-index: 20;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Location select {
+position: relative;
+width: 555px;
+height: 65px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #FullNameOfUser {
+display: flex;
+gap: 1.4rem;
+position: relative;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #FullNameOfUser input {
+width: 266px;
+height: 55px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Address {
+display: flex;
+gap: 1.4rem;
+position: relative;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Address input {
+width: 555px;
+height: 55px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Place {
+display: flex;
+gap: 1.4rem;
+position: relative;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #Place input {
+width: 555px;
+height: 55px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #PostalCodeAndCity {
+display: flex;
+gap: 1.4rem;
+position: relative;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Delivery .Delivery-Form .ShippingAddressForm #PostalCodeAndCity input {
+width: 266px;
+height: 55px;
+padding: 0px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+background-color: #f5f5f5;
+color: #888;
+border-radius: 0px;
+border: 1px solid #e8e8e8;
+box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+margin-bottom: 30px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Shipping {
+display: flex;
+position: relative;
+flex-direction: column;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Shipping h3 {
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 600;
+line-height: 25px;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+align-items: baseline;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-transform: none;
+color: var(--Background-Dark);
+margin-bottom: 20px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Shipping div {
+display: flex;
+width: 555px;
+height: 55px;
+padding: 15px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+color: #888;
+border-radius: 5px;
+border: 2px solid #4380DB;
+margin-bottom: 30px;
+justify-content: space-between;
+cursor: pointer;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Shipping div span {
+font-weight: 600;
+color: black;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Payment {
+display: flex;
+position: relative;
+flex-direction: column;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Payment h3 {
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 600;
+line-height: 25px;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+align-items: baseline;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-transform: none;
+color: var(--Background-Dark);
+margin-bottom: 20px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Payment div {
+display: flex;
+width: 555px;
+height: 55px;
+padding: 15px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+color: #888;
+border-radius: 5px;
+border: 2px solid #4380DB;
+margin-bottom: 30px;
+justify-content: space-between;
+cursor: pointer;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Billing {
+display: flex;
+position: relative;
+flex-direction: column;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Billing h3 {
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 600;
+line-height: 25px;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+align-items: baseline;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+text-transform: none;
+color: var(--Background-Dark);
+margin-bottom: 20px;
+}
+
+.Checkout_Section .Billing-Area .Billing-Info .Checkout-Main .Checkout-Info form .Checkout .Billing div {
+display: flex;
+width: 555px;
+height: 55px;
+padding: 15px 15px;
+gap: 12px;
+border-radius: 20px;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: 500;
+line-height: 120%;
+font-style: normal;
+letter-spacing: normal;
+text-transform: capitalize;
+color: #888;
+border-radius: 5px;
+border: 2px solid #4380DB;
+margin-bottom: 30px;
+justify-content: space-between;
+cursor: pointer;
+}
+
+.Checkout_Section .Cart_Products {
+padding: 30px;
+background-color: #fff;
+width: 40%;
+}
+
+.Checkout_Section .Cart_Products aside {    
+width: 77%;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] {
+display: flex;
+flex-direction: row;
+margin
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Img {
+position: relative;
+background-color: white;
+height: 64px;
+border-radius: 5px;
+border: 1px solid #e8e7e7;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Img #product-quantity {
+display: flex;
+height: 22px;
+width: 22px;
+border-radius: 50%;
+background: transparent;
+color: white;
+background-color: #707070;
+align-items: center;
+justify-content: center;
+position: absolute;
+left: 40px;
+top: -10px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Img img {
+width: 64px;
+border: 1px solid rgb(206, 206, 206);
+border-radius: 5px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Title_And_Material {
+padding-left: 20px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Title_And_Material div {
+display: flex;
+flex-direction: column;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Title_And_Material div p {
+color: black;
+}
+
+.Checkout_Section .Cart_Products aside section div .Cart_Product div[role=row] div[role=cell] .Cart_Product_Price {
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products {
+padding-top: 30px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] div[role=row] {
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] div[role=row] div[role=rowheader] h6 {
+font-size: 17px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] div[role=row] div[role=rowheader] h4 {
+font-size: 20px;
+font-weight: 600;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] div[role=row] span {
+font-size: 16px;
+}
+
+.Checkout_Section .Cart_Products aside section div .Total_Price_Cart_Products div[role=table] div[role=row] #Cart_TotalPrice span {
+font-size: 20px !important;
+font-weight: 600 !important;
+}
+#CompleteOrder {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 50px;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: capitalize;
+    width: 555px;
+    height: 50px;
+    padding: 14px;
+    background-color: 20px;
+    gap: normal;
+    border-radius: 20px;
+    border: none;
+    transition: 0.3s;
+    margin-top: 20px;
+    padding: 0 30px;
+    text-transform: none;
+    display: inline-block;
+    color: white;
+    transform: all 0.5s ease-in-out;
+    background-color: var(--Main-Blue);
+    border-radius: 0px;
+}
+
+    #CompleteOrder:hover {
+        background-color: var(--Background-Dark);
+        color: var(--Main-Blue);
+    }
+
 /*# sourceMappingURL=main.css.map */

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shopping.Application.Modules.ProductsModule.Queries.ProductGetAllQuery;
 using Shopping.Application.Repositories;
-using Shopping.Application.Modules.ProductsModule.Queries.FilterProductByTitle;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shopping.Presentation.Controllers
 {
@@ -46,9 +46,17 @@ namespace Shopping.Presentation.Controllers
             ViewBag.Materials = _materialRepository.GetAll();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index(ProductGetAllRequest request)
         {
             var response = await mediator.Send(request);
+
+            if (TempData["LoginMessage"] != null)
+            {
+                ViewBag.Message = TempData["LoginMessage"].ToString();
+                TempData.Remove("LoginMessage");
+            }
+
             return View(response);
         }
 
